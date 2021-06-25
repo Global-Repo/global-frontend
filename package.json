@@ -35,8 +35,8 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/abi": "^5.1.2",
-    "@pancakeswap-libs/sdk": "^1.0.1",
-    "@pancakeswap/uikit": "^0.39.3",
+    "@duhd4h/global-sdk": "1.0.2",
+    "@duhd4h/global-uikit": "1.0.15",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal } from '@pancakeswap/uikit'
+import { Button, Modal } from '@duhd4h/global-uikit'
 import ModalActions from 'components/ModalActions'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

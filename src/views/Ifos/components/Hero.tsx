@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Heading, Text } from '@pancakeswap/uikit'
+import { Box, Heading, Text } from '@duhd4h/global-uikit'
 import Container from 'components/layout/Container'
 import { useTranslation } from 'contexts/Localization'
 

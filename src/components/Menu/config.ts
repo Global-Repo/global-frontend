@@ -1,4 +1,4 @@
-import { MenuEntry } from '@pancakeswap/uikit'
+import { MenuEntry } from '@duhd4h/global-uikit'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
