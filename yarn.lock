@@ -1515,18 +1515,27 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@duhd4h/global-sdk@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.2.tgz#032f702f726e8f6b483ea8a57e168c3622b412e4"
-  integrity sha512-LhISYUY4G2aLiMD5k912rexHzFQh2KT+MAf+Lkdz9jEzOwPnHNaG+sG7UStch2VD6Qzodt5hKqivkQCYRegfvw==
+"@duhd4h/global-sdk@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.4.tgz#607c578bb377ac1a7a6f95638051a9d569f29db0"
+  integrity sha512-3ZHkPYrKi4CBuAdOY665sOuo4f3v0d1rJJBeb0LiqU5DwFlhEKsVVrE5/+nYDAxyJc4VxTTyJe+aR/eKWY59DQ==
   dependencies:
-    "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
+    "@duhd4h/global-swap-core" "^0.1.0"
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
     jsbi "^3.1.1"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
+
+"@duhd4h/global-swap-core@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@duhd4h/global-swap-core/-/global-swap-core-0.1.0.tgz#03f3f60f47b316fc39d70f04b9b1fa71746a4c7f"
+  integrity sha512-NJBhrSaTUdOYuq8CEVQf1CPknAkLucDkzxC5N89El8nTtfZ3b4vNpbJGhz3iE4Bvrcnih3wLtvy4ByMkRQXK6Q==
+  dependencies:
+    truffle "^5.1.41"
+    truffle-flattener "^1.4.4"
+    truffle-hdwallet-provider "^1.0.17"
 
 "@duhd4h/global-uikit@^1.0.17":
   version "1.0.17"
@@ -2581,15 +2590,6 @@
   dependencies:
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
-
-"@pancakeswap-libs/pancake-swap-core@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/pancake-swap-core/-/pancake-swap-core-0.1.0.tgz#6957f1fa02170531a2ffbf95f2c0e145e9d21bc2"
-  integrity sha512-2jYiD1Ec3xAbP4JTa/Ozylx0xI4VwC7diCm5ak4AtGrIRhfRLSanaZSQdVpLigUnIFszma/4nVWtt3cup4Poxw==
-  dependencies:
-    truffle "^5.1.41"
-    truffle-flattener "^1.4.4"
-    truffle-hdwallet-provider "^1.0.17"
 
 "@pedrouid/environment@^1.0.1":
   version "1.0.1"
