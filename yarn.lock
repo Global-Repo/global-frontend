@@ -1501,7 +1501,21 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@duhd4h/global-sdk@1.0.2":
+"@duhd4h/eslint-config-global@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@duhd4h/eslint-config-global/-/eslint-config-global-1.1.10.tgz#9d5e2908993cc814b8f868585ccd245c61b12a45"
+  integrity sha512-H+y5qNr/iBpT2KVBS8eDiZWdWtbCin2pjFgpH7DxZX9U2urpV0G/vrpT0aDoAsCNCpzJtC7GIY+nB4zqjBXw7Q==
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^4.7.0"
+    "@typescript-eslint/parser" "^4.7.0"
+    eslint-config-airbnb "^18.2.1"
+    eslint-config-prettier "^6.15.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jsx-a11y "^6.4.1"
+    eslint-plugin-react "^7.21.5"
+    eslint-plugin-react-hooks "^4.0.0"
+
+"@duhd4h/global-sdk@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.2.tgz#032f702f726e8f6b483ea8a57e168c3622b412e4"
   integrity sha512-LhISYUY4G2aLiMD5k912rexHzFQh2KT+MAf+Lkdz9jEzOwPnHNaG+sG7UStch2VD6Qzodt5hKqivkQCYRegfvw==
@@ -1514,10 +1528,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@duhd4h/global-uikit@1.0.15":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@duhd4h/global-uikit/-/global-uikit-1.0.15.tgz#263b18946695890d70fabf6e177ed01d3fd77d1d"
-  integrity sha512-BLUk9DFZ1WxIFqJWa+DKL63rjbpfoMJ8fXgBziEpKTzJPtHqgr95D+neDSbvpq76I7piqgtvI7zfeC8NvtWAwQ==
+"@duhd4h/global-uikit@^1.0.17":
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/@duhd4h/global-uikit/-/global-uikit-1.0.17.tgz#c18fd318e8d9cc76b40e5f44d3b3602b1e112230"
+  integrity sha512-QEWczGbpaOwep5yJUUBMn5uxQI1ow/ci77HwX4DMsw49NuVWmTB0f16ziIMlbgX0vNllS5tLmwoVZeIl5KPkFg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
@@ -2576,20 +2590,6 @@
     truffle "^5.1.41"
     truffle-flattener "^1.4.4"
     truffle-hdwallet-provider "^1.0.17"
-
-"@pancakeswap/eslint-config-pancake@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/eslint-config-pancake/-/eslint-config-pancake-1.1.0.tgz#ddb916af3726359095207306cfc87098cec43f41"
-  integrity sha512-TGyHaDZjXPtubV39S4vPVVRZk9FgsSyBwP6qTP1/H0+nUoKEh+RIUs/nCVxZgN7f8MbbVioLg00gVqV0XI8a7Q==
-  dependencies:
-    "@typescript-eslint/eslint-plugin" "^4.7.0"
-    "@typescript-eslint/parser" "^4.7.0"
-    eslint-config-airbnb "^18.2.1"
-    eslint-config-prettier "^6.15.0"
-    eslint-plugin-import "^2.22.1"
-    eslint-plugin-jsx-a11y "^6.4.1"
-    eslint-plugin-react "^7.21.5"
-    eslint-plugin-react-hooks "^4.0.0"
 
 "@pedrouid/environment@^1.0.1":
   version "1.0.1"
