@@ -7,7 +7,7 @@ const tokens = {
     symbol: 'CAKE',
     address: {
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
+      97: '0x5f8e1a38b6d6865e04ca2403be515bb384a83b1c',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -475,7 +475,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      97: '0x094616f0bdfb0b526bd735bf66eca0ad254ca81f',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -1640,6 +1640,24 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://decentral.games/',
+  },
+  manor: {
+    symbol: 'MANOR',
+    address: {
+      56: '',
+      97: '0x263bb3d32af61596260caba03fc5b5863fe28ed3',
+    },
+    decimals: 18,
+    projectLink: 'https://woo.network/',
+  },
+  manolos: {
+    symbol: 'MAN',
+    address: {
+      56: '',
+      97: '0x9865ed466d8cd159e329476fcb18d188e6a129ab',
+    },
+    decimals: 18,
+    projectLink: 'https://woo.network/',
   },
 }
 
