@@ -29,3 +29,6 @@ export const LOTTERY_TICKET_PRICE = 1
 export const DEFAULT_TOKEN_DECIMAL = BIG_TEN.pow(18)
 export const DEFAULT_GAS_LIMIT = 200000
 export const DEFAULT_GAS_PRICE = 5
+
+export const BUSD_BNB_PID = parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10)
+export const CAKE_BNB_PID = parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10)

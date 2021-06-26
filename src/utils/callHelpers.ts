@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL, CAKE_BNB_PID } from 'config'
 import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from '@duhd4h/global-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
@@ -129,7 +129,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 }
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-const cakeBnbPid = 251
+const cakeBnbPid = CAKE_BNB_PID
 const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
 
 const CAKE_TOKEN = new Token(chainId, getCakeAddress(), 18)

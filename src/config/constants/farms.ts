@@ -9,14 +9,15 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'CAKE',
     lpAddresses: {
-      97: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
-      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      // Aqui no va un LP address sino el cake token address que es el que tiene pid 0 en el masterchef
+      97: process.env.REACT_APP_CAKE_ADDRESS,
+      56: process.env.REACT_APP_CAKE_ADDRESS,
     },
     token: tokens.syrup,
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 251,
+    pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10), // 251
     lpSymbol: 'CAKE-BNB LP',
     lpAddresses: {
       97: '0x8cC765891EB2b7B5222A4F2024DfeC62d6F332a9',
@@ -26,7 +27,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 252,
+    pid: parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10), // 252
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '0xB678E05397714BCF78ff7516E7bb85bb9aC2d322',

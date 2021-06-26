@@ -619,7 +619,7 @@ const tokens = {
     symbol: 'SYRUP',
     address: {
       56: '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
-      97: '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
+      97: '0x6Ce54AE85c566d96fB8dCdFA2771F6c90F55cA67',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -646,7 +646,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '',
+      97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
