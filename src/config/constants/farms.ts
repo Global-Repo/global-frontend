@@ -37,14 +37,14 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 4,
-    lpSymbol: 'MANOR-MAN LP',
+    pid: 5,
+    lpSymbol: 'MANOR-BNB LP',
     lpAddresses: {
-      97: '0x000D31c9BdF3f2DE9da59869A67DD945a1b18367',
+      97: '0x9141e065ad01a501e076d28c35c618702d93999E',
       56: '',
     },
     token: tokens.manor,
-    quoteToken: tokens.manolos,
+    quoteToken: tokens.wbnb,
   },
 ]
 

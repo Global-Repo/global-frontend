@@ -323,12 +323,12 @@ export const useAchievements = () => {
 }
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const bnbBusdFarm = useFarmFromPid(1)
+  const bnbBusdFarm = useFarmFromPid(parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10))
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(2)
+  const cakeBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10))
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }
 
