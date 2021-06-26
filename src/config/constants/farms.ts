@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 900,
+    pid: 4,
     lpSymbol: 'MANOR-MAN LP',
     lpAddresses: {
       97: '0x000D31c9BdF3f2DE9da59869A67DD945a1b18367',
