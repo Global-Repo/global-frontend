@@ -17,16 +17,6 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10), // 251
-    lpSymbol: 'CAKE-BNB LP',
-    lpAddresses: {
-      97: '0x8cC765891EB2b7B5222A4F2024DfeC62d6F332a9',
-      56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
-    },
-    token: tokens.cake,
-    quoteToken: tokens.wbnb,
-  },
-  {
     pid: parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10), // 252
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
@@ -37,10 +27,20 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 5,
+    pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10), // 251
+    lpSymbol: 'CAKE-BNB LP',
+    lpAddresses: {
+      97: '0xB1CAE943B80Cd1E77360f0aBaEa1a99ED8440f15',
+      56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
+    },
+    token: tokens.cake,
+    quoteToken: tokens.wbnb,
+  },
+  {
+    pid: 3,
     lpSymbol: 'MANOR-BNB LP',
     lpAddresses: {
-      97: '0x9141e065ad01a501e076d28c35c618702d93999E',
+      97: '0x9141e065ad01a501e076d28c35c618702d93999e',
       56: '',
     },
     token: tokens.manor,
