@@ -10,12 +10,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Exchange'),
     icon: 'PoolIcon',
-    href: '',
+    href: '/exchange',
   },
   {
     label: t('Liquidity'),
     icon: 'PoolIcon',
-    href: '',
+    href: '/liquidity',
   },
   {
     label: t('Farms'),
@@ -33,11 +33,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: 'Contact',
-        href: '',
+        href: '/contact',
       },
       {
         label: 'Voting',
-        href: '',
+        href: '/voting',
       },
       {
         label: 'Github',
