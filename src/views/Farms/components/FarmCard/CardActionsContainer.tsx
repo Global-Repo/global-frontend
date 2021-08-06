@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Text } from '@duhd4h/global-uikit'
+import { Button, Flex, Text, TimerIcon, useTooltip } from '@duhd4h/global-uikit'
 import { getAddress } from 'utils/addressHelpers'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
@@ -12,6 +12,11 @@ import { useApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
+
+const TimerIconWrapper = styled.div`
+  align-self: center;
+  margin-left: 4px;
+`
 
 const Action = styled.div`
   padding-top: 16px;
@@ -35,6 +40,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     tokenBalance: tokenBalanceAsString = 0,
     stakedBalance: stakedBalanceAsString = 0,
     earnings: earningsAsString = 0,
+    nextHarvest: nextHarvestAsString = 0,
   } = farm.userData || {}
   const allowance = new BigNumber(allowanceAsString)
   const tokenBalance = new BigNumber(tokenBalanceAsString)
@@ -75,15 +81,23 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     )
   }
 
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(nextHarvestAsString, { placement: 'bottom' })
+
   return (
     <Action>
-      <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          CAKE
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Earned')}
-        </Text>
+      {tooltipVisible && tooltip}
+      <Flex justifyContent="space-between">
+        <Flex>
+          <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+            CAKE
+          </Text>
+          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+            {t('Earned')}
+          </Text>
+        </Flex>
+        <TimerIconWrapper ref={targetRef}>
+          <TimerIcon color="textSubtle" />
+        </TimerIconWrapper>
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>

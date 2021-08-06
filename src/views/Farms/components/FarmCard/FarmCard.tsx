@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Text, Skeleton } from '@duhd4h/global-uikit'
+import { Flex, Text, Skeleton, HelpIcon, useTooltip } from '@duhd4h/global-uikit'
 import { Farm } from 'state/types'
 import { getBscScanAddressUrl } from 'utils/bscscan'
 import { useTranslation } from 'contexts/Localization'
@@ -68,6 +68,11 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   overflow: hidden;
 `
 
+const HelpIconWrapper = styled.div`
+  align-self: center;
+  margin-left: 4px;
+`
+
 interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
@@ -90,6 +95,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How soon can you harvest or compound again.'), {
+    placement: 'bottom',
+  })
+
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
@@ -101,6 +110,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
       {isPromotedFarm && <StyledCardAccent />}
+      {tooltipVisible && tooltip}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
@@ -126,6 +136,17 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
       <Flex justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
+      </Flex>
+      <Flex justifyContent="space-between">
+        <Flex>
+          <Text>{t('Harvest Lockup')}:</Text>
+          <HelpIconWrapper ref={targetRef}>
+            <HelpIcon color="textSubtle" />
+          </HelpIconWrapper>
+        </Flex>
+        <Text bold>
+          {farm.harvestInterval} {t('Hour(s)')}
+        </Text>
       </Flex>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />

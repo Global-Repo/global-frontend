@@ -10,6 +10,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { useWeb3React } from '@web3-react/core'
 import { usePriceCakeBusd } from 'state/hooks'
 import Balance from 'components/Balance'
+import useCanHarvest from '../../../../hooks/useCanHarvest'
 
 interface FarmCardActionsProps {
   earnings?: BigNumber
@@ -26,6 +27,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const rawEarningsBalance = account ? getBalanceAmount(earnings) : BIG_ZERO
   const displayBalance = rawEarningsBalance.toFixed(3, BigNumber.ROUND_DOWN)
   const earningsBusd = rawEarningsBalance ? rawEarningsBalance.multipliedBy(cakePrice).toNumber() : 0
+  const canHarvest = useCanHarvest(pid)
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
@@ -36,7 +38,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
         )}
       </Flex>
       <Button
-        disabled={rawEarningsBalance.eq(0) || pendingTx}
+        disabled={rawEarningsBalance.eq(0) || pendingTx || !canHarvest}
         onClick={async () => {
           setPendingTx(true)
           await onReward()
