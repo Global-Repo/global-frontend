@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Skeleton, Text } from '@duhd4h/global-uikit'
+import { Button, Flex, Skeleton, Text, TimerIcon, useTooltip } from '@duhd4h/global-uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
@@ -11,8 +11,14 @@ import { fetchFarmUserDataAsync } from 'state/farms'
 import { usePriceCakeBusd } from 'state/hooks'
 import { useHarvest } from 'hooks/useHarvest'
 import { useTranslation } from 'contexts/Localization'
-
+import styled from 'styled-components'
 import { ActionContainer, ActionTitles, ActionContent, Earned } from './styles'
+import useCanHarvest from '../../../../../hooks/useCanHarvest'
+
+const TimerIconWrapper = styled.div`
+  align-self: center;
+  margin-left: 4px;
+`
 
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
@@ -24,6 +30,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   let earnings = BIG_ZERO
   let earningsBusd = 0
   let displayBalance = userDataReady ? earnings.toLocaleString() : <Skeleton width={60} />
+  const nextHarvestAsString = userData.nextHarvest
 
   // If user didn't connect wallet default balance will be 0
   if (!earningsBigNumber.isZero()) {
@@ -37,16 +44,27 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
+  const canHarvest = useCanHarvest(pid)
+
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(nextHarvestAsString, { placement: 'bottom' })
 
   return (
     <ActionContainer>
+      {tooltipVisible && tooltip}
       <ActionTitles>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          CAKE
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Earned')}
-        </Text>
+        <Flex style={{ width: '100%' }} justifyContent="space-between">
+          <Flex>
+            <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+              CAKE
+            </Text>
+            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+              {t('Earned')}
+            </Text>
+          </Flex>
+          <TimerIconWrapper ref={targetRef}>
+            <TimerIcon color="textSubtle" />
+          </TimerIconWrapper>
+        </Flex>
       </ActionTitles>
       <ActionContent>
         <div>
@@ -56,7 +74,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           )}
         </div>
         <Button
-          disabled={earnings.eq(0) || pendingTx || !userDataReady}
+          disabled={earnings.eq(0) || pendingTx || !userDataReady || !canHarvest}
           onClick={async () => {
             setPendingTx(true)
             await onReward()

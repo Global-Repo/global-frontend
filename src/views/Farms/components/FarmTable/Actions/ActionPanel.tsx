@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text } from '@duhd4h/global-uikit'
+import { Flex, HelpIcon, LinkExternal, Text, useTooltip } from '@duhd4h/global-uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBscScanAddressUrl } from 'utils/bscscan'
@@ -129,6 +129,17 @@ const ValueWrapper = styled.div`
   margin: 4px 0px;
 `
 
+const HelpIconWrapper = styled.div`
+  align-self: center;
+  margin: 0 4px;
+`
+
+const HarvestLockupWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+`
+
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apr,
@@ -152,8 +163,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = `https://pancakeswap.info/pool/${lpAddress}`
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How soon can you harvest or compound again.'), {
+    placement: 'bottom',
+  })
+
   return (
     <Container expanded={expanded}>
+      {tooltipVisible && tooltip}
       <InfoContainer>
         {isActive && (
           <StakeContainer>
@@ -166,6 +182,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
+        <HarvestLockupWrapper>
+          <Flex>
+            <Text>{t('Harvest Lockup')}:</Text>
+            <HelpIconWrapper ref={targetRef}>
+              <HelpIcon color="textSubtle" />
+            </HelpIconWrapper>
+          </Flex>
+          <Text bold>
+            {farm.harvestInterval} {t('Hour(s)')}
+          </Text>
+        </HarvestLockupWrapper>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
@@ -182,7 +209,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         </ValueWrapper>
       </ValueContainer>
       <ActionContainer>
-        <HarvestAction {...farm} userDataReady={userDataReady} />
+        <HarvestAction {...farm} userDataReady={userDataReady} harvestInterval={farm.harvestInterval} />
         <StakedAction {...farm} userDataReady={userDataReady} />
       </ActionContainer>
     </Container>
