@@ -95,9 +95,11 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
             {t('Earned')}
           </Text>
         </Flex>
-        <TimerIconWrapper ref={targetRef}>
-          <TimerIcon color="textSubtle" />
-        </TimerIconWrapper>
+        {isApproved && stakedBalance.gt(0) && (
+          <TimerIconWrapper ref={targetRef}>
+            <TimerIcon color="textSubtle" />
+          </TimerIconWrapper>
+        )}
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>

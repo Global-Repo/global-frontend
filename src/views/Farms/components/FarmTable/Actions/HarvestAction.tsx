@@ -8,7 +8,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useFarmUser, usePriceCakeBusd } from 'state/hooks'
 import { useHarvest } from 'hooks/useHarvest'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
@@ -45,6 +45,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const canHarvest = useCanHarvest(pid)
+  const { allowance, stakedBalance } = useFarmUser(pid)
+  const isApproved = account && allowance && allowance.isGreaterThan(0)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(nextHarvestAsString, { placement: 'bottom' })
 
@@ -61,9 +63,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
               {t('Earned')}
             </Text>
           </Flex>
-          <TimerIconWrapper ref={targetRef}>
-            <TimerIcon color="textSubtle" />
-          </TimerIconWrapper>
+          {isApproved && stakedBalance.gt(0) && (
+            <TimerIconWrapper ref={targetRef}>
+              <TimerIcon color="textSubtle" />
+            </TimerIconWrapper>
+          )}
         </Flex>
       </ActionTitles>
       <ActionContent>
