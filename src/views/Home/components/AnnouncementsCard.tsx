@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody } from '@duhd4h/global-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Card, CardBody } from '@duhd4h/global-uikit'
+import { Timeline } from 'react-twitter-widgets'
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -15,14 +15,13 @@ const StyledFarmStakingCard = styled(Card)`
 `
 
 const AnnouncementsCard = () => {
-  const { t } = useTranslation()
-
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading color="contrast" scale="lg">
-          {t('Announcements')}
-        </Heading>
+        <Timeline
+          dataSource={{ sourceType: 'profile', screenName: 'Beglobaldefi' }}
+          options={{ theme: 'dark', height: '600' }}
+        />
       </CardBody>
     </StyledFarmStakingCard>
   )
