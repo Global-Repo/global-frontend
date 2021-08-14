@@ -1,5 +1,6 @@
 import { MenuEntry } from '@duhd4h/global-uikit'
 import { ContextApi } from 'contexts/Localization/types'
+import { BASE_EXCHANGE_SWAP_URL, BASE_LIQUIDITY_POOL_URL } from '../../config'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
@@ -10,12 +11,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Exchange'),
     icon: 'PoolIcon',
-    href: '/exchange',
+    href: BASE_EXCHANGE_SWAP_URL,
   },
   {
     label: t('Liquidity'),
     icon: 'PoolIcon',
-    href: '/liquidity',
+    href: BASE_LIQUIDITY_POOL_URL,
   },
   {
     label: t('Farms'),
