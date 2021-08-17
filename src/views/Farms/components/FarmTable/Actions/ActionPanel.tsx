@@ -14,6 +14,7 @@ import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import HarvestLockup from '../../HarvestLockup'
 import APR from '../../APR'
+import WithdrawalFee from '../../WithdrawalFee'
 
 export interface ActionPanelProps {
   apy: ApyProps
@@ -178,6 +179,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <DetailsWrapper>
           <APR apr={farm.apr} />
           <HarvestLockup harvestInterval={farm.harvestInterval} />
+          <WithdrawalFee />
         </DetailsWrapper>
       </InfoContainer>
       <ValueContainer>
