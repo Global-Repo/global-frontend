@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { Flex, HelpIcon, LinkExternal, Text, useTooltip } from '@duhd4h/global-uikit'
+import { LinkExternal, Text } from '@duhd4h/global-uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBscScanAddressUrl } from 'utils/bscscan'
@@ -9,12 +9,14 @@ import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
-import Apr, { AprProps } from '../Apr'
+import Apy, { ApyProps } from '../Apy'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
+import HarvestLockup from '../../HarvestLockup'
+import APR from '../../APR'
 
 export interface ActionPanelProps {
-  apr: AprProps
+  apy: ApyProps
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
@@ -129,20 +131,16 @@ const ValueWrapper = styled.div`
   margin: 4px 0px;
 `
 
-const HelpIconWrapper = styled.div`
-  align-self: center;
-  margin: 0 4px;
-`
-
-const HarvestLockupWrapper = styled.div`
+const DetailsWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 8px;
 `
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
-  apr,
+  apy,
   multiplier,
   liquidity,
   userDataReady,
@@ -163,13 +161,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = `https://pancakeswap.info/pool/${lpAddress}`
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How soon can you harvest or compound again.'), {
-    placement: 'bottom',
-  })
-
   return (
     <Container expanded={expanded}>
-      {tooltipVisible && tooltip}
       <InfoContainer>
         {isActive && (
           <StakeContainer>
@@ -182,22 +175,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
-        <HarvestLockupWrapper>
-          <Flex>
-            <Text>{t('Harvest Lockup')}:</Text>
-            <HelpIconWrapper ref={targetRef}>
-              <HelpIcon color="textSubtle" />
-            </HelpIconWrapper>
-          </Flex>
-          <Text bold>
-            {farm.harvestInterval} {t('Hour(s)')}
-          </Text>
-        </HarvestLockupWrapper>
+        <DetailsWrapper>
+          <APR apr={farm.apr} />
+          <HarvestLockup harvestInterval={farm.harvestInterval} />
+        </DetailsWrapper>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
-          <Text>{t('APR')}</Text>
-          <Apr {...apr} />
+          <Text>{t('APY')}</Text>
+          <Apy {...apy} />
         </ValueWrapper>
         <ValueWrapper>
           <Text>{t('Multiplier')}</Text>

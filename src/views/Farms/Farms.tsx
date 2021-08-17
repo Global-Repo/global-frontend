@@ -25,6 +25,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import { getApy } from '../../utils/apy'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -148,7 +149,9 @@ const Farms: React.FC = () => {
           ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : 0
 
-        return { ...farm, apr, liquidity: totalLiquidity }
+        const apy = apr ? getApy(apr) : 0
+
+        return { ...farm, apr, apy, liquidity: totalLiquidity }
       })
 
       if (query) {
@@ -178,6 +181,8 @@ const Farms: React.FC = () => {
       switch (sortOption) {
         case 'apr':
           return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
+        case 'apy':
+          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
         case 'multiplier':
           return orderBy(
             farms,
@@ -258,6 +263,16 @@ const Farms: React.FC = () => {
         cakePrice,
         originalValue: farm.apr,
       },
+      apy: {
+        value: farm.apy && farm.apy.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        multiplier: farm.multiplier,
+        lpLabel,
+        tokenAddress,
+        quoteTokenAddress,
+        cakePrice,
+        originalValue: farm.apy,
+        aprOriginalValue: farm.apr,
+      },
       farm: {
         label: lpLabel,
         pid: farm.pid,
@@ -292,6 +307,12 @@ const Farms: React.FC = () => {
           switch (column.name) {
             case 'farm':
               return b.id - a.id
+            case 'apy':
+              if (a.original.apy.value && b.original.apy.value) {
+                return Number(a.original.apy.value) - Number(b.original.apy.value)
+              }
+
+              return 0
             case 'apr':
               if (a.original.apr.value && b.original.apr.value) {
                 return Number(a.original.apr.value) - Number(b.original.apr.value)
@@ -365,6 +386,10 @@ const Farms: React.FC = () => {
                   {
                     label: t('Hot'),
                     value: 'hot',
+                  },
+                  {
+                    label: t('APY'),
+                    value: 'apy',
                   },
                   {
                     label: t('APR'),

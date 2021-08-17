@@ -42,9 +42,9 @@ export const MobileColumnSchema: ColumnsDefTypes[] = [
   },
   {
     id: 3,
-    name: 'apr',
+    name: 'apy',
     sortable: true,
-    label: 'APR',
+    label: 'APY',
   },
   {
     id: 6,
@@ -69,9 +69,9 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
   },
   {
     id: 3,
-    name: 'apr',
+    name: 'apy',
     sortable: true,
-    label: 'APR',
+    label: 'APY',
   },
   {
     id: 4,

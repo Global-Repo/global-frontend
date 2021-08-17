@@ -6,7 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/hooks'
 
-import Apr, { AprProps } from './Apr'
+import Apy, { ApyProps } from './Apy'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
@@ -15,9 +15,11 @@ import Liquidity, { LiquidityProps } from './Liquidity'
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
+import Apr, { AprProps } from './Apr'
 
 export interface RowProps {
   apr: AprProps
+  apy: ApyProps
   farm: FarmProps
   earned: EarnedProps
   multiplier: MultiplierProps
@@ -31,6 +33,7 @@ interface RowPropsWithLoading extends RowProps {
 
 const cells = {
   apr: Apr,
+  apy: Apy,
   farm: Farm,
   earned: Earned,
   details: Details,
@@ -110,12 +113,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                     </CellInner>
                   </td>
                 )
-              case 'apr':
+              case 'apy':
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={t('APR')}>
-                        <Apr {...props.apr} hideButton={isMobile} />
+                      <CellLayout label={t('APY')}>
+                        <Apy {...props.apy} hideButton={isMobile} aprOriginalValue={props.apy.aprOriginalValue} />
                       </CellLayout>
                     </CellInner>
                   </td>

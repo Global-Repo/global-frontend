@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Text, Skeleton, HelpIcon, useTooltip } from '@duhd4h/global-uikit'
+import { Flex, Text } from '@duhd4h/global-uikit'
 import { Farm } from 'state/types'
 import { getBscScanAddressUrl } from 'utils/bscscan'
 import { useTranslation } from 'contexts/Localization'
@@ -11,11 +11,14 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
-import ApyButton from './ApyButton'
+import APY from '../APY'
+import HarvestLockup from '../HarvestLockup'
+import APR from '../APR'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: number
   liquidity?: BigNumber
+  apy?: number
 }
 
 const AccentGradient = keyframes`  
@@ -68,11 +71,6 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   overflow: hidden;
 `
 
-const HelpIconWrapper = styled.div`
-  align-self: center;
-  margin-left: 4px;
-`
-
 interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
@@ -93,12 +91,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : t('CAKE + Fees')
 
-  const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
-
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How soon can you harvest or compound again.'), {
-    placement: 'bottom',
-  })
-
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
@@ -110,7 +102,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
       {isPromotedFarm && <StyledCardAccent />}
-      {tooltipVisible && tooltip}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
@@ -119,35 +110,22 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
         quoteToken={farm.quoteToken}
       />
       {!removed && (
-        <Flex justifyContent="space-between" alignItems="center">
-          <Text>{t('APR')}:</Text>
-          <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apr ? (
-              <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apr={farm.apr} />
-                {farmAPR}%
-              </>
-            ) : (
-              <Skeleton height={24} width={80} />
-            )}
-          </Text>
-        </Flex>
+        <>
+          <APY
+            apy={farm.apy}
+            apr={farm.apr}
+            cakePrice={cakePrice}
+            lpLabel={lpLabel}
+            addLiquidityUrl={addLiquidityUrl}
+          />
+          <APR apr={farm.apr} />
+        </>
       )}
       <Flex justifyContent="space-between">
         <Text>{t('Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
       </Flex>
-      <Flex justifyContent="space-between">
-        <Flex>
-          <Text>{t('Harvest Lockup')}:</Text>
-          <HelpIconWrapper ref={targetRef}>
-            <HelpIcon color="textSubtle" />
-          </HelpIconWrapper>
-        </Flex>
-        <Text bold>
-          {farm.harvestInterval} {t('Hour(s)')}
-        </Text>
-      </Flex>
+      <HarvestLockup harvestInterval={farm.harvestInterval} />
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
       <Divider />
       <ExpandableSectionButton
