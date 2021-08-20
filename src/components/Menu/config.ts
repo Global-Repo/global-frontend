@@ -29,6 +29,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/pools',
   },
   {
+    label: t('Vaults Globals'),
+    icon: 'PoolIcon',
+    href: '/vaults',
+  },
+  {
     label: 'More',
     icon: 'MoreIcon',
     items: [

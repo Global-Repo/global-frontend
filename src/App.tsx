@@ -12,6 +12,7 @@ import PageLoader from './components/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import history from './routerHistory'
+import Vaults from './views/vaults'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -54,6 +55,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/vaults">
+              <Vaults />
             </Route>
             <Route path="/lottery">
               <Lottery />
