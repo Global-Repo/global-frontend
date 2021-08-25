@@ -4,7 +4,7 @@ import { Card, CardBody, Text } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledPredictionCard = styled(Card)`
-  min-height: 376px;
+  min-height: 200px;
 `
 
 const StyledHeaderText = styled(Text)`
@@ -12,7 +12,7 @@ const StyledHeaderText = styled(Text)`
   line-height: 1.1;
   font-weight: 600;
   ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 40px;
+    font-size: 28px;
   }
 `
 

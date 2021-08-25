@@ -10,6 +10,8 @@ import CardValue from './CardValue'
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
+  background: linear-gradient(135deg, #c98133, #3e0a08 100%);
+  border-radius: 24px;
 `
 
 const Row = styled.div`
@@ -29,7 +31,7 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBody>
-        <Heading scale="xl" mb="24px">
+        <Heading scale="lg" mb="24px">
           {t('Cake Stats')}
         </Heading>
         <Row>

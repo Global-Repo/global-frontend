@@ -8,7 +8,8 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledFarmStakingCard = styled(Card)`
-  background: linear-gradient(#f4bd23, #d50000);
+  background: linear-gradient(#f4bd23, #c98133);
+  border-radius: 24px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -22,7 +23,7 @@ const StyledFarmStakingCard = styled(Card)`
     opacity: 0.65;
   }
 `
-const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
+const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   line-height: 44px;
 `
 

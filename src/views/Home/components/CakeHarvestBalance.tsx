@@ -41,7 +41,7 @@ const CakeHarvestBalance: React.FC<CakeHarvestBalanceProps> = ({ farmsWithBalanc
 
   return (
     <Block>
-      <CardValue value={earningsSum} lineHeight="1.5" />
+      <CardValue value={earningsSum} lineHeight="1.5" fontSize="24px" />
       {cakePriceBusd.gt(0) && <CardBusdValue value={earningsBusd} />}
     </Block>
   )

@@ -12,7 +12,9 @@ import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
-  min-height: 376px;
+  min-height: 200px;
+  background: linear-gradient(135deg, #c98133, #3e0a08 100%);
+  border-radius: 24px;
 `
 
 const Block = styled.div`
@@ -22,6 +24,7 @@ const Block = styled.div`
 const Label = styled.div`
   color: ${({ theme }) => theme.colors.textSubtle};
   font-size: 14px;
+  font-weight: bold;
 `
 
 const Actions = styled.div`
@@ -54,7 +57,7 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading scale="xl" mb="24px">
+        <Heading scale="lg" mb="24px">
           {t('Farms & Staking')}
         </Heading>
         <Block>

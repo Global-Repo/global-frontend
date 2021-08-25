@@ -16,6 +16,8 @@ const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  background: linear-gradient(135deg, #c98133, #3e0a08 100%);
+  border-radius: 24px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
@@ -27,7 +29,7 @@ const StyledFarmStakingCard = styled(Card)`
     opacity: 0.65;
   }
 `
-const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
+const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   line-height: 44px;
 `
 const EarnAPRCard = () => {

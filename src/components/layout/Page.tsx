@@ -7,18 +7,22 @@ import { DEFAULT_META, getCustomMeta } from 'config/constants/meta'
 import { usePriceCakeBusd } from 'state/hooks'
 import Container from './Container'
 
+const StyledBackground = styled.div`
+  width: 100%;
+  display: flex;
+
+  // background: linear-gradient(270deg, #333333 0%, #090e1a 100%);
+`
+
 const StyledPage = styled(Container)`
   min-height: calc(100vh - 64px);
-  padding-top: 16px;
   padding-bottom: 16px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-top: 24px;
     padding-bottom: 24px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 32px;
     padding-bottom: 32px;
   }
 `
@@ -50,10 +54,10 @@ const PageMeta = () => {
 
 const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
   return (
-    <>
+    <StyledBackground>
       <PageMeta />
       <StyledPage {...props}>{children}</StyledPage>
-    </>
+    </StyledBackground>
   )
 }
 
