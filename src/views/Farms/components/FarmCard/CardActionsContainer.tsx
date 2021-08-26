@@ -10,6 +10,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 import { useApprove } from 'hooks/useApprove'
 import UnlockButton from 'components/UnlockButton'
+import Countdown from 'react-countdown'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
@@ -40,7 +41,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     tokenBalance: tokenBalanceAsString = 0,
     stakedBalance: stakedBalanceAsString = 0,
     earnings: earningsAsString = 0,
-    nextHarvest: nextHarvestAsString = 0,
+    nextHarvest: nextHarvestAsString = '0',
   } = farm.userData || {}
   const allowance = new BigNumber(allowanceAsString)
   const tokenBalance = new BigNumber(tokenBalanceAsString)
@@ -81,7 +82,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     )
   }
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(nextHarvestAsString, { placement: 'bottom' })
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(<Countdown date={parseInt(nextHarvestAsString)} />, {
+    placement: 'bottom',
+  })
 
   return (
     <Action>
@@ -89,7 +92,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       <Flex justifyContent="space-between">
         <Flex>
           <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-            CAKE
+            GLOBAL
           </Text>
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
             {t('Earned')}

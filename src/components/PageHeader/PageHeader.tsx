@@ -4,7 +4,7 @@ import { Box } from '@duhd4h/global-uikit'
 import Container from '../layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
-  // background: linear-gradient(139.73deg, #f4bd23 0%, #d50000 100%);
+  background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
 `
 
 const Inner = styled(Container)`

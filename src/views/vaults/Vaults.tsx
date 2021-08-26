@@ -2,10 +2,9 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, RowType, Toggle, Text } from '@duhd4h/global-uikit'
+import { Heading, RowType, Toggle, Text, Flex } from '@duhd4h/global-uikit'
 import { ChainId } from '@duhd4h/global-sdk'
 import styled from 'styled-components'
-import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
 import usePersistState from 'hooks/usePersistState'
@@ -333,23 +332,23 @@ const Vaults: React.FC = () => {
 
     return (
       <div>
-        <FlexLayout>
+        <Flex>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed={false} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
             ))}
           </Route>
           <Route exact path={`${path}/archived`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
             ))}
           </Route>
-        </FlexLayout>
+        </Flex>
       </div>
     )
   }

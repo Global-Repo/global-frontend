@@ -5,7 +5,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading, RowType, Toggle, Text } from '@duhd4h/global-uikit'
 import { ChainId } from '@duhd4h/global-sdk'
 import styled from 'styled-components'
-import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
 import usePersistState from 'hooks/usePersistState'
@@ -91,6 +90,19 @@ const ViewControls = styled.div`
     > div {
       padding: 0;
     }
+  }
+`
+
+const CardsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  & > * {
+    min-width: 280px;
+    max-width: 31.5%;
+    width: 100%;
+    margin: 0 8px;
+    margin-bottom: 32px;
   }
 `
 
@@ -332,25 +344,23 @@ const Farms: React.FC = () => {
     }
 
     return (
-      <div>
-        <FlexLayout>
-          <Route exact path={`${path}`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
-            ))}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-            ))}
-          </Route>
-          <Route exact path={`${path}/archived`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
-            ))}
-          </Route>
-        </FlexLayout>
-      </div>
+      <CardsContainer>
+        <Route exact path={`${path}`}>
+          {farmsStakedMemoized.map((farm) => (
+            <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed={false} />
+          ))}
+        </Route>
+        <Route exact path={`${path}/history`}>
+          {farmsStakedMemoized.map((farm) => (
+            <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
+          ))}
+        </Route>
+        <Route exact path={`${path}/archived`}>
+          {farmsStakedMemoized.map((farm) => (
+            <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
+          ))}
+        </Route>
+      </CardsContainer>
     )
   }
 
@@ -360,7 +370,7 @@ const Farms: React.FC = () => {
 
   return (
     <Page>
-      <PageHeader>
+      <PageHeader background="transparent">
         <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
           {t('Farms')}
         </Heading>

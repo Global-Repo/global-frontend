@@ -75,7 +75,7 @@ const Apy: React.FC<ApyProps> = ({
           {!hideButton && (
             <ApyButton
               lpLabel={lpLabel}
-              cakePrice={cakePrice}
+              globalPrice={cakePrice}
               apr={aprOriginalValue}
               addLiquidityUrl={addLiquidityUrl}
             />

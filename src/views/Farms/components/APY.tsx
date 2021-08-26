@@ -13,12 +13,12 @@ const HelpIconWrapper = styled.div`
 interface Props {
   apy?: number
   apr?: number
-  cakePrice?: BigNumber
+  globalPrice?: BigNumber
   lpLabel: string
   addLiquidityUrl: string
 }
 
-const APY: FC<Props> = ({ apy, apr, cakePrice, lpLabel, addLiquidityUrl }) => {
+const APY: FC<Props> = ({ apy, apr, globalPrice, lpLabel, addLiquidityUrl }) => {
   const { t } = useTranslation()
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(t('APY considering daily and manual autocompound.'), {
@@ -39,7 +39,7 @@ const APY: FC<Props> = ({ apy, apr, cakePrice, lpLabel, addLiquidityUrl }) => {
       <Text bold style={{ display: 'flex', alignItems: 'center' }}>
         {apy ? (
           <>
-            <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} cakePrice={cakePrice} apr={apr} />
+            <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} globalPrice={globalPrice} apr={apr} />
             {farmAPY}%
           </>
         ) : (
