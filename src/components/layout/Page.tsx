@@ -15,6 +15,7 @@ const StyledBackground = styled.div`
 const StyledPage = styled(Container)`
   min-height: calc(100vh - 64px);
   padding-bottom: 16px;
+  width: 100%;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-bottom: 24px;

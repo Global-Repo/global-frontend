@@ -3,6 +3,7 @@ import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { Text, Flex, LinkExternal, Skeleton } from '@duhd4h/global-uikit'
 import WithdrawalFee from '../WithdrawalFee'
+import APR from '../APR'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -11,6 +12,7 @@ export interface ExpandableSectionProps {
   totalValueFormatted?: string
   lpLabel?: string
   addLiquidityUrl?: string
+  apr: number
 }
 
 const Wrapper = styled.div`
@@ -28,6 +30,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   totalValueFormatted,
   lpLabel,
   addLiquidityUrl,
+  apr,
 }) => {
   const { t } = useTranslation()
 
@@ -37,6 +40,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <Text>{t('Total Liquidity')}:</Text>
         {totalValueFormatted ? <Text>{totalValueFormatted}</Text> : <Skeleton width={75} height={25} />}
       </Flex>
+      <APR apr={apr} />
       <WithdrawalFee />
       {!removed && (
         <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>

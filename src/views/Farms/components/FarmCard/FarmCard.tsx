@@ -13,7 +13,6 @@ import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import APY from '../APY'
 import HarvestLockup from '../HarvestLockup'
-import APR from '../APR'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: number
@@ -39,16 +38,17 @@ const StyledCardAccent = styled.div`
   animation: ${AccentGradient} 2s linear infinite;
   border-radius: 32px;
   position: absolute;
-  top: -1px;
-  right: -1px;
-  bottom: -3px;
-  left: -1px;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
   z-index: -1;
 `
 
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
+  background: #424146;
   border-radius: ${({ theme, isPromotedFarm }) => (isPromotedFarm ? '31px' : theme.radii.card)};
   box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
   display: flex;
@@ -118,7 +118,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
             lpLabel={lpLabel}
             addLiquidityUrl={addLiquidityUrl}
           />
-          <APR apr={farm.apr} />
         </>
       )}
       <Flex justifyContent="space-between">
@@ -140,6 +139,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
+          apr={farm.apr}
         />
       </ExpandingWrapper>
     </FCard>
