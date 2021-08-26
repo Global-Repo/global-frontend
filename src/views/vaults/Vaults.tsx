@@ -360,16 +360,16 @@ const Vaults: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
-          {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Stake Liquidity Pool (LP) tokens to earn.')}
-        </Heading>
-      </PageHeader>
       <Page>
-        <ControlContainer>
+        <PageHeader>
+          <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
+            {t('Vaults Globals')}
+          </Heading>
+          <Heading scale="lg" color="text">
+            {t('Something something...')}
+          </Heading>
+        </PageHeader>
+        {/* <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <ToggleWrapper>
@@ -416,7 +416,7 @@ const Vaults: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
             </LabelWrapper>
           </FilterContainer>
-        </ControlContainer>
+        </ControlContainer> */}
         {renderContent()}
         <div ref={loadMoreRef} />
       </Page>

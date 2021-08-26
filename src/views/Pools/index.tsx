@@ -205,7 +205,7 @@ const Pools: React.FC = () => {
   const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 
   return (
-    <>
+    <Page>
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
@@ -225,63 +225,61 @@ const Pools: React.FC = () => {
           </Flex>
         </Flex>
       </PageHeader>
-      <Page>
-        <PoolControls justifyContent="space-between">
-          <PoolTabButtons
-            stakedOnly={stakedOnly}
-            setStakedOnly={setStakedOnly}
-            hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
-          />
-          <SearchSortContainer>
-            <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Sort by')}
-              </Text>
-              <ControlStretch>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    {
-                      label: t('Earned'),
-                      value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
-                    },
-                  ]}
-                  onChange={handleSortOptionChange}
-                />
-              </ControlStretch>
-            </Flex>
-            <Flex flexDirection="column" width="50%">
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
-              <ControlStretch>
-                <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-              </ControlStretch>
-            </Flex>
-          </SearchSortContainer>
-        </PoolControls>
-        {showFinishedPools && (
-          <Text fontSize="20px" color="failure" pb="32px">
-            {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
-          </Text>
-        )}
-        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        <div ref={loadMoreRef} />
-      </Page>
-    </>
+      <PoolControls justifyContent="space-between">
+        <PoolTabButtons
+          stakedOnly={stakedOnly}
+          setStakedOnly={setStakedOnly}
+          hasStakeInFinishedPools={hasStakeInFinishedPools}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+        />
+        <SearchSortContainer>
+          <Flex flexDirection="column" width="50%">
+            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              {t('Sort by')}
+            </Text>
+            <ControlStretch>
+              <Select
+                options={[
+                  {
+                    label: t('Hot'),
+                    value: 'hot',
+                  },
+                  {
+                    label: t('APR'),
+                    value: 'apr',
+                  },
+                  {
+                    label: t('Earned'),
+                    value: 'earned',
+                  },
+                  {
+                    label: t('Total staked'),
+                    value: 'totalStaked',
+                  },
+                ]}
+                onChange={handleSortOptionChange}
+              />
+            </ControlStretch>
+          </Flex>
+          <Flex flexDirection="column" width="50%">
+            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              {t('Search')}
+            </Text>
+            <ControlStretch>
+              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
+            </ControlStretch>
+          </Flex>
+        </SearchSortContainer>
+      </PoolControls>
+      {showFinishedPools && (
+        <Text fontSize="20px" color="failure" pb="32px">
+          {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
+        </Text>
+      )}
+      {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+      <div ref={loadMoreRef} />
+    </Page>
   )
 }
 

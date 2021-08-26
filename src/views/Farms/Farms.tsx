@@ -359,7 +359,7 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <>
+    <Page>
       <PageHeader>
         <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
           {t('Farms')}
@@ -368,59 +368,57 @@ const Farms: React.FC = () => {
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
       </PageHeader>
-      <Page>
-        <ControlContainer>
-          <ViewControls>
-            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            <ToggleWrapper>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-              <Text> {t('Staked only')}</Text>
-            </ToggleWrapper>
-            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-          </ViewControls>
-          <FilterContainer>
-            <LabelWrapper>
-              <Text textTransform="uppercase">{t('Sort by')}</Text>
-              <Select
-                options={[
-                  {
-                    label: t('Hot'),
-                    value: 'hot',
-                  },
-                  {
-                    label: t('APY'),
-                    value: 'apy',
-                  },
-                  {
-                    label: t('APR'),
-                    value: 'apr',
-                  },
-                  {
-                    label: t('Multiplier'),
-                    value: 'multiplier',
-                  },
-                  {
-                    label: t('Earned'),
-                    value: 'earned',
-                  },
-                  {
-                    label: t('Liquidity'),
-                    value: 'liquidity',
-                  },
-                ]}
-                onChange={handleSortOptionChange}
-              />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
-              <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
-            </LabelWrapper>
-          </FilterContainer>
-        </ControlContainer>
-        {renderContent()}
-        <div ref={loadMoreRef} />
-      </Page>
-    </>
+      <ControlContainer>
+        <ViewControls>
+          <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+          <ToggleWrapper>
+            <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+            <Text> {t('Staked only')}</Text>
+          </ToggleWrapper>
+          <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
+        </ViewControls>
+        <FilterContainer>
+          <LabelWrapper>
+            <Text textTransform="uppercase">{t('Sort by')}</Text>
+            <Select
+              options={[
+                {
+                  label: t('Hot'),
+                  value: 'hot',
+                },
+                {
+                  label: t('APY'),
+                  value: 'apy',
+                },
+                {
+                  label: t('APR'),
+                  value: 'apr',
+                },
+                {
+                  label: t('Multiplier'),
+                  value: 'multiplier',
+                },
+                {
+                  label: t('Earned'),
+                  value: 'earned',
+                },
+                {
+                  label: t('Liquidity'),
+                  value: 'liquidity',
+                },
+              ]}
+              onChange={handleSortOptionChange}
+            />
+          </LabelWrapper>
+          <LabelWrapper style={{ marginLeft: 16 }}>
+            <Text textTransform="uppercase">{t('Search')}</Text>
+            <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
+          </LabelWrapper>
+        </FilterContainer>
+      </ControlContainer>
+      {renderContent()}
+      <div ref={loadMoreRef} />
+    </Page>
   )
 }
 

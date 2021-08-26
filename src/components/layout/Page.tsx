@@ -10,8 +10,6 @@ import Container from './Container'
 const StyledBackground = styled.div`
   width: 100%;
   display: flex;
-
-  // background: linear-gradient(270deg, #333333 0%, #090e1a 100%);
 `
 
 const StyledPage = styled(Container)`
