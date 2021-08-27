@@ -16,7 +16,7 @@ const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background: linear-gradient(135deg, #c98133, #3e0a08 100%);
+  background: radial-gradient(circle, #c98133, #3e0a08 100%);
   border-radius: 24px;
 
   ${({ theme }) => theme.mediaQueries.lg} {

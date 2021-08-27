@@ -24,8 +24,17 @@ import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
 
-const CardLayout = styled(Flex)`
+const CardLayout = styled.div`
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  & > * {
+    min-width: 280px;
+    max-width: 31.5%;
+    width: 100%;
+    margin: 0 8px;
+    margin-bottom: 32px;
+  }
 `
 
 const PoolControls = styled(Flex)`
@@ -205,11 +214,11 @@ const Pools: React.FC = () => {
 
   return (
     <Page>
-      <PageHeader>
+      <PageHeader background="transparent">
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
-              {t('Syrup Pools')}
+              {t('Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
@@ -224,7 +233,7 @@ const Pools: React.FC = () => {
           </Flex>
         </Flex>
       </PageHeader>
-      <PoolControls justifyContent="space-between">
+      <PoolControls justifyContent="space-between" marginX="24px">
         <PoolTabButtons
           stakedOnly={stakedOnly}
           setStakedOnly={setStakedOnly}

@@ -8,7 +8,7 @@ import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
-    isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
+    isFinished ? theme.colors.backgroundDisabled : theme.colors.backgroundAlt};
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
@@ -50,10 +50,12 @@ const StyledCardHeader: React.FC<{
     <Wrapper isFinished={isFinished} background={background}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
+          <Heading color={isFinished ? 'textDisabled' : 'white'} scale="lg">
             {`${getHeadingPrefix()} ${earningToken.symbol}`}
           </Heading>
-          <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
+          <Text bold color={isFinished ? 'textDisabled' : 'textSubtle'}>
+            {getSubHeading()}
+          </Text>
         </Flex>
         {isAutoVault ? (
           <CakeVaultTokenPairImage width={64} height={64} />
