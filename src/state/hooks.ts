@@ -21,7 +21,7 @@ import {
   fetchCakeVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState } from './types'
+import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState, GlobalVaults } from './types'
 import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -171,6 +171,59 @@ export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } =>
     userDataLoaded: state.pools.userDataLoaded,
   }))
   return { pools: pools.map(transformPool), userDataLoaded }
+}
+
+export const useVaults = (account): { vaults: GlobalVaults; userDataLoaded: boolean } => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (account) {
+      // dispatch(fetchGlobalVaultsUserDataAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  const mockVault: Pool = {
+    contractAddress: undefined,
+    earningToken: {
+      symbol: 'GLOBAL',
+    },
+    poolCategory: undefined,
+    sousId: 0,
+    stakingToken: {
+      symbol: 'GLOBAL',
+      address: {
+        97: '0x12341234123',
+        56: '0x5423452345',
+      },
+    },
+    tokenPerBlock: '',
+    totalStaked: new BigNumber(0),
+    stakingLimit: new BigNumber(0),
+    startBlock: 1,
+    endBlock: 3,
+    apr: 0.5,
+    stakingTokenPrice: 3,
+    earningTokenPrice: 2,
+    isAutoVault: true,
+    userData: {
+      allowance: new BigNumber(0),
+      stakingTokenBalance: new BigNumber(0),
+      stakedBalance: new BigNumber(0),
+      pendingReward: new BigNumber(0),
+    },
+  }
+
+  const mockVaults: GlobalVaults = {
+    stakedGlobalVault: mockVault,
+    vestedGlobalVault: mockVault,
+    lockedGlobalVault: mockVault,
+  }
+
+  const { vaults, userDataLoaded } = useSelector((state: State) => ({
+    vaults: mockVaults, // state.vaults.globalVaults,
+    userDataLoaded: state.vaults.userDataLoaded,
+  }))
+  return { vaults, userDataLoaded }
 }
 
 export const usePoolFromPid = (sousId: number): Pool => {

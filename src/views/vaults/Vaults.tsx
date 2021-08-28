@@ -1,385 +1,254 @@
-import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
-import { Route, useRouteMatch, useLocation } from 'react-router-dom'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, RowType, Toggle, Text, Flex } from '@duhd4h/global-uikit'
-import { ChainId } from '@duhd4h/global-sdk'
-import styled from 'styled-components'
-import Page from 'components/layout/Page'
-import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
-import usePersistState from 'hooks/usePersistState'
-import { Farm } from 'state/types'
+import { Heading, Flex, Text } from '@duhd4h/global-uikit'
+import orderBy from 'lodash/orderBy'
+import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { getFarmApr } from 'utils/apr'
-import { orderBy } from 'lodash'
-import isArchivedPid from 'utils/farmHelpers'
+import usePersistState from 'hooks/usePersistState'
+import { useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault, useVaults } from 'state/hooks'
 import { latinise } from 'utils/latinise'
+import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
-import FarmCard, { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
-import Table from '../Farms/components/FarmTable/FarmTable'
-import FarmTabButtons from '../Farms/components/FarmTabButtons'
-import { RowProps } from '../Farms/components/FarmTable/Row'
-import ToggleView from '../Farms/components/ToggleView/ToggleView'
-import { DesktopColumnSchema, ViewMode } from '../Farms/components/types'
-import { getApy } from '../../utils/apy'
+import { Pool } from 'state/types'
+import PoolCard from './components/PoolCard'
+import CakeVaultCard from './components/CakeVaultCard'
+import PoolTabButtons from './components/PoolTabButtons'
+import BountyCard from './components/BountyCard'
+import HelpButton from './components/HelpButton'
+import PoolsTable from './components/PoolsTable/PoolsTable'
+import { ViewMode } from './components/ToggleView/ToggleView'
+import { getAprData, getCakeVaultEarnings } from './helpers'
 
-const ControlContainer = styled.div`
+const CardLayout = styled.div`
   display: flex;
-  width: 100%;
-  align-items: center;
-  position: relative;
-
-  justify-content: space-between;
-  flex-direction: column;
-  margin-bottom: 32px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 16px 32px;
-    margin-bottom: 0;
-  }
-`
-
-const ToggleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-
-  ${Text} {
-    margin-left: 8px;
-  }
-`
-
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
-
-const ViewControls = styled.div`
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  > div {
-    padding: 8px 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
-    width: auto;
-
-    > div {
-      padding: 0;
-    }
+  & > * {
+    min-width: 280px;
+    max-width: 31.5%;
+    width: 100%;
+    margin: 0 8px;
+    margin-bottom: 32px;
   }
 `
 
-const NUMBER_OF_FARMS_VISIBLE = 12
+const PoolControls = styled(Flex)`
+  flex-direction: column;
+  margin-bottom: 24px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    flex-direction: row;
+  }
+`
+
+const SearchSortContainer = styled(Flex)`
+  gap: 10px;
+  justify-content: space-between;
+`
+
+const ControlStretch = styled(Flex)`
+  > div {
+    flex: 1;
+  }
+`
+
+const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Vaults: React.FC = () => {
-  const { path } = useRouteMatch()
-  const { pathname } = useLocation()
+  const location = useLocation()
   const { t } = useTranslation()
-  const { data: farmsLP, userDataLoaded } = useFarms()
-  const cakePrice = usePriceCakeBusd()
-  const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
-  const [sortOption, setSortOption] = useState('hot')
-
-  const isArchived = pathname.includes('archived')
-  const isInactive = pathname.includes('history')
-  const isActive = !isInactive && !isArchived
-
-  usePollFarmsData(isArchived)
-
-  // Users with no wallet connected should see 0 as Earned amount
-  // Connected users should see loading indicator until first userData has loaded
-  const userDataReady = !account || (!!account && userDataLoaded)
-
-  const [stakedOnly, setStakedOnly] = useState(!isActive)
-  useEffect(() => {
-    setStakedOnly(!isActive)
-  }, [isActive])
-
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
-
-  const stakedOnlyFarms = activeFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
-  )
-
-  const stakedInactiveFarms = inactiveFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
-  )
-
-  const stakedArchivedFarms = archivedFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
-  )
-
-  const farmsList = useCallback(
-    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
-        if (!farm.lpTotalInQuoteToken || !farm.quoteToken.busdPrice) {
-          return farm
-        }
-        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
-        const apr = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
-          : 0
-
-        const apy = apr ? getApy(apr) : 0
-
-        return { ...farm, apr, apy, liquidity: totalLiquidity }
-      })
-
-      if (query) {
-        const lowercaseQuery = latinise(query.toLowerCase())
-        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
-          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
-        })
-      }
-      return farmsToDisplayWithAPR
-    },
-    [cakePrice, query, isActive],
-  )
-
-  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-  }
-
-  const loadMoreRef = useRef<HTMLDivElement>(null)
-
-  const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
+  const { vaults, userDataLoaded } = useVaults(account)
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
+  const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
+  const loadMoreRef = useRef<HTMLDivElement>(null)
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortOption, setSortOption] = useState('hot')
+  const {
+    userData: { cakeAtLastUserAction, userShares },
+    fees: { performanceFee },
+    pricePerFullShare,
+    totalCakeInVault,
+  } = useCakeVault()
+  const accountHasVaultShares = userShares && userShares.gt(0)
+  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
-  const farmsStakedMemoized = useMemo(() => {
-    let farmsStaked = []
+  const globalVaults = useMemo(() => {
+    const { stakedGlobalVault, vestedGlobalVault, lockedGlobalVault } = vaults
+    return [stakedGlobalVault, vestedGlobalVault, lockedGlobalVault]
+  }, [vaults])
 
-    const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
-      switch (sortOption) {
-        case 'apr':
-          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
-        case 'apy':
-          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
-        case 'multiplier':
-          return orderBy(
-            farms,
-            (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
-            'desc',
-          )
-        case 'earned':
-          return orderBy(
-            farms,
-            (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
-            'desc',
-          )
-        case 'liquidity':
-          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
-        default:
-          return farms
-      }
-    }
+  // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
+  const [finishedVaults, openVaults] = useMemo(
+    () => partition(globalVaults, (vault) => vault.isFinished),
+    [globalVaults],
+  )
+  const stakedOnlyFinishedVaults = useMemo(
+    () =>
+      finishedVaults.filter((vault) => {
+        if (vault.isAutoVault) {
+          return accountHasVaultShares
+        }
+        return vault.userData && new BigNumber(vault.userData.stakedBalance).isGreaterThan(0)
+      }),
+    [finishedVaults, accountHasVaultShares],
+  )
+  const stakedOnlyOpenPools = useMemo(
+    () =>
+      openVaults.filter((pool) => {
+        if (pool.isAutoVault) {
+          return accountHasVaultShares
+        }
+        return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
+      }),
+    [openVaults, accountHasVaultShares],
+  )
+  const hasStakeInFinishedPools = stakedOnlyFinishedVaults.length > 0
 
-    if (isActive) {
-      farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
-    }
-    if (isInactive) {
-      farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
-    }
-    if (isArchived) {
-      farmsStaked = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
-    }
-
-    return sortFarms(farmsStaked).slice(0, numberOfFarmsVisible)
-  }, [
-    sortOption,
-    activeFarms,
-    farmsList,
-    inactiveFarms,
-    archivedFarms,
-    isActive,
-    isInactive,
-    isArchived,
-    stakedArchivedFarms,
-    stakedInactiveFarms,
-    stakedOnly,
-    stakedOnlyFarms,
-    numberOfFarmsVisible,
-  ])
+  usePollFarmsData()
+  useFetchCakeVault()
+  useFetchPublicPoolsData()
 
   useEffect(() => {
-    const showMoreFarms = (entries) => {
+    const showMorePools = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
-        setNumberOfFarmsVisible((farmsCurrentlyVisible) => farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE)
+        setNumberOfPoolsVisible((poolsCurrentlyVisible) => poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE)
       }
     }
 
     if (!observerIsSet) {
-      const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
+      const loadMoreObserver = new IntersectionObserver(showMorePools, {
         rootMargin: '0px',
         threshold: 1,
       })
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [farmsStakedMemoized, observerIsSet])
+  }, [observerIsSet])
 
-  const rowData = farmsStakedMemoized.map((farm) => {
-    const { token, quoteToken } = farm
-    const tokenAddress = token.address
-    const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+  const showFinishedPools = location.pathname.includes('history')
 
-    const row: RowProps = {
-      apr: {
-        value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        multiplier: farm.multiplier,
-        lpLabel,
-        tokenAddress,
-        quoteTokenAddress,
-        cakePrice,
-        originalValue: farm.apr,
-      },
-      apy: {
-        value: farm.apy && farm.apy.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        multiplier: farm.multiplier,
-        lpLabel,
-        tokenAddress,
-        quoteTokenAddress,
-        cakePrice,
-        originalValue: farm.apy,
-        aprOriginalValue: farm.apr,
-      },
-      farm: {
-        label: lpLabel,
-        pid: farm.pid,
-        token: farm.token,
-        quoteToken: farm.quoteToken,
-      },
-      earned: {
-        earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),
-        pid: farm.pid,
-      },
-      liquidity: {
-        liquidity: farm.liquidity,
-      },
-      multiplier: {
-        multiplier: farm.multiplier,
-      },
-      details: farm,
-    }
-
-    return row
-  })
-
-  const renderContent = (): JSX.Element => {
-    if (viewMode === ViewMode.TABLE && rowData.length) {
-      const columnSchema = DesktopColumnSchema
-
-      const columns = columnSchema.map((column) => ({
-        id: column.id,
-        name: column.name,
-        label: column.label,
-        sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
-          switch (column.name) {
-            case 'farm':
-              return b.id - a.id
-            case 'apy':
-              if (a.original.apy.value && b.original.apy.value) {
-                return Number(a.original.apy.value) - Number(b.original.apy.value)
-              }
-
-              return 0
-            case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
-
-              return 0
-            case 'earned':
-              return a.original.earned.earnings - b.original.earned.earnings
-            default:
-              return 1
-          }
-        },
-        sortable: column.sortable,
-      }))
-
-      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
-    }
-
-    return (
-      <div>
-        <Flex>
-          <Route exact path={`${path}`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed={false} />
-            ))}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
-            ))}
-          </Route>
-          <Route exact path={`${path}/archived`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
-            ))}
-          </Route>
-        </Flex>
-      </div>
-    )
+  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value)
   }
 
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortOption(option.value)
   }
 
+  const sortPools = (poolsToSort: Pool[]) => {
+    switch (sortOption) {
+      case 'apr':
+        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
+        return orderBy(
+          poolsToSort,
+          (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
+          'desc',
+        )
+      case 'earned':
+        return orderBy(
+          poolsToSort,
+          (pool: Pool) => {
+            if (!pool.userData || !pool.earningTokenPrice) {
+              return 0
+            }
+            return pool.isAutoVault
+              ? getCakeVaultEarnings(
+                  account,
+                  cakeAtLastUserAction,
+                  userShares,
+                  pricePerFullShare,
+                  pool.earningTokenPrice,
+                ).autoUsdToDisplay
+              : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
+          },
+          'desc',
+        )
+      case 'totalStaked':
+        return orderBy(
+          poolsToSort,
+          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
+          'desc',
+        )
+      default:
+        return poolsToSort
+    }
+  }
+
+  const poolsToShow = () => {
+    let chosenPools = []
+    if (showFinishedPools) {
+      chosenPools = stakedOnly ? stakedOnlyFinishedVaults : finishedVaults
+    } else {
+      chosenPools = stakedOnly ? stakedOnlyOpenPools : openVaults
+    }
+
+    if (searchQuery) {
+      const lowercaseQuery = latinise(searchQuery.toLowerCase())
+      chosenPools = chosenPools.filter((pool) =>
+        latinise(pool.earningToken.symbol.toLowerCase()).includes(lowercaseQuery),
+      )
+    }
+
+    return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
+  }
+
+  const cardLayout = (
+    <CardLayout>
+      {poolsToShow().map((pool) =>
+        pool.isAutoVault ? (
+          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+        ) : (
+          <PoolCard key={pool.sousId} pool={pool} account={account} />
+        ),
+      )}
+    </CardLayout>
+  )
+
+  const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
+
   return (
-    <>
-      <Page>
-        <PageHeader>
-          <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
-            {t('Vaults Globals')}
-          </Heading>
-          <Heading scale="lg" color="text">
-            {t('Something something...')}
-          </Heading>
-        </PageHeader>
-        {/* <ControlContainer>
-          <ViewControls>
-            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            <ToggleWrapper>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-              <Text> {t('Staked only')}</Text>
-            </ToggleWrapper>
-            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
-          </ViewControls>
-          <FilterContainer>
-            <LabelWrapper>
-              <Text textTransform="uppercase">{t('Sort by')}</Text>
+    <Page>
+      <PageHeader background="transparent">
+        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+            <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
+              {t('Vaults Globals')}
+            </Heading>
+            <Heading scale="md" color="text">
+              {t('Something, something, TODO')}
+            </Heading>
+            <Heading scale="md" color="text">
+              {t('High APR, low risk.')}
+            </Heading>
+          </Flex>
+          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+            <HelpButton />
+            <BountyCard />
+          </Flex>
+        </Flex>
+      </PageHeader>
+      <PoolControls justifyContent="space-between" marginX="24px">
+        <PoolTabButtons
+          stakedOnly={stakedOnly}
+          setStakedOnly={setStakedOnly}
+          hasStakeInFinishedPools={hasStakeInFinishedPools}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+        />
+        <SearchSortContainer>
+          <Flex flexDirection="column" width="50%">
+            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              {t('Sort by')}
+            </Text>
+            <ControlStretch>
               <Select
                 options={[
                   {
@@ -387,39 +256,40 @@ const Vaults: React.FC = () => {
                     value: 'hot',
                   },
                   {
-                    label: t('APY'),
-                    value: 'apy',
-                  },
-                  {
                     label: t('APR'),
                     value: 'apr',
-                  },
-                  {
-                    label: t('Multiplier'),
-                    value: 'multiplier',
                   },
                   {
                     label: t('Earned'),
                     value: 'earned',
                   },
                   {
-                    label: t('Liquidity'),
-                    value: 'liquidity',
+                    label: t('Total staked'),
+                    value: 'totalStaked',
                   },
                 ]}
                 onChange={handleSortOptionChange}
               />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
-              <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
-            </LabelWrapper>
-          </FilterContainer>
-        </ControlContainer> */}
-        {renderContent()}
-        <div ref={loadMoreRef} />
-      </Page>
-    </>
+            </ControlStretch>
+          </Flex>
+          <Flex flexDirection="column" width="50%">
+            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              {t('Search')}
+            </Text>
+            <ControlStretch>
+              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
+            </ControlStretch>
+          </Flex>
+        </SearchSortContainer>
+      </PoolControls>
+      {showFinishedPools && (
+        <Text fontSize="20px" color="failure" pb="32px">
+          {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
+        </Text>
+      )}
+      {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+      <div ref={loadMoreRef} />
+    </Page>
   )
 }
 

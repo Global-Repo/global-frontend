@@ -87,6 +87,7 @@ export interface VaultUser {
   lastDepositedTime: string
   lastUserActionTime: string
 }
+
 export interface CakeVault {
   totalShares?: string
   pricePerFullShare?: string
@@ -100,6 +101,17 @@ export interface CakeVault {
 export interface PoolsState {
   data: Pool[]
   cakeVault: CakeVault
+  userDataLoaded: boolean
+}
+
+export interface GlobalVaults {
+  stakedGlobalVault: Pool
+  vestedGlobalVault: Pool
+  lockedGlobalVault: Pool
+}
+
+export interface VaultsState {
+  globalVaults: GlobalVaults
   userDataLoaded: boolean
 }
 
@@ -265,6 +277,7 @@ export interface State {
   block: BlockState
   farms: FarmsState
   pools: PoolsState
+  vaults: VaultsState
   predictions: PredictionsState
   profile: ProfileState
   teams: TeamsState
