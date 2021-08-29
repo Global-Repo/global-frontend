@@ -28,6 +28,10 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/vaults',
   },
   {
+    label: t('Optimizer'),
+    href: '/optimizer',
+  },
+  {
     label: 'Contact',
     href: '/contact',
   },

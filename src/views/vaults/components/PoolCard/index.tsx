@@ -10,6 +10,8 @@ import { StyledCard, StyledCardInner } from './StyledCard'
 import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
+import EarnRow from './EarnRow'
+import PenaltyFeeRow from './PenaltyFeeRow'
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
   const { sousId, stakingToken, earningToken, isFinished, userData } = pool
@@ -31,6 +33,8 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
         />
         <CardBody>
           <AprRow pool={pool} />
+          <EarnRow />
+          <PenaltyFeeRow vault={pool} />
           <Flex mt="24px" flexDirection="column">
             {account ? (
               <CardActions pool={pool} stakedBalance={stakedBalance} />

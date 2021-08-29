@@ -183,17 +183,24 @@ export const useVaults = (account): { vaults: GlobalVaults; userDataLoaded: bool
   }, [account, dispatch, fastRefresh])
 
   const mockVault: Pool = {
-    contractAddress: undefined,
+    contractAddress: {
+      97: '0x7db533569958cC6876aD8252227AaFd39c39B422',
+      56: '0x5423452345',
+    },
     earningToken: {
-      symbol: 'GLOBAL',
+      symbol: 'BNB',
+      address: {
+        97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+        56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+      },
     },
     poolCategory: undefined,
     sousId: 0,
     stakingToken: {
       symbol: 'GLOBAL',
       address: {
-        97: '0x12341234123',
-        56: '0x5423452345',
+        97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+        56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
       },
     },
     tokenPerBlock: '',
@@ -204,7 +211,7 @@ export const useVaults = (account): { vaults: GlobalVaults; userDataLoaded: bool
     apr: 0.5,
     stakingTokenPrice: 3,
     earningTokenPrice: 2,
-    isAutoVault: true,
+    isAutoVault: false,
     userData: {
       allowance: new BigNumber(0),
       stakingTokenBalance: new BigNumber(0),
