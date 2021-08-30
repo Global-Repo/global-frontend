@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { CalculateIcon, Flex, IconButton, Skeleton, Text } from '@duhd4h/global-uikit'
+import { Flex, Skeleton, Text } from '@duhd4h/global-uikit'
 import { Pool } from '../../../../state/types'
 import { useTranslation } from '../../../../contexts/Localization'
 import Balance from '../../../../components/Balance'

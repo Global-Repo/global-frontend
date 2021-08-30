@@ -39,6 +39,29 @@
         f.parentNode.insertBefore(j, f)
       })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
     </script>
+    <style>
+        body {
+            margin: 0;
+        }
+        .svgLoader {
+            animation: spin 2s linear infinite;
+            margin: auto;
+        }
+        .divLoader {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #090e1a;
+            padding: 0;
+            margin: 0;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
   </head>
   <body>
     <!-- GTAG (noscript) -->
@@ -51,7 +74,17 @@
       ></iframe>
     </noscript>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="divLoader">
+        <svg class="svgLoader" viewBox="0 0 300 297" width="128px" height="128px">
+          <path
+            fill="red"
+            d="M1275 2896c-86-14-89-15-212-53l-83-25v-687c0-550 3-699 14-752 41-194 200-354 395-399 76-18 221-8 293 19 85 33 174 96 224 160 24 31 44 59 44 64 0 4-108 7-240 7h-240v360l453-2 452-3-1-110c-1-393-270-734-659-836-113-30-298-31-415-2-261 65-471 236-586 478-81 171-77 132-83 853l-6 643-63-53c-126-108-265-290-342-453-48-101-94-243-117-360-24-124-24-386 0-510 56-284 181-527 375-727 168-173 344-287 557-361 181-63 245-72 480-71 201 0 215 2 325 31 280 74 472 184 671 382 207 207 331 444 390 741 29 148 29 374-1 524-75 380-293 711-608 920-149 100-285 158-482 207-109 27-412 35-535 15zm443-557c262-66 497-270 595-516l17-43-198 1h-197l-36 48c-43 56-135 120-217 152-72 27-218 37-293 19-60-14-137-48-187-80l-32-22 2 203 3 204 70 23c141 45 321 50 473 11z"
+            transform="matrix(.1 0 0 -.1 0 297)"
+          />
+        </svg>
+      </div>
+    </div>
     <div id="portal-root"></div>
   </body>
 </html>
