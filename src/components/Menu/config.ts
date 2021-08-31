@@ -32,8 +32,8 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/optimizer',
   },
   {
-    label: 'Contact',
-    href: '/contact',
+    label: 'BeGlobal',
+    href: 'https://beglobal.finance/',
   },
 ]
 

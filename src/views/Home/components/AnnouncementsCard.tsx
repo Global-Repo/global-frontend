@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const TimelineWrapper = styled.div`
   margin-top: 32px;
+  box-shadow: 5px 5px 5px black;
 `
 
 const AnnouncementsCard = () => {

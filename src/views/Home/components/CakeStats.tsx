@@ -10,7 +10,7 @@ import CardValue from './CardValue'
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
-  background: linear-gradient(135deg, #c98133, #3e0a08 100%);
+  background: linear-gradient(270deg, #3e270f, #c98133);
   border-radius: 24px;
 `
 

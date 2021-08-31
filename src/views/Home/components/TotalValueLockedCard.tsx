@@ -8,7 +8,7 @@ const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
   display: flex;
   flex: 1;
-  background: linear-gradient(135deg, #c98133, #3e0a08 100%);
+  background: linear-gradient(270deg, #3e270f, #c98133 100%);
   border-radius: 24px;
 `
 

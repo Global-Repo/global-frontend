@@ -1,19 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Text } from '@duhd4h/global-uikit'
+import { Card, CardBody, Heading } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledPredictionCard = styled(Card)`
   min-height: 200px;
-`
-
-const StyledHeaderText = styled(Text)`
-  font-size: 28px;
-  line-height: 1.1;
-  font-weight: 600;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 28px;
-  }
+  box-shadow: 5px 5px 5px black;
 `
 
 const PartnershipsCard = () => {
@@ -22,7 +14,9 @@ const PartnershipsCard = () => {
   return (
     <StyledPredictionCard>
       <CardBody>
-        <StyledHeaderText mb="24px">{t('Partnerships')}</StyledHeaderText>
+        <Heading scale="lg" mb="24px">
+          {t('Partnerships')}
+        </Heading>
       </CardBody>
     </StyledPredictionCard>
   )

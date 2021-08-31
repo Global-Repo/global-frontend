@@ -11,11 +11,24 @@ import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
 
+const HomeBackground = styled.div`
+  background-image: url('/logo.svg');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 30%;
+  background-attachment: fixed;
+  background-position-y: 40px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    background-position-y: 80px;
+  }
+`
+
 const HomeHeader = styled.div`
   height: 180px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    height: 360px;
+    height: 280px;
   }
 `
 
@@ -113,55 +126,45 @@ const Home: React.FC = () => {
 
   const header = (
     <HomeHeader>
-      {isMobile ? (
-        <Flex height="100%" justifyContent="center" alignItems="center">
-          <Image src="/logo.png" width={100} height={100} marginX="32px" />
-          <Text bold fontSize="18px">
+      <Flex height="100%" justifyContent="center" alignItems="center">
+        <Flex flexDirection="column" flexGrow={0} alignItems="center" width="80%">
+          <Image src="/textLogo.svg" width={512} height={70} mb="16px" />
+          <Text bold fontSize={isMobile ? '18px' : '26px'}>
             {t(
               'One-stop-shop for all your DeFi needs. Take advantage of our cheap DEX, yield optimizer and APR boost rewards.',
             )}
           </Text>
         </Flex>
-      ) : (
-        <Flex height="100%" justifyContent="center" alignItems="center">
-          <Image src="/logo.png" width={180} height={180} marginX="32px" />
-          <Flex flexDirection="column" flexGrow={0}>
-            <Image src="/textLogo.png" width={512} height={70} mb="16px" />
-            <Text bold fontSize="30px">
-              {t(
-                'One-stop-shop for all your DeFi needs. Take advantage of our cheap DEX, yield optimizer and APR boost rewards.',
-              )}
-            </Text>
-          </Flex>
-        </Flex>
-      )}
+      </Flex>
     </HomeHeader>
   )
 
   return (
     <>
       <Page>
-        {header}
-        <HomeContent>
-          <CardWrapper>
-            <Cards>
-              <FarmStakingCard />
-              <FarmStakingCard />
-            </Cards>
-            <Cards>
-              <EarnAPRCard />
-              <EarnAssetCard />
-            </Cards>
-            <Cards>
-              <CakeStats />
-              <TotalValueLockedCard />
-            </Cards>
-          </CardWrapper>
-          <SideBar>
-            <PartnershipsCard />
-            <AnnouncementsCard />
-          </SideBar>
-        </HomeContent>
+        <HomeBackground>
+          {header}
+          <HomeContent>
+            <CardWrapper>
+              <Cards>
+                <FarmStakingCard />
+                <EarnAssetCard />
+              </Cards>
+              <Cards>
+                <EarnAPRCard />
+                <EarnAssetCard />
+              </Cards>
+              <Cards>
+                <CakeStats />
+                <TotalValueLockedCard />
+              </Cards>
+            </CardWrapper>
+            <SideBar>
+              <PartnershipsCard />
+              <AnnouncementsCard />
+            </SideBar>
+          </HomeContent>
+        </HomeBackground>
       </Page>
       {!isMobile && (
         <GlobalPrice>
