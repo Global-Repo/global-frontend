@@ -62,3 +62,12 @@ export const getPredictionsAddress = () => {
 export const getChainlinkOracleAddress = () => {
   return getAddress(addresses.chainlinkOracle)
 }
+export const getGlobalVaultLockedAddress = () => {
+  return getAddress(addresses.globalVaultLocked)
+}
+export const getGlobalVaultVestedAddress = () => {
+  return getAddress(addresses.globalVaultVested)
+}
+export const getGlobalVaultStakedAddress = () => {
+  return getAddress(addresses.globalVaultStaked)
+}

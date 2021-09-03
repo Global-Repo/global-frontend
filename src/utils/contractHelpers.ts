@@ -25,6 +25,9 @@ import {
   getPredictionsAddress,
   getChainlinkOracleAddress,
   getMulticallAddress,
+  getGlobalVaultLockedAddress,
+  getGlobalVaultStakedAddress,
+  getGlobalVaultVestedAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -53,6 +56,9 @@ import cakeVaultAbi from 'config/abi/cakeVault.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
+import globalVaultLockedAbi from 'config/abi/globalVaultLocked.json'
+import globalVaultVestedAbi from 'config/abi/globalVaultVested.json'
+import globalVaultStakedAbi from 'config/abi/globalVaultStaked.json'
 import { DEFAULT_GAS_PRICE } from 'config'
 import { getSettings, getGasPriceInWei } from './settings'
 
@@ -147,4 +153,15 @@ export const getChainlinkOracleContract = (web3?: Web3) => {
 }
 export const getMulticallContract = (web3?: Web3) => {
   return getContract(MultiCallAbi, getMulticallAddress(), web3)
+}
+
+/* VAULTS */
+export const getGlobalVaultLockedContract = (web3?: Web3) => {
+  return getContract(globalVaultLockedAbi, getGlobalVaultLockedAddress(), web3)
+}
+export const getGlobalVaultVestedContract = (web3?: Web3) => {
+  return getContract(globalVaultVestedAbi, getGlobalVaultVestedAddress(), web3)
+}
+export const getGlobalVaultStakedContract = (web3?: Web3) => {
+  return getContract(globalVaultStakedAbi, getGlobalVaultStakedAddress(), web3)
 }

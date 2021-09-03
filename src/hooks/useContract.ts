@@ -23,6 +23,9 @@ import {
   getChainlinkOracleContract,
   getSouschefV2Contract,
   getLotteryV2Contract,
+  getGlobalVaultLockedContract,
+  getGlobalVaultVestedContract,
+  getGlobalVaultStakedContract,
 } from 'utils/contractHelpers'
 
 /**
@@ -140,4 +143,23 @@ export const usePredictionsContract = () => {
 export const useChainlinkOracleContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getChainlinkOracleContract(web3), [web3])
+}
+
+/**
+ * Helper hooks to get GLOBAL VAULTS contracts (by ABI)
+ */
+
+export const useGlobalVaultLocked = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getGlobalVaultLockedContract(web3), [web3])
+}
+
+export const useGlobalVaultVested = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getGlobalVaultVestedContract(web3), [web3])
+}
+
+export const useGlobalVaultStaked = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getGlobalVaultStakedContract(web3), [web3])
 }
