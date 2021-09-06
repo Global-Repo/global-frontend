@@ -1,55 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { VaultsState } from '../types'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { AppThunk, VaultsState } from '../types'
+import {
+  fetchPoolsAllowance,
+  fetchUserBalances,
+  fetchUserPendingRewards,
+  fetchUserStakeBalances,
+} from '../pools/fetchPoolsUser'
+import poolsConfig from '../../config/constants/pools'
+import { setPoolsUserData } from '../pools'
 
 const initialState: VaultsState = {
-  globalVaults: undefined,
+  globalVaultLocked: undefined,
+  globalVaultVested: undefined,
+  globalVaultStaked: undefined,
   userDataLoaded: false,
 }
 
 // Thunks
-/* export const fetchWalletNfts = createAsyncThunk<NftSourceItem[], string>(
-  'collectibles/fetchWalletNfts',
-  async (account) => {
-    // For each nft source get nft data
-    const nftSourcePromises = Object.keys(nftSources).map(async (nftSourceType) => {
-      const { address: addressObj } = nftSources[nftSourceType as NftType]
-      const address = getAddress(addressObj)
-      const contract = getErc721Contract(address)
 
-      const getTokenIdAndData = async (index: number) => {
-        try {
-          const tokenId = await contract.methods.tokenOfOwnerByIndex(account, index).call()
-          const walletNft = await getNftByTokenId(address, tokenId)
-          return [Number(tokenId), walletNft.identifier]
-        } catch (error) {
-          console.error('getTokenIdAndData', error)
-          return null
-        }
-      }
+export const fetchGlobalVaultsAsync =
+  (account: string): AppThunk =>
+  async (dispatch) => {
+    // TODO
+    const allowances = await fetchPoolsAllowance(account)
+    const stakingTokenBalances = await fetchUserBalances(account)
+    const stakedBalances = await fetchUserStakeBalances(account)
+    const pendingRewards = await fetchUserPendingRewards(account)
 
-      const balanceOfResponse = await contract.methods.balanceOf(account).call()
-      const balanceOf = Number(balanceOfResponse)
+    const userData = poolsConfig.map((pool) => ({
+      sousId: pool.sousId,
+      allowance: allowances[pool.sousId],
+      stakingTokenBalance: stakingTokenBalances[pool.sousId],
+      stakedBalance: stakedBalances[pool.sousId],
+      pendingReward: pendingRewards[pool.sousId],
+    }))
 
-      if (balanceOf === 0) {
-        return []
-      }
-
-      const nftDataFetchPromises = []
-
-      // For each index get the tokenId and data associated with it
-      for (let i = 0; i < balanceOf; i++) {
-        nftDataFetchPromises.push(getTokenIdAndData(i))
-      }
-
-      const nftData = await Promise.all(nftDataFetchPromises)
-      return nftData
-    })
-
-    const nftSourceData = await Promise.all(nftSourcePromises)
-
-    return nftSourceData.flat()
-  },
-) */
+    dispatch(setPoolsUserData(userData))
+  }
 
 export const vaultsSlice = createSlice({
   name: 'vaults',

@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
-import { CampaignType, FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import { Address, CampaignType, FarmConfig, Nft, PoolConfig, Team, Token } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -104,14 +104,73 @@ export interface PoolsState {
   userDataLoaded: boolean
 }
 
-export interface GlobalVaults {
-  stakedGlobalVault: Pool
-  vestedGlobalVault: Pool
-  lockedGlobalVault: Pool
+export interface VaultApr {
+  token: Token
+  apr: number
+}
+
+export interface EarningTokenPrice {
+  token: Token
+  earningTokenPrice: number
+}
+
+export interface GlobalVault {
+  sousId: number
+  contractAddress: Address
+  stakingToken: Token
+  stakingLimit: BigNumber
+  stakingTokenPrice: number
+  totalStaked: BigNumber
+  earningToken: Token[]
+  vaultApr: VaultApr[]
+  earningTokensPrice: EarningTokenPrice[]
+}
+
+export interface TokenPendingReward {
+  token: Token
+  pendingReward: BigNumber
+}
+
+export interface LockedPendingReward {
+  timestamp: BigNumber
+  tokenPendingRewards: TokenPendingReward[]
+}
+
+export interface GlobalVaultLocked extends GlobalVault {
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingRewards: LockedPendingReward[]
+  }
+}
+
+export interface GlobalVaultVested extends GlobalVault {
+  penaltyFee: {
+    days: number
+    fee: number
+  }
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingReward: BigNumber
+  }
+}
+
+export interface GlobalVaultStaked extends GlobalVault {
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingReward: BigNumber
+  }
 }
 
 export interface VaultsState {
-  globalVaults: GlobalVaults
+  globalVaultLocked: GlobalVaultLocked
+  globalVaultVested: GlobalVaultVested
+  globalVaultStaked: GlobalVaultStaked
   userDataLoaded: boolean
 }
 

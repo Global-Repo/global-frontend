@@ -13,15 +13,15 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from 'hooks/useRefresh'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import {
+  fetchCakeVaultFees,
+  fetchCakeVaultPublicData,
+  fetchCakeVaultUserData,
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
-  fetchCakeVaultUserData,
-  fetchCakeVaultFees,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState, GlobalVaults } from './types'
+import { AchievementState, Farm, FarmsState, Pool, ProfileState, State, TeamsState, VaultsState } from './types'
 import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -30,6 +30,7 @@ import { getCanClaim } from './predictions/helpers'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'
+import { fetchGlobalVaultsAsync } from './vaults'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
@@ -173,66 +174,6 @@ export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } =>
   return { pools: pools.map(transformPool), userDataLoaded }
 }
 
-export const useVaults = (account): { vaults: GlobalVaults; userDataLoaded: boolean } => {
-  const { fastRefresh } = useRefresh()
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    if (account) {
-      // dispatch(fetchGlobalVaultsUserDataAsync(account))
-    }
-  }, [account, dispatch, fastRefresh])
-
-  const mockVault: Pool = {
-    contractAddress: {
-      97: '0x7db533569958cC6876aD8252227AaFd39c39B422',
-      56: '0x5423452345',
-    },
-    earningToken: {
-      symbol: 'BNB',
-      address: {
-        97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-        56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-      },
-    },
-    poolCategory: undefined,
-    sousId: 0,
-    stakingToken: {
-      symbol: 'GLOBAL',
-      address: {
-        97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-        56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-      },
-    },
-    tokenPerBlock: '',
-    totalStaked: new BigNumber(0),
-    stakingLimit: new BigNumber(0),
-    startBlock: 1,
-    endBlock: 3,
-    apr: 0.5,
-    stakingTokenPrice: 3,
-    earningTokenPrice: 2,
-    isAutoVault: false,
-    userData: {
-      allowance: new BigNumber(0),
-      stakingTokenBalance: new BigNumber(0),
-      stakedBalance: new BigNumber(0),
-      pendingReward: new BigNumber(0),
-    },
-  }
-
-  const mockVaults: GlobalVaults = {
-    stakedGlobalVault: mockVault,
-    vestedGlobalVault: mockVault,
-    lockedGlobalVault: mockVault,
-  }
-
-  const { vaults, userDataLoaded } = useSelector((state: State) => ({
-    vaults: mockVaults, // state.vaults.globalVaults,
-    userDataLoaded: state.vaults.userDataLoaded,
-  }))
-  return { vaults, userDataLoaded }
-}
-
 export const usePoolFromPid = (sousId: number): Pool => {
   const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
   return transformPool(pool)
@@ -321,6 +262,25 @@ export const useCakeVault = () => {
       lastUserActionTime,
     },
   }
+}
+
+// Vaults
+
+export const useFetchGlobalVaults = (account): VaultsState => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchGlobalVaultsAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  return useSelector((state: State) => ({
+    globalVaultLocked: state.vaults.globalVaultLocked,
+    globalVaultVested: state.vaults.globalVaultVested,
+    globalVaultStaked: state.vaults.globalVaultStaked,
+    userDataLoaded: state.vaults.userDataLoaded,
+  }))
 }
 
 // Profile

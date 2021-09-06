@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { Pool } from 'state/types'
+import { GlobalVault, Pool } from 'state/types'
 import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 import { getBalanceNumber, getFullDisplayBalance, getDecimalAmount } from 'utils/formatBalance'
 
@@ -60,6 +60,25 @@ export const getAprData = (pool: Pool, performanceFee: number) => {
     return { apr: autoApr, isHighValueToken, roundingDecimals, compoundFrequency }
   }
   return { apr, isHighValueToken, roundingDecimals, compoundFrequency }
+}
+
+export const getVaultAprData = (
+  vault: GlobalVault,
+): Array<{ apr: number; isHighValueToken: boolean; roundingDecimals: 4 | 2; compoundFrequency: number }> => {
+  const { earningTokensPrice, vaultApr } = vault
+  const result = []
+
+  for (let i = 0; i < earningTokensPrice.length; i++) {
+    // special handling for tokens like tBTC or BIFI where the daily token rewards for $1000 dollars will be less than 0.001 of that token
+    const isHighValueToken = Math.round(earningTokensPrice[i].earningTokenPrice / 1000) > 0
+    const roundingDecimals = isHighValueToken ? 4 : 2
+    const compoundFrequency = MANUAL_POOL_COMPOUND_FREQUENCY
+    const { apr } = vaultApr[i]
+
+    result.push({ apr, isHighValueToken, roundingDecimals, compoundFrequency })
+  }
+
+  return result
 }
 
 export const getCakeVaultEarnings = (
