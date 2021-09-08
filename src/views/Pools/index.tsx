@@ -58,7 +58,11 @@ const ControlStretch = styled(Flex)`
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
-const Pools: React.FC = () => {
+interface Props {
+  isGlobal?: boolean
+}
+
+const Pools: React.FC<Props> = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { account } = useWeb3React()

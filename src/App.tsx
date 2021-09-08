@@ -52,7 +52,10 @@ const App: React.FC = () => {
             <Route path="/farms">
               <Farms />
             </Route>
-            <Route path="/pools">
+            <Route path="/poolsGlobal">
+              <Pools isGlobal />
+            </Route>
+            <Route path="/poolsToken">
               <Pools />
             </Route>
             <Route path="/vaults">
