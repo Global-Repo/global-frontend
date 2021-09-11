@@ -8,8 +8,8 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledFarmStakingCard = styled(Card)`
-  background: linear-gradient(270deg, #3e270f, #c98133);
-  box-shadow: 5px 5px 5px black;
+  background: transparent;
+  border: 2px solid white;
   border-radius: 24px;
   margin-left: auto;
   margin-right: auto;

@@ -13,8 +13,8 @@ import CakeWalletBalance from './CakeWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   min-height: 200px;
-  background: linear-gradient(270deg, #3e270f, #c98133);
-  box-shadow: 5px 5px 5px black;
+  background: transparent;
+  border: 2px solid white;
 `
 
 const Block = styled.div`
