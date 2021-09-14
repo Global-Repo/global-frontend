@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from '@duhd4h/global-uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -17,15 +17,7 @@ import Vaults from './views/vaults'
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
-const Lottery = lazy(() => import('./views/Lottery'))
-const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
-const Collectibles = lazy(() => import('./views/Collectibles'))
-const Teams = lazy(() => import('./views/Teams'))
-const Team = lazy(() => import('./views/Teams/Team'))
-const Profile = lazy(() => import('./views/Profile'))
-const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
-const Predictions = lazy(() => import('./views/Predictions'))
 
 // This config is required for number formatting
 BigNumber.config({

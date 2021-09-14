@@ -37,7 +37,7 @@ interface StackedActionProps {
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLoaded }) => {
-  const { sousId, stakingToken, earningToken, stakingLimit, userData, stakingTokenPrice } = vault
+  const { sousId, stakingToken, earningToken, userData } = vault
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
@@ -58,10 +58,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
 
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
-  const stakedTokenDollarBalance = getBalanceNumber(
-    stakedBalance.multipliedBy(stakingTokenPrice),
-    stakingToken.decimals,
-  )
 
   const {
     userData: { userShares },
@@ -73,33 +69,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
 
-  const [onPresentStake] = useModal(
-    <StakeModal vault={vault} stakingTokenBalance={stakingTokenBalance} stakingTokenPrice={stakingTokenPrice} />,
-  )
-
-  const [onPresentUnstake] = useModal(
-    <StakeModal
-      stakingTokenBalance={stakingTokenBalance}
-      vault={vault}
-      stakingTokenPrice={stakingTokenPrice}
-      isRemovingStake
-    />,
-  )
-
-  const onStake = () => {
-    onPresentStake()
-  }
-
-  const onUnstake = () => {
-    onPresentUnstake()
-  }
-
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t("You've already staked the maximum amount you can stake in this pool!"),
     { placement: 'bottom' },
   )
-
-  const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
   if (!account) {
     return (
@@ -163,31 +136,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
         <ActionContent>
           <Flex flex="1" pt="16px" flexDirection="column" alignSelf="flex-start">
             <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={stakedTokenBalance} />
-            <Balance
-              fontSize="12px"
-              display="inline"
-              color="textSubtle"
-              decimals={2}
-              value={stakedTokenDollarBalance}
-              unit=" USD"
-              prefix="~"
-            />
           </Flex>
           <IconButtonWrapper>
-            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+            <IconButton variant="secondary" mr="6px">
               <MinusIcon color="primary" width="14px" />
             </IconButton>
-            {reachStakingLimit ? (
-              <span ref={targetRef}>
-                <IconButton variant="secondary" disabled>
-                  <AddIcon color="textDisabled" width="24px" height="24px" />
-                </IconButton>
-              </span>
-            ) : (
-              <IconButton variant="secondary" onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}>
-                <AddIcon color="primary" width="14px" />
-              </IconButton>
-            )}
+            <IconButton variant="secondary" onClick={onPresentTokenRequired}>
+              <AddIcon color="primary" width="14px" />
+            </IconButton>
           </IconButtonWrapper>
           {tooltipVisible && tooltip}
         </ActionContent>
@@ -206,7 +162,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
         </Text>
       </ActionTitles>
       <ActionContent>
-        <Button width="100%" onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired} variant="secondary">
+        <Button width="100%" onClick={onPresentTokenRequired} variant="secondary">
           {t('Stake')}
         </Button>
       </ActionContent>

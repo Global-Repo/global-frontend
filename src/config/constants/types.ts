@@ -78,6 +78,14 @@ export interface PoolConfig {
   enableEmergencyWithdraw?: boolean
 }
 
+export interface VaultConfig {
+  sousId: number
+  earningToken: Token[]
+  stakingToken: Token
+  contractAddress: Address
+  tokenPerBlock: string
+}
+
 export type Images = {
   lg: string
   md: string

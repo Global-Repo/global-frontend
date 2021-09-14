@@ -25,7 +25,9 @@ import {
   getLotteryV2Contract,
   getGlobalVaultLockedContract,
   getGlobalVaultVestedContract,
-  getGlobalVaultStakedContract,
+  getGlobalVaultStakedToBnbContract,
+  getGlobalVaultStakedToGlobalContract,
+  getGlobalVaultsSouschefContract,
 } from 'utils/contractHelpers'
 
 /**
@@ -100,6 +102,11 @@ export const useSousChef = (id) => {
   return useMemo(() => getSouschefContract(id, web3), [id, web3])
 }
 
+export const useSousChefGlobalVaults = (id) => {
+  const web3 = useWeb3()
+  return useMemo(() => getGlobalVaultsSouschefContract(id, web3), [id, web3])
+}
+
 export const useSousChefV2 = (id) => {
   const web3 = useWeb3()
   return useMemo(() => getSouschefV2Contract(id, web3), [id, web3])
@@ -159,7 +166,12 @@ export const useGlobalVaultVested = () => {
   return useMemo(() => getGlobalVaultVestedContract(web3), [web3])
 }
 
-export const useGlobalVaultStaked = () => {
+export const useGlobalVaultStakedToBnb = () => {
   const web3 = useWeb3()
-  return useMemo(() => getGlobalVaultStakedContract(web3), [web3])
+  return useMemo(() => getGlobalVaultStakedToBnbContract(web3), [web3])
+}
+
+export const useGlobalVaultStakedToGlobal = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getGlobalVaultStakedToGlobalContract(web3), [web3])
 }

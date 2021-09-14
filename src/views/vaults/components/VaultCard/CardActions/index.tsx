@@ -29,7 +29,7 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
   const earnings = BIG_ZERO
   const needsApproval = !allowance.gt(0)
   const isStaked = stakedBalance.gt(0)
-  const isLoading = !userData
+  const isLoading = Boolean(!userData)
 
   return (
     <Flex flexDirection="column">

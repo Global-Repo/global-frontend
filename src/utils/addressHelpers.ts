@@ -68,6 +68,9 @@ export const getGlobalVaultLockedAddress = () => {
 export const getGlobalVaultVestedAddress = () => {
   return getAddress(addresses.globalVaultVested)
 }
-export const getGlobalVaultStakedAddress = () => {
-  return getAddress(addresses.globalVaultStaked)
+export const getGlobalVaultStakedToBnbAddress = () => {
+  return getAddress(addresses.globalVaultStakedToBnb)
+}
+export const getGlobalVaultStakedToGlobalAddress = () => {
+  return getAddress(addresses.globalVaultStakedToGlobal)
 }

@@ -76,8 +76,12 @@ export default {
     56: '0x00',
     97: '0x00',
   },
-  globalVaultStaked: {
+  globalVaultStakedToBnb: {
     56: '0x00',
-    97: '0x00',
+    97: '0xFFF708Da8A70f075049E10572c9B0Ad28fbF33FF',
+  },
+  globalVaultStakedToGlobal: {
+    56: '0x00',
+    97: '0xfA7d9B457E0a860a529caEB44D84E134b7678FFa',
   },
 }

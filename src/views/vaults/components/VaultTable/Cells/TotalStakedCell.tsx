@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import BigNumber from 'bignumber.js'
 import BaseCell, { CellContent } from './BaseCell'
 
 interface TotalStakedCellProps {
@@ -20,7 +21,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ vault }) => {
   const { stakingToken, totalStaked } = vault
 
   const totalStakedBalance = useMemo(() => {
-    return getBalanceNumber(totalStaked, stakingToken.decimals)
+    return getBalanceNumber(new BigNumber(totalStaked), stakingToken.decimals)
   }, [totalStaked, stakingToken.decimals])
 
   return (
@@ -29,7 +30,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ vault }) => {
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('Total staked')}
         </Text>
-        {totalStaked && totalStaked.gte(0) ? (
+        {totalStaked && new BigNumber(totalStaked).gte(0) ? (
           <Flex height="20px" alignItems="center">
             <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />
           </Flex>

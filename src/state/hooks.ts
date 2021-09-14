@@ -21,7 +21,7 @@ import {
   fetchPoolsUserDataAsync,
   setBlock,
 } from './actions'
-import { AchievementState, Farm, FarmsState, Pool, ProfileState, State, TeamsState, VaultsState } from './types'
+import { AchievementState, Farm, FarmsState, Pool, ProfileState, State, TeamsState } from './types'
 import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -30,7 +30,7 @@ import { getCanClaim } from './predictions/helpers'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
 import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'
-import { fetchGlobalVaultsAsync } from './vaults'
+import { fetchGlobalVaultsPublicData, fetchGlobalVaultsUserData } from './vaults'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
@@ -266,19 +266,23 @@ export const useCakeVault = () => {
 
 // Vaults
 
-export const useFetchGlobalVaults = (account): VaultsState => {
+export const useFetchGlobalVaults = (account?) => {
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchGlobalVaultsPublicData())
+  }, [dispatch, fastRefresh])
+
   useEffect(() => {
     if (account) {
-      dispatch(fetchGlobalVaultsAsync(account))
+      dispatch(fetchGlobalVaultsUserData(account))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, dispatch])
 
   return useSelector((state: State) => ({
-    globalVaultLocked: state.vaults.globalVaultLocked,
-    globalVaultVested: state.vaults.globalVaultVested,
-    globalVaultStaked: state.vaults.globalVaultStaked,
+    globalVaultStakedToBnb: state.vaults.globalVaultStakedToBnb,
+    globalVaultStakedToGlobal: state.vaults.globalVaultStakedToGlobal,
     userDataLoaded: state.vaults.userDataLoaded,
   }))
 }

@@ -44,8 +44,8 @@ const Vaults: React.FC = () => {
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
 
   const globalVaults = useMemo(() => {
-    const { globalVaultStaked, globalVaultVested, globalVaultLocked } = vaults
-    const filteredVaults = [globalVaultStaked, globalVaultVested, globalVaultLocked].filter((el) => el != null)
+    const { globalVaultStakedToBnb, globalVaultStakedToGlobal } = vaults
+    const filteredVaults = [globalVaultStakedToBnb, globalVaultStakedToGlobal].filter((el) => el != null)
 
     return filteredVaults as Array<GlobalVaultLocked | GlobalVaultVested | GlobalVaultStaked>
   }, [vaults])

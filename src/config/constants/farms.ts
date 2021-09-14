@@ -7,7 +7,7 @@ const farms: FarmConfig[] = [
    */
   {
     pid: 0,
-    lpSymbol: 'CAKE',
+    lpSymbol: 'GLOBAL',
     lpAddresses: {
       // Aqui no va un LP address sino el cake token address que es el que tiene pid 0 en el masterchef
       97: process.env.REACT_APP_CAKE_ADDRESS,

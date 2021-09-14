@@ -33,35 +33,16 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
-  const { stakingToken, stakingTokenPrice, stakingLimit, userData } = vault
+  const { stakingToken, userData } = vault
   const { t } = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
-  const stakedTokenDollarBalance = getBalanceNumber(
-    stakedBalance.multipliedBy(stakingTokenPrice),
-    stakingToken.decimals,
-  )
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
-
-  const [onPresentStake] = useModal(
-    <StakeModal vault={vault} stakingTokenBalance={stakingTokenBalance} stakingTokenPrice={stakingTokenPrice} />,
-  )
-
-  const [onPresentUnstake] = useModal(
-    <StakeModal
-      stakingTokenBalance={stakingTokenBalance}
-      vault={vault}
-      stakingTokenPrice={stakingTokenPrice}
-      isRemovingStake
-    />,
-  )
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('You’ve already staked the maximum amount you can stake in this pool!'),
     { placement: 'bottom' },
   )
-
-  const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
   const renderStakeAction = () => {
     return isStaked ? (
@@ -69,43 +50,20 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         <Flex flexDirection="column">
           <>
             <Balance bold fontSize="20px" decimals={3} value={stakedTokenBalance} />
-            {stakingTokenPrice !== 0 && (
-              <Text fontSize="12px" color="textSubtle">
-                <Balance
-                  fontSize="12px"
-                  color="textSubtle"
-                  decimals={2}
-                  value={stakedTokenDollarBalance}
-                  prefix="~"
-                  unit=" USD"
-                />
-              </Text>
-            )}
           </>
         </Flex>
         <Flex>
-          <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
+          <IconButton variant="secondary" mr="6px">
             <MinusIcon color="primary" width="24px" />
           </IconButton>
-          {reachStakingLimit ? (
-            <span ref={targetRef}>
-              <IconButton variant="secondary" disabled>
-                <AddIcon color="textDisabled" width="24px" height="24px" />
-              </IconButton>
-            </span>
-          ) : (
-            <IconButton
-              variant="secondary"
-              onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
-            >
-              <AddIcon color="primary" width="24px" height="24px" />
-            </IconButton>
-          )}
+          <IconButton variant="secondary" onClick={onPresentTokenRequired}>
+            <AddIcon color="primary" width="24px" height="24px" />
+          </IconButton>
         </Flex>
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>{t('Stake')}</Button>
+      <Button onClick={onPresentTokenRequired}>{t('Stake')}</Button>
     )
   }
 

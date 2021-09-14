@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
 import web3NoAccount from 'utils/web3'
 import { ChainId } from '@duhd4h/global-sdk'
-import { poolsConfig } from 'config/constants'
+import { poolsConfig, vaultsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
 // Addresses
@@ -26,7 +26,8 @@ import {
   getChainlinkOracleAddress,
   getMulticallAddress,
   getGlobalVaultLockedAddress,
-  getGlobalVaultStakedAddress,
+  getGlobalVaultStakedToBnbAddress,
+  getGlobalVaultStakedToGlobalAddress,
   getGlobalVaultVestedAddress,
 } from 'utils/addressHelpers'
 
@@ -58,7 +59,8 @@ import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
 import globalVaultLockedAbi from 'config/abi/globalVaultLocked.json'
 import globalVaultVestedAbi from 'config/abi/globalVaultVested.json'
-import globalVaultStakedAbi from 'config/abi/globalVaultStaked.json'
+import globalVaultStakedToBnbAbi from 'config/abi/globalVaultStakedToBnb.json'
+import globalVaultStakedToGlobalAbi from 'config/abi/globalVaultStakedToGlobal.json'
 import { DEFAULT_GAS_PRICE } from 'config'
 import { getSettings, getGasPriceInWei } from './settings'
 
@@ -97,6 +99,11 @@ export const getIfoV2Contract = (address: string, web3?: Web3) => {
 export const getSouschefContract = (id: number, web3?: Web3) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
+  return getContract(abi, getAddress(config.contractAddress), web3)
+}
+export const getGlobalVaultsSouschefContract = (id: number, web3?: Web3) => {
+  const config = vaultsConfig.find((vault) => vault.sousId === id)
+  const abi = sousChef
   return getContract(abi, getAddress(config.contractAddress), web3)
 }
 export const getSouschefV2Contract = (id: number, web3?: Web3) => {
@@ -162,6 +169,9 @@ export const getGlobalVaultLockedContract = (web3?: Web3) => {
 export const getGlobalVaultVestedContract = (web3?: Web3) => {
   return getContract(globalVaultVestedAbi, getGlobalVaultVestedAddress(), web3)
 }
-export const getGlobalVaultStakedContract = (web3?: Web3) => {
-  return getContract(globalVaultStakedAbi, getGlobalVaultStakedAddress(), web3)
+export const getGlobalVaultStakedToBnbContract = (web3?: Web3) => {
+  return getContract(globalVaultStakedToBnbAbi, getGlobalVaultStakedToBnbAddress(), web3)
+}
+export const getGlobalVaultStakedToGlobalContract = (web3?: Web3) => {
+  return getContract(globalVaultStakedToGlobalAbi, getGlobalVaultStakedToGlobalAddress(), web3)
 }

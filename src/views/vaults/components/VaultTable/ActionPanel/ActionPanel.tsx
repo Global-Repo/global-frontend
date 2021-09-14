@@ -18,6 +18,7 @@ import Balance from 'components/Balance'
 import { getAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import BigNumber from 'bignumber.js'
 import Harvest from './Harvest'
 import Stake from './Stake'
 import Apr from '../Apr'
@@ -102,7 +103,7 @@ const InfoSection = styled(Box)`
 `
 
 const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoaded, expanded, breakpoints }) => {
-  const { sousId, stakingToken, earningToken, totalStaked, stakingLimit, contractAddress } = vault
+  const { sousId, stakingToken, earningToken, totalStaked, contractAddress } = vault
   const { t } = useTranslation()
   const vaultContractAddress = getAddress(contractAddress)
   const { isXs, isSm, isMd } = breakpoints
@@ -113,7 +114,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
   const imageSrc = `${BASE_URL}/images/tokens/${tokenAddress}.png`
 
   const getTotalStakedBalance = () => {
-    return getBalanceNumber(totalStaked, stakingToken.decimals)
+    return getBalanceNumber(new BigNumber(totalStaked), stakingToken.decimals)
   }
 
   const {
@@ -124,12 +125,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
     placement: 'bottom',
   })
 
-  const maxStakeRow = stakingLimit.gt(0) ? (
-    <Flex mb="8px" justifyContent="space-between">
-      <Text>{t('Max. stake per user')}:</Text>
-      <Text>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
-    </Flex>
-  ) : null
+  const maxStakeRow = null
 
   const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
@@ -142,7 +138,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
       <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text>
       <Flex alignItems="center">
-        {totalStaked && totalStaked.gte(0) ? (
+        {totalStaked && new BigNumber(totalStaked).gte(0) ? (
           <>
             <Balance fontSize="16px" value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
             <span ref={totalStakedTargetRef}>

@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
-import { Address, CampaignType, FarmConfig, Nft, PoolConfig, Team, Token } from 'config/constants/types'
+import { CampaignType, FarmConfig, Nft, PoolConfig, Team, Token, VaultConfig } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -114,14 +114,9 @@ export interface EarningTokenPrice {
   earningTokenPrice: number
 }
 
-export interface GlobalVault {
-  sousId: number
-  contractAddress: Address
-  stakingToken: Token
-  stakingLimit: BigNumber
-  stakingTokenPrice: number
-  totalStaked: BigNumber
-  earningToken: Token[]
+export interface GlobalVault extends VaultConfig {
+  // stakingTokenPrice: number
+  totalStaked: SerializedBigNumber
   vaultApr: VaultApr[]
   earningTokensPrice: EarningTokenPrice[]
 }
@@ -160,17 +155,18 @@ export interface GlobalVaultVested extends GlobalVault {
 
 export interface GlobalVaultStaked extends GlobalVault {
   userData?: {
-    allowance: BigNumber
-    stakingTokenBalance: BigNumber
-    stakedBalance: BigNumber
-    pendingReward: BigNumber
+    allowance: SerializedBigNumber
+    stakingTokenBalance: SerializedBigNumber
+    stakedBalance: SerializedBigNumber
+    pendingReward: SerializedBigNumber
   }
 }
 
 export interface VaultsState {
   globalVaultLocked: GlobalVaultLocked
   globalVaultVested: GlobalVaultVested
-  globalVaultStaked: GlobalVaultStaked
+  globalVaultStakedToBnb: GlobalVaultStaked
+  globalVaultStakedToGlobal: GlobalVaultStaked
   userDataLoaded: boolean
 }
 

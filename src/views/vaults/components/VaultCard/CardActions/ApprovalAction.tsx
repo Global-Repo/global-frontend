@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, AutoRenewIcon, Skeleton } from '@duhd4h/global-uikit'
-import { useSousApprove } from 'hooks/useApprove'
+import { useGlobalVaultApprove, useSousApprove } from 'hooks/useApprove'
 import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 import { getAddress } from 'utils/addressHelpers'
@@ -15,7 +15,11 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ vault, isLoading = fals
   const { sousId, stakingToken, earningToken } = vault
   const { t } = useTranslation()
   const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
-  const { handleApprove, requestedApproval } = useSousApprove(stakingTokenContract, sousId, earningToken[0].symbol)
+  const { handleApprove, requestedApproval } = useGlobalVaultApprove(
+    stakingTokenContract,
+    sousId,
+    earningToken[0].symbol,
+  )
 
   return (
     <>

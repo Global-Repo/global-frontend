@@ -23,7 +23,7 @@ const PenaltyFeeRow: FC<Props> = ({ vault }) => {
       ) : (
         <Flex alignItems="center">
           {aprArray.map((item) => (
-            <Balance fontSize="16px" value={item.apr} decimals={2} unit="%" bold />
+            <Balance key={item.apr} fontSize="16px" value={item.apr} decimals={2} unit="%" bold />
           ))}
         </Flex>
       )}
