@@ -3,28 +3,28 @@ import { Flex, Skeleton, Text } from '@duhd4h/global-uikit'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from '../../../../state/types'
 import { useTranslation } from '../../../../contexts/Localization'
 import Balance from '../../../../components/Balance'
-import { getVaultAprData } from '../../../Pools/helpers'
+import { secondsToDays } from '../../../../utils/getTimePeriods'
 
 interface Props {
-  vault: GlobalVaultLocked | GlobalVaultStaked | GlobalVaultVested
+  vault: GlobalVaultVested
   performanceFee?: number
 }
 
 const PenaltyFeeRow: FC<Props> = ({ vault }) => {
   const { t } = useTranslation()
-  const { vaultApr } = vault
-  const aprArray = getVaultAprData(vault)
+  const { vaultApr, penaltyFee } = vault
+  const { fee, interval } = penaltyFee
+
+  const ndays = secondsToDays(interval)
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <Text>{t('Penalty fee (before XX days):')}</Text>
+      <Text>{t('Penalty fee (before %ndays% days):', { ndays })}</Text>
       {vaultApr.length === 0 ? (
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">
-          {aprArray.map((item) => (
-            <Balance key={item.apr} fontSize="16px" value={item.apr} decimals={2} unit="%" bold />
-          ))}
+          <Balance fontSize="16px" value={fee} decimals={2} unit="%" bold />
         </Flex>
       )}
     </Flex>

@@ -142,7 +142,7 @@ export interface GlobalVaultLocked extends GlobalVault {
 
 export interface GlobalVaultVested extends GlobalVault {
   penaltyFee: {
-    days: number
+    interval: number
     fee: number
   }
   userData?: {

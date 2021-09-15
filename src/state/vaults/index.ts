@@ -1,10 +1,13 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
-import { AppThunk, GlobalVault, VaultsState } from '../types'
+import { AppThunk, GlobalVault, GlobalVaultStaked, GlobalVaultVested, VaultsState } from '../types'
 import vaultsConfig from '../../config/constants/vaults'
 import {
   fetchGlobalVaultStakedToBnbPublicData,
   fetchGlobalVaultStakedToBnbUserData,
   fetchGlobalVaultStakedToGlobalPublicData,
+  fetchGlobalVaultStakedToGlobalUserData,
+  fetchGlobalVaultVestedPublicData,
 } from './fetchVaults'
 
 const initialState: VaultsState = {
@@ -20,91 +23,70 @@ const initialState: VaultsState = {
 export const fetchGlobalVaultsPublicData = (): AppThunk => async (dispatch) => {
   const globalVaultStakedToBnbPublicData = await fetchGlobalVaultStakedToBnbPublicData(vaultsConfig[0])
   const globalVaultStakedToGlobalPublicData = await fetchGlobalVaultStakedToGlobalPublicData(vaultsConfig[1])
+  const globalVaultVestedPublicData = await fetchGlobalVaultVestedPublicData(vaultsConfig[2])
 
-  const globalVaultStakedToBnb: GlobalVault = {
+  const globalVaultStakedToBnb: GlobalVaultStaked = {
     ...vaultsConfig[0],
     ...globalVaultStakedToBnbPublicData,
   }
 
-  const globalVaultStakedToGlobal: GlobalVault = {
+  const globalVaultStakedToGlobal: GlobalVaultStaked = {
     ...vaultsConfig[1],
     ...globalVaultStakedToGlobalPublicData,
   }
 
+  const globalVaultVested: GlobalVaultVested = {
+    ...vaultsConfig[2],
+    ...globalVaultVestedPublicData,
+  }
+
   dispatch(setGlobalVaultStakedToBnbPublicData(globalVaultStakedToBnb))
   dispatch(setGlobalVaultStakedToGlobalPublicData(globalVaultStakedToGlobal))
+  dispatch(setGlobalVaultVestedPublicData(globalVaultVested))
 }
 
 export const fetchGlobalVaultsUserData =
   (account: string): AppThunk =>
   async (dispatch) => {
     const globalVaultStakedToBnbUserData = await fetchGlobalVaultStakedToBnbUserData(account, vaultsConfig[0])
+    const globalVaultStakedToGlobalUserData = await fetchGlobalVaultStakedToGlobalUserData(account, vaultsConfig[1])
+    const globalVaultVestedUserData = await fetchGlobalVaultStakedToGlobalUserData(account, vaultsConfig[2])
 
     dispatch(setGlobalVaultStakedToBnbUserData(globalVaultStakedToBnbUserData))
+    dispatch(setGlobalVaultStakedToGlobalUserData(globalVaultStakedToGlobalUserData))
+    dispatch(setGlobalVaultVestedUserData(globalVaultVestedUserData))
+
     dispatch(setGlobalVaultUserDataLoaded())
   }
-
-/* export const updateVaultUserAllowance =
-  (sousId: number, account: string): AppThunk =>
-  async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(account)
-
-    dispatch(updateVaultsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
-  } */
 
 export const vaultsSlice = createSlice({
   name: 'Vaults',
   initialState,
   reducers: {
     setGlobalVaultStakedToBnbPublicData: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.globalVaultStakedToBnb = { ...state.globalVaultStakedToBnb, ...action.payload }
     },
     setGlobalVaultStakedToGlobalPublicData: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.globalVaultStakedToGlobal = { ...state.globalVaultStakedToGlobal, ...action.payload }
     },
+    setGlobalVaultVestedPublicData: (state, action) => {
+      state.globalVaultVested = { ...state.globalVaultVested, ...action.payload }
+    },
     setGlobalVaultStakedToBnbUserData: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.globalVaultStakedToBnb = { ...state.globalVaultStakedToBnb, ...action.payload }
     },
     setGlobalVaultStakedToGlobalUserData: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.globalVaultStakedToGlobal = { ...state.globalVaultStakedToGlobal, ...action.payload }
     },
+    setGlobalVaultVestedUserData: (state, action) => {
+      state.globalVaultVested = { ...state.globalVaultVested, ...action.payload }
+    },
     setGlobalVaultUserDataLoaded: (state) => {
-      // eslint-disable-next-line no-param-reassign
       state.userDataLoaded = true
     },
-    /* updateVaultsUserData: (state, action) => {
-      const { field, value, sousId } = action.payload
-      const index = state.data.findIndex((p) => p.sousId === sousId)
-
-      if (index >= 0) {
-        state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
-      }
-    }, */
   },
-  extraReducers: (builder) => {
-    /* builder.addCase(fetchWalletNfts.pending, (state) => {
-      state.isLoading = true
-    })
-    builder.addCase(fetchWalletNfts.fulfilled, (state, action) => {
-      state.isLoading = false
-      state.isInitialized = true
-      state.data = action.payload.reduce((accum, association) => {
-        if (!association) {
-          return accum
-        }
-
-        const [tokenId, identifier] = association as NftSourceItem
-
-        return {
-          ...accum,
-          [identifier]: accum[identifier] ? [...accum[identifier], tokenId] : [tokenId],
-        }
-      }, {})
-    }) */
+  extraReducers: () => {
+    /* extra Reducers */
   },
 })
 
@@ -112,8 +94,10 @@ export const vaultsSlice = createSlice({
 export const {
   setGlobalVaultStakedToBnbPublicData,
   setGlobalVaultStakedToGlobalPublicData,
+  setGlobalVaultVestedPublicData,
   setGlobalVaultStakedToBnbUserData,
   setGlobalVaultStakedToGlobalUserData,
+  setGlobalVaultVestedUserData,
   setGlobalVaultUserDataLoaded,
 } = vaultsSlice.actions
 

@@ -1,5 +1,9 @@
 import BigNumber from 'bignumber.js'
-import { getGlobalVaultStakedToBnbContract } from '../../utils/contractHelpers'
+import {
+  getGlobalVaultStakedToBnbContract,
+  getGlobalVaultStakedToGlobalContract,
+  getGlobalVaultVestedContract,
+} from '../../utils/contractHelpers'
 import { EarningTokenPrice, SerializedBigNumber, VaultApr } from '../types'
 import { BIG_ZERO } from '../../utils/bigNumber'
 import { VaultConfig } from '../../config/constants/types'
@@ -37,7 +41,7 @@ export const fetchGlobalVaultStakedToGlobalPublicData = async (
   earningTokensPrice: EarningTokenPrice[]
 }> => {
   try {
-    const globalVaultStakedToBnbContract = getGlobalVaultStakedToBnbContract()
+    const globalVaultStakedToBnbContract = getGlobalVaultStakedToGlobalContract()
 
     /* const totalStaked = await globalVaultStakedToBnbContract.methods.stakingToken().call()
     const stakingToken = await globalVaultStakedToBnbContract.methods.stakingToken().call() */
@@ -53,14 +57,82 @@ export const fetchGlobalVaultStakedToGlobalPublicData = async (
   }
 }
 
+export const fetchGlobalVaultVestedPublicData = async (vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultVestedContract()
+
+    const { fee, interval } = await contract.methods.penaltyFees().call()
+
+    return {
+      totalStaked: BIG_ZERO.toJSON(),
+      vaultApr: [{ token: tokens.global, apr: 0.5 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      penaltyFee: {
+        interval,
+        fee,
+      },
+    }
+    // return new BigNumber(stakingToken)
+  } catch (error) {
+    return error
+  }
+}
+
 export const fetchGlobalVaultStakedToBnbUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const globalVaultStakedToBnbContract = getGlobalVaultStakedToBnbContract()
+    const contract = getGlobalVaultStakedToBnbContract()
 
-    const allowance = await globalVaultStakedToBnbContract.methods.balanceOf(account).call()
-    const stakingTokenBalance = await globalVaultStakedToBnbContract.methods.balanceOf(account).call()
-    const stakedBalance = await globalVaultStakedToBnbContract.methods.balanceOf(account).call()
-    const pendingReward = await globalVaultStakedToBnbContract.methods.earned(account).call()
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultStakedToGlobalUserData = async (
+  account: string,
+  vaultConfig: VaultConfig,
+): Promise<any> => {
+  try {
+    const contract = getGlobalVaultStakedToGlobalContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultVestedUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultVestedContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
 
     return {
       userData: {

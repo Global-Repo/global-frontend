@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from '@duhd4h/global-uikit'
-import getTimePeriods from 'utils/getTimePeriods'
+import { getTimePeriods } from 'utils/getTimePeriods'
 import { useTranslation } from 'contexts/Localization'
 
 const WithdrawalFeeTimer: React.FC<{ secondsRemaining: number }> = ({ secondsRemaining }) => {

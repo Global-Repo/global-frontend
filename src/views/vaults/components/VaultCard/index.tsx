@@ -34,7 +34,7 @@ const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | Globa
         <CardBody>
           <AprRow vault={vault} />
           <EarnRow />
-          <PenaltyFeeRow vault={vault} />
+          {'penaltyFee' in vault && <PenaltyFeeRow vault={vault} />}
           <Flex mt="24px" flexDirection="column">
             {account ? (
               <CardActions vault={vault} stakedBalance={stakedBalance} />

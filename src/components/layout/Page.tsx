@@ -9,7 +9,9 @@ import Container from './Container'
 
 const StyledBackground = styled.div`
   width: 100%;
+`
 
+const HomeStyledBackground = styled(StyledBackground)`
   background-image: url('/images/home/e_1.svg'), url('/images/home/e_2.svg'), url('/images/home/e_3.svg'),
     url('/images/home/e_4.svg'), url('/images/home/e_5.svg'), url('/images/home/e_6.svg');
   background-repeat: no-repeat;
@@ -62,7 +64,19 @@ const PageMeta = () => {
   )
 }
 
-const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  isHome?: boolean
+}
+
+const Page: React.FC<Props> = ({ children, isHome, ...props }) => {
+  if (isHome) {
+    return (
+      <HomeStyledBackground>
+        <PageMeta />
+        <StyledPage {...props}>{children}</StyledPage>
+      </HomeStyledBackground>
+    )
+  }
   return (
     <StyledBackground>
       <PageMeta />

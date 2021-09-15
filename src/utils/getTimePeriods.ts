@@ -9,7 +9,7 @@ const YEAR_IN_SECONDS = 31557600
  *
  * @param seconds
  */
-const getTimePeriods = (seconds: number) => {
+export const getTimePeriods = (seconds: number) => {
   let delta = Math.abs(seconds)
   const timeLeft = {
     years: 0,
@@ -50,4 +50,6 @@ const getTimePeriods = (seconds: number) => {
   return timeLeft
 }
 
-export default getTimePeriods
+export const secondsToDays = (seconds: number) => {
+  return Math.floor(seconds / DAY_IN_SECONDS)
+}

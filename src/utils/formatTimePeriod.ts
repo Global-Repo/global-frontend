@@ -1,4 +1,4 @@
-import getTimePeriods from './getTimePeriods'
+import { getTimePeriods } from './getTimePeriods'
 
 /**
  * @param {Object} periods Return value from getTimePeriods

@@ -3,8 +3,11 @@ import { Timeline } from 'react-twitter-widgets'
 import styled from 'styled-components'
 
 const TimelineWrapper = styled.div`
-  margin-top: 32px;
-  box-shadow: 5px 5px 5px black;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 24px;
+  height: 600px;
+  padding: 8px;
 `
 
 const AnnouncementsCard = () => {
@@ -12,7 +15,7 @@ const AnnouncementsCard = () => {
     <TimelineWrapper>
       <Timeline
         dataSource={{ sourceType: 'profile', screenName: 'Beglobaldefi' }}
-        options={{ theme: 'dark', height: '600' }}
+        options={{ theme: 'dark', height: '584' }}
       />
     </TimelineWrapper>
   )

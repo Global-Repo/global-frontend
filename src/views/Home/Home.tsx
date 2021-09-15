@@ -113,25 +113,23 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Page>
-        <HomeBackground>
-          {header}
-          <Cards>
-            <FarmStakingCard />
-            <PartnershipsCard />
-          </Cards>
-          <Cards>
-            <EarnAPRCard />
-            <EarnAssetCard />
-          </Cards>
-          <Cards>
-            <CakeStats />
-            <TotalValueLockedCard />
-          </Cards>
-          <Cards>
-            <AnnouncementsCard />
-          </Cards>
-        </HomeBackground>
+      <Page isHome>
+        {header}
+        <Cards>
+          <FarmStakingCard />
+          <PartnershipsCard />
+        </Cards>
+        <Cards>
+          <EarnAPRCard />
+          <EarnAssetCard />
+        </Cards>
+        <Cards>
+          <CakeStats />
+          <TotalValueLockedCard />
+        </Cards>
+        <Cards>
+          <AnnouncementsCard />
+        </Cards>
       </Page>
       {!isMobile && (
         <GlobalPrice>

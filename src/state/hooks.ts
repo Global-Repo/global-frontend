@@ -283,6 +283,7 @@ export const useFetchGlobalVaults = (account?) => {
   return useSelector((state: State) => ({
     globalVaultStakedToBnb: state.vaults.globalVaultStakedToBnb,
     globalVaultStakedToGlobal: state.vaults.globalVaultStakedToGlobal,
+    globalVaultVested: state.vaults.globalVaultVested,
     userDataLoaded: state.vaults.userDataLoaded,
   }))
 }

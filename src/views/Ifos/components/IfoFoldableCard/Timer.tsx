@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import { getBscScanBlockCountdownUrl } from 'utils/bscscan'
 import { Flex, Link, PocketWatchIcon, Text, Skeleton } from '@duhd4h/global-uikit'
-import getTimePeriods from 'utils/getTimePeriods'
+import { getTimePeriods } from 'utils/getTimePeriods'
 import { PublicIfoData } from 'hooks/ifo/types'
 
 interface Props {
