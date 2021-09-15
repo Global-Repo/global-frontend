@@ -5,7 +5,8 @@ import { useTranslation } from 'contexts/Localization'
 
 const StyledPredictionCard = styled(Card)`
   min-height: 200px;
-  box-shadow: 5px 5px 5px black;
+  background: transparent;
+  border: 2px solid white;
 `
 
 const PartnershipsCard = () => {

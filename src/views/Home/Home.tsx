@@ -11,47 +11,16 @@ import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
 
-const HomeBackground = styled.div`
-  background-image: url('/logo.svg');
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 30%;
-  background-attachment: fixed;
-  background-position-y: 40px;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    background-position-y: 80px;
-  }
-`
+const HomeBackground = styled.div``
 
 const HomeHeader = styled.div`
-  height: 180px;
+  // height: 180px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    height: 280px;
+    // height: 280px;
+    padding: 40px 0 64px 0;
   }
 `
-
-const HomeContent = styled.div`
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    flex-direction: row;
-  }
-`
-
-const SideBar = styled.div`
-  width: 100%;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    width: 400px;
-    margin-left: 48px;
-  }
-`
-
-const CardWrapper = styled.div``
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -126,14 +95,17 @@ const Home: React.FC = () => {
 
   const header = (
     <HomeHeader>
-      <Flex height="100%" justifyContent="center" alignItems="center">
-        <Flex flexDirection="column" flexGrow={0} alignItems="center" width="80%">
-          <Image src="/textLogo.svg" width={512} height={70} mb="16px" />
-          <Text bold fontSize={isMobile ? '18px' : '26px'}>
-            {t(
-              'One-stop-shop for all your DeFi needs. Take advantage of our cheap DEX, yield optimizer and APR boost rewards.',
-            )}
+      <Flex height="100%" alignItems="center">
+        <Flex flexDirection="column" maxWidth="50%">
+          <Text bold fontSize={isMobile ? '18px' : '48px'}>
+            {t('One-stop-shop for all your DeFi needs')}
           </Text>
+          <Text bold mt="32px" fontSize={isMobile ? '18px' : '26px'}>
+            {t('Take advantage of our cheap DEX, yield optimizer and APR boost rewards')}
+          </Text>
+        </Flex>
+        <Flex flexGrow={1} justifyContent="flex-end">
+          <Image src="/images/home/tothemoon.png" width={368} height={373} />
         </Flex>
       </Flex>
     </HomeHeader>
@@ -144,26 +116,21 @@ const Home: React.FC = () => {
       <Page>
         <HomeBackground>
           {header}
-          <HomeContent>
-            <CardWrapper>
-              <Cards>
-                <FarmStakingCard />
-                <EarnAssetCard />
-              </Cards>
-              <Cards>
-                <EarnAPRCard />
-                <EarnAssetCard />
-              </Cards>
-              <Cards>
-                <CakeStats />
-                <TotalValueLockedCard />
-              </Cards>
-            </CardWrapper>
-            <SideBar>
-              <PartnershipsCard />
-              <AnnouncementsCard />
-            </SideBar>
-          </HomeContent>
+          <Cards>
+            <FarmStakingCard />
+            <PartnershipsCard />
+          </Cards>
+          <Cards>
+            <EarnAPRCard />
+            <EarnAssetCard />
+          </Cards>
+          <Cards>
+            <CakeStats />
+            <TotalValueLockedCard />
+          </Cards>
+          <Cards>
+            <AnnouncementsCard />
+          </Cards>
         </HomeBackground>
       </Page>
       {!isMobile && (

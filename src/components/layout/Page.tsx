@@ -9,7 +9,18 @@ import Container from './Container'
 
 const StyledBackground = styled.div`
   width: 100%;
-  display: flex;
+
+  background-image: url('/images/home/e_1.svg'), url('/images/home/e_2.svg'), url('/images/home/e_3.svg'),
+    url('/images/home/e_4.svg'), url('/images/home/e_5.svg'), url('/images/home/e_6.svg');
+  background-repeat: no-repeat;
+  // background-position: top left, top left, top left, top left, top left, top left;
+  background-position-x: 500px, -250px, -600px, -600px, 500px, 200px;
+  background-position-y: 120%, 100%, 80%, 0%, 40%, -400px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    background-position-x: 500px, -250px, -600px, -600px, 500px, 200px;
+    background-position-y: 120%, 100%, 80%, 0%, 40%, -400px;
+  }
 `
 
 const StyledPage = styled(Container)`
