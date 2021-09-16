@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@duhd4h/global-uikit'
+import { Heading, Card, CardBody, Button, BorderGradientButton } from '@duhd4h/global-uikit'
 import { harvest } from 'utils/callHelpers'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
@@ -70,18 +70,20 @@ const FarmedStakingCard = () => {
         </Block>
         <Actions>
           {account ? (
-            <Button
+            <BorderGradientButton
+              label={
+                pendingTx
+                  ? t('Collecting GLOBAL')
+                  : t('Harvest all (%count%)', {
+                      count: balancesWithValue.length,
+                    })
+              }
               id="harvest-all"
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
               width="100%"
-            >
-              {pendingTx
-                ? t('Collecting GLOBAL')
-                : t('Harvest all (%count%)', {
-                    count: balancesWithValue.length,
-                  })}
-            </Button>
+              style={{ padding: '8px' }}
+            />
           ) : (
             <UnlockButton width="100%" />
           )}
