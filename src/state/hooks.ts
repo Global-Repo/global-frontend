@@ -356,6 +356,11 @@ export const usePriceCakeBusd = (): BigNumber => {
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }
 
+export const usePriceGlobalBusd = (): BigNumber => {
+  const globalBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_GLOBAL_BNB_PID, 10))
+  return new BigNumber(globalBnbFarm.token.busdPrice)
+}
+
 // Block
 export const useBlock = () => {
   return useSelector((state: State) => state.block)

@@ -74,20 +74,6 @@ const Cards = styled(BaseLayout)`
   }
 ` */
 
-const GlobalPrice = styled.div`
-  width: 140px;
-  height: 140px;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  border-radius: 16px;
-  right: 24px;
-  top: calc(10vh);
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
-
 const Home: React.FC = () => {
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
@@ -112,33 +98,24 @@ const Home: React.FC = () => {
   )
 
   return (
-    <>
-      <Page isHome>
-        {header}
-        <Cards>
-          <FarmStakingCard />
-          <PartnershipsCard />
-        </Cards>
-        <Cards>
-          <EarnAPRCard />
-          <EarnAssetCard />
-        </Cards>
-        <Cards>
-          <CakeStats />
-          <TotalValueLockedCard />
-        </Cards>
-        <Cards>
-          <AnnouncementsCard />
-        </Cards>
-      </Page>
-      {!isMobile && (
-        <GlobalPrice>
-          <LogoIcon width={50} height={50} mb="8px" />
-          <Text bold>20.00$</Text>
-          <SocialLinks />
-        </GlobalPrice>
-      )}
-    </>
+    <Page isHome>
+      {header}
+      <Cards>
+        <FarmStakingCard />
+        <PartnershipsCard />
+      </Cards>
+      <Cards>
+        <EarnAPRCard />
+        <EarnAssetCard />
+      </Cards>
+      <Cards>
+        <CakeStats />
+        <TotalValueLockedCard />
+      </Cards>
+      <Cards>
+        <AnnouncementsCard />
+      </Cards>
+    </Page>
   )
 }
 

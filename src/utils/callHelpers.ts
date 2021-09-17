@@ -1,10 +1,10 @@
 import BigNumber from 'bignumber.js'
-import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL, CAKE_BNB_PID } from 'config'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL, CAKE_BNB_PID, GLOBAL_BNB_PID } from 'config'
 import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from '@duhd4h/global-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import farms from 'config/constants/farms'
-import { getAddress, getCakeAddress } from 'utils/addressHelpers'
+import { getAddress, getCakeAddress, getGlobalAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import { web3WithArchivedNodeProvider } from './web3'
 import { getBalanceAmount } from './formatBalance'
@@ -132,9 +132,13 @@ const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 const cakeBnbPid = CAKE_BNB_PID
 const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
 
+const globalBnbPid = GLOBAL_BNB_PID
+const globalBnbFarm = farms.find((farm) => farm.pid === globalBnbPid)
+
 const CAKE_TOKEN = new Token(chainId, getCakeAddress(), 18)
 const WBNB_TOKEN = new Token(chainId, tokens.wbnb.address[chainId], 18)
 const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
+const GLOBAL_TOKEN = new Token(chainId, getGlobalAddress(), 18)
 
 /**
  * Returns the total CAKE staked in the CAKE-BNB LP

@@ -12,16 +12,12 @@ const StyledBackground = styled.div`
 `
 
 const HomeStyledBackground = styled(StyledBackground)`
-  background-image: url('/images/home/e_1.svg'), url('/images/home/e_2.svg'), url('/images/home/e_3.svg'),
-    url('/images/home/e_4.svg'), url('/images/home/e_5.svg'), url('/images/home/e_6.svg');
-  background-repeat: no-repeat;
-  // background-position: top left, top left, top left, top left, top left, top left;
-  background-position-x: 500px, -250px, -600px, -600px, 500px, 200px;
-  background-position-y: 120%, 100%, 80%, 0%, 40%, -400px;
-
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-position-x: 500px, -250px, -600px, -600px, 500px, 200px;
-    background-position-y: 120%, 100%, 80%, 0%, 40%, -400px;
+    background-image: url('/images/home/logo.png'), url('/images/home/logo1.png'), url('/images/home/logo2.png'),
+      url('/images/home/logo3.png'), url('/images/home/logo4.png'), url('/images/home/logo5.png');
+    background-repeat: no-repeat;
+    background-size: 200px 200px, 200px 200px, 400px 400px, 300px 300px, 350px 350px, 500px 500px;
+    background-position: 60% 0, 10% 20%, 96% 30%, 5% 60%, 30% 80%, 95% 100%;
   }
 `
 

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button, BorderGradientButton } from '@duhd4h/global-uikit'
+import { Heading, Card, CardBody, BorderGradientButton } from '@duhd4h/global-uikit'
 import { harvest } from 'utils/callHelpers'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
