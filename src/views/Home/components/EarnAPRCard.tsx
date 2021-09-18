@@ -108,7 +108,7 @@ const EarnAPRCard = () => {
         <BorderGradientButton
           label="Details >"
           onClick={() => history.push('/farms')}
-          style={{ padding: '8px', position: 'absolute', bottom: '24px', right: '24px', left: '24px' }}
+          style={{ padding: '8px', marginTop: '32px' }}
         />
       </CardBody>
     </StyledFarmStakingCard>

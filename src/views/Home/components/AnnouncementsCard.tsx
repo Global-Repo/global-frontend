@@ -6,6 +6,7 @@ const TimelineWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 160px;
+  height: 800px;
 `
 
 const AnnouncementsCard = () => {
