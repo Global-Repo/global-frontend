@@ -17,7 +17,7 @@ const HomeStyledBackground = styled(StyledBackground)`
       url('/images/home/logo3.png'), url('/images/home/logo4.png'), url('/images/home/logo5.png');
     background-repeat: no-repeat;
     background-size: 200px 200px, 200px 200px, 400px 400px, 300px 300px, 350px 350px, 500px 500px;
-    background-position: 60% 0, 10% 20%, 96% 30%, 5% 60%, 30% 80%, 95% 100%;
+    background-position: 60% 0, 10% 15%, 96% 20%, 5% 40%, 30% 60%, 95% 100%;
   }
 `
 

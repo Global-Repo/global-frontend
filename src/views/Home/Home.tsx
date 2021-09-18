@@ -20,27 +20,27 @@ const HomeHeader = styled.div`
   }
 `
 
-const Cards = styled(BaseLayout)`
+const CardsRowOf2 = styled(BaseLayout)`
   align-items: stretch;
   justify-content: stretch;
   margin: auto;
   margin-bottom: 24px;
   grid-gap: 24px;
-  width: 80%;
+  width: 100%;
 
   & > div {
     grid-column: span 6;
-    width: 100%;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
-      grid-column: span 8;
+      grid-column: span 12;
     }
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 32px;
+    width: 80%;
+    margin-bottom: 80px;
     grid-gap: 32px;
 
     & > div {
@@ -49,10 +49,13 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-const CTACards = styled(BaseLayout)`
-  align-items: start;
+const CardsRowOf3 = styled(BaseLayout)`
+  align-items: stretch;
+  justify-content: stretch;
+  margin: auto;
   margin-bottom: 24px;
   grid-gap: 24px;
+  width: 100%;
 
   & > div {
     grid-column: span 6;
@@ -60,18 +63,22 @@ const CTACards = styled(BaseLayout)`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
-      grid-column: span 8;
+      grid-column: span 12;
     }
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 32px;
+    margin-bottom: 80px;
     grid-gap: 32px;
 
     & > div {
       grid-column: span 4;
     }
   }
+`
+
+const CardsRowOf1 = styled.div`
+  margin-bottom: 80px;
 `
 
 const Home: React.FC = () => {
@@ -100,21 +107,21 @@ const Home: React.FC = () => {
   return (
     <Page isHome>
       {header}
-      <Cards>
+      <CardsRowOf2>
         <FarmStakingCard />
         <PartnershipsCard />
-      </Cards>
-      <CTACards>
+      </CardsRowOf2>
+      <CardsRowOf3>
         <EarnAPRCard />
         <EarnAssetCard />
         <CakeStats />
-      </CTACards>
-      <Cards>
+      </CardsRowOf3>
+      <CardsRowOf1>
         <TotalValueLockedCard />
-      </Cards>
-      <Cards>
+      </CardsRowOf1>
+      <CardsRowOf1>
         <AnnouncementsCard />
-      </Cards>
+      </CardsRowOf1>
     </Page>
   )
 }

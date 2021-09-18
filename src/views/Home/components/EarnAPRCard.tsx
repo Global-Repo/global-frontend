@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@duhd4h/global-uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton, BorderGradientButton } from '@duhd4h/global-uikit'
 import { ChainId } from '@duhd4h/global-sdk'
 import max from 'lodash/max'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
@@ -24,15 +24,15 @@ const StyledFarmStakingCard = styled(Card)`
     margin: 0;
     max-width: none;
   }
-
-  transition: opacity 200ms;
-  &:hover {
-    opacity: 0.65;
-  }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   line-height: 44px;
+  background: linear-gradient(to right, #bb5370, #529dd6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
 `
+
 const EarnAPRCard = () => {
   const [isFetchingFarmData, setIsFetchingFarmData] = useState(true)
   const { t } = useTranslation()
@@ -40,6 +40,8 @@ const EarnAPRCard = () => {
   const globalPrice = usePriceGlobalBusd()
   const dispatch = useAppDispatch()
   const { observerRef, isIntersecting } = useIntersectionObserver()
+
+  const history = useHistory()
 
   // Fetch farm data once to get the max APR
   useEffect(() => {
@@ -84,29 +86,31 @@ const EarnAPRCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <NavLink exact activeClassName="active" to="/farms" id="farm-apr-cta">
-        <CardBody>
+      <CardBody style={{ height: '100%' }}>
+        <Heading color="contrast" scale="lg">
+          {earnUpTo}
+        </Heading>
+        <CardMidContent color="primary">
+          {highestApr && !isFetchingFarmData ? (
+            `${highestApr}%`
+          ) : (
+            <>
+              <Skeleton animation="pulse" variant="rect" height="44px" />
+              <div ref={observerRef} />
+            </>
+          )}
+        </CardMidContent>
+        <Flex justifyContent="space-between">
           <Heading color="contrast" scale="lg">
-            {earnUpTo}
+            {InFarms}
           </Heading>
-          <CardMidContent color="primary">
-            {highestApr && !isFetchingFarmData ? (
-              `${highestApr}%`
-            ) : (
-              <>
-                <Skeleton animation="pulse" variant="rect" height="44px" />
-                <div ref={observerRef} />
-              </>
-            )}
-          </CardMidContent>
-          <Flex justifyContent="space-between">
-            <Heading color="contrast" scale="lg">
-              {InFarms}
-            </Heading>
-            <ArrowForwardIcon mt={30} color="primary" />
-          </Flex>
-        </CardBody>
-      </NavLink>
+        </Flex>
+        <BorderGradientButton
+          label="Details >"
+          onClick={() => history.push('/farms')}
+          style={{ padding: '8px', position: 'absolute', bottom: '24px', right: '24px', left: '24px' }}
+        />
+      </CardBody>
     </StyledFarmStakingCard>
   )
 }
