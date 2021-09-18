@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router'
 import { DEFAULT_META, getCustomMeta } from 'config/constants/meta'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceGlobalBusd } from 'state/hooks'
 import Container from './Container'
 
 const StyledBackground = styled.div`
@@ -38,9 +38,9 @@ const StyledPage = styled(Container)`
 const PageMeta = () => {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const cakePriceUsd = usePriceCakeBusd()
-  const cakePriceUsdDisplay = cakePriceUsd.gt(0)
-    ? `$${cakePriceUsd.toNumber().toLocaleString(undefined, {
+  const globalPriceBusd = usePriceGlobalBusd()
+  const globalPriceUsdDisplay = globalPriceBusd.gt(0)
+    ? `$${globalPriceBusd.toNumber().toLocaleString(undefined, {
         minimumFractionDigits: 3,
         maximumFractionDigits: 3,
       })}`
@@ -48,7 +48,7 @@ const PageMeta = () => {
 
   const pageMeta = getCustomMeta(pathname, t) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  const pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
+  const pageTitle = globalPriceUsdDisplay ? [title, globalPriceUsdDisplay].join(' - ') : title
 
   return (
     <Helmet>

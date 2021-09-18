@@ -11,8 +11,6 @@ import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
 
-const HomeBackground = styled.div``
-
 const HomeHeader = styled.div`
   // height: 180px;
 
@@ -25,8 +23,10 @@ const HomeHeader = styled.div`
 const Cards = styled(BaseLayout)`
   align-items: stretch;
   justify-content: stretch;
+  margin: auto;
   margin-bottom: 24px;
   grid-gap: 24px;
+  width: 80%;
 
   & > div {
     grid-column: span 6;
@@ -49,7 +49,7 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-/* const CTACards = styled(BaseLayout)`
+const CTACards = styled(BaseLayout)`
   align-items: start;
   margin-bottom: 24px;
   grid-gap: 24px;
@@ -72,7 +72,7 @@ const Cards = styled(BaseLayout)`
       grid-column: span 4;
     }
   }
-` */
+`
 
 const Home: React.FC = () => {
   const { t } = useTranslation()
@@ -104,12 +104,12 @@ const Home: React.FC = () => {
         <FarmStakingCard />
         <PartnershipsCard />
       </Cards>
-      <Cards>
+      <CTACards>
         <EarnAPRCard />
         <EarnAssetCard />
-      </Cards>
-      <Cards>
         <CakeStats />
+      </CTACards>
+      <Cards>
         <TotalValueLockedCard />
       </Cards>
       <Cards>

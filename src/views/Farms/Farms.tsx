@@ -6,7 +6,7 @@ import { Heading, RowType, Toggle, Text } from '@duhd4h/global-uikit'
 import { ChainId } from '@duhd4h/global-sdk'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
-import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/hooks'
+import { useFarms, usePollFarmsData, usePriceGlobalBusd } from 'state/hooks'
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -113,7 +113,7 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-  const cakePrice = usePriceCakeBusd()
+  const globalPrice = usePriceGlobalBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
@@ -158,7 +158,7 @@ const Farms: React.FC = () => {
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
         const apr = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
+          ? getFarmApr(new BigNumber(farm.poolWeight), globalPrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : 0
 
         const apy = apr ? getApy(apr) : 0
@@ -174,7 +174,7 @@ const Farms: React.FC = () => {
       }
       return farmsToDisplayWithAPR
     },
-    [cakePrice, query, isActive],
+    [globalPrice, query, isActive],
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -272,7 +272,7 @@ const Farms: React.FC = () => {
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
-        cakePrice,
+        cakePrice: globalPrice,
         originalValue: farm.apr,
       },
       apy: {
@@ -281,7 +281,7 @@ const Farms: React.FC = () => {
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
-        cakePrice,
+        cakePrice: globalPrice,
         originalValue: farm.apy,
         aprOriginalValue: farm.apr,
       },
@@ -347,17 +347,17 @@ const Farms: React.FC = () => {
       <CardsContainer>
         <Route exact path={`${path}`}>
           {farmsStakedMemoized.map((farm) => (
-            <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed={false} />
+            <FarmCard key={farm.pid} farm={farm} globalPrice={globalPrice} account={account} removed={false} />
           ))}
         </Route>
         <Route exact path={`${path}/history`}>
           {farmsStakedMemoized.map((farm) => (
-            <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
+            <FarmCard key={farm.pid} farm={farm} globalPrice={globalPrice} account={account} removed />
           ))}
         </Route>
         <Route exact path={`${path}/archived`}>
           {farmsStakedMemoized.map((farm) => (
-            <FarmCard key={farm.pid} farm={farm} globalPrice={cakePrice} account={account} removed />
+            <FarmCard key={farm.pid} farm={farm} globalPrice={globalPrice} account={account} removed />
           ))}
         </Route>
       </CardsContainer>

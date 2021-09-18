@@ -8,8 +8,8 @@ import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import UnlockButton from 'components/UnlockButton'
-import CakeHarvestBalance from './CakeHarvestBalance'
-import CakeWalletBalance from './CakeWalletBalance'
+import GlobalHarvestBalance from './GlobalHarvestBalance'
+import GlobalWalletBalance from './GlobalWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   min-height: 200px;
@@ -62,11 +62,11 @@ const FarmedStakingCard = () => {
         </Heading>
         <Block>
           <Label>{t('GLOBAL to Harvest')}:</Label>
-          <CakeHarvestBalance farmsWithBalance={balancesWithValue} />
+          <GlobalHarvestBalance farmsWithBalance={balancesWithValue} />
         </Block>
         <Block>
           <Label>{t('GLOBAL in Wallet')}:</Label>
-          <CakeWalletBalance />
+          <GlobalWalletBalance />
         </Block>
         <Actions>
           {account ? (

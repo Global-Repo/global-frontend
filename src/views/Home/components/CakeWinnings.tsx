@@ -1,6 +1,6 @@
 import React from 'react'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceGlobalBusd } from 'state/hooks'
 import { Text } from '@duhd4h/global-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { BigNumber } from 'bignumber.js'
@@ -21,8 +21,8 @@ const CakeWinnings: React.FC<CakeWinningsProps> = ({ claimAmount }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const cakeAmount = getBalanceNumber(claimAmount)
-  const cakePriceBusd = usePriceCakeBusd()
-  const claimAmountBusd = new BigNumber(cakeAmount).multipliedBy(cakePriceBusd).toNumber()
+  const globalPriceBusd = usePriceGlobalBusd()
+  const claimAmountBusd = new BigNumber(cakeAmount).multipliedBy(globalPriceBusd).toNumber()
 
   if (!account) {
     return (
@@ -35,7 +35,7 @@ const CakeWinnings: React.FC<CakeWinningsProps> = ({ claimAmount }) => {
   return (
     <Block>
       <CardValue value={cakeAmount} lineHeight="1.5" />
-      {cakePriceBusd.gt(0) && <CardBusdValue value={claimAmountBusd} decimals={2} />}
+      {globalPriceBusd.gt(0) && <CardBusdValue value={claimAmountBusd} decimals={2} />}
     </Block>
   )
 }

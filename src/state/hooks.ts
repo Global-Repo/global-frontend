@@ -351,10 +351,10 @@ export const usePriceBnbBusd = (): BigNumber => {
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
+/* export const usePriceCakeBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10))
   return new BigNumber(cakeBnbFarm.token.busdPrice)
-}
+} */
 
 export const usePriceGlobalBusd = (): BigNumber => {
   const globalBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_GLOBAL_BNB_PID, 10))
