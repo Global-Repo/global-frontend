@@ -9,7 +9,7 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: sans-serif;
+    font-family: Poppins, sans-serif;
   }
   body {
     background: linear-gradient(45deg, #1748a0, #0b2761 ,#1c102b);

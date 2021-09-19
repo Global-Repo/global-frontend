@@ -82,7 +82,7 @@ const FarmedStakingCard = () => {
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
               width="100%"
-              style={{ padding: '8px' }}
+              style={{ padding: '8px', width: '100%' }}
             />
           ) : (
             <UnlockButton width="100%" />

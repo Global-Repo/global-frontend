@@ -13,7 +13,7 @@ const UnlockButton = (props) => {
       onClick={onPresentConnectModal}
       {...props}
       label={t('Unlock Wallet')}
-      style={{ padding: '8px' }}
+      style={{ padding: '8px', width: '100%' }}
     />
   )
 }
