@@ -35,6 +35,14 @@ const VaultsControls = styled(Flex)`
   }
 `
 
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+`
+
 const Vaults: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -67,7 +75,7 @@ const Vaults: React.FC = () => {
       <PageHeader background="transparent">
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
+            <Heading as="h1" scale="xxl" color="white" mb="24px">
               {t('Vaults Globals')}
             </Heading>
             <Heading scale="md" color="text">
@@ -82,6 +90,7 @@ const Vaults: React.FC = () => {
           </Flex>
         </Flex>
       </PageHeader>
+      <Content />
       <VaultsControls justifyContent="space-between" marginX="24px">
         <VaultTabButtons
           stakedOnly={stakedOnly}

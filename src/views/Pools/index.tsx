@@ -56,6 +56,14 @@ const ControlStretch = styled(Flex)`
   }
 `
 
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+`
+
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 interface Props {
@@ -221,7 +229,7 @@ const Pools: React.FC<Props> = () => {
       <PageHeader background="transparent">
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
+            <Heading as="h1" scale="xxl" color="white" mb="24px">
               {t('Pools')}
             </Heading>
             <Heading scale="md" color="text">
@@ -237,6 +245,7 @@ const Pools: React.FC<Props> = () => {
           </Flex>
         </Flex>
       </PageHeader>
+      <Content />
       <PoolControls justifyContent="space-between" marginX="24px">
         <PoolTabButtons
           stakedOnly={stakedOnly}
