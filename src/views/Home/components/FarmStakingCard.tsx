@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button, BorderGradientButton } from '@duhd4h/global-uikit'
+import { Heading, Card, CardBody, BorderGradientButton } from '@duhd4h/global-uikit'
 import { harvest } from 'utils/callHelpers'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
@@ -8,8 +8,8 @@ import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import UnlockButton from 'components/UnlockButton'
-import CakeHarvestBalance from './CakeHarvestBalance'
-import CakeWalletBalance from './CakeWalletBalance'
+import GlobalHarvestBalance from './GlobalHarvestBalance'
+import GlobalWalletBalance from './GlobalWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   min-height: 200px;
@@ -62,11 +62,11 @@ const FarmedStakingCard = () => {
         </Heading>
         <Block>
           <Label>{t('GLOBAL to Harvest')}:</Label>
-          <CakeHarvestBalance farmsWithBalance={balancesWithValue} />
+          <GlobalHarvestBalance farmsWithBalance={balancesWithValue} />
         </Block>
         <Block>
           <Label>{t('GLOBAL in Wallet')}:</Label>
-          <CakeWalletBalance />
+          <GlobalWalletBalance />
         </Block>
         <Actions>
           {account ? (
@@ -82,7 +82,7 @@ const FarmedStakingCard = () => {
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
               width="100%"
-              style={{ padding: '8px' }}
+              style={{ padding: '8px', width: '100%' }}
             />
           ) : (
             <UnlockButton width="100%" />

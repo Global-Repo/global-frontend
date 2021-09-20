@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router'
 import { DEFAULT_META, getCustomMeta } from 'config/constants/meta'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceGlobalBusd } from 'state/hooks'
 import Container from './Container'
 
 const StyledBackground = styled.div`
@@ -12,16 +12,12 @@ const StyledBackground = styled.div`
 `
 
 const HomeStyledBackground = styled(StyledBackground)`
-  background-image: url('/images/home/e_1.svg'), url('/images/home/e_2.svg'), url('/images/home/e_3.svg'),
-    url('/images/home/e_4.svg'), url('/images/home/e_5.svg'), url('/images/home/e_6.svg');
-  background-repeat: no-repeat;
-  // background-position: top left, top left, top left, top left, top left, top left;
-  background-position-x: 500px, -250px, -600px, -600px, 500px, 200px;
-  background-position-y: 120%, 100%, 80%, 0%, 40%, -400px;
-
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-position-x: 500px, -250px, -600px, -600px, 500px, 200px;
-    background-position-y: 120%, 100%, 80%, 0%, 40%, -400px;
+    background-image: url('/images/home/logo.png'), url('/images/home/logo1.png'), url('/images/home/logo2.png'),
+      url('/images/home/logo3.png'), url('/images/home/logo4.png'), url('/images/home/logo5.png');
+    background-repeat: no-repeat;
+    background-size: 200px 200px, 200px 200px, 400px 400px, 300px 300px, 350px 350px, 500px 500px;
+    background-position: 60% 0, 10% 15%, 96% 20%, 5% 40%, 30% 60%, 95% 100%;
   }
 `
 
@@ -42,9 +38,9 @@ const StyledPage = styled(Container)`
 const PageMeta = () => {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const cakePriceUsd = usePriceCakeBusd()
-  const cakePriceUsdDisplay = cakePriceUsd.gt(0)
-    ? `$${cakePriceUsd.toNumber().toLocaleString(undefined, {
+  const globalPriceBusd = usePriceGlobalBusd()
+  const globalPriceUsdDisplay = globalPriceBusd.gt(0)
+    ? `$${globalPriceBusd.toNumber().toLocaleString(undefined, {
         minimumFractionDigits: 3,
         maximumFractionDigits: 3,
       })}`
@@ -52,7 +48,7 @@ const PageMeta = () => {
 
   const pageMeta = getCustomMeta(pathname, t) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  const pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
+  const pageTitle = globalPriceUsdDisplay ? [title, globalPriceUsdDisplay].join(' - ') : title
 
   return (
     <Helmet>

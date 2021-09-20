@@ -11,8 +11,6 @@ import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
 
-const HomeBackground = styled.div``
-
 const HomeHeader = styled.div`
   // height: 180px;
 
@@ -22,25 +20,27 @@ const HomeHeader = styled.div`
   }
 `
 
-const Cards = styled(BaseLayout)`
+const CardsRowOf2 = styled(BaseLayout)`
   align-items: stretch;
   justify-content: stretch;
+  margin: auto;
   margin-bottom: 24px;
   grid-gap: 24px;
+  width: 100%;
 
   & > div {
     grid-column: span 6;
-    width: 100%;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
-      grid-column: span 8;
+      grid-column: span 12;
     }
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 32px;
+    width: 80%;
+    margin-bottom: 80px;
     grid-gap: 32px;
 
     & > div {
@@ -49,10 +49,13 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-/* const CTACards = styled(BaseLayout)`
-  align-items: start;
+const CardsRowOf3 = styled(BaseLayout)`
+  align-items: stretch;
+  justify-content: stretch;
+  margin: auto;
   margin-bottom: 24px;
   grid-gap: 24px;
+  width: 100%;
 
   & > div {
     grid-column: span 6;
@@ -60,32 +63,22 @@ const Cards = styled(BaseLayout)`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
-      grid-column: span 8;
+      grid-column: span 12;
     }
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-bottom: 32px;
+    margin-bottom: 80px;
     grid-gap: 32px;
 
     & > div {
       grid-column: span 4;
     }
   }
-` */
+`
 
-const GlobalPrice = styled.div`
-  width: 140px;
-  height: 140px;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  border-radius: 16px;
-  right: 24px;
-  top: calc(10vh);
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+const CardsRowOf1 = styled.div`
+  margin-bottom: 80px;
 `
 
 const Home: React.FC = () => {
@@ -112,33 +105,24 @@ const Home: React.FC = () => {
   )
 
   return (
-    <>
-      <Page isHome>
-        {header}
-        <Cards>
-          <FarmStakingCard />
-          <PartnershipsCard />
-        </Cards>
-        <Cards>
-          <EarnAPRCard />
-          <EarnAssetCard />
-        </Cards>
-        <Cards>
-          <CakeStats />
-          <TotalValueLockedCard />
-        </Cards>
-        <Cards>
-          <AnnouncementsCard />
-        </Cards>
-      </Page>
-      {!isMobile && (
-        <GlobalPrice>
-          <LogoIcon width={50} height={50} mb="8px" />
-          <Text bold>20.00$</Text>
-          <SocialLinks />
-        </GlobalPrice>
-      )}
-    </>
+    <Page isHome>
+      {header}
+      <CardsRowOf2>
+        <FarmStakingCard />
+        <PartnershipsCard />
+      </CardsRowOf2>
+      <CardsRowOf3>
+        <EarnAPRCard />
+        <EarnAssetCard />
+        <CakeStats />
+      </CardsRowOf3>
+      <CardsRowOf1>
+        <TotalValueLockedCard />
+      </CardsRowOf1>
+      <CardsRowOf1>
+        <AnnouncementsCard />
+      </CardsRowOf1>
+    </Page>
   )
 }
 

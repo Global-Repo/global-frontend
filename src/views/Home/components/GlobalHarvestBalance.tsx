@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { FarmWithBalance } from 'hooks/useFarmsWithBalance'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceGlobalBusd } from 'state/hooks'
 import styled from 'styled-components'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import CardValue from './CardValue'
@@ -14,11 +14,11 @@ const Block = styled.div`
   margin-bottom: 24px;
 `
 
-interface CakeHarvestBalanceProps {
+interface GlobalHarvestBalanceProps {
   farmsWithBalance: FarmWithBalance[]
 }
 
-const CakeHarvestBalance: React.FC<CakeHarvestBalanceProps> = ({ farmsWithBalance }) => {
+const GlobalHarvestBalance: React.FC<GlobalHarvestBalanceProps> = ({ farmsWithBalance }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const earningsSum = farmsWithBalance.reduce((accum, earning) => {
@@ -28,12 +28,12 @@ const CakeHarvestBalance: React.FC<CakeHarvestBalanceProps> = ({ farmsWithBalanc
     }
     return accum + earningNumber.div(DEFAULT_TOKEN_DECIMAL).toNumber()
   }, 0)
-  const cakePriceBusd = usePriceCakeBusd()
-  const earningsBusd = new BigNumber(earningsSum).multipliedBy(cakePriceBusd).toNumber()
+  const globalPriceBusd = usePriceGlobalBusd()
+  const earningsBusd = new BigNumber(earningsSum).multipliedBy(globalPriceBusd).toNumber()
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '76px' }}>
+      <Text color="textDisabled" style={{ lineHeight: '56px' }}>
         {t('Locked')}
       </Text>
     )
@@ -42,9 +42,9 @@ const CakeHarvestBalance: React.FC<CakeHarvestBalanceProps> = ({ farmsWithBalanc
   return (
     <Block>
       <CardValue value={earningsSum} lineHeight="1.5" fontSize="24px" />
-      {cakePriceBusd.gt(0) && <CardBusdValue value={earningsBusd} />}
+      {globalPriceBusd.gt(0) && <CardBusdValue value={earningsBusd} />}
     </Block>
   )
 }
 
-export default CakeHarvestBalance
+export default GlobalHarvestBalance

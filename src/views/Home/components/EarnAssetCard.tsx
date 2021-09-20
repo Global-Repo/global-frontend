@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@duhd4h/global-uikit'
-import { NavLink } from 'react-router-dom'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, BorderGradientButton } from '@duhd4h/global-uikit'
+import { NavLink, useHistory } from 'react-router-dom'
 import pools from 'config/constants/pools'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -18,14 +18,13 @@ const StyledFarmStakingCard = styled(Card)`
     margin: 0;
     max-width: none;
   }
-
-  transition: opacity 200ms;
-  &:hover {
-    opacity: 0.65;
-  }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   line-height: 44px;
+  background: linear-gradient(to right, #bb5370, #529dd6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
 `
 
 const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
@@ -38,22 +37,26 @@ const EarnAssetCard = () => {
   const assetText = t('Earn %assets% in Pools', { assets })
   const [earn, InPools] = assetText.split(assets)
 
+  const history = useHistory()
+
   return (
     <StyledFarmStakingCard>
-      <NavLink exact activeClassName="active" to="/syrup" id="pool-cta">
-        <CardBody>
+      <CardBody>
+        <Heading color="contrast" scale="lg">
+          {earn}
+        </Heading>
+        <CardMidContent>{assets}</CardMidContent>
+        <Flex justifyContent="space-between">
           <Heading color="contrast" scale="lg">
-            {earn}
+            {InPools}
           </Heading>
-          <CardMidContent color="invertedContrast">{assets}</CardMidContent>
-          <Flex justifyContent="space-between">
-            <Heading color="contrast" scale="lg">
-              {InPools}
-            </Heading>
-            <ArrowForwardIcon mt={30} color="primary" />
-          </Flex>
-        </CardBody>
-      </NavLink>
+        </Flex>
+        <BorderGradientButton
+          label="Details >"
+          onClick={() => history.push('/poolsGlobal')}
+          style={{ padding: '8px', marginTop: '32px', width: '100%' }}
+        />
+      </CardBody>
     </StyledFarmStakingCard>
   )
 }

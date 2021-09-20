@@ -8,6 +8,7 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
 const StyledCakeStats = styled(Card)`
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   background: transparent;

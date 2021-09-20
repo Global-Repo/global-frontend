@@ -4,13 +4,20 @@ import { Card, CardBody, Heading, Skeleton, Text } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
 
-const StyledTotalValueLockedCard = styled(Card)`
+const StyledTotalValueLockedCard = styled.div`
   align-items: center;
+  justify-content: center;
   display: flex;
+  flex-direction: column;
   flex: 1;
-  background: transparent;
-  border: 2px solid white;
-  border-radius: 24px;
+`
+
+const CardMidContent = styled(Heading).attrs({ scale: 'xxl' })`
+  background: linear-gradient(to right, #bb5370, #529dd6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: normal;
+  margin-bottom: 32px;
 `
 
 const TotalValueLockedCard = () => {
@@ -20,19 +27,17 @@ const TotalValueLockedCard = () => {
 
   return (
     <StyledTotalValueLockedCard>
-      <CardBody>
-        <Heading scale="lg" mb="24px">
-          {t('Total Value Locked (TVL)')}
-        </Heading>
-        {data ? (
-          <>
-            <Heading scale="lg">{`$${tvl}`}</Heading>
-            <Text color="textSubtle">{t('Across all LPs and Syrup Pools')}</Text>
-          </>
-        ) : (
-          <Skeleton height={66} />
-        )}
-      </CardBody>
+      <Heading scale="xl" mb="24px" mt="80px">
+        {t('Total Value Locked (TVL)')}
+      </Heading>
+      {data ? (
+        <>
+          <CardMidContent>{`$${tvl}`}</CardMidContent>
+        </>
+      ) : (
+        <Skeleton height={66} width={500} mb="36px" />
+      )}
+      <Text fontSize="32px">{t('Across all LPs and Pools')}</Text>
     </StyledTotalValueLockedCard>
   )
 }

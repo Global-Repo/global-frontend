@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, useWalletModal } from '@duhd4h/global-uikit'
+import { BorderGradientButton, Button, useWalletModal } from '@duhd4h/global-uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
@@ -9,9 +9,12 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
-      {t('Unlock Wallet')}
-    </Button>
+    <BorderGradientButton
+      onClick={onPresentConnectModal}
+      {...props}
+      label={t('Unlock Wallet')}
+      style={{ padding: '8px', width: '100%' }}
+    />
   )
 }
 
