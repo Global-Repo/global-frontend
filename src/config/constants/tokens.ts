@@ -4,10 +4,10 @@ const tokens = {
     projectLink: 'https://www.binance.com/',
   },
   global: {
-    symbol: 'GLOBAL',
+    symbol: 'GLB',
     address: {
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0xFB6F4631091F768ECC1D66a1c333d973BD05375e',
+      56: '',
+      97: '0xe5eEb81e563aF8e92FBbeDD868500958f3D5f720',
     },
     decimals: 18,
     projectLink: 'https://beglobal.finance/',
@@ -16,7 +16,7 @@ const tokens = {
     symbol: 'CAKE',
     address: {
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0x2d1c09b9252F91019C6f31584653EB0A5E39aAB4',
+      97: '0xe5eeb81e563af8e92fbbedd868500958f3d5f720',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',

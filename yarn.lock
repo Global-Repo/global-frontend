@@ -1515,10 +1515,10 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@duhd4h/global-sdk@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.4.tgz"
-  integrity sha512-3ZHkPYrKi4CBuAdOY665sOuo4f3v0d1rJJBeb0LiqU5DwFlhEKsVVrE5/+nYDAxyJc4VxTTyJe+aR/eKWY59DQ==
+"@duhd4h/global-sdk@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.5.tgz#cc4594d8748cfa0c194e27464bae68a2a510c8fb"
+  integrity sha512-TowbR146HK6VyYtRJ7WsPVAVs4bvwvgRuOINtMUhS6YLlQxPshokJRurKEtp42/FiUrfLBxEabgowTWfzkJFwg==
   dependencies:
     "@duhd4h/global-swap-core" "^0.1.0"
     big.js "^5.2.2"
