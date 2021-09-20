@@ -60,6 +60,14 @@ const LabelWrapper = styled.div`
   }
 `
 
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+`
+
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -371,13 +379,14 @@ const Farms: React.FC = () => {
   return (
     <Page>
       <PageHeader background="transparent">
-        <Heading as="h1" scale="xxl" color="textSubtle" mb="24px">
+        <Heading as="h1" scale="xxl" color="white" mb="24px">
           {t('Farms')}
         </Heading>
         <Heading scale="lg" color="text">
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
       </PageHeader>
+      <Content />
       <ControlContainer>
         <ViewControls>
           <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
