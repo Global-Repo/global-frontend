@@ -348,7 +348,7 @@ export const useAchievements = () => {
 
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10))
-  console.log("BUSD: ", (new BigNumber(bnbBusdFarm.quoteToken.busdPrice)).toString());
+  console.log('BUSD: ', new BigNumber(bnbBusdFarm.quoteToken.busdPrice).toString())
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
