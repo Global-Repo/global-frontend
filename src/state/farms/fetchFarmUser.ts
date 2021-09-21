@@ -86,7 +86,6 @@ export const fetchFarmUserNextHarvests = async (account: string, farmsToFetch: F
 
   const rawUserInfo = await multicall(masterchefABI, calls)
   return rawUserInfo.map((userInfo) => {
-    // TODO JOAN - get nextHarvestUntil value when ABI generated
-    return new BigNumber(userInfo.amount._hex).toJSON()
+    return new BigNumber(userInfo.nextHarvestUntil._hex).toJSON()
   })
 }
