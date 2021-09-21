@@ -28,6 +28,7 @@ const CardLayout = styled.div`
 `
 
 const VaultsControls = styled(Flex)`
+  padding-top: 24px;
   flex-direction: column;
   margin-bottom: 24px;
   ${({ theme }) => theme.mediaQueries.md} {
@@ -41,6 +42,7 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+  z-index: -1;
 `
 
 const Vaults: React.FC = () => {

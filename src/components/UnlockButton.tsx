@@ -1,5 +1,5 @@
 import React from 'react'
-import { BorderGradientButton, Button, useWalletModal } from '@duhd4h/global-uikit'
+import { BorderGradientButton, useWalletModal } from '@duhd4h/global-uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 

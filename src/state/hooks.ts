@@ -348,15 +348,8 @@ export const useAchievements = () => {
 
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10))
-  console.log('BUSD: ', new BigNumber(bnbBusdFarm.quoteToken.busdPrice).toString())
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
-
-/* export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10))
-  console.log("GLB: ", cakeBnbFarm);
-  return new BigNumber(cakeBnbFarm.token.busdPrice)
-} */
 
 export const usePriceGlobalBusd = (): BigNumber => {
   const globalBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_GLOBAL_BNB_PID, 10))

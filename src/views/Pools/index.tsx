@@ -43,6 +43,7 @@ const PoolControls = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
   }
+  padding-top: 24px;
 `
 
 const SearchSortContainer = styled(Flex)`
@@ -62,6 +63,7 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+  z-index: -1;
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
