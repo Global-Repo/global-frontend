@@ -19,14 +19,19 @@ const Wrapper = styled.div`
   }
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded }) => {
   const { t } = useTranslation()
 
   return (
     <Wrapper aria-label={t('Hide or show expandable content')} role="button" onClick={() => onClick()}>
-      <Text color="primary" bold>
-        {expanded ? t('Hide') : t('Details')}
-      </Text>
+      <GradientText>{expanded ? t('Hide') : t('Details')}</GradientText>
       {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
     </Wrapper>
   )

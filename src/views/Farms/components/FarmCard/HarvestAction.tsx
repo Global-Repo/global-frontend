@@ -46,6 +46,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
 
           setPendingTx(false)
         }}
+        variant={rawEarningsBalance.gt(0) && !pendingTx && canHarvest ? 'full_gradient_pool' : 'danger'}
       >
         {t('Harvest')}
       </Button>

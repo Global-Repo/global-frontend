@@ -14,7 +14,7 @@ const UnlockButton = ({ isPool = false, ...props }) => {
         onClick={onPresentConnectModal}
         {...props}
         style={{ padding: '8px', width: '100%' }}
-        variant="full_gradient"
+        variant="full_gradient_pool"
       >
         {t('Unlock Wallet')}
       </Button>

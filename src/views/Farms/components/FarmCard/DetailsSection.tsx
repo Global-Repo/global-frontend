@@ -21,6 +21,9 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 400;
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({

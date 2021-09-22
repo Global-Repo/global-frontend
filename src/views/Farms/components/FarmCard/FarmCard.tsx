@@ -60,7 +60,7 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
 `
 
 const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.cardBorder};
+  background: linear-gradient(to right, #e52420, #ce850e);
   height: 1px;
   margin: 28px auto;
   width: 100%;
@@ -70,6 +70,8 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
   overflow: hidden;
 `
+
+const Wrapper = styled.div``
 
 interface FarmCardProps {
   farm: FarmWithStakedValue
@@ -100,51 +102,53 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, globalPrice, account
   const isPromotedFarm = farm.token.symbol === 'GLB'
 
   return (
-    <GradientBorderBox colorLeft="#e52420" colorRight="#ce850e" borderWidth="1px">
-      <FCard isPromotedFarm={isPromotedFarm}>
-        {/* isPromotedFarm && <StyledCardAccent /> */}
-        <CardHeading
-          lpLabel={lpLabel}
-          multiplier={farm.multiplier}
-          isCommunityFarm={farm.isCommunity}
-          token={farm.token}
-          quoteToken={farm.quoteToken}
-        />
-        {!removed && (
-          <>
-            <APY
-              apy={farm.apy}
-              apr={farm.apr}
-              globalPrice={globalPrice}
+    <Wrapper>
+      <GradientBorderBox colorLeft="#e52420" colorRight="#ce850e" borderWidth="1px" style={{ width: '100%' }}>
+        <FCard isPromotedFarm={isPromotedFarm}>
+          {/* isPromotedFarm && <StyledCardAccent /> */}
+          <CardHeading
+            lpLabel={lpLabel}
+            multiplier={farm.multiplier}
+            isCommunityFarm={farm.isCommunity}
+            token={farm.token}
+            quoteToken={farm.quoteToken}
+          />
+          {!removed && (
+            <>
+              <APY
+                apy={farm.apy}
+                apr={farm.apr}
+                globalPrice={globalPrice}
+                lpLabel={lpLabel}
+                addLiquidityUrl={addLiquidityUrl}
+              />
+            </>
+          )}
+          <Flex justifyContent="space-between">
+            <Text>{t('Earn')}:</Text>
+            <Text bold>{earnLabel}</Text>
+          </Flex>
+          <HarvestLockup harvestInterval={farm.harvestInterval} />
+          <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
+          <Divider />
+          <ExpandableSectionButton
+            onClick={() => setShowExpandableSection(!showExpandableSection)}
+            expanded={showExpandableSection}
+          />
+          <ExpandingWrapper expanded={showExpandableSection}>
+            <DetailsSection
+              removed={removed}
+              bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
+              infoAddress={`https://pancakeswap.info/pool/${lpAddress}`}
+              totalValueFormatted={totalValueFormatted}
               lpLabel={lpLabel}
               addLiquidityUrl={addLiquidityUrl}
+              apr={farm.apr}
             />
-          </>
-        )}
-        <Flex justifyContent="space-between">
-          <Text>{t('Earn')}:</Text>
-          <Text bold>{earnLabel}</Text>
-        </Flex>
-        <HarvestLockup harvestInterval={farm.harvestInterval} />
-        <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
-        <Divider />
-        <ExpandableSectionButton
-          onClick={() => setShowExpandableSection(!showExpandableSection)}
-          expanded={showExpandableSection}
-        />
-        <ExpandingWrapper expanded={showExpandableSection}>
-          <DetailsSection
-            removed={removed}
-            bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
-            infoAddress={`https://pancakeswap.info/pool/${lpAddress}`}
-            totalValueFormatted={totalValueFormatted}
-            lpLabel={lpLabel}
-            addLiquidityUrl={addLiquidityUrl}
-            apr={farm.apr}
-          />
-        </ExpandingWrapper>
-      </FCard>
-    </GradientBorderBox>
+          </ExpandingWrapper>
+        </FCard>
+      </GradientBorderBox>
+    </Wrapper>
   )
 }
 

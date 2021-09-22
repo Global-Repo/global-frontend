@@ -75,20 +75,21 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       <Button
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+        variant="full_gradient_pool"
       >
         {t('Stake LP')}
       </Button>
     ) : (
       <IconButtonWrapper>
-        <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-          <MinusIcon color="primary" width="14px" />
+        <IconButton variant="full_gradient_pool" onClick={onPresentWithdraw} mr="6px">
+          <MinusIcon color="white" width="14px" />
         </IconButton>
         <IconButton
-          variant="tertiary"
+          variant="full_gradient_pool"
           onClick={onPresentDeposit}
           disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
         >
-          <AddIcon color="primary" width="14px" />
+          <AddIcon color="white" width="14px" />
         </IconButton>
       </IconButtonWrapper>
     )
