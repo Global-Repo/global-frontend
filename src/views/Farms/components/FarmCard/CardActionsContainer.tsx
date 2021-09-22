@@ -19,6 +19,16 @@ const TimerIconWrapper = styled.div`
   margin-left: 4px;
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const Action = styled.div`
   padding-top: 16px;
 `
@@ -91,9 +101,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       {tooltipVisible && tooltip}
       <Flex justifyContent="space-between">
         <Flex>
-          <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-            GLOBAL
-          </Text>
+          <GradientText>GLOBAL</GradientText>
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
             {t('Earned')}
           </Text>
@@ -106,14 +114,12 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          {farm.lpSymbol}
-        </Text>
+        <GradientText>{farm.lpSymbol}</GradientText>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Staked')}
         </Text>
       </Flex>
-      {!account ? <UnlockButton mt="8px" width="100%" /> : renderApprovalOrStakeButton()}
+      {!account ? <UnlockButton mt="8px" width="100%" isPool /> : renderApprovalOrStakeButton()}
     </Action>
   )
 }

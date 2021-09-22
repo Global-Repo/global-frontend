@@ -30,8 +30,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, is
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
-          {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+          {isCommunityFarm ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />}
+          <MultiplierTag variant="gradient">{multiplier}</MultiplierTag>
         </Flex>
       </Flex>
     </Wrapper>
