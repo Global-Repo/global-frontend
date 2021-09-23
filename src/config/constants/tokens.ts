@@ -12,6 +12,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://beglobal.finance/',
   },
+  bojis: {
+    symbol: 'BB',
+    address: {
+      56: '',
+      97: '0x341dAa7f0Ea801572d1f26f0e358Ae8773d874cD',
+    },
+    decimals: 18,
+    projectLink: 'https://beglobal.finance/',
+  },
   cake: {
     symbol: 'CAKE',
     address: {
