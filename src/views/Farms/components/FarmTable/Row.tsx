@@ -55,7 +55,12 @@ const CellInner = styled.div`
 
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  background: linear-gradient(to right, rgba(229, 36, 32, 0.1), rgba(206, 133, 14, 0.1));
+  border-top: 1px solid rgb(206, 133, 14);
+
+  &:first-child {
+    border-top: 0;
+  }
 `
 
 const EarnedMobileCell = styled.td`

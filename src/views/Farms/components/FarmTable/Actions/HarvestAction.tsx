@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Flex, Skeleton, Text, TimerIcon, useTooltip } from '@duhd4h/global-uikit'
+import { Button, Flex, GradientBorderBox, Skeleton, Text, TimerIcon, useTooltip } from '@duhd4h/global-uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
@@ -18,6 +18,16 @@ import useCanHarvest from '../../../../../hooks/useCanHarvest'
 const TimerIconWrapper = styled.div`
   align-self: center;
   margin-left: 4px;
+`
+
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 interface HarvestActionProps extends FarmWithStakedValue {
@@ -56,9 +66,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
       <ActionTitles>
         <Flex style={{ width: '100%' }} justifyContent="space-between">
           <Flex>
-            <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-              CAKE
-            </Text>
+            <GradientText>GLOBAL</GradientText>
             <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
               {t('Earned')}
             </Text>
@@ -87,6 +95,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             setPendingTx(false)
           }}
           ml="4px"
+          variant={earnings.gt(0) && userDataReady && !pendingTx && canHarvest ? 'full_gradient_pool' : 'danger'}
         >
           {t('Harvest')}
         </Button>

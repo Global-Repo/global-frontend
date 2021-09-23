@@ -26,6 +26,16 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
@@ -116,9 +126,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       return (
         <ActionContainer>
           <ActionTitles>
-            <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-              {lpSymbol}
-            </Text>
+            <GradientText>{lpSymbol}</GradientText>
             <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
               {t('Staked')}
             </Text>
@@ -138,15 +146,15 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               )}
             </div>
             <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="primary" width="14px" />
+              <IconButton variant="full_gradient_pool" onClick={onPresentWithdraw} mr="6px">
+                <MinusIcon color="white" width="14px" />
               </IconButton>
               <IconButton
-                variant="secondary"
+                variant="full_gradient_pool"
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
               >
-                <AddIcon color="primary" width="14px" />
+                <AddIcon color="white" width="14px" />
               </IconButton>
             </IconButtonWrapper>
           </ActionContent>
@@ -160,15 +168,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px" pr="4px">
             {t('Stake').toUpperCase()}
           </Text>
-          <Text bold textTransform="uppercase" color="secondary" fontSize="12px">
-            {lpSymbol}
-          </Text>
+          <GradientText>{lpSymbol}</GradientText>
         </ActionTitles>
         <ActionContent>
           <Button
             width="100%"
             onClick={onPresentDeposit}
-            variant="secondary"
+            variant="full_gradient_pool"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
           >
             {t('Stake LP')}
