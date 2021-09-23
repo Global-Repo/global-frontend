@@ -167,6 +167,7 @@ export interface VaultsState {
   globalVaultVested: GlobalVaultVested
   globalVaultStakedToBnb: GlobalVaultStaked
   globalVaultStakedToGlobal: GlobalVaultStaked
+  globalVaultCake: GlobalVaultStaked
   userDataLoaded: boolean
 }
 

@@ -77,6 +77,34 @@ export const fetchGlobalVaultVestedPublicData = async (vaultConfig: VaultConfig)
     return error
   }
 }
+export const fetchGlobalVaultLockedPublicData = async (vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultVestedContract()
+
+    return {
+      totalStaked: BIG_ZERO.toJSON(),
+      vaultApr: [{ token: tokens.global, apr: 0.5 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+    }
+    // return new BigNumber(stakingToken)
+  } catch (error) {
+    return error
+  }
+}
+export const fetchGlobalVaultCakePublicData = async (vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultVestedContract()
+
+    return {
+      totalStaked: BIG_ZERO.toJSON(),
+      vaultApr: [{ token: tokens.global, apr: 0.5 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+    }
+    // return new BigNumber(stakingToken)
+  } catch (error) {
+    return error
+  }
+}
 
 export const fetchGlobalVaultStakedToBnbUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
@@ -126,6 +154,50 @@ export const fetchGlobalVaultStakedToGlobalUserData = async (
 }
 
 export const fetchGlobalVaultVestedUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultVestedContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultLockedUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultVestedContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultCakeUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
     const contract = getGlobalVaultVestedContract()
 

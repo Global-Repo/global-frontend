@@ -284,6 +284,8 @@ export const useFetchGlobalVaults = (account?) => {
     globalVaultStakedToBnb: state.vaults.globalVaultStakedToBnb,
     globalVaultStakedToGlobal: state.vaults.globalVaultStakedToGlobal,
     globalVaultVested: state.vaults.globalVaultVested,
+    globalVaultLocked: state.vaults.globalVaultLocked,
+    globalVaultCake: state.vaults.globalVaultCake,
     userDataLoaded: state.vaults.userDataLoaded,
   }))
 }
