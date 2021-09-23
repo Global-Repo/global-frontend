@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, useMatchBreakpoints } from '@duhd4h/global-uikit'
+import { ChevronDownIcon, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface DetailsProps {
@@ -24,6 +24,12 @@ const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
   height: 20px;
 `
 
+const GradientText = styled(Text)`
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
@@ -31,7 +37,7 @@ const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
 
   return (
     <Container>
-      {!isMobile && t('Details')}
+      {!isMobile && <GradientText>{t('Details')}</GradientText>}
       <ArrowIcon color="primary" toggled={actionPanelToggled} />
     </Container>
   )

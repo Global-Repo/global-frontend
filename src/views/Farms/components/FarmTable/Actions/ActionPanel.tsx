@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text } from '@duhd4h/global-uikit'
+import { GradientBorderBox, LinkExternal, Text } from '@duhd4h/global-uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBscScanAddressUrl } from 'utils/bscscan'
@@ -67,6 +67,9 @@ const Container = styled.div<{ expanded }>`
 
 const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 400;
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 const StakeContainer = styled.div`
@@ -139,6 +142,8 @@ const DetailsWrapper = styled.div`
   margin-top: 8px;
 `
 
+const ActionItemWrapper = styled(GradientBorderBox)``
+
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
   apy,
@@ -173,8 +178,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
         <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
         <TagsContainer>
-          {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
-          {dual ? <DualTag /> : null}
+          {farm.isCommunity ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />}
+          {dual ? <DualTag variant="gradient" /> : null}
         </TagsContainer>
         <DetailsWrapper>
           <APR apr={farm.apr} />
@@ -197,8 +202,22 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         </ValueWrapper>
       </ValueContainer>
       <ActionContainer>
-        <HarvestAction {...farm} userDataReady={userDataReady} harvestInterval={farm.harvestInterval} />
-        <StakedAction {...farm} userDataReady={userDataReady} />
+        <ActionItemWrapper
+          borderWidth="1px"
+          colorLeft="#e52420"
+          colorRight="#ce850e"
+          style={{ flex: 1, margin: '4px 24px' }}
+        >
+          <HarvestAction {...farm} userDataReady={userDataReady} harvestInterval={farm.harvestInterval} />
+        </ActionItemWrapper>
+        <ActionItemWrapper
+          borderWidth="1px"
+          colorLeft="#e52420"
+          colorRight="#ce850e"
+          style={{ flex: 1, margin: '4px 24px' }}
+        >
+          <StakedAction {...farm} userDataReady={userDataReady} />
+        </ActionItemWrapper>
       </ActionContainer>
     </Container>
   )

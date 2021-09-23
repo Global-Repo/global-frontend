@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from '@duhd4h/global-uikit'
+import { useTable, Button, ChevronUpIcon, ColumnType, Tag } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 import Row, { RowProps } from './Row'
@@ -22,6 +22,9 @@ const Container = styled.div`
 
 const TableWrapper = styled.div`
   overflow: visible;
+  border: 1px solid;
+  border-radius: 8px;
+  border-image: linear-gradient(to right, #e52420, #ce850e) 30;
 
   &::-webkit-scrollbar {
     display: none;
@@ -57,6 +60,11 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
+const Wrapper = styled.div`
+  cursor: pointer;
+  margin-top: 24px;
+`
+
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
@@ -83,10 +91,12 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           </StyledTable>
         </TableWrapper>
         <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
-            {t('To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
+          <Wrapper onClick={scrollToTop}>
+            <Tag variant="gradient" outline>
+              <span>{t('To Top')}</span>
+              <ChevronUpIcon />
+            </Tag>
+          </Wrapper>
         </ScrollButtonContainer>
       </TableContainer>
     </Container>

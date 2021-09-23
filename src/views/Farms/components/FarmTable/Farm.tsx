@@ -33,6 +33,16 @@ const TokenWrapper = styled.div`
   }
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid }) => {
   const { stakedBalance } = useFarmUser(pid)
   const { t } = useTranslation()
@@ -40,11 +50,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
 
   const handleRenderFarming = (): JSX.Element => {
     if (rawStakedBalance) {
-      return (
-        <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
-          {t('Farming')}
-        </Text>
-      )
+      return <GradientText>{t('Farming')}</GradientText>
     }
 
     return null
