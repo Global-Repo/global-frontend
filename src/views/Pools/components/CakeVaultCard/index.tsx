@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, CardBody, Flex, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
+import { Box, CardBody, Flex, GradientBorderBox, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
@@ -42,38 +42,42 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
   }
 
   return (
-    <StyledCard isPromoted={{ isDesktop: isXl }}>
-      <StyledCardInner>
-        <StyledCardHeader
-          isStaking={accountHasSharesStaked}
-          isAutoVault
-          earningToken={tokens.cake}
-          stakingToken={tokens.cake}
-        />
-        <StyledCardBody isLoading={isLoading}>
-          <AprRow pool={pool} performanceFee={performanceFeeAsDecimal} />
-          <Box mt="24px">
-            <RecentCakeProfitRow />
-          </Box>
-          <Box mt="8px">
-            <UnstakingFeeCountdownRow />
-          </Box>
-          <Flex mt="32px" flexDirection="column">
-            {account ? (
-              <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
-            ) : (
-              <>
-                <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
-                  {t('Start earning')}
-                </Text>
-                <UnlockButton />
-              </>
-            )}
-          </Flex>
-        </StyledCardBody>
-        <CardFooter pool={pool} account={account} />
-      </StyledCardInner>
-    </StyledCard>
+    <div>
+      <GradientBorderBox colorLeft="#e52420" colorRight="#ce850e" borderWidth="1px" style={{ width: '100%' }}>
+        <StyledCard isPromoted={{ isDesktop: isXl }}>
+          <StyledCardInner>
+            <StyledCardHeader
+              isStaking={accountHasSharesStaked}
+              isAutoVault
+              earningToken={tokens.cake}
+              stakingToken={tokens.cake}
+            />
+            <StyledCardBody isLoading={isLoading}>
+              <AprRow pool={pool} performanceFee={performanceFeeAsDecimal} />
+              <Box mt="24px">
+                <RecentCakeProfitRow />
+              </Box>
+              <Box mt="8px">
+                <UnstakingFeeCountdownRow />
+              </Box>
+              <Flex mt="32px" flexDirection="column">
+                {account ? (
+                  <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
+                ) : (
+                  <>
+                    <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
+                      {t('Start earning')}
+                    </Text>
+                    <UnlockButton isPool />
+                  </>
+                )}
+              </Flex>
+            </StyledCardBody>
+            <CardFooter pool={pool} account={account} />
+          </StyledCardInner>
+        </StyledCard>
+      </GradientBorderBox>
+    </div>
   )
 }
 

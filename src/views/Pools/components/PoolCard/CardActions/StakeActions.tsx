@@ -114,7 +114,11 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+      <Button
+        variant={isFinished ? 'danger' : 'full_gradient_pool'}
+        disabled={isFinished}
+        onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
+      >
         {t('Stake')}
       </Button>
     )

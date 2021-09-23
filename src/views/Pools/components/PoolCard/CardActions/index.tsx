@@ -14,6 +14,16 @@ const InlineText = styled(Text)`
   display: inline;
 `
 
+const GradientText = styled(InlineText)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 interface CardActionsProps {
   pool: Pool
   stakedBalance: BigNumber
@@ -37,9 +47,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
         {harvest && (
           <>
             <Box display="inline">
-              <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
-                {`${earningToken.symbol} `}
-              </InlineText>
+              <GradientText>{`${earningToken.symbol} `}</GradientText>
               <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
                 {t('Earned')}
               </InlineText>
@@ -56,10 +64,10 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
         )}
         <Box display="inline">
           <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
-            {isStaked ? stakingToken.symbol : t('Stake')}{' '}
+            {isStaked ? <GradientText>{stakingToken.symbol}</GradientText> : t('Stake')}{' '}
           </InlineText>
           <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
-            {isStaked ? t('Staked') : `${stakingToken.symbol}`}
+            {isStaked ? t('Staked') : <GradientText>{stakingToken.symbol}</GradientText>}
           </InlineText>
         </Box>
         {needsApproval ? (

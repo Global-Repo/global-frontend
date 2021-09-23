@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { Flex, CardFooter, ExpandableLabel, HelpIcon, useTooltip } from '@duhd4h/global-uikit'
+import { Flex, CardFooter, ExpandableLabel, HelpIcon, useTooltip, Text } from '@duhd4h/global-uikit'
 import { Pool } from 'state/types'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import ExpandedFooter from './ExpandedFooter'
@@ -21,6 +21,23 @@ const ExpandableButtonWrapper = styled(Flex)`
   }
 `
 
+const CardFooterWrapper = styled(CardFooter)`
+  border-width: 0;
+`
+
+const Divider = styled.div`
+  background: linear-gradient(to right, #e52420, #ce850e);
+  height: 1px;
+  margin: 0 auto;
+  width: 90%;
+`
+
+const GradientText = styled(Text)`
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   const { isAutoVault } = pool
   const { t } = useTranslation()
@@ -36,21 +53,24 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   })
 
   return (
-    <CardFooter>
-      <ExpandableButtonWrapper>
-        <Flex alignItems="center">
-          {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
-          {tooltipVisible && tooltip}
-          <Flex ref={targetRef}>
-            <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+    <>
+      <Divider />
+      <CardFooterWrapper>
+        <ExpandableButtonWrapper>
+          <Flex alignItems="center">
+            {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+            {tooltipVisible && tooltip}
+            <Flex ref={targetRef}>
+              <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+            </Flex>
           </Flex>
-        </Flex>
-        <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? t('Hide') : t('Details')}
-        </ExpandableLabel>
-      </ExpandableButtonWrapper>
-      {isExpanded && <ExpandedFooter pool={pool} account={account} />}
-    </CardFooter>
+          <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+            <GradientText>{isExpanded ? t('Hide') : t('Details')}</GradientText>
+          </ExpandableLabel>
+        </ExpandableButtonWrapper>
+        {isExpanded && <ExpandedFooter pool={pool} account={account} />}
+      </CardFooterWrapper>
+    </>
   )
 }
 

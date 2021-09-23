@@ -13,6 +13,16 @@ const InlineText = styled(Text)`
   display: inline;
 `
 
+const GradientText = styled(InlineText)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const CakeVaultCardActions: React.FC<{
   pool: Pool
   accountHasSharesStaked: boolean
@@ -34,7 +44,7 @@ const CakeVaultCardActions: React.FC<{
             bold
             fontSize="12px"
           >
-            {accountHasSharesStaked ? stakingToken.symbol : t('Stake')}{' '}
+            {accountHasSharesStaked ? <GradientText>{stakingToken.symbol}</GradientText> : t('Stake')}{' '}
           </InlineText>
           <InlineText
             color={accountHasSharesStaked ? 'textSubtle' : 'secondary'}
@@ -42,7 +52,7 @@ const CakeVaultCardActions: React.FC<{
             bold
             fontSize="12px"
           >
-            {accountHasSharesStaked ? t('Staked (compounding)') : `${stakingToken.symbol}`}
+            {accountHasSharesStaked ? t('Staked (compounding)') : <GradientText>{stakingToken.symbol}</GradientText>}
           </InlineText>
         </Box>
         {isVaultApproved ? (

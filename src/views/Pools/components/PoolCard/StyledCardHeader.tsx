@@ -7,7 +7,7 @@ import TokenPairImage from 'components/TokenPairImage'
 import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
-  background: ${({ isFinished, theme }) => (isFinished ? theme.colors.backgroundDisabled : theme.colors.backgroundAlt)};
+  background: transparent;
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
@@ -19,15 +19,16 @@ const StyledCardHeader: React.FC<{
   isStaking?: boolean
 }> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
   const { t } = useTranslation()
-  const isCakePool = earningToken.symbol === 'CAKE' && stakingToken.symbol === 'CAKE'
-  const background = isStaking ? 'bubblegum' : 'cardHeader'
+  const isGlobalPool = earningToken.symbol === 'GLB' && stakingToken.symbol === 'GLB'
+  // const background = isStaking ? 'bubblegum' : 'cardHeader'
+  const background = 'transparent'
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
       // vault
       return t('Auto')
     }
-    if (isCakePool) {
+    if (isGlobalPool) {
       // manual cake
       return t('Manual')
     }
@@ -39,8 +40,8 @@ const StyledCardHeader: React.FC<{
     if (isAutoVault) {
       return t('Automatic restaking')
     }
-    if (isCakePool) {
-      return t('Earn CAKE, stake CAKE')
+    if (isGlobalPool) {
+      return t('Earn GLOBAL, stake GLOBAL')
     }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
   }
