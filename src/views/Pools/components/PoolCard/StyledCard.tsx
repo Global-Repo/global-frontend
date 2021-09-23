@@ -31,7 +31,6 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
     isPromoted
       ? css`
           background: transparent;
-          padding: 1px 1px 3px 1px;
           background-size: 400% 400%;
         `
       : `background: transparent`}
@@ -42,10 +41,6 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
     css`
       animation: ${PromotedGradient} 3s ease infinite;
     `}
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin: 0 12px 46px;
-  }
 `
 
 export const StyledCardInner = styled(Box)`

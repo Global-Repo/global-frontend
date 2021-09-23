@@ -26,6 +26,16 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const HelpIconWrapper = styled.div`
   align-self: center;
 `
@@ -97,9 +107,9 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        <GradientText fontSize="12px" textAlign="left">
           {labelText}
-        </Text>
+        </GradientText>
         {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (

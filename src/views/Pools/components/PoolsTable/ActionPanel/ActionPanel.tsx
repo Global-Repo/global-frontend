@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Flex,
+  GradientBorderBox,
   HelpIcon,
   Link,
   LinkExternal,
@@ -47,6 +48,12 @@ const collapseAnimation = keyframes`
   }
 `
 
+const GradientText = styled(Text)`
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const StyledActionPanel = styled.div<{ expanded: boolean }>`
   animation: ${({ expanded }) =>
     expanded
@@ -57,7 +64,7 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.dropdown};
+  background: transparent;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -79,6 +86,13 @@ const ActionContainer = styled.div`
     flex-grow: 1;
     flex-basis: 0;
   }
+`
+
+const StyledLinkExternal = styled(LinkExternal)`
+  font-weight: 400;
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 type MediaBreakpoints = {
@@ -186,13 +200,13 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       <Flex mb="8px" justifyContent="space-between">
         <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
         <Flex>
-          <Link external href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
+          <StyledLinkExternal href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
             <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
             <Text ml="4px" color="primary" textTransform="lowercase">
               {t('Blocks')}
             </Text>
-            <TimerIcon ml="4px" color="primary" />
-          </Link>
+            <TimerIcon ml="4px" color="white" />
+          </StyledLinkExternal>
         </Flex>
       </Flex>
     ) : (
@@ -233,23 +247,23 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
+          <StyledLinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
             {t('Info site')}
-          </LinkExternal>
+          </StyledLinkExternal>
         </Flex>
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={earningToken.projectLink} bold={false}>
+          <StyledLinkExternal href={earningToken.projectLink} bold={false}>
             {t('View Project Site')}
-          </LinkExternal>
+          </StyledLinkExternal>
         </Flex>
         {poolContractAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <LinkExternal
+            <StyledLinkExternal
               href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
               bold={false}
             >
               {t('View Contract')}
-            </LinkExternal>
+            </StyledLinkExternal>
           </Flex>
         )}
         {account && isMetaMaskInScope && tokenAddress && (
@@ -260,7 +274,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
               height="auto"
               onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals, imageSrc)}
             >
-              <Text color="primary">{t('Add to Metamask')}</Text>
+              <GradientText>{t('Add to Metamask')}</GradientText>
               <MetamaskIcon ml="4px" />
             </Button>
           </Flex>
@@ -277,8 +291,22 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
-        <Harvest {...pool} userDataLoaded={userDataLoaded} />
-        <Stake pool={pool} userDataLoaded={userDataLoaded} />
+        <GradientBorderBox
+          colorLeft="#e52420"
+          colorRight="#ce850e"
+          borderWidth="1px"
+          style={{ flex: 1, margin: '4px 24px' }}
+        >
+          <Harvest {...pool} userDataLoaded={userDataLoaded} />
+        </GradientBorderBox>
+        <GradientBorderBox
+          colorLeft="#e52420"
+          colorRight="#ce850e"
+          borderWidth="1px"
+          style={{ flex: 1, margin: '4px 24px' }}
+        >
+          <Stake pool={pool} userDataLoaded={userDataLoaded} />
+        </GradientBorderBox>
       </ActionContainer>
     </StyledActionPanel>
   )

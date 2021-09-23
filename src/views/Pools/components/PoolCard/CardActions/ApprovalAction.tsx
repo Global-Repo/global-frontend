@@ -28,7 +28,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
           disabled={requestedApproval}
           onClick={handleApprove}
           width="100%"
-          variant={requestedApproval ? 'danger' : 'full_gradient_pool'}
+          variant="full_gradient_pool"
         >
           {t('Enable')}
         </Button>

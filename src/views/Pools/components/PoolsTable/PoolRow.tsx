@@ -19,9 +19,14 @@ interface PoolRowProps {
 }
 
 const StyledRow = styled.div`
-  background-color: transparent;
   display: flex;
   cursor: pointer;
+  background: linear-gradient(to right, rgba(229, 36, 32, 0.1), rgba(206, 133, 14, 0.1));
+  border-top: 1px solid rgb(206, 133, 14);
+
+  &:first-child {
+    border-top: 0;
+  }
 `
 
 const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {

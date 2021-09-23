@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@duhd4h/global-uikit'
+import { Button, ChevronUpIcon, Tag } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -12,17 +12,19 @@ interface PoolsTableProps {
 }
 
 const StyledTable = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
+  overflow: visible;
+  border: 1px solid;
+  border-radius: 8px;
+  border-image: linear-gradient(to right, #e52420, #ce850e) 30;
 
-  background-color: ${({ theme }) => theme.card.background};
-  > div:not(:last-child) {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
+  &::-webkit-scrollbar {
+    display: none;
   }
 `
 
 const StyledTableBorder = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
-  background-color: ${({ theme }) => theme.colors.cardBorder};
+  // border-radius: ${({ theme }) => theme.radii.card};
+  background-color: transparent;
   padding: 1px 1px 3px 1px;
   background-size: 400% 400%;
 `
@@ -32,6 +34,11 @@ const ScrollButtonContainer = styled.div`
   justify-content: center;
   padding-top: 5px;
   padding-bottom: 5px;
+`
+
+const Wrapper = styled.div`
+  cursor: pointer;
+  margin-top: 24px;
 `
 
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
@@ -53,13 +60,15 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
             userDataLoaded={userDataLoaded}
           />
         ))}
-        <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
-            {t('To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
-        </ScrollButtonContainer>
       </StyledTable>
+      <ScrollButtonContainer>
+        <Wrapper onClick={scrollToTop}>
+          <Tag variant="gradient" outline>
+            <span>{t('To Top')}</span>
+            <ChevronUpIcon />
+          </Tag>
+        </Wrapper>
+      </ScrollButtonContainer>
     </StyledTableBorder>
   )
 }

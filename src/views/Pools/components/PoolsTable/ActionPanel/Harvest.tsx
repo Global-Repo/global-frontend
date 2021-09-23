@@ -11,9 +11,20 @@ import { useCakeVault } from 'state/hooks'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 
+import styled from 'styled-components'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
 import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
+
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
 
 interface HarvestActionProps extends Pool {
   userDataLoaded: boolean
@@ -77,14 +88,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   )
 
   const actionTitle = isAutoVault ? (
-    <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent CAKE profit')}
-    </Text>
+    <GradientText as="span">{t('Recent CAKE profit')}</GradientText>
   ) : (
     <>
-      <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-        {earningToken.symbol}{' '}
-      </Text>
+      <GradientText as="span">{earningToken.symbol} </GradientText>
       <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
         {t('Earned')}
       </Text>

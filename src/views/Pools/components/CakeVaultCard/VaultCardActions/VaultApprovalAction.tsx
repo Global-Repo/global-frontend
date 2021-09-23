@@ -24,6 +24,7 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
           disabled={requestedApproval}
           onClick={handleApprove}
           width="100%"
+          variant="full_gradient_pool"
         >
           {t('Enable')}
         </Button>

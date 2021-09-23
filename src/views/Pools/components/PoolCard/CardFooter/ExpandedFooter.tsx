@@ -134,13 +134,13 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           <Text small>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
           {blocksRemaining || blocksUntilStart ? (
             <Flex alignItems="center">
-              <Link external href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
+              <StyledLinkExternal external href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
                 <Balance small value={blocksToDisplay} decimals={0} color="primary" />
                 <Text small ml="4px" color="primary" textTransform="lowercase">
                   {t('Blocks')}
                 </Text>
-                <TimerIcon ml="4px" color="primary" />
-              </Link>
+                <TimerIcon ml="4px" color="white" />
+              </StyledLinkExternal>
             </Flex>
           ) : (
             <Skeleton width="54px" height="21px" />

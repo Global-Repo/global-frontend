@@ -28,13 +28,19 @@ const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
   height: 24px;
 `
 
+const GradientText = styled(Text)`
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayout }) => {
   const { t } = useTranslation()
   return (
     <StyledCell role="cell">
       {isFullLayout && (
         <Text color="primary" bold>
-          {expanded ? t('Hide') : t('Details')}
+          <GradientText>{expanded ? t('Hide') : t('Details')}</GradientText>
         </Text>
       )}
       <ArrowIcon color="primary" toggled={expanded} />
