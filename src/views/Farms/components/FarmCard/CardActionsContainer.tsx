@@ -86,7 +86,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         addLiquidityUrl={addLiquidityUrl}
       />
     ) : (
-      <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
+      <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove} variant="full_gradient_pool">
         {t('Approve Contract')}
       </Button>
     )
