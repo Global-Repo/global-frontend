@@ -45,7 +45,11 @@ const Content = styled.div`
   z-index: -1;
 `
 
-const Vaults: React.FC = () => {
+interface Props {
+  isGlobal?: boolean
+}
+
+const Vaults: React.FC<Props> = ({ isGlobal }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const vaults = useFetchGlobalVaults(account)
@@ -53,29 +57,30 @@ const Vaults: React.FC = () => {
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
 
-  const globalVaults = useMemo(() => {
+  const filteredVaults = useMemo(() => {
     const { globalVaultStakedToBnb, globalVaultStakedToGlobal, globalVaultVested, globalVaultLocked, globalVaultCake } =
       vaults
-    const filteredVaults = [
+    const globalVaults = [
       globalVaultStakedToBnb,
       globalVaultStakedToGlobal,
       globalVaultVested,
       globalVaultLocked,
-      globalVaultCake,
     ].filter((el) => el != null)
 
-    return filteredVaults as Array<GlobalVaultLocked | GlobalVaultVested | GlobalVaultStaked>
-  }, [vaults])
+    const tokenVaults = [globalVaultCake].filter((el) => el != null)
+
+    return isGlobal ? globalVaults : tokenVaults
+  }, [vaults, isGlobal])
 
   const cardLayout = (
     <CardLayout>
-      {globalVaults.map((vault) => (
+      {filteredVaults.map((vault) => (
         <VaultCard key={vault.sousId} vault={vault} account={account} />
       ))}
     </CardLayout>
   )
 
-  const tableLayout = <VaultsTable vaults={globalVaults} account={account} userDataLoaded={vaults.userDataLoaded} />
+  const tableLayout = <VaultsTable vaults={filteredVaults} account={account} userDataLoaded={vaults.userDataLoaded} />
 
   return (
     <Page>

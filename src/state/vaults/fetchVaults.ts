@@ -1,5 +1,7 @@
 import BigNumber from 'bignumber.js'
 import {
+  getGlobalVaultCakeContract,
+  getGlobalVaultLockedContract,
   getGlobalVaultStakedToBnbContract,
   getGlobalVaultStakedToGlobalContract,
   getGlobalVaultVestedContract,
@@ -17,13 +19,15 @@ export const fetchGlobalVaultStakedToBnbPublicData = async (
   earningTokensPrice: EarningTokenPrice[]
 }> => {
   try {
-    const globalVaultStakedToBnbContract = getGlobalVaultStakedToBnbContract()
+    const contract = getGlobalVaultStakedToBnbContract()
+
+    const totalStaked = await contract.methods.balance().call()
 
     /* const totalStaked = await globalVaultStakedToBnbContract.methods.stakingToken().call()
     const stakingToken = await globalVaultStakedToBnbContract.methods.stakingToken().call() */
 
     return {
-      totalStaked: BIG_ZERO.toJSON(),
+      totalStaked: new BigNumber(totalStaked).toJSON(),
       vaultApr: [{ token: tokens.bnb, apr: 0.5 }],
       earningTokensPrice: [{ token: tokens.bnb, earningTokenPrice: 20 }],
     }
@@ -79,7 +83,7 @@ export const fetchGlobalVaultVestedPublicData = async (vaultConfig: VaultConfig)
 }
 export const fetchGlobalVaultLockedPublicData = async (vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const contract = getGlobalVaultVestedContract()
+    const contract = getGlobalVaultLockedContract()
 
     return {
       totalStaked: BIG_ZERO.toJSON(),
@@ -93,7 +97,7 @@ export const fetchGlobalVaultLockedPublicData = async (vaultConfig: VaultConfig)
 }
 export const fetchGlobalVaultCakePublicData = async (vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const contract = getGlobalVaultVestedContract()
+    const contract = getGlobalVaultCakeContract()
 
     return {
       totalStaked: BIG_ZERO.toJSON(),
@@ -177,7 +181,7 @@ export const fetchGlobalVaultVestedUserData = async (account: string, vaultConfi
 
 export const fetchGlobalVaultLockedUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const contract = getGlobalVaultVestedContract()
+    const contract = getGlobalVaultLockedContract()
 
     const allowance = await contract.methods.balanceOf(account).call()
     const stakingTokenBalance = await contract.methods.balanceOf(account).call()
@@ -199,7 +203,7 @@ export const fetchGlobalVaultLockedUserData = async (account: string, vaultConfi
 
 export const fetchGlobalVaultCakeUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const contract = getGlobalVaultVestedContract()
+    const contract = getGlobalVaultCakeContract()
 
     const allowance = await contract.methods.balanceOf(account).call()
     const stakingTokenBalance = await contract.methods.balanceOf(account).call()

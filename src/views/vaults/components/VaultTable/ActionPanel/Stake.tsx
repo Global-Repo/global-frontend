@@ -18,14 +18,13 @@ import { useCakeVault } from 'state/hooks'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
 import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
-import { useSousApprove } from 'hooks/useApprove'
+import { useGlobalVaultApprove, useSousApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
 import { useERC20 } from 'hooks/useContract'
 import { ActionContainer, ActionContent, ActionTitles } from './styles'
 import NotEnoughTokensModal from '../../VaultCard/Modals/NotEnoughTokensModal'
-import StakeModal from '../../VaultCard/Modals/StakeModal'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -42,7 +41,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
   const { account } = useWeb3React()
 
   const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
-  const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useSousApprove(
+  const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useGlobalVaultApprove(
     stakingTokenContract,
     sousId,
     earningToken[0].symbol,

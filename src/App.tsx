@@ -48,10 +48,10 @@ const App: React.FC = () => {
               <Pools isGlobal />
             </Route>
             <Route path="/poolsToken">
-              <Pools />
+              <Vaults />
             </Route>
             <Route path="/vaults">
-              <Vaults />
+              <Vaults isGlobal />
             </Route>
             {/* <Route path="/lottery">
               <Lottery />

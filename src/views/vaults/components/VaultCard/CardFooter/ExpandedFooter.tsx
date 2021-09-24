@@ -30,11 +30,17 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ vault, account }) => {
 
   return (
     <ExpandedWrapper flexDirection="column">
-      <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`} bold={false} small>
-          {t('Info site')}
-        </LinkExternal>
-      </Flex>
+      {earningToken[0].symbol !== 'BNB' && (
+        <Flex mb="2px" justifyContent="flex-end">
+          <LinkExternal
+            href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`}
+            bold={false}
+            small
+          >
+            {t('Info site')}
+          </LinkExternal>
+        </Flex>
+      )}
       <Flex mb="2px" justifyContent="flex-end">
         <LinkExternal href={earningToken[0].projectLink} bold={false} small>
           {t('View Project Site')}

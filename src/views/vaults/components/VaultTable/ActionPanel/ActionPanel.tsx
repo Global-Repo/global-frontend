@@ -159,11 +159,13 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
         {maxStakeRow}
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
-        <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`} bold={false}>
-            {t('Info site')}
-          </LinkExternal>
-        </Flex>
+        {earningToken[0].symbol !== 'BNB' && (
+          <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
+            <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`} bold={false}>
+              {t('Info site')}
+            </LinkExternal>
+          </Flex>
+        )}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <LinkExternal href={earningToken[0].projectLink} bold={false}>
             {t('View Project Site')}
