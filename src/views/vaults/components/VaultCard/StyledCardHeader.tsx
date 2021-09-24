@@ -6,7 +6,7 @@ import { Token } from 'config/constants/types'
 import TokenPairImage from 'components/TokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
-  background: ${({ isFinished, theme }) => (isFinished ? theme.colors.backgroundDisabled : theme.colors.backgroundAlt)};
+  background: transparent;
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 
@@ -17,7 +17,7 @@ const StyledCardHeader: React.FC<{
   isStaking?: boolean
 }> = ({ earningToken, stakingToken, isFinished = false, isStaking = false }) => {
   const { t } = useTranslation()
-  const background = isStaking ? 'bubblegum' : 'cardHeader'
+  const background = 'transparent'
 
   const getHeadingPrefix = () => {
     return t('Earn')

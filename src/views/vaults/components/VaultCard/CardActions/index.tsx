@@ -13,6 +13,16 @@ const InlineText = styled(Text)`
   display: inline;
 `
 
+const GradientText = styled(InlineText)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 interface CardActionsProps {
   vault: GlobalVaultLocked | GlobalVaultStaked | GlobalVaultVested
   stakedBalance: BigNumber
@@ -24,9 +34,7 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
   const { t } = useTranslation()
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
-  // TODO Joan: pendingReward vs pendingRewards array
-  // const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  const earnings = BIG_ZERO
+  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   const needsApproval = !allowance.gt(0)
   const isStaked = stakedBalance.gt(0)
   const isLoading = Boolean(!userData)
@@ -36,9 +44,7 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
       <Flex flexDirection="column">
         <>
           <Box display="inline">
-            <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
-              {`${earningToken[0].symbol} `}
-            </InlineText>
+            <GradientText>{earningToken[0].symbol}</GradientText>
             <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
               {t('Earned')}
             </InlineText>
@@ -53,10 +59,10 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
         </>
         <Box display="inline">
           <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
-            {isStaked ? stakingToken.symbol : t('Stake')}{' '}
+            {isStaked ? <GradientText>{stakingToken.symbol}</GradientText> : t('Stake')}{' '}
           </InlineText>
           <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
-            {isStaked ? t('Staked') : `${stakingToken.symbol}`}
+            {isStaked ? t('Staked') : <GradientText>{stakingToken.symbol}</GradientText>}
           </InlineText>
         </Box>
         {needsApproval ? (

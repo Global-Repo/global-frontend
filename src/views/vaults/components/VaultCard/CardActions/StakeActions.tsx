@@ -63,7 +63,9 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button onClick={onPresentTokenRequired}>{t('Stake')}</Button>
+      <Button onClick={onPresentTokenRequired} variant="full_gradient_pool">
+        {t('Stake')}
+      </Button>
     )
   }
 

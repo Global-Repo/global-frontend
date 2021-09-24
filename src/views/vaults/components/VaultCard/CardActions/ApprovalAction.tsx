@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, AutoRenewIcon, Skeleton } from '@duhd4h/global-uikit'
-import { useGlobalVaultApprove, useSousApprove } from 'hooks/useApprove'
+import { useGlobalVaultApprove } from 'hooks/useApprove'
 import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 import { getAddress } from 'utils/addressHelpers'
@@ -32,6 +32,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ vault, isLoading = fals
           disabled={requestedApproval}
           onClick={handleApprove}
           width="100%"
+          variant="full_gradient_pool"
         >
           {t('Enable')}
         </Button>

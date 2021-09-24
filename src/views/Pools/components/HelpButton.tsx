@@ -26,12 +26,12 @@ const StyledLink = styled(Link)`
 const HelpButton = () => {
   const { t } = useTranslation()
   return (
-    <StyledLink external href="https://docs.pancakeswap.finance/syrup-pools/syrup-pool">
-      <Button px={['14px', null, null, null, '20px']} variant="subtle">
-        <ButtonText color="backgroundAlt" bold fontSize="16px">
+    <StyledLink external href="https://beglobal-finance.gitbook.io/beglobal/">
+      <Button px={['14px', null, null, null, '20px']} variant="full_gradient_orange_yellow">
+        <ButtonText color="white" bold fontSize="16px">
           {t('Help')}
         </ButtonText>
-        <HelpIcon color="backgroundAlt" ml={[null, null, null, 0, '6px']} />
+        <HelpIcon color="white" ml={[null, null, null, 0, '6px']} />
       </Button>
     </StyledLink>
   )
