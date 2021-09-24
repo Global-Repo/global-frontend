@@ -30,6 +30,16 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 interface StackedActionProps {
   vault: GlobalVaultLocked | GlobalVaultStaked | GlobalVaultVested
   userDataLoaded: boolean
@@ -82,7 +92,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
           </Text>
         </ActionTitles>
         <ActionContent>
-          <UnlockButton width="100%" />
+          <UnlockButton width="100%" isPool />
         </ActionContent>
       </ActionContainer>
     )
@@ -112,7 +122,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
           </Text>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="full_gradient_pool">
             {t('Enable')}
           </Button>
         </ActionContent>
@@ -125,9 +135,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+          <GradientText fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
             {stakingToken.symbol}{' '}
-          </Text>
+          </GradientText>
           <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Staked')}
           </Text>
@@ -137,11 +147,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
             <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={stakedTokenBalance} />
           </Flex>
           <IconButtonWrapper>
-            <IconButton variant="secondary" mr="6px">
-              <MinusIcon color="primary" width="14px" />
+            <IconButton variant="full_gradient_pool" mr="6px">
+              <MinusIcon color="white" width="14px" />
             </IconButton>
-            <IconButton variant="secondary" onClick={onPresentTokenRequired}>
-              <AddIcon color="primary" width="14px" />
+            <IconButton variant="full_gradient_pool" onClick={onPresentTokenRequired}>
+              <AddIcon color="white" width="14px" />
             </IconButton>
           </IconButtonWrapper>
           {tooltipVisible && tooltip}
@@ -156,12 +166,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ vault, userDataLo
         <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
           {t('Stake')}{' '}
         </Text>
-        <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+        <GradientText fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
           {stakingToken.symbol}
-        </Text>
+        </GradientText>
       </ActionTitles>
       <ActionContent>
-        <Button width="100%" onClick={onPresentTokenRequired} variant="secondary">
+        <Button width="100%" onClick={onPresentTokenRequired} variant="full_gradient_pool">
           {t('Stake')}
         </Button>
       </ActionContent>

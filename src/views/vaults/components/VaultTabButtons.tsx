@@ -20,7 +20,7 @@ const VaultTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, v
   const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 
   const liveOrFinishedSwitch = (
-    <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="subtle">
+    <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="full_gradient_orange_yellow">
       <ButtonMenuItem as={Link} to={`${url}`}>
         {t('Live')}
       </ButtonMenuItem>

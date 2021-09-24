@@ -6,6 +6,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
+import BigNumber from 'bignumber.js'
 import BaseCell, { CellContent } from './BaseCell'
 import CollectModal from '../../VaultCard/Modals/CollectModal'
 
@@ -22,6 +23,16 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const HelpIconWrapper = styled.div`
   align-self: center;
 `
@@ -32,9 +43,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ vault, account, userDataLoa
   const { sousId, earningToken, userData, earningTokensPrice } = vault
   const isManualCakePool = sousId === 0
 
-  // TODO Joan
-  // const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  const earnings = BIG_ZERO
+  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   // These will be reassigned later if its Auto CAKE vault
   const earningTokenBalance = getBalanceNumber(earnings, earningToken[0].decimals)
   const earningTokenDollarBalance = getBalanceNumber(
@@ -66,9 +75,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ vault, account, userDataLoa
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {labelText}
-        </Text>
+        <GradientText textAlign="left">{labelText}</GradientText>
         {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (

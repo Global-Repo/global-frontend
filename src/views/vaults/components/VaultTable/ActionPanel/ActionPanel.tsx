@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Flex,
+  GradientBorderBox,
   HelpIcon,
   LinkExternal,
   MetamaskIcon,
@@ -51,7 +52,7 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.dropdown};
+  background: transparent;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -73,6 +74,19 @@ const ActionContainer = styled.div`
     flex-grow: 1;
     flex-basis: 0;
   }
+`
+
+const GradientText = styled(Text)`
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
+const StyledLinkExternal = styled(LinkExternal)`
+  font-weight: 400;
+  background: linear-gradient(to right, #d86186, #f39e21);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 type MediaBreakpoints = {
@@ -161,21 +175,24 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
         {(isXs || isSm || isMd) && totalStakedRow}
         {earningToken[0].symbol !== 'BNB' && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`} bold={false}>
+            <StyledLinkExternal
+              href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`}
+              bold={false}
+            >
               {t('Info site')}
-            </LinkExternal>
+            </StyledLinkExternal>
           </Flex>
         )}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={earningToken[0].projectLink} bold={false}>
+          <StyledLinkExternal href={earningToken[0].projectLink} bold={false}>
             {t('View Project Site')}
-          </LinkExternal>
+          </StyledLinkExternal>
         </Flex>
         {vaultContractAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <LinkExternal href={`${BASE_BSC_SCAN_URL}/address/${vaultContractAddress}`} bold={false}>
+            <StyledLinkExternal href={`${BASE_BSC_SCAN_URL}/address/${vaultContractAddress}`} bold={false}>
               {t('View Contract')}
-            </LinkExternal>
+            </StyledLinkExternal>
           </Flex>
         )}
         {account && isMetaMaskInScope && tokenAddress && (
@@ -186,7 +203,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
               height="auto"
               onClick={() => registerToken(tokenAddress, earningToken[0].symbol, earningToken[0].decimals, imageSrc)}
             >
-              <Text color="primary">{t('Add to Metamask')}</Text>
+              <GradientText>{t('Add to Metamask')}</GradientText>
               <MetamaskIcon ml="4px" />
             </Button>
           </Flex>
@@ -201,8 +218,22 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
             {`${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
-        <Harvest vault={vault} userDataLoaded={userDataLoaded} />
-        <Stake vault={vault} userDataLoaded={userDataLoaded} />
+        <GradientBorderBox
+          colorLeft="#e52420"
+          colorRight="#ce850e"
+          borderWidth="1px"
+          style={{ flex: 1, margin: '4px 24px' }}
+        >
+          <Harvest vault={vault} userDataLoaded={userDataLoaded} />
+        </GradientBorderBox>
+        <GradientBorderBox
+          colorLeft="#e52420"
+          colorRight="#ce850e"
+          borderWidth="1px"
+          style={{ flex: 1, margin: '4px 24px' }}
+        >
+          <Stake vault={vault} userDataLoaded={userDataLoaded} />
+        </GradientBorderBox>
       </ActionContainer>
     </StyledActionPanel>
   )

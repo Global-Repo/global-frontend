@@ -6,6 +6,8 @@ import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { BIG_ZERO } from 'utils/bigNumber'
 
+import styled from 'styled-components'
+import BigNumber from 'bignumber.js'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import CollectModal from '../../VaultCard/Modals/CollectModal'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from '../../../../../state/types'
@@ -15,14 +17,22 @@ interface HarvestActionProps {
   userDataLoaded: boolean
 }
 
+const GradientText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-right: 4px;
+  background: linear-gradient(to right, #e52420, #ce850e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ vault, userDataLoaded }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { sousId, earningToken, userData, earningTokensPrice } = vault
 
-  // TODO Joan
-  // const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  const earnings = BIG_ZERO
+  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   // These will be reassigned later if its Auto CAKE vault
   const earningTokenBalance = getBalanceNumber(earnings, earningToken[0].decimals)
   const earningTokenDollarBalance = getBalanceNumber(
@@ -45,9 +55,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ vault, use
 
   const actionTitle = (
     <>
-      <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+      <GradientText fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
         {earningToken[0].symbol}{' '}
-      </Text>
+      </GradientText>
       <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
         {t('Earned')}
       </Text>
@@ -108,7 +118,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ vault, use
             )}
           </>
         </Flex>
-        <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+        <Button
+          disabled={!hasEarnings}
+          onClick={onPresentCollect}
+          variant={!hasEarnings ? 'danger' : 'full_gradient_pool'}
+        >
           {t('Harvest')}
         </Button>
       </ActionContent>

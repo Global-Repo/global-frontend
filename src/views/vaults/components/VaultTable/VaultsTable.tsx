@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@duhd4h/global-uikit'
+import { Button, ChevronUpIcon, Tag } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
 import VaultRow from './VaultRow'
@@ -12,19 +12,26 @@ interface VaultsTableProps {
 }
 
 const StyledTable = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
+  overflow: visible;
+  border: 1px solid;
+  border-radius: 8px;
+  border-image: linear-gradient(to right, #e52420, #ce850e) 30;
 
-  background-color: ${({ theme }) => theme.card.background};
-  > div:not(:last-child) {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
+  &::-webkit-scrollbar {
+    display: none;
   }
 `
 
 const StyledTableBorder = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
-  background-color: ${({ theme }) => theme.colors.cardBorder};
+  // border-radius: ${({ theme }) => theme.radii.card};
+  background-color: transparent;
   padding: 1px 1px 3px 1px;
   background-size: 400% 400%;
+`
+
+const Wrapper = styled.div`
+  cursor: pointer;
+  margin-top: 24px;
 `
 
 const ScrollButtonContainer = styled.div`
@@ -49,10 +56,12 @@ const VaultsTable: React.FC<VaultsTableProps> = ({ vaults, userDataLoaded, accou
           <VaultRow key={vault.sousId} vault={vault} account={account} userDataLoaded={userDataLoaded} />
         ))}
         <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
-            {t('To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
+          <Wrapper onClick={scrollToTop}>
+            <Tag variant="gradient" outline>
+              <span>{t('To Top')}</span>
+              <ChevronUpIcon />
+            </Tag>
+          </Wrapper>
         </ScrollButtonContainer>
       </StyledTable>
     </StyledTableBorder>
