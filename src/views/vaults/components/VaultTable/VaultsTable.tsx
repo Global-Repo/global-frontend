@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon, Tag } from '@duhd4h/global-uikit'
+import { ChevronUpIcon, Tag } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
 import VaultRow from './VaultRow'
@@ -55,15 +55,15 @@ const VaultsTable: React.FC<VaultsTableProps> = ({ vaults, userDataLoaded, accou
         {vaults.map((vault) => (
           <VaultRow key={vault.sousId} vault={vault} account={account} userDataLoaded={userDataLoaded} />
         ))}
-        <ScrollButtonContainer>
-          <Wrapper onClick={scrollToTop}>
-            <Tag variant="gradient" outline>
-              <span>{t('To Top')}</span>
-              <ChevronUpIcon />
-            </Tag>
-          </Wrapper>
-        </ScrollButtonContainer>
       </StyledTable>
+      <ScrollButtonContainer>
+        <Wrapper onClick={scrollToTop}>
+          <Tag variant="gradient" outline>
+            <span>{t('To Top')}</span>
+            <ChevronUpIcon />
+          </Tag>
+        </Wrapper>
+      </ScrollButtonContainer>
     </StyledTableBorder>
   )
 }
