@@ -14,6 +14,7 @@ import {
   fetchGlobalVaultVestedPublicData,
   fetchGlobalVaultVestedUserData,
 } from './fetchVaults'
+import { getTokenPricesFromFarm } from '../pools/helpers'
 
 const initialState: VaultsState = {
   globalVaultLocked: undefined,
@@ -26,8 +27,10 @@ const initialState: VaultsState = {
 
 // Thunks
 
-export const fetchGlobalVaultsPublicData = (): AppThunk => async (dispatch) => {
-  const globalVaultStakedToBnbPublicData = await fetchGlobalVaultStakedToBnbPublicData(vaultsConfig[0])
+export const fetchGlobalVaultsPublicData = (): AppThunk => async (dispatch, getState) => {
+  const prices = getTokenPricesFromFarm(getState().farms.data)
+
+  const globalVaultStakedToBnbPublicData = await fetchGlobalVaultStakedToBnbPublicData(vaultsConfig[0], prices)
   const globalVaultStakedToGlobalPublicData = await fetchGlobalVaultStakedToGlobalPublicData(vaultsConfig[1])
   const globalVaultVestedPublicData = await fetchGlobalVaultVestedPublicData(vaultsConfig[2])
   const globalVaultLockedPublicData = await fetchGlobalVaultLockedPublicData(vaultsConfig[3])

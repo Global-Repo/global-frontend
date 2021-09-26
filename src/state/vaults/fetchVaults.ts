@@ -11,41 +11,36 @@ import { EarningTokenPrice, SerializedBigNumber, VaultApr } from '../types'
 import { BIG_ZERO } from '../../utils/bigNumber'
 import { VaultConfig } from '../../config/constants/types'
 import tokens from '../../config/constants/tokens'
-import { getGlobalVaultLockedAddress } from '../../utils/addressHelpers'
+import { getAddress, getGlobalVaultLockedAddress } from '../../utils/addressHelpers'
 
-export const fetchGlobalVaultStakedToBnbPublicData = async (
-  vaultConfig: VaultConfig,
-): Promise<{
-  totalStaked: SerializedBigNumber
-  vaultApr: VaultApr[]
-  earningTokensPrice: EarningTokenPrice[]
-}> => {
+export const fetchGlobalVaultStakedToBnbPublicData = async (vaultConfig: VaultConfig, prices: any): Promise<any> => {
   try {
     const contract = getGlobalVaultStakedToBnbContract()
 
     const totalStaked = await contract.methods.balance().call()
 
-    /* const totalStaked = await globalVaultStakedToBnbContract.methods.stakingToken().call()
-    const stakingToken = await globalVaultStakedToBnbContract.methods.stakingToken().call() */
+    const stakingTokenAddress = vaultConfig.stakingToken.address
+      ? getAddress(vaultConfig.stakingToken.address).toLowerCase()
+      : null
+    const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
+
+    const earningTokenAddress = vaultConfig.earningToken[0].address
+      ? getAddress(vaultConfig.earningToken[0].address).toLowerCase()
+      : null
+    const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
 
     return {
       totalStaked: new BigNumber(totalStaked).toJSON(),
       vaultApr: [{ token: tokens.bnb, apr: 0.5 }],
-      earningTokensPrice: [{ token: tokens.bnb, earningTokenPrice: 20 }],
+      earningTokensPrice: [{ token: tokens.bnb, earningTokenPrice }],
+      stakingTokenPrice: [{ token: tokens.global, stakingTokenPrice }],
     }
-    // return new BigNumber(stakingToken)
   } catch (error) {
     return error
   }
 }
 
-export const fetchGlobalVaultStakedToGlobalPublicData = async (
-  vaultConfig: VaultConfig,
-): Promise<{
-  totalStaked: SerializedBigNumber
-  vaultApr: VaultApr[]
-  earningTokensPrice: EarningTokenPrice[]
-}> => {
+export const fetchGlobalVaultStakedToGlobalPublicData = async (vaultConfig: VaultConfig): Promise<any> => {
   try {
     const globalVaultStakedToBnbContract = getGlobalVaultStakedToGlobalContract()
 
@@ -56,6 +51,7 @@ export const fetchGlobalVaultStakedToGlobalPublicData = async (
       totalStaked: BIG_ZERO.toJSON(), // totalsupply
       vaultApr: [{ token: tokens.global, apr: 0.5 }],
       earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }], // earned ABI -> locked en te 2, mirar com es fa la conversio
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }], // earned ABI -> locked en te 2, mirar com es fa la conversio
       // earningTokensPrice -> llegir-ho de les farms 1 i 2
     }
     // return new BigNumber(stakingToken)
@@ -74,6 +70,7 @@ export const fetchGlobalVaultVestedPublicData = async (vaultConfig: VaultConfig)
       totalStaked: BIG_ZERO.toJSON(),
       vaultApr: [{ token: tokens.global, apr: 0.5 }],
       earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
       penaltyFee: {
         interval,
         fee,
@@ -92,6 +89,7 @@ export const fetchGlobalVaultLockedPublicData = async (vaultConfig: VaultConfig)
       totalStaked: BIG_ZERO.toJSON(),
       vaultApr: [{ token: tokens.global, apr: 0.5 }],
       earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
     }
     // return new BigNumber(stakingToken)
   } catch (error) {
@@ -106,6 +104,7 @@ export const fetchGlobalVaultCakePublicData = async (vaultConfig: VaultConfig): 
       totalStaked: BIG_ZERO.toJSON(),
       vaultApr: [{ token: tokens.global, apr: 0.5 }],
       earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
     }
     // return new BigNumber(stakingToken)
   } catch (error) {
@@ -115,19 +114,25 @@ export const fetchGlobalVaultCakePublicData = async (vaultConfig: VaultConfig): 
 
 export const fetchGlobalVaultStakedToBnbUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const contract = getGlobalVaultStakedToBnbContract()
+    const vaultContract = getGlobalVaultLockedContract()
+    const globalContract = getGlobalContract()
 
-    const allowance = await contract.methods.balanceOf(account).call()
-    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
-    const stakedBalance = await contract.methods.balanceOf(account).call()
-    const pendingReward = await contract.methods.earned(account).call()
+    const allowance = await globalContract.methods.allowance(account, getGlobalVaultLockedAddress()).call()
+    const stakingTokenBalance = await globalContract.methods.balanceOf(account).call()
+    const stakedBalance = await vaultContract.methods.balanceOf(account).call()
+    // const pendingReward = await vaultContract.methods.earned(account).call()
+
+    /*
+    const stakingTokenBalance = await globalContract.methods.balanceOf(account).call()
+    const stakedBalance = await vaultContract.methods.balanceOf(account).call() // TODO
+     */
 
     return {
       userData: {
         allowance: new BigNumber(allowance).toJSON(),
         stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
         stakedBalance: new BigNumber(stakedBalance).toJSON(),
-        pendingReward: new BigNumber(pendingReward).toJSON(),
+        pendingReward: new BigNumber(stakedBalance).toJSON(),
       },
     }
   } catch (error) {
@@ -191,8 +196,6 @@ export const fetchGlobalVaultLockedUserData = async (account: string, vaultConfi
     const stakingTokenBalance = await globalContract.methods.balanceOf(account).call()
     const stakedBalance = await vaultContract.methods.balanceOf(account).call() // TODO
     const pendingReward = await vaultContract.methods.globalToEarn(account).call()
-
-    console.log(stakedBalance)
 
     return {
       userData: {

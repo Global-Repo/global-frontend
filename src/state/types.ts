@@ -119,6 +119,7 @@ export interface GlobalVault extends VaultConfig {
   totalStaked: SerializedBigNumber
   vaultApr: VaultApr[]
   earningTokensPrice: EarningTokenPrice[]
+  stakingTokenPrice: number
 }
 
 export interface TokenPendingReward {

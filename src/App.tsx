@@ -11,12 +11,12 @@ import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pools from './views/Pools'
 import history from './routerHistory'
-import Vaults from './views/vaults'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const Vaults = lazy(() => import('./views/vaults'))
 const NotFound = lazy(() => import('./views/NotFound'))
 
 // This config is required for number formatting
