@@ -32,7 +32,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ vault, use
   const { account } = useWeb3React()
   const { sousId, earningToken, userData, earningTokensPrice } = vault
 
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  // const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  const earnings = BIG_ZERO
   // These will be reassigned later if its Auto CAKE vault
   const earningTokenBalance = getBalanceNumber(earnings, earningToken[0].decimals)
   const earningTokenDollarBalance = getBalanceNumber(

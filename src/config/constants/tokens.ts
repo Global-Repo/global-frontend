@@ -7,7 +7,7 @@ const tokens = {
     symbol: 'GLB',
     address: {
       56: '',
-      97: '0xe5eEb81e563aF8e92FBbeDD868500958f3D5f720',
+      97: '0xe5eeb81e563af8e92fbbedd868500958f3d5f720',
     },
     decimals: 18,
     projectLink: 'https://beglobal.finance/',

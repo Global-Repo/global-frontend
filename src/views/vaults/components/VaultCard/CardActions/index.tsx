@@ -34,7 +34,8 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
   const { t } = useTranslation()
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  // const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  const earnings = BIG_ZERO
   const needsApproval = !allowance.gt(0)
   const isStaked = stakedBalance.gt(0)
   const isLoading = Boolean(!userData)

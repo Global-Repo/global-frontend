@@ -43,7 +43,8 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ vault, account, userDataLoa
   const { sousId, earningToken, userData, earningTokensPrice } = vault
   const isManualCakePool = sousId === 0
 
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  // const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  const earnings = BIG_ZERO
   // These will be reassigned later if its Auto CAKE vault
   const earningTokenBalance = getBalanceNumber(earnings, earningToken[0].decimals)
   const earningTokenDollarBalance = getBalanceNumber(

@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import {
+  getGlobalContract,
   getGlobalVaultCakeContract,
   getGlobalVaultLockedContract,
   getGlobalVaultStakedToBnbContract,
@@ -10,6 +11,7 @@ import { EarningTokenPrice, SerializedBigNumber, VaultApr } from '../types'
 import { BIG_ZERO } from '../../utils/bigNumber'
 import { VaultConfig } from '../../config/constants/types'
 import tokens from '../../config/constants/tokens'
+import { getGlobalVaultLockedAddress } from '../../utils/addressHelpers'
 
 export const fetchGlobalVaultStakedToBnbPublicData = async (
   vaultConfig: VaultConfig,
@@ -51,9 +53,10 @@ export const fetchGlobalVaultStakedToGlobalPublicData = async (
     const stakingToken = await globalVaultStakedToBnbContract.methods.stakingToken().call() */
 
     return {
-      totalStaked: BIG_ZERO.toJSON(),
+      totalStaked: BIG_ZERO.toJSON(), // totalsupply
       vaultApr: [{ token: tokens.global, apr: 0.5 }],
-      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }], // earned ABI -> locked en te 2, mirar com es fa la conversio
+      // earningTokensPrice -> llegir-ho de les farms 1 i 2
     }
     // return new BigNumber(stakingToken)
   } catch (error) {
@@ -181,19 +184,22 @@ export const fetchGlobalVaultVestedUserData = async (account: string, vaultConfi
 
 export const fetchGlobalVaultLockedUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
-    const contract = getGlobalVaultLockedContract()
+    const vaultContract = getGlobalVaultLockedContract()
+    const globalContract = getGlobalContract()
 
-    const allowance = await contract.methods.balanceOf(account).call()
-    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
-    const stakedBalance = await contract.methods.balanceOf(account).call()
-    const pendingReward = await contract.methods.earned(account).call()
+    const allowance = await globalContract.methods.allowance(account, getGlobalVaultLockedAddress()).call()
+    const stakingTokenBalance = await globalContract.methods.balanceOf(account).call()
+    const stakedBalance = await vaultContract.methods.balanceOf(account).call() // TODO
+    const pendingReward = await vaultContract.methods.globalToEarn(account).call()
+
+    console.log(stakedBalance)
 
     return {
       userData: {
         allowance: new BigNumber(allowance).toJSON(),
         stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
-        stakedBalance: new BigNumber(stakedBalance).toJSON(),
-        pendingReward: new BigNumber(pendingReward).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(), // Mirar que es o si es necessita
+        pendingReward: new BigNumber(pendingReward).toJSON(), // globalToEarn i bnbToEarn
       },
     }
   } catch (error) {

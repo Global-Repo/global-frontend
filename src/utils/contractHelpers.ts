@@ -30,6 +30,7 @@ import {
   getGlobalVaultStakedToGlobalAddress,
   getGlobalVaultVestedAddress,
   getGlobalVaultCakeAddress,
+  getGlobalAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -41,6 +42,7 @@ import bep20Abi from 'config/abi/erc20.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
 import cakeAbi from 'config/abi/cake.json'
+import globalAbi from 'config/abi/global.json'
 import ifoV1Abi from 'config/abi/ifoV1.json'
 import ifoV2Abi from 'config/abi/ifoV2.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
@@ -117,6 +119,9 @@ export const getPointCenterIfoContract = (web3?: Web3) => {
 }
 export const getCakeContract = (web3?: Web3) => {
   return getContract(cakeAbi, getCakeAddress(), web3)
+}
+export const getGlobalContract = (web3?: Web3) => {
+  return getContract(globalAbi, getGlobalAddress(), web3)
 }
 export const getProfileContract = (web3?: Web3) => {
   return getContract(profileABI, getPancakeProfileAddress(), web3)

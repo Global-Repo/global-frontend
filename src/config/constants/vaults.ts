@@ -42,7 +42,7 @@ const vaults: VaultConfig[] = [
     sousId: 5,
     stakingToken: tokens.global,
     earningToken: [tokens.bunny],
-    contractAddress: contracts.globalVaultCake,
+    contractAddress: contracts.globalVaultCake, // bunny
     tokenPerBlock: '10',
   },
 ]
