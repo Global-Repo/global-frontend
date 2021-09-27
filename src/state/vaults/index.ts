@@ -31,10 +31,10 @@ export const fetchGlobalVaultsPublicData = (): AppThunk => async (dispatch, getS
   const prices = getTokenPricesFromFarm(getState().farms.data)
 
   const globalVaultStakedToBnbPublicData = await fetchGlobalVaultStakedToBnbPublicData(vaultsConfig[0], prices)
-  const globalVaultStakedToGlobalPublicData = await fetchGlobalVaultStakedToGlobalPublicData(vaultsConfig[1])
-  const globalVaultVestedPublicData = await fetchGlobalVaultVestedPublicData(vaultsConfig[2])
-  const globalVaultLockedPublicData = await fetchGlobalVaultLockedPublicData(vaultsConfig[3])
-  const globalVaultCakePublicData = await fetchGlobalVaultCakePublicData(vaultsConfig[4])
+  const globalVaultStakedToGlobalPublicData = await fetchGlobalVaultStakedToGlobalPublicData(vaultsConfig[1], prices)
+  const globalVaultVestedPublicData = await fetchGlobalVaultVestedPublicData(vaultsConfig[2], prices)
+  const globalVaultLockedPublicData = await fetchGlobalVaultLockedPublicData(vaultsConfig[3], prices)
+  const globalVaultCakePublicData = await fetchGlobalVaultCakePublicData(vaultsConfig[4], prices)
 
   const globalVaultStakedToBnb: GlobalVaultStaked = {
     ...vaultsConfig[0],
