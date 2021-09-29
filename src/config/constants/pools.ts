@@ -19,15 +19,29 @@ const pools: PoolConfig[] = [
   {
     sousId: 100,
     stakingToken: tokens.global,
-    earningToken: tokens.bojis,
+    earningToken: tokens.manor,
     contractAddress: {
-      97: '0xF80f06b0e12050e51E92fe318057A81c62eD00aD',
+      97: '0x1342d76a2fe7ed435df582a1ff6a618e1f68c18f',
       56: '',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     tokenPerBlock: '100',
-    sortOrder: 1,
+    sortOrder: 2,
+    isFinished: false,
+  },
+  {
+    sousId: 100,
+    stakingToken: tokens.global,
+    earningToken: tokens.manolos,
+    contractAddress: {
+      97: '0xff9071d542f381faa9265a70e4d170e6fb42e026',
+      56: '',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '100',
+    sortOrder: 3,
     isFinished: false,
   },
 ]
