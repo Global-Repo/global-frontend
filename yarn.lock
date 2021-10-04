@@ -1515,15 +1515,15 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@duhd4h/global-sdk@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.5.tgz#cc4594d8748cfa0c194e27464bae68a2a510c8fb"
-  integrity sha512-TowbR146HK6VyYtRJ7WsPVAVs4bvwvgRuOINtMUhS6YLlQxPshokJRurKEtp42/FiUrfLBxEabgowTWfzkJFwg==
+"@duhd4h/global-sdk@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@duhd4h/global-sdk/-/global-sdk-1.0.6.tgz#5b9970e25ca88361f8fad500057e4c8cf47126a8"
+  integrity sha512-rdyY1ytbjCk6nn2gnICqdpPwvAPEEcwSgtKMZ6IL5SvR/9FYb7hzVSB7xu/RM16OOgZvUiVLooI+ev4Zj7+Qtw==
   dependencies:
     "@duhd4h/global-swap-core" "^0.1.0"
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
-    jsbi "^3.1.1"
+    jsbi "^3.2.5"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
@@ -12355,10 +12355,10 @@ jsan@^3.1.13:
   resolved "https://registry.yarnpkg.com/jsan/-/jsan-3.1.13.tgz"
   integrity sha512-9kGpCsGHifmw6oJet+y8HaCl14y7qgAsxVdV3pCHDySNR3BfDC30zgkssd7x5LRVAT22dnpbe9JdzzmXZnq9/g==
 
-jsbi@^3.1.1:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.1.5.tgz"
-  integrity sha512-w2BY0VOYC1ahe+w6Qhl4SFoPvPsZ9NPHY4bwass+LCgU7RK3PBoVQlQ3G1s7vI8W3CYyJiEXcbKF7FIM/L8q3Q==
+jsbi@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.2.5.tgz#b37bb90e0e5c2814c1c2a1bcd8c729888a2e37d6"
+  integrity sha512-aBE4n43IPvjaddScbvWRA2YlTzKEynHzu7MqOyTipdHucf/VxS63ViCjxYRg86M8Rxwbt/GfzHl1kKERkt45fQ==
 
 jsbn@~0.1.0:
   version "0.1.1"
