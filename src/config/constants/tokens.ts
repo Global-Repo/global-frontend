@@ -6,7 +6,7 @@ const tokens = {
   global: {
     symbol: 'GLB',
     address: {
-      56: '',
+      56: '0xC8d439D3B72280801d64eB371fe58Fede1a556ae',
       97: '0xe5eeb81e563af8e92fbbedd868500958f3d5f720',
     },
     decimals: 18,
