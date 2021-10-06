@@ -76,6 +76,32 @@ const CardsRowOf3 = styled(BaseLayout)`
     }
   }
 `
+const Test = styled.div`
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+  margin-top: 100px;
+`
+
+const Test2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+  height: 550px;
+  :nth-child(1){
+    align-items: start;
+    width: 330px;
+  }
+  :nth-child(2){
+    align-items: start;
+    width: 330px;
+  }
+`
+
+const Test3 = styled.div`
+  width: 40%;
+`
 
 const CardsRowOf1 = styled.div`
   margin-bottom: 80px;
@@ -107,21 +133,36 @@ const Home: React.FC = () => {
   return (
     <Page isHome>
       {header}
-      <CardsRowOf2>
-        <FarmStakingCard />
-        <PartnershipsCard />
-      </CardsRowOf2>
+      <TotalValueLockedCard />
+      <PartnershipsCard />
+      <Test>
+        <Test2>
+          <EarnAPRCard />
+          <EarnAssetCard />
+        </Test2>
+        <Test2>
+          <FarmStakingCard />
+          <CakeStats />
+        </Test2>
+        <Test3>
+          <AnnouncementsCard />
+        </Test3>
+      </Test>
+      {/* <CardsRowOf1>
+        
+      </CardsRowOf1>
+      <CardsRowOf1>
+        
+      </CardsRowOf1>
       <CardsRowOf3>
-        <EarnAPRCard />
-        <EarnAssetCard />
-        <CakeStats />
+        
+      </CardsRowOf3>
+      <CardsRowOf3>
+        
       </CardsRowOf3>
       <CardsRowOf1>
-        <TotalValueLockedCard />
-      </CardsRowOf1>
-      <CardsRowOf1>
-        <AnnouncementsCard />
-      </CardsRowOf1>
+        
+      </CardsRowOf1> */}
     </Page>
   )
 }
