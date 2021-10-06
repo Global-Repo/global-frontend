@@ -13,6 +13,7 @@ import GlobalWalletBalance from './GlobalWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   min-height: 200px;
+  width: 100%;
   background: transparent;
   border: 2px solid white;
 `
