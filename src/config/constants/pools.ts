@@ -22,7 +22,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.loko,
     contractAddress: {
       97: '',
-      56: '0x67d26870137c7b2c43d4a16fa18a836a0b6f5fce',
+      56: '0x1f994710669dcd9303e197401d1aa6e73e34f67f',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
