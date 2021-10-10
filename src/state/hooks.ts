@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { useSelector } from 'react-redux'
@@ -348,9 +348,30 @@ export const useAchievements = () => {
   return achievements
 }
 
+// We have changed the usePriceBnbBusd for useCustomPrice
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10))
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
+}
+
+// We have changed the usePriceBnbBusd for useCustomPrice
+export const useGetCustomPrice = () => {
+  const [customPrice, setCustomPrice] = useState();
+
+  function round(num) {
+      const m = Number((Math.abs(num) * 100).toPrecision(100));
+      return Math.round(m) / 100 * Math.sign(num);
+
+  }
+
+  useEffect(() => {
+    fetch("https://api.pancakeswap.info/api/v2/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82")
+    .then( res => res.json())
+    .then( res => {
+        setCustomPrice(res.data.price)
+      })
+  }, [])
+  return customPrice ? round(customPrice) : undefined
 }
 
 export const usePriceGlobalBusd = (): BigNumber => {

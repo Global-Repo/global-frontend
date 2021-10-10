@@ -52,14 +52,14 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
-        {pools.map((pool) => (
+        {/* {pools.map((pool) => (
           <PoolRow
             key={pool.isAutoVault ? 'auto-cake' : pool.sousId}
             pool={pool}
             account={account}
             userDataLoaded={userDataLoaded}
           />
-        ))}
+        ))} */}
       </StyledTable>
       <ScrollButtonContainer>
         <Wrapper onClick={scrollToTop}>

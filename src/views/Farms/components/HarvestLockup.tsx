@@ -15,7 +15,7 @@ interface Props {
 const HarvestLockup: FC<Props> = ({ harvestInterval }) => {
   const { t } = useTranslation()
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How soon can you harvest or compound again.'), {
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How often you can claim rewards.'), {
     placement: 'bottom',
   })
 

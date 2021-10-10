@@ -26,15 +26,24 @@ const StyledLink = styled(Link)`
 const HelpButton = () => {
   const { t } = useTranslation()
   return (
-    <StyledLink external href="https://beglobal-finance.gitbook.io/beglobal/">
-      <Button px={['14px', null, null, null, '20px']} variant="full_gradient_orange_yellow">
-        <ButtonText color="white" bold fontSize="16px">
-          {t('Help')}
-        </ButtonText>
-        <HelpIcon color="white" ml={[null, null, null, 0, '6px']} />
-      </Button>
-    </StyledLink>
+    <HelpButtonWrapper>
+      <StyledLink external href="https://beglobal-finance.gitbook.io/beglobal/">
+        <Button px={['10px', null, null, null, '10px']} variant="full_gradient_orange_yellow">
+          <ButtonText color="white" bold fontSize="13px">
+            {t('Help')}
+          </ButtonText>
+          <HelpIcon color="white" ml={[null, null, null, 0, '6px']} />
+        </Button>
+      </StyledLink>
+      </HelpButtonWrapper>
   )
 }
 
 export default HelpButton
+
+const HelpButtonWrapper = styled.div `
+  position: fixed;
+  top: 20px;
+  right: 320px;
+  z-index: 100;
+`

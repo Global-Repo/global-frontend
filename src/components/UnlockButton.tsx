@@ -27,6 +27,8 @@ const UnlockButton = ({ isPool = false, ...props }) => {
       {...props}
       label={t('Unlock Wallet')}
       style={{ padding: '8px', width: '100%' }}
+      colorRight="#F49F23"
+      colorLeft="#D41615"
     />
   )
 }

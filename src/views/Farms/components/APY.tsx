@@ -39,7 +39,7 @@ const APY: FC<Props> = ({ apy, apr, globalPrice, lpLabel, addLiquidityUrl }) => 
       <Text bold style={{ display: 'flex', alignItems: 'center' }}>
         {apy ? (
           <>
-            <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} globalPrice={globalPrice} apr={apr} />
+            {/* <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} globalPrice={globalPrice} apr={apr} /> */}
             {farmAPY}%
           </>
         ) : (

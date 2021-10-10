@@ -13,7 +13,7 @@ const AnnouncementsCard = () => {
     <TimelineWrapper>
       <Timeline
         dataSource={{ sourceType: 'profile', screenName: 'Beglobaldefi' }}
-        options={{ theme: 'dark', height: '800', width: '600'}}
+        options={{ theme: 'light', height: '550', width: '600'}}
       />
     </TimelineWrapper>
   )

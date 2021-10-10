@@ -28,9 +28,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, is
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
       <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
       <Flex flexDirection="column" alignItems="flex-end">
-        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
+        <Heading mb="6px" style={{background:'linear-gradient(to right, #e52420, #ce850e)', borderRadius:'10px', padding:'4px 12px'}}>{lpLabel.split(' ')[0]}</Heading>
         <Flex justifyContent="center">
-          {isCommunityFarm ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />}
+          {/* {isCommunityFarm ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />} */}
           <MultiplierTag variant="gradient">{multiplier}</MultiplierTag>
         </Flex>
       </Flex>

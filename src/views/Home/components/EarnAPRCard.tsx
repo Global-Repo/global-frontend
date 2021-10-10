@@ -16,7 +16,7 @@ const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background: transparent;
+  background-color: #134894;
   border: 2px solid white;
   border-radius: 24px;
 
@@ -26,8 +26,8 @@ const StyledFarmStakingCard = styled(Card)`
   }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
-  line-height: 44px;
-  background: linear-gradient(to right, #bb5370, #529dd6);
+  line-height: 60px;
+  background: linear-gradient(to right, #D41615, #F49F23);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
@@ -109,6 +109,8 @@ const EarnAPRCard = () => {
           label="Details >"
           onClick={() => history.push('/farms')}
           style={{ padding: '8px', marginTop: '32px', width: '100%' }}
+          colorRight="#F49F23"
+          colorLeft="#D41615"
         />
       </CardBody>
     </StyledFarmStakingCard>

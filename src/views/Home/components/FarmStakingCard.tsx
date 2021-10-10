@@ -14,7 +14,7 @@ import GlobalWalletBalance from './GlobalWalletBalance'
 const StyledFarmStakingCard = styled(Card)`
   min-height: 200px;
   width: 100%;
-  background: transparent;
+  background: #134894;
   border: 2px solid white;
 `
 
@@ -84,6 +84,8 @@ const FarmedStakingCard = () => {
               onClick={harvestAllFarms}
               width="100%"
               style={{ padding: '8px', width: '100%' }}
+              colorRight="#F49F23"
+          colorLeft="#D41615"
             />
           ) : (
             <UnlockButton width="100%" />

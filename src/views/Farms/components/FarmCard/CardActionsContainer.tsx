@@ -101,8 +101,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       {tooltipVisible && tooltip}
       <Flex justifyContent="space-between">
         <Flex>
-          <GradientText>GLOBAL</GradientText>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          <GradientText style={{fontSize:'14px'}}>GLOBAL</GradientText>
+          <Text bold textTransform="uppercase" color="white" fontSize="14px">
             {t('Earned')}
           </Text>
         </Flex>
@@ -114,8 +114,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
-        <GradientText>{farm.lpSymbol}</GradientText>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+        <GradientText style={{fontSize:'14px'}}>{farm.lpSymbol}</GradientText>
+        <Text bold textTransform="uppercase" color="white" fontSize="14px">
           {t('Staked')}
         </Text>
       </Flex>

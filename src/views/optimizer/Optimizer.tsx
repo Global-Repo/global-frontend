@@ -49,7 +49,7 @@ interface Props {
   isGlobal?: boolean
 }
 
-const Vaults: React.FC<Props> = ({ isGlobal }) => {
+const Optimizer: React.FC<Props> = ({ isGlobal }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const vaults = useFetchGlobalVaults(account)
@@ -88,7 +88,7 @@ const Vaults: React.FC<Props> = ({ isGlobal }) => {
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="white" mb="24px">
-              {t('Vaults Globals')}
+              {t('Optimizer')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Something, something, TODO')}
@@ -98,7 +98,7 @@ const Vaults: React.FC<Props> = ({ isGlobal }) => {
             </Heading>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
+            {/* <HelpButton /> */}
           </Flex>
         </Flex>
       </PageHeader>
@@ -118,4 +118,4 @@ const Vaults: React.FC<Props> = ({ isGlobal }) => {
   )
 }
 
-export default Vaults
+export default Optimizer

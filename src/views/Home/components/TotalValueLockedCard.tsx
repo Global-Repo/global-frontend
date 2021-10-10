@@ -13,7 +13,7 @@ const StyledTotalValueLockedCard = styled.div`
 `
 
 const CardMidContent = styled(Heading).attrs({ scale: 'xxl' })`
-  background: linear-gradient(to right, #bb5370, #529dd6);
+  background: linear-gradient(to right, #D41615, #F49F23);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: normal;

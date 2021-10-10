@@ -11,12 +11,13 @@ import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pools from './views/Pools'
 import history from './routerHistory'
+import HelpButton from './views/Pools/components/HelpButton'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
-const Vaults = lazy(() => import('./views/vaults'))
+const Optimizer = lazy(() => import('./views/optimizer'))
 const NotFound = lazy(() => import('./views/NotFound'))
 
 // This config is required for number formatting
@@ -35,6 +36,7 @@ const App: React.FC = () => {
     <Router history={history}>
       <ResetCSS />
       <GlobalStyle />
+      <HelpButton />
       <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
@@ -48,10 +50,10 @@ const App: React.FC = () => {
               <Pools isGlobal />
             </Route>
             <Route path="/poolsToken">
-              <Vaults />
+              <Optimizer />
             </Route>
-            <Route path="/vaults">
-              <Vaults isGlobal />
+            <Route path="/optimizer">
+              <Optimizer isGlobal />
             </Route>
             {/* <Route path="/lottery">
               <Lottery />
@@ -76,9 +78,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/prediction">
               <Predictions />
-            </Route> */}
-            {/* Redirect */}
-            {/* <Route path="/staking">
+            </Route> /}
+            {/ Redirect /}
+            {/ <Route path="/staking">
               <Redirect to="/pools" />
             </Route>
             <Route path="/syrup">
@@ -86,8 +88,8 @@ const App: React.FC = () => {
             </Route>
             <Route path="/nft">
               <Redirect to="/collectibles" />
-            </Route> */}
-            {/* 404 */}
+            </Route> /}
+            {/ 404 */}
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>

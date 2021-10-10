@@ -5,14 +5,14 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
-import { usePriceGlobalBusd, useProfile } from 'state/hooks'
+import {useProfile, useGetCustomPrice } from 'state/hooks'
 import config from './config'
 
 const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { toggleTheme, isDark } = useTheme()
-  const globalPriceUsd = usePriceGlobalBusd()
+  const globalPriceUsd = useGetCustomPrice()
   const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
 

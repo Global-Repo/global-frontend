@@ -8,7 +8,7 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledFarmStakingCard = styled(Card)`
-  background: transparent;
+  background-color: #134894;
   border: 2px solid white;
   border-radius: 24px;
   margin-left: auto;
@@ -20,8 +20,8 @@ const StyledFarmStakingCard = styled(Card)`
   }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
-  line-height: 44px;
-  background: linear-gradient(to right, #bb5370, #529dd6);
+  line-height: 55px;
+  background: linear-gradient(to right, #D41615, #F49F23);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
@@ -30,11 +30,12 @@ const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
 const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
 const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
 // Always include CAKE
-const assets = ['CAKE', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
+// const assets = ['CAKE', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
+const assets = ['GLB, BNB or NFTs'].join('')
 
 const EarnAssetCard = () => {
   const { t } = useTranslation()
-  const assetText = t('Earn %assets% in Pools', { assets })
+  const assetText = t('Earn %assets% in Farms, Vaults & Pools', { assets })
   const [earn, InPools] = assetText.split(assets)
 
   const history = useHistory()
@@ -55,6 +56,8 @@ const EarnAssetCard = () => {
           label="Details >"
           onClick={() => history.push('/poolsGlobal')}
           style={{ padding: '8px', marginTop: '32px', width: '100%' }}
+          colorRight="#F49F23"
+          colorLeft="#D41615"
         />
       </CardBody>
     </StyledFarmStakingCard>

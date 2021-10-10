@@ -103,7 +103,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, globalPrice, account
 
   return (
     <Wrapper>
-      <GradientBorderBox colorLeft="#e52420" colorRight="#ce850e" borderWidth="1px" style={{ width: '100%' }}>
+      <GradientBorderBox colorLeft="#e52420" colorRight="#ce850e" borderWidth="1px" style={{width: '100%', backgroundColor:'#11357D', borderRadius:'18px'}}>
         <FCard isPromotedFarm={isPromotedFarm}>
           {/* isPromotedFarm && <StyledCardAccent /> */}
           <CardHeading

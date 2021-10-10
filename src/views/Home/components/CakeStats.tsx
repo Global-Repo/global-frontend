@@ -11,7 +11,7 @@ const StyledCakeStats = styled(Card)`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background: transparent;
+  background-color: #134894;
   border: 2px solid white;
   border-radius: 24px;
 `

@@ -23,13 +23,13 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Stake Global'),
     href: '/poolsGlobal',
   },
+  // {
+  //   label: t('Stake Token'),
+  //   href: '/poolsToken',
+  // },
   {
-    label: t('Stake Token'),
-    href: '/poolsToken',
-  },
-  {
-    label: t('Vaults'),
-    href: '/vaults',
+    label: t('Optimizer'),
+    href: '/optimizer',
   },
   {
     label: 'BeGlobal',
