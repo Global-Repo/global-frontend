@@ -1,7 +1,7 @@
 export default {
   masterChef: {
     97: '0xD412d85B75410bE2d01C3503bE580274c27c3B69',
-    56: '0x10b2987027637Ae5794A0D191ff27325F7dC797B',
+    56: '0xe0B197B14ff038a72cC7a41C436155A2a2F5c14C',
   },
   sousChef: {
     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -69,7 +69,7 @@ export default {
   },
   // VAULTS
   globalVaultLocked: {
-    56: '0x00',
+    56: '0xf590FFeffEDabec938C42D1Ab04F62ca715150f5',
     97: '0xE317839e57B10fB3B70c7d9F1120FAaD82Ea077E',
   },
   globalVaultVested: {

@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const TimelineWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 160px;
   height: 800px;
 `
 
@@ -14,7 +13,7 @@ const AnnouncementsCard = () => {
     <TimelineWrapper>
       <Timeline
         dataSource={{ sourceType: 'profile', screenName: 'Beglobaldefi' }}
-        options={{ theme: 'dark', height: '800', width: '600' }}
+        options={{ theme: 'dark', height: '800', width: '600'}}
       />
     </TimelineWrapper>
   )

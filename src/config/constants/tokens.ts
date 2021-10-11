@@ -6,17 +6,17 @@ const tokens = {
   global: {
     symbol: 'GLB',
     address: {
-      56: '',
+      56: '0xC8d439D3B72280801d64eB371fe58Fede1a556ae',
       97: '0xe5eeb81e563af8e92fbbedd868500958f3d5f720',
     },
     decimals: 18,
     projectLink: 'https://beglobal.finance/',
   },
-  bojis: {
-    symbol: 'BB',
+  loko: {
+    symbol: 'LOKO',
     address: {
-      56: '',
-      97: '0x341dAa7f0Ea801572d1f26f0e358Ae8773d874cD',
+      56: '0xd855f2d7fcBf5C5B902bdd68504034aDFec37603',
+      97: '',
     },
     decimals: 18,
     projectLink: 'https://beglobal.finance/',

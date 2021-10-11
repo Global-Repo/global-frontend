@@ -7,6 +7,7 @@ const StyledPredictionCard = styled(Card)`
   min-height: 200px;
   background: transparent;
   border: 2px solid white;
+  margin-top: 100px;
 `
 
 const PartnershipsCard = () => {

@@ -8,7 +8,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.global,
     contractAddress: {
       97: '0xD412d85B75410bE2d01C3503bE580274c27c3B69',
-      56: '',
+      56: '0xe0B197B14ff038a72cC7a41C436155A2a2F5c14C',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
@@ -19,17 +19,17 @@ const pools: PoolConfig[] = [
   {
     sousId: 100,
     stakingToken: tokens.global,
-    earningToken: tokens.bojis,
+    earningToken: tokens.loko,
     contractAddress: {
-      97: '0xF80f06b0e12050e51E92fe318057A81c62eD00aD',
-      56: '',
+      97: '',
+      56: '0x1f994710669dcd9303e197401d1aa6e73e34f67f',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    tokenPerBlock: '100',
-    sortOrder: 1,
+    tokenPerBlock: '1',
+    sortOrder: 2,
     isFinished: false,
-  },
+  }
 ]
 
 export default pools
