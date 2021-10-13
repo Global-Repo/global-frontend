@@ -38,14 +38,14 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.busd,
   },
   {
-    pid: parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10), // 252 pool 1 de masterchef
-    lpSymbol: 'BUSD-BNB LP',
+    pid: 4,
+    lpSymbol: 'GLB-LOKO',
     lpAddresses: {
-      97: '0x478fc90fa07b017de8d18d7061d178daf0e31469',
-      56: '0x76f19d8Eb4B5249f82f0fb1d1ee08225f5b51ef3',
+      97: '',
+      56: '0x69e0bd31ed9d9ea1aff8125fbc4df225d33d52ec',
     },
-    token: tokens.busd,
-    quoteToken: tokens.wbnb,
+    token: tokens.global,
+    quoteToken: tokens.loko,
   },
 ]
 
