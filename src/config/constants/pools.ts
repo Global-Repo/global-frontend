@@ -16,6 +16,7 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
+/*
   {
     sousId: 100,
     stakingToken: tokens.global,
@@ -30,6 +31,7 @@ const pools: PoolConfig[] = [
     sortOrder: 2,
     isFinished: false,
   }
+ */
 ]
 
 export default pools

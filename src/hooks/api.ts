@@ -21,7 +21,6 @@ export const useGetStats = () => {
         const responseData: DeBankTvlResponse = await response.json()
 
         setData(responseData)
-        console.log("Hola",responseData)
       } catch (error) {
         console.error('Unable to fetch data:', error)
       }

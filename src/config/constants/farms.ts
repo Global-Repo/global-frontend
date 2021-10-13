@@ -37,16 +37,18 @@ const farms: FarmConfig[] = [
     token: tokens.global,
     quoteToken: tokens.busd,
   },
-  {
-    pid: 4,
-    lpSymbol: 'GLB-LOKO',
-    lpAddresses: {
-      97: '',
-      56: '0x69e0bd31ed9d9ea1aff8125fbc4df225d33d52ec',
-    },
-    token: tokens.global,
-    quoteToken: tokens.loko,
-  },
+/*
+{
+pid: 4,
+lpSymbol: 'GLB-LOKO',
+lpAddresses: {
+  97: '',
+  56: '0x69e0bd31ed9d9ea1aff8125fbc4df225d33d52ec',
+},
+token: tokens.global,
+quoteToken: tokens.loko,
+},
+*/
 ]
 
 export default farms
