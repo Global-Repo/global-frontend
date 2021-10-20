@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useTranslation } from '../../../contexts/Localization'
 import ApyButton from './FarmCard/ApyButton'
+import APR from './APR'
 
 const HelpIconWrapper = styled.div`
   align-self: center;
@@ -21,7 +22,11 @@ interface Props {
 const APY: FC<Props> = ({ apy, apr, globalPrice, lpLabel, addLiquidityUrl }) => {
   const { t } = useTranslation()
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('APY considering daily and manual autocompound.'), {
+  // const { targetRef, tooltip, tooltipVisible } = useTooltip(t('APY considering daily and manual autocompound.'), {
+  //   placement: 'bottom',
+  // })
+
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(apr ? <APR apr={apr} /> : "No APR found", {
     placement: 'bottom',
   })
 

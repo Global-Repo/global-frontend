@@ -12,7 +12,7 @@ import VaultTabButtons from './components/VaultTabButtons'
 import HelpButton from './components/HelpButton'
 import VaultsTable from './components/VaultTable/VaultsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
-import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from '../../state/types'
+import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested, } from '../../state/types'
 
 const CardLayout = styled.div`
   display: flex;
@@ -58,13 +58,15 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
 
   const filteredVaults = useMemo(() => {
-    const { globalVaultStakedToBnb, globalVaultStakedToGlobal, globalVaultVested, globalVaultLocked, globalVaultCake } =
+    const { globalVaultStakedToBnb, globalVaultStakedToGlobal, globalVaultVested, globalVaultLocked, globalVaultCake, globalVaultCakeMaximizer, } =
       vaults
     const globalVaults = [
-      globalVaultStakedToBnb,
-      globalVaultStakedToGlobal,
-      globalVaultVested,
-      globalVaultLocked,
+      // globalVaultStakedToBnb,
+      // globalVaultStakedToGlobal,
+      // globalVaultVested,
+      // globalVaultLocked,
+      // globalVaultCake,
+      globalVaultCakeMaximizer,
     ].filter((el) => el != null)
 
     const tokenVaults = [globalVaultCake].filter((el) => el != null)
@@ -72,13 +74,13 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
     return isGlobal ? globalVaults : tokenVaults
   }, [vaults, isGlobal])
 
-  const cardLayout = (
-    <CardLayout>
-      {filteredVaults.map((vault) => (
-        <VaultCard key={vault.sousId} vault={vault} account={account} />
-      ))}
-    </CardLayout>
-  )
+  // const cardLayout = (
+  //   <CardLayout>
+  //     {filteredVaults.map((vault) => (
+  //       <VaultCard key={vault.sousId} vault={vault} account={account} />
+  //     ))}
+  //   </CardLayout>
+  // )
 
   const tableLayout = <VaultsTable vaults={filteredVaults} account={account} userDataLoaded={vaults.userDataLoaded} />
 
@@ -112,7 +114,11 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
           hasStakeInFinishedPools={false}
         />
       </VaultsControls>
-      {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+      <CardLayout>
+      {filteredVaults.map((vault) => (
+        <VaultCard key={vault.sousId} vault={vault} account={account} />
+      ))}
+    </CardLayout>
       <div ref={loadMoreRef} />
     </Page>
   )

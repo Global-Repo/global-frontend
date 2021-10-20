@@ -41,6 +41,7 @@ export interface Pool extends PoolConfig {
   startBlock?: number
   endBlock?: number
   apr?: number
+  vested?: boolean
   stakingTokenPrice?: number
   earningTokenPrice?: number
   isAutoVault?: boolean
@@ -169,6 +170,7 @@ export interface VaultsState {
   globalVaultStakedToBnb: GlobalVaultStaked
   globalVaultStakedToGlobal: GlobalVaultStaked
   globalVaultCake: GlobalVaultStaked
+  globalVaultCakeMaximizer: GlobalVaultStaked
   userDataLoaded: boolean
 }
 

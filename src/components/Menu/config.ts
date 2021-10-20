@@ -20,7 +20,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Stake Global'),
+    label: t('Pools'),
     href: '/poolsGlobal',
   },
   // {

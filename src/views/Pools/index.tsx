@@ -299,7 +299,7 @@ const Pools: React.FC<Props> = () => {
           {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
         </Text>
       )}
-      {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+      <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
       <div ref={loadMoreRef} />
     </Page>
   )

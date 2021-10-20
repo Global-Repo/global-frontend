@@ -6,6 +6,7 @@ import {
   getGlobalVaultStakedToBnbContract,
   getGlobalVaultStakedToGlobalContract,
   getGlobalVaultVestedContract,
+  getGlobalVaultCakeMaximizerContract,
 } from '../../utils/contractHelpers'
 import { BIG_ZERO } from '../../utils/bigNumber'
 import { VaultConfig } from '../../config/constants/types'
@@ -245,6 +246,54 @@ export const fetchGlobalVaultCakeUserData = async (account: string, vaultConfig:
         pendingReward: new BigNumber(pendingReward).toJSON(),
       },
     }
+  } catch (error) {
+    return error
+  }
+}
+
+
+// Funciones hechas el 19/10/2021 para Optimizer - Functions made on 19/10/2021 for the Optimizer
+
+
+export const fetchGlobalVaultCakeMaximizerPublicData = async (vaultConfig: VaultConfig, prices: any): Promise<any> => {
+  try {
+    const contract = getGlobalVaultCakeMaximizerContract()
+
+    return {
+      totalStaked: BIG_ZERO.toJSON(),
+      vaultApr: [{ token: tokens.global, apr: 0.5 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+    }
+    // return new BigNumber(stakingToken)
+
+    // return console.log(contract, " - Contrato Cake Maximizer")
+
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultCakeMaximizerUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultCakeMaximizerContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+
+    // return console.log(contract, " - Contrato Cake Maximizer")
+
   } catch (error) {
     return error
   }

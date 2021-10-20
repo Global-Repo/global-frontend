@@ -18,7 +18,7 @@ const HarvestLockup: FC<Props> = ({ harvestInterval }) => {
   const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How often you can claim rewards.'), {
     placement: 'bottom',
   })
-
+  
   return (
     <Flex justifyContent="space-between">
       {tooltipVisible && tooltip}
@@ -29,7 +29,7 @@ const HarvestLockup: FC<Props> = ({ harvestInterval }) => {
         </HelpIconWrapper>
       </Flex>
       <Text bold>
-        {harvestInterval} {t('Hour(s)')}
+        {harvestInterval ? <div>{parseInt(harvestInterval) / 3600} {t('Hour(s)')} </div> : ""}
       </Text>
     </Flex>
   )

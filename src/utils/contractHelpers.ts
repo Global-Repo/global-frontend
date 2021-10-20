@@ -31,6 +31,7 @@ import {
   getGlobalVaultVestedAddress,
   getGlobalVaultCakeAddress,
   getGlobalAddress,
+  getGlobalVaultCakeMaximizerAddress
 } from 'utils/addressHelpers'
 
 // ABI
@@ -65,6 +66,7 @@ import globalVaultVestedAbi from 'config/abi/globalVaultVested.json'
 import globalVaultStakedToBnbAbi from 'config/abi/globalVaultStakedToBnb.json'
 import globalVaultStakedToGlobalAbi from 'config/abi/globalVaultStakedToGlobal.json'
 import globalVaultCakeAbi from 'config/abi/globalVaultCake.json'
+import globalVaultCakeMaximizerAbi from 'config/abi/globalVaultCakeMaximizerAbi.json'
 import { DEFAULT_GAS_PRICE } from 'config'
 import { getSettings, getGasPriceInWei } from './settings'
 
@@ -184,4 +186,10 @@ export const getGlobalVaultStakedToBnbContract = (web3?: Web3) => {
 }
 export const getGlobalVaultStakedToGlobalContract = (web3?: Web3) => {
   return getContract(globalVaultStakedToGlobalAbi, getGlobalVaultStakedToGlobalAddress(), web3)
+}
+
+// VAULTS DEL OPIMIZER
+
+export const getGlobalVaultCakeMaximizerContract = (web3?: Web3) => {
+  return getContract(globalVaultCakeMaximizerAbi, getGlobalVaultCakeMaximizerAddress(), web3)
 }

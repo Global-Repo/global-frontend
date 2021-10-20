@@ -89,4 +89,8 @@ export default {
     97: '0x578091C92e85cF3660842651c684Cf157b9Ef5e0',
   },
   // TODO: vault bunny and VaultCakeWbnbLP
+  globalVaultCakeMaximizer: {
+    56: '0x00',
+    97: '0x64993bc72a773F5D90686b139Ac8BC719B650ecE',
+  }
 }

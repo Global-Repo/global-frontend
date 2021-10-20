@@ -286,6 +286,7 @@ export const useFetchGlobalVaults = (account?) => {
     globalVaultVested: state.vaults.globalVaultVested,
     globalVaultLocked: state.vaults.globalVaultLocked,
     globalVaultCake: state.vaults.globalVaultCake,
+    globalVaultCakeMaximizer: state.vaults.globalVaultCakeMaximizer,
     userDataLoaded: state.vaults.userDataLoaded,
   }))
 }

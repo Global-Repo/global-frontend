@@ -45,6 +45,13 @@ const vaults: VaultConfig[] = [
     contractAddress: contracts.globalVaultCake, // bunny
     tokenPerBlock: '10',
   },
+  {
+    sousId: 6,
+    stakingToken: tokens.cake,
+    earningToken: [tokens.bnb, tokens.global],
+    contractAddress: contracts.globalVaultCakeMaximizer, // bunny
+    tokenPerBlock: '10',
+  },
 ]
 
 export default vaults

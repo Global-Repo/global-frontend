@@ -80,3 +80,8 @@ export const getGlobalVaultStakedToBnbAddress = () => {
 export const getGlobalVaultStakedToGlobalAddress = () => {
   return getAddress(addresses.globalVaultStakedToGlobal)
 }
+
+// Adresses Optimizer
+export const getGlobalVaultCakeMaximizerAddress = () => {
+  return getAddress(addresses.globalVaultCakeMaximizer)
+}
