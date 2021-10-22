@@ -58,7 +58,7 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
 
   const filteredVaults = useMemo(() => {
-    const { globalVaultStakedToBnb, globalVaultStakedToGlobal, globalVaultVested, globalVaultLocked, globalVaultCake, globalVaultCakeMaximizer, } =
+    const { globalVaultStakedToBnb, globalVaultStakedToGlobal, globalVaultVested, globalVaultLocked, globalVaultCake, globalVaultCakeMaximizer, globalVaultMixStrategy, globalVaultGlobalMaximizer, } =
       vaults
     const globalVaults = [
       // globalVaultStakedToBnb,
@@ -67,6 +67,8 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
       // globalVaultLocked,
       // globalVaultCake,
       globalVaultCakeMaximizer,
+      globalVaultMixStrategy,
+      globalVaultGlobalMaximizer,
     ].filter((el) => el != null)
 
     const tokenVaults = [globalVaultCake].filter((el) => el != null)

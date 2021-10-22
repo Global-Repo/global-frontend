@@ -15,6 +15,10 @@ import {
   fetchGlobalVaultVestedUserData,
   fetchGlobalVaultCakeMaximizerPublicData,
   fetchGlobalVaultCakeMaximizerUserData,
+  fetchGlobalVaultMixStrategyPublicData,
+  fetchGlobalVaultMixStrategyUserData,
+  fetchGlobalVaultGlobalMaximizerPublicData,
+  fetchGlobalVaultGlobalMaximizerUserData,
 } from './fetchVaults'
 import { getTokenPricesFromFarm } from '../pools/helpers'
 
@@ -25,6 +29,8 @@ const initialState: VaultsState = {
   globalVaultStakedToGlobal: undefined,
   globalVaultCake: undefined,
   globalVaultCakeMaximizer: undefined,
+  globalVaultMixStrategy: undefined,
+  globalVaultGlobalMaximizer: undefined,
   userDataLoaded: false,
 }
 
@@ -39,6 +45,8 @@ export const fetchGlobalVaultsPublicData = (): AppThunk => async (dispatch, getS
   const globalVaultLockedPublicData = await fetchGlobalVaultLockedPublicData(vaultsConfig[3], prices)
   const globalVaultCakePublicData = await fetchGlobalVaultCakePublicData(vaultsConfig[4], prices)
   const globalVaultCakeMaximizerPublicData = await fetchGlobalVaultCakeMaximizerPublicData(vaultsConfig[6], prices)
+  const globalVaultMixStrategyPublicData = await fetchGlobalVaultMixStrategyPublicData(vaultsConfig[7], prices)
+  const globalVaultGlobalMaximizerPublicData = await fetchGlobalVaultGlobalMaximizerPublicData(vaultsConfig[8], prices)
   
   const globalVaultStakedToBnb: GlobalVaultStaked = {
     ...vaultsConfig[0],
@@ -70,12 +78,24 @@ export const fetchGlobalVaultsPublicData = (): AppThunk => async (dispatch, getS
     ...globalVaultCakeMaximizerPublicData,
   }
 
+  const globalVaultMixStrategy: GlobalVaultStaked = {
+    ...vaultsConfig[7],
+    ...globalVaultMixStrategyPublicData,
+  }
+
+  const globalVaultGlobalMaximizer: GlobalVaultStaked = {
+    ...vaultsConfig[8],
+    ...globalVaultGlobalMaximizerPublicData,
+  }
+
   dispatch(setGlobalVaultStakedToBnbPublicData(globalVaultStakedToBnb))
   dispatch(setGlobalVaultStakedToGlobalPublicData(globalVaultStakedToGlobal))
   dispatch(setGlobalVaultVestedPublicData(globalVaultVested))
   dispatch(setGlobalVaultLockedPublicData(globalVaultLocked))
   dispatch(setGlobalVaultCakePublicData(globalVaultCake))
   dispatch(setGlobalVaultCakeMaximizerPublicData(globalVaultCakeMaximizer))
+  dispatch(setGlobalVaultMixStrategyPublicData(globalVaultMixStrategy))
+  dispatch(setGlobalVaultGlobalMaximizerPublicData(globalVaultGlobalMaximizer))
 }
 
 export const fetchGlobalVaultsUserData =
@@ -87,6 +107,8 @@ export const fetchGlobalVaultsUserData =
     const globalVaultLockedUserData = await fetchGlobalVaultLockedUserData(account, vaultsConfig[3])
     const globalVaultCakeUserData = await fetchGlobalVaultCakeUserData(account, vaultsConfig[4])
     const globalVaultCakeMaximizerUserData = await fetchGlobalVaultCakeMaximizerUserData(account, vaultsConfig[6])
+    const globalVaultMixStrategyUserData = await fetchGlobalVaultMixStrategyUserData(account, vaultsConfig[7])
+    const globalVaultGlobalMaximizerUserData = await fetchGlobalVaultGlobalMaximizerUserData(account, vaultsConfig[8])
 
     dispatch(setGlobalVaultStakedToBnbUserData(globalVaultStakedToBnbUserData))
     dispatch(setGlobalVaultStakedToGlobalUserData(globalVaultStakedToGlobalUserData))
@@ -94,7 +116,8 @@ export const fetchGlobalVaultsUserData =
     dispatch(setGlobalVaultLockedUserData(globalVaultLockedUserData))
     dispatch(setGlobalVaultCakeUserData(globalVaultCakeUserData))
     dispatch(setGlobalVaultCakeMaximizerUserData(globalVaultCakeMaximizerUserData))
-
+    dispatch(setGlobalVaultMixStrategyUserData(globalVaultMixStrategyUserData))
+    dispatch(setGlobalVaultGlobalMaximizerUserData(globalVaultGlobalMaximizerUserData))
     dispatch(setGlobalVaultUserDataLoaded())
   }
 
@@ -138,6 +161,18 @@ export const vaultsSlice = createSlice({
     setGlobalVaultCakeMaximizerPublicData: (state, action) => {
       state.globalVaultCakeMaximizer = { ...state.globalVaultCakeMaximizer, ...action.payload }
     },
+    setGlobalVaultMixStrategyUserData: (state, action) => {
+      state.globalVaultMixStrategy = { ...state.globalVaultMixStrategy, ...action.payload }
+    },
+    setGlobalVaultMixStrategyPublicData: (state, action) => {
+      state.globalVaultMixStrategy = { ...state.globalVaultMixStrategy, ...action.payload }
+    },
+    setGlobalVaultGlobalMaximizerUserData: (state, action) => {
+      state.globalVaultGlobalMaximizer = { ...state.globalVaultGlobalMaximizer, ...action.payload }
+    },
+    setGlobalVaultGlobalMaximizerPublicData: (state, action) => {
+      state.globalVaultGlobalMaximizer = { ...state.globalVaultGlobalMaximizer, ...action.payload }
+    },
     setGlobalVaultUserDataLoaded: (state) => {
       state.userDataLoaded = true
     },
@@ -161,6 +196,10 @@ export const {
   setGlobalVaultCakeUserData,
   setGlobalVaultCakeMaximizerPublicData,
   setGlobalVaultCakeMaximizerUserData,
+  setGlobalVaultMixStrategyPublicData,
+  setGlobalVaultMixStrategyUserData,
+  setGlobalVaultGlobalMaximizerPublicData,
+  setGlobalVaultGlobalMaximizerUserData,
   setGlobalVaultUserDataLoaded,
 } = vaultsSlice.actions
 

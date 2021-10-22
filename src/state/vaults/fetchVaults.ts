@@ -7,6 +7,8 @@ import {
   getGlobalVaultStakedToGlobalContract,
   getGlobalVaultVestedContract,
   getGlobalVaultCakeMaximizerContract,
+  getGlobalVaultMixStrategyContract,
+  getGlobalVaultGlobalMaximizerContract,
 } from '../../utils/contractHelpers'
 import { BIG_ZERO } from '../../utils/bigNumber'
 import { VaultConfig } from '../../config/constants/types'
@@ -277,6 +279,94 @@ export const fetchGlobalVaultCakeMaximizerPublicData = async (vaultConfig: Vault
 export const fetchGlobalVaultCakeMaximizerUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
   try {
     const contract = getGlobalVaultCakeMaximizerContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+
+    // return console.log(contract, " - Contrato Cake Maximizer")
+
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultMixStrategyPublicData = async (vaultConfig: VaultConfig, prices: any): Promise<any> => {
+  try {
+    const contract = getGlobalVaultMixStrategyContract()
+
+    return {
+      totalStaked: BIG_ZERO.toJSON(),
+      vaultApr: [{ token: tokens.global, apr: 0.5 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+    }
+    // return new BigNumber(stakingToken)
+
+    // return console.log(contract, " - Contrato Cake Maximizer")
+
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultMixStrategyUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultMixStrategyContract()
+
+    const allowance = await contract.methods.balanceOf(account).call()
+    const stakingTokenBalance = await contract.methods.balanceOf(account).call()
+    const stakedBalance = await contract.methods.balanceOf(account).call()
+    const pendingReward = await contract.methods.earned(account).call()
+
+    return {
+      userData: {
+        allowance: new BigNumber(allowance).toJSON(),
+        stakingTokenBalance: new BigNumber(stakingTokenBalance).toJSON(),
+        stakedBalance: new BigNumber(stakedBalance).toJSON(),
+        pendingReward: new BigNumber(pendingReward).toJSON(),
+      },
+    }
+
+    // return console.log(contract, " - Contrato Cake Maximizer")
+
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultGlobalMaximizerPublicData = async (vaultConfig: VaultConfig, prices: any): Promise<any> => {
+  try {
+    const contract = getGlobalVaultGlobalMaximizerContract()
+
+    return {
+      totalStaked: BIG_ZERO.toJSON(),
+      vaultApr: [{ token: tokens.global, apr: 0.5 }],
+      earningTokensPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+      stakingTokenPrice: [{ token: tokens.global, earningTokenPrice: 20 }],
+    }
+    // return new BigNumber(stakingToken)
+
+    // return console.log(contract, " - Contrato Cake Maximizer")
+
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchGlobalVaultGlobalMaximizerUserData = async (account: string, vaultConfig: VaultConfig): Promise<any> => {
+  try {
+    const contract = getGlobalVaultGlobalMaximizerContract()
 
     const allowance = await contract.methods.balanceOf(account).call()
     const stakingTokenBalance = await contract.methods.balanceOf(account).call()

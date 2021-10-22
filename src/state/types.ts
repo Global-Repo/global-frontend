@@ -171,6 +171,8 @@ export interface VaultsState {
   globalVaultStakedToGlobal: GlobalVaultStaked
   globalVaultCake: GlobalVaultStaked
   globalVaultCakeMaximizer: GlobalVaultStaked
+  globalVaultMixStrategy: GlobalVaultStaked
+  globalVaultGlobalMaximizer: GlobalVaultStaked
   userDataLoaded: boolean
 }
 

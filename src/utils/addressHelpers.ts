@@ -85,3 +85,9 @@ export const getGlobalVaultStakedToGlobalAddress = () => {
 export const getGlobalVaultCakeMaximizerAddress = () => {
   return getAddress(addresses.globalVaultCakeMaximizer)
 }
+export const getGlobalVaultMixStrategyAddress = () => {
+  return getAddress(addresses.globalVaultMixStrategy)
+}
+export const getGlobalVaultGlobalMaximizerAddress = () => {
+  return getAddress(addresses.globalVaultGlobalMaximizer)
+}

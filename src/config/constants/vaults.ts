@@ -48,8 +48,22 @@ const vaults: VaultConfig[] = [
   {
     sousId: 6,
     stakingToken: tokens.cake,
-    earningToken: [tokens.bnb, tokens.global],
+    earningToken: [tokens.cake, tokens.global],
     contractAddress: contracts.globalVaultCakeMaximizer, // bunny
+    tokenPerBlock: '10',
+  },
+  {
+    sousId: 7,
+    stakingToken: tokens.cake,
+    earningToken: [tokens.cake, tokens.global],
+    contractAddress: contracts.globalVaultMixStrategy, // bunny
+    tokenPerBlock: '10',
+  },
+  {
+    sousId: 8,
+    stakingToken: tokens.cake,
+    earningToken: [tokens.cake, tokens.global],
+    contractAddress: contracts.globalVaultGlobalMaximizer, // bunny
     tokenPerBlock: '10',
   },
 ]

@@ -92,5 +92,13 @@ export default {
   globalVaultCakeMaximizer: {
     56: '0x00',
     97: '0x64993bc72a773F5D90686b139Ac8BC719B650ecE',
+  },
+  globalVaultMixStrategy: {
+    56: '0x00',
+    97: '0x96bDede48ea32b03167E5253ea3D34D8486710b7',
+  },
+  globalVaultGlobalMaximizer: {
+    56: '0x00',
+    97: '0x5dC1410c6465079F85dfaDaD0a953Da76496A2C4',
   }
 }
