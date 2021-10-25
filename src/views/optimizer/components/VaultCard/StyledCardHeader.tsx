@@ -8,6 +8,9 @@ import TokenPairImage from 'components/TokenPairImage'
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: transparent;
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
+  h1{
+    text-align:center;
+  }
 `
 
 const StyledCardHeader: React.FC<{
@@ -29,15 +32,16 @@ const StyledCardHeader: React.FC<{
 
   return (
     <Wrapper isFinished={isFinished} background={background}>
+      <Title>Cake maximizer</Title>
       <Flex alignItems="center" justifyContent="space-between">
-        <Flex flexDirection="column">
+        <FlexCustom>
           <Heading color={isFinished ? 'textDisabled' : 'white'} scale="lg">
-            {`${getHeadingPrefix()} ${earningToken[0].symbol}`}
+            {`${getHeadingPrefix()} ${earningToken[0].symbol} + GLOBAL`}
           </Heading>
           <Text bold color={isFinished ? 'textDisabled' : 'textSubtle'}>
             {getSubHeading()}
           </Text>
-        </Flex>
+        </FlexCustom>
         <TokenPairImage primaryToken={earningToken[0]} secondaryToken={stakingToken} width={64} height={64} />
       </Flex>
     </Wrapper>
@@ -45,3 +49,19 @@ const StyledCardHeader: React.FC<{
 }
 
 export default StyledCardHeader
+
+const FlexCustom = styled.div `
+  display:flex;
+  flex-direction:column;
+  h1{
+    text-align:center;
+  }
+`
+
+const Title = styled.h1 `
+  width:100%;
+  font-size:25px;
+  color: white;
+  margin:auto;
+  margin-bottom:30px;
+`

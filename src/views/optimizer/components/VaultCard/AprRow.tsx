@@ -35,6 +35,9 @@ const AprRow: React.FC<AprRowProps> = ({ vault, performanceFee = 0 }) => {
     />,
   )
 
+  const vaultAPR = aprArray[0].apr - (aprArray[0].apr * 0.02) + (aprArray[0].apr * 0.4)
+  const cakeAPR = aprArray[0].apr * (aprArray[0].apr * 0.3)
+
   return (
     <Flex alignItems="center" justifyContent="space-between">
       <TooltipText>{`${t('APR')}:`}</TooltipText>
@@ -42,7 +45,7 @@ const AprRow: React.FC<AprRowProps> = ({ vault, performanceFee = 0 }) => {
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">
-          <Balance fontSize="16px" isDisabled={false} value={aprArray[0].apr} decimals={2} unit="%" bold />
+          <Balance fontSize="16px" isDisabled={false} value={vaultAPR} decimals={2} unit="%" bold />
           <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
             <CalculateIcon color="textSubtle" width="18px" />
           </IconButton>
