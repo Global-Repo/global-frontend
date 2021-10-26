@@ -35,6 +35,10 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: 'BeGlobal',
     href: 'https://beglobal.finance/',
   },
+    {
+    label: 'Help',
+    href: 'https://beglobal-finance.gitbook.io/beglobal/',
+  },
 ]
 
 export default config

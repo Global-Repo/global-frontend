@@ -80,6 +80,10 @@ const EarnAPRCard = () => {
     return null
   }, [globalPrice, farmsLP])
 
+
+  // test
+  console.log("Hightest APR --> ", highestApr)
+
   const aprText = highestApr || '-'
   const earnAprText = t('Earn up to %highestApr% APR in Farms', { highestApr: aprText })
   const [earnUpTo, InFarms] = earnAprText.split(aprText)

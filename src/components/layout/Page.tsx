@@ -13,11 +13,11 @@ const StyledBackground = styled.div`
 
 const HomeStyledBackground = styled(StyledBackground)`
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/home/logo.png'), url('/images/home/logo1.png'), url('/images/home/logo2.png'),
+    background-image: url('/images/home/header_bg.svg'),url('/images/home/logo1.png'), url('/images/home/logo2.png'),
       url('/images/home/logo3.png'), url('/images/home/logo4.png'), url('/images/home/logo5.png');
     background-repeat: no-repeat;
-    background-size: 200px 200px, 200px 200px, 400px 400px, 300px 300px, 350px 350px, 500px 500px;
-    background-position: 60% 0, 10% 15%, 96% 20%, 5% 40%, 30% 60%, 95% 100%;
+    background-size:  100%,292px 225px, 164px 272px, 300px 300px, 350px 350px, 500px 500px;
+    background-position: 0% 0%, 14% 19%, 87% -1%, 5% 40%, 30% 60%, 95% 100%;
   }
 `
 

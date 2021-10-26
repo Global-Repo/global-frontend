@@ -12,14 +12,30 @@ const GlobalStyle = createGlobalStyle`
     font-family: Poppins, sans-serif;
   }
   body {
-    background: linear-gradient(45deg, #1748a0, #0b2761 ,#1c102b);
+    background: linear-gradient(45deg, #FFFFFF, #F8F6FB ,#F4F0F8);
     background-color: ${({ theme }) => theme.colors.background};
-
     img {
       height: auto;
       max-width: 100%;
     }
+  } 
+  button.sc-hKFxyN.iOpbS {
+    background: #FF0000;
+    font-weight: 400;
+    border-radius: 10px;
+    box-shadow: none;
   }
+  .qjpMz{
+    max-width:1410px;
+  }
+  .bZyZKQ{
+    color:#000000;
+    font-weight: 600;
+  }
+  .oRbct{
+    border-bottom:1px solid #000000;
+  }
+}
 `
 
 export default GlobalStyle

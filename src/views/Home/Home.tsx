@@ -16,7 +16,16 @@ const HomeHeader = styled.div`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     // height: 280px;
-    padding: 40px 0 64px 0;
+    padding: 35px 60px 60px 60px;
+    margin-top:20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 60px rgba(179, 165, 209, 0.31);
+    backdrop-filter: blur(56px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 16px;
   }
 `
 
@@ -107,6 +116,9 @@ const CardsRowOf1 = styled.div`
   margin-bottom: 80px;
 `
 
+
+
+
 const Home: React.FC = () => {
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
@@ -116,15 +128,15 @@ const Home: React.FC = () => {
     <HomeHeader>
       <Flex height="100%" alignItems="center">
         <Flex flexDirection="column" maxWidth="50%">
-          <Text bold fontSize={isMobile ? '18px' : '48px'}>
+          <Text style={{ color: 'black' }} bold fontSize={isMobile ? '18px' : '60px'}>
             {t('One-stop-shop for all your DeFi needs')}
           </Text>
-          <Text bold mt="32px" fontSize={isMobile ? '18px' : '26px'}>
+          <Text style={{ color: 'black' }} mt="32px" fontSize={isMobile ? '18px' : '28px'}>
             {t('Take advantage of our cheap DEX, yield optimizer and APR boost rewards')}
           </Text>
         </Flex>
-        <Flex flexGrow={1} justifyContent="flex-end">
-          <Image src="/images/home/tothemoon.png" width={368} height={373} />
+        <Flex flexGrow={1} justifyContent="center">
+          <Image src="/images/home/tothemoon.png" width={450} height={450} />
         </Flex>
       </Flex>
     </HomeHeader>

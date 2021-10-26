@@ -12,7 +12,7 @@ const ButtonText = styled(Text)`
 
 const StyledLink = styled(Link)`
   margin-right: 16px;
-  display: flex;
+  display: none;
   justify-content: flex-end;
 
   &:hover {
