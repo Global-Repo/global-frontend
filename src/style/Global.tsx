@@ -12,8 +12,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: Poppins, sans-serif;
   }
   body {
-    background: linear-gradient(45deg, #FFFFFF, #F8F6FB ,#F4F0F8);
-    background-color: ${({ theme }) => theme.colors.background};
+    background: linear-gradient(45deg, #FFFFFF, #FFFFFF);
+    color: #000000; 
+    background-color: #FFFFFF;
     img {
       height: auto;
       max-width: 100%;
@@ -35,6 +36,13 @@ const GlobalStyle = createGlobalStyle`
   .oRbct{
     border-bottom:1px solid #000000;
   }
+  .hJFjHj {
+    background: linear-gradient(45deg, #FFFFFF, #F8F6FB ,#F4F0F8);
+  }
+  .hftXGS{
+    background: #F7F4FA;
+  }
+
 }
 `
 

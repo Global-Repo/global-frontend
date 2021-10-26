@@ -13,12 +13,20 @@ const StyledTotalValueLockedCard = styled.div`
 `
 
 const CardMidContent = styled(Heading).attrs({ scale: 'xxl' })`
-  background: linear-gradient(to right, #D41615, #F49F23);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: normal;
-  margin-bottom: 32px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 61px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #FF0000;
 `
+
+const styleHeading = {
+  color: '#000000',
+  fontSize: '22px'
+}
+
 
 const TotalValueLockedCard = () => {
   const { t } = useTranslation()
@@ -27,7 +35,7 @@ const TotalValueLockedCard = () => {
 
   return (
     <StyledTotalValueLockedCard>
-      <Heading scale="xl" mb="24px" mt="80px">
+      <Heading style={styleHeading} scale="xl" mb="24px" mt="80px">
         {t('Total Value Locked (TVL)')}
       </Heading>
       {data ? (
@@ -37,7 +45,7 @@ const TotalValueLockedCard = () => {
       ) : (
         <Skeleton height={66} width={500} mb="36px" />
       )}
-      <Text fontSize="32px">{t('Across all LPs and Pools')}</Text>
+      <Text color="black" fontSize="22px">{t('Across all LPs and Pools')}</Text>
     </StyledTotalValueLockedCard>
   )
 }

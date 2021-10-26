@@ -116,7 +116,7 @@ const CardsRowOf1 = styled.div`
   margin-bottom: 80px;
 `
 
-
+const styleBlack = { color: 'black' }
 
 
 const Home: React.FC = () => {
@@ -128,11 +128,14 @@ const Home: React.FC = () => {
     <HomeHeader>
       <Flex height="100%" alignItems="center">
         <Flex flexDirection="column" maxWidth="50%">
-          <Text style={{ color: 'black' }} bold fontSize={isMobile ? '18px' : '60px'}>
+          <Text style={styleBlack} bold fontSize={isMobile ? '18px' : '60px'}>
             {t('One-stop-shop for all your DeFi needs')}
           </Text>
-          <Text style={{ color: 'black' }} mt="32px" fontSize={isMobile ? '18px' : '28px'}>
-            {t('Take advantage of our cheap DEX, yield optimizer and APR boost rewards')}
+          <Text style={styleBlack} mt="32px" fontSize={isMobile ? '18px' : '28px'}>
+            {t('Take advantage of our cheap ')}
+            <b>{t('DEX, yield optimizer ')}</b>
+            {t('and ')}
+            <b>{t('APR boost rewards')}</b>
           </Text>
         </Flex>
         <Flex flexGrow={1} justifyContent="center">
