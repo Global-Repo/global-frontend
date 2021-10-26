@@ -5,37 +5,6 @@ import { ChainId } from '@duhd4h/global-sdk'
 import { poolsConfig, vaultsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
-// Addresses
-import {
-  getAddress,
-  getPancakeProfileAddress,
-  getPancakeRabbitsAddress,
-  getBunnyFactoryAddress,
-  getBunnySpecialAddress,
-  getCakeAddress,
-  getLotteryAddress,
-  getLotteryTicketAddress,
-  getLotteryV2Address,
-  getMasterChefAddress,
-  getPointCenterIfoAddress,
-  getClaimRefundAddress,
-  getTradingCompetitionAddress,
-  getEasterNftAddress,
-  getCakeVaultAddress,
-  getPredictionsAddress,
-  getChainlinkOracleAddress,
-  getMulticallAddress,
-  getGlobalVaultLockedAddress,
-  getGlobalVaultStakedToBnbAddress,
-  getGlobalVaultStakedToGlobalAddress,
-  getGlobalVaultVestedAddress,
-  getGlobalVaultCakeAddress,
-  getGlobalAddress,
-  getGlobalVaultCakeMaximizerAddress,
-  getGlobalVaultMixStrategyAddress,
-  getGlobalVaultGlobalMaximizerAddress,
-} from 'utils/addressHelpers'
-
 // ABI
 import profileABI from 'config/abi/pancakeProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
@@ -71,8 +40,43 @@ import globalVaultCakeAbi from 'config/abi/globalVaultCake.json'
 import globalVaultCakeMaximizerAbi from 'config/abi/globalVaultCakeMaximizerAbi.json'
 import globalVaultMixStrategyAbi from 'config/abi/globalVaultMixStrategyAbi.json'
 import globalVaultGlobalMaximizerAbi from 'config/abi/globalVaultGlobalMaximizerAbi.json'
+import globalPresaleAbi from 'config/abi/globalPresaleAbi.json'
 import { DEFAULT_GAS_PRICE } from 'config'
 import { getSettings, getGasPriceInWei } from './settings'
+
+
+// Addresses
+import {
+  getAddress,
+  getPancakeProfileAddress,
+  getPancakeRabbitsAddress,
+  getBunnyFactoryAddress,
+  getBunnySpecialAddress,
+  getCakeAddress,
+  getLotteryAddress,
+  getLotteryTicketAddress,
+  getLotteryV2Address,
+  getMasterChefAddress,
+  getPointCenterIfoAddress,
+  getClaimRefundAddress,
+  getTradingCompetitionAddress,
+  getEasterNftAddress,
+  getCakeVaultAddress,
+  getPredictionsAddress,
+  getChainlinkOracleAddress,
+  getMulticallAddress,
+  getGlobalVaultLockedAddress,
+  getGlobalVaultStakedToBnbAddress,
+  getGlobalVaultStakedToGlobalAddress,
+  getGlobalVaultVestedAddress,
+  getGlobalVaultCakeAddress,
+  getGlobalAddress,
+  getGlobalVaultCakeMaximizerAddress,
+  getGlobalVaultMixStrategyAddress,
+  getGlobalVaultGlobalMaximizerAddress,
+  getGlobalPresaleAddress
+} from './addressHelpers'
+
 
 export const getDefaultGasPrice = () => {
   const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
@@ -203,3 +207,8 @@ export const getGlobalVaultMixStrategyContract = (web3?: Web3) => {
 export const getGlobalVaultGlobalMaximizerContract = (web3?: Web3) => {
   return getContract(globalVaultGlobalMaximizerAbi, getGlobalVaultGlobalMaximizerAddress(), web3)
 }
+
+export const getGlobalPresaleContract = (web3?: Web3) => {
+  return getContract(globalPresaleAbi, getGlobalPresaleAddress(), web3)
+}
+

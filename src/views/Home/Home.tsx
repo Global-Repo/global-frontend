@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
 import Page from 'components/layout/Page'
@@ -7,6 +7,7 @@ import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPRCard from 'views/Home/components/EarnAPRCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
+import ProgressBar from './components/ProgressBar'
 import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
@@ -107,6 +108,40 @@ const CardsRowOf1 = styled.div`
   margin-bottom: 80px;
 `
 
+const CustomCountdown = styled.div`
+    padding: 80px;
+    border-radius: 20px;
+    background-color: #141519;
+    -webkit-box-shadow: 0 80px 110px 0 rgb(0 0 0 / 30%);
+    box-shadow: 0 80px 110px 0 rgb(0 0 0 / 30%);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    height: 300px;
+    h1 {   
+      margin: 0.4 em 0;
+      font-size: 26px;
+      line-height: 1.3em;
+      font-weight: 700;
+      color: #fff;
+      font-family: comfortaa, Arial, helvetica neue, Helvetica, sans-serif;
+      letter-spacing: -.02em;
+  }
+  span {
+
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+    color: #c3c9d4;
+  }
+`
+
+
 const Home: React.FC = () => {
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
@@ -133,6 +168,15 @@ const Home: React.FC = () => {
   return (
     <Page isHome>
       {header}
+      <CustomCountdown>
+        <h1>Whitelist Presale</h1>
+        <span/>
+        <ProgressBar/>
+        <div>
+          <p>No Softcap</p>
+          <p>Hardcap 7345 BNB</p>
+        </div>
+      </CustomCountdown>
       <TotalValueLockedCard />
       <PartnershipsCard />
       <Test>

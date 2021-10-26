@@ -12,6 +12,8 @@ import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
 import EarnRow from './EarnRow'
 import PenaltyFeeRow from './PenaltyFeeRow'
+import AprCakeRow from './AprCakeRow'
+import AprGlobalRow from './AprGlobalRow'
 
 const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | GlobalVaultStaked; account: string }> = ({
   vault,
@@ -38,6 +40,8 @@ const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | Globa
             />
             <CardBody>
               <AprRow vault={vault} />
+              <AprCakeRow vault={vault}/>
+              <AprGlobalRow vault={vault}/>
               <EarnRow />
               {'penaltyFee' in vault && <PenaltyFeeRow vault={vault} />}
               <Flex mt="24px" flexDirection="column">

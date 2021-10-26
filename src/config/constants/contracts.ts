@@ -100,5 +100,9 @@ export default {
   globalVaultGlobalMaximizer: {
     56: '0x00',
     97: '0x5dC1410c6465079F85dfaDaD0a953Da76496A2C4',
+  },
+  globalPresaleAddress: {
+    56: '0xf3EE02Aa4617ceC793AAEbD98ed295d65AF3BBfD',
+    97: '',
   }
 }
