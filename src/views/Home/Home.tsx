@@ -98,20 +98,20 @@ const Test2 = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 60%;
-  height: 550px;
+  width: 70%;
+  height: 600px;
   :nth-child(1){
     align-items: start;
-    width: 330px;
+    width: 360px;
   }
   :nth-child(2){
     align-items: start;
-    width: 330px;
+    width: 360px;
   }
 `
 
 const Test3 = styled.div`
-  width: 40%;
+  width: 30%;
 `
 
 const CardsRowOf1 = styled.div`

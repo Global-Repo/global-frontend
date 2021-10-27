@@ -14,8 +14,10 @@ import GlobalWalletBalance from './GlobalWalletBalance'
 const StyledFarmStakingCard = styled(Card)`
   min-height: 200px;
   width: 100%;
-  background: #134894;
-  border: 2px solid white;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  border-radius: 16px;
+  margin-top:20px;
 `
 
 const Block = styled.div`

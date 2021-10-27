@@ -35,23 +35,32 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBody>
+
         <Heading color="black" scale="lg" mb="24px">
           {t('Global Stats')}
         </Heading>
+
         <Row>
           <Text color="#66596F" fontSize="14px">{t('Total GLOGBAL Supply')}</Text>
         </Row>
         <Row>
-          {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
+          {cakeSupply && <CardValue fontSize="18px" color="black" value={cakeSupply} />}
         </Row>
+
         <Row>
           <Text color="#66596F" fontSize="14px">{t('Total GLOGBAL Burned')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('New GLOGBAL/block')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={20} />
+          <CardValue fontSize="18px" color="black" decimals={0} value={burnedBalance} />
         </Row>
+        
+        <Row>
+          <Text color="#66596F" fontSize="14px">{t('New GLOGBAL/block')}</Text>
+        </Row>
+        <Row>
+          <CardValue fontSize="18px" color="black" decimals={0} value={20} />
+        </Row>
+
       </CardBody>
     </StyledCakeStats>
   )
