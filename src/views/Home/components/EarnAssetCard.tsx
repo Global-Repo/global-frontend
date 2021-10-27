@@ -8,12 +8,12 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-color: #134894;
-  border: 2px solid white;
-  border-radius: 24px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  border-radius: 16px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
     max-width: none;
@@ -21,11 +21,12 @@ const StyledFarmStakingCard = styled(Card)`
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   line-height: 55px;
-  background: linear-gradient(to right, #D41615, #F49F23);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-style: normal;
   font-weight: bold;
+  font-size: 18px;
+  color: #FF0000;
 `
+const styleInFarms = { color: '#66596F', fontSize: '14px' }
 
 const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
 const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
@@ -43,12 +44,12 @@ const EarnAssetCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading color="contrast" scale="lg">
+        <Heading color="black" scale="lg">
           {earn}
         </Heading>
         <CardMidContent>{assets}</CardMidContent>
         <Flex justifyContent="space-between">
-          <Heading color="contrast" scale="lg">
+          <Heading style={styleInFarms} color="black" scale="lg">
             {InPools}
           </Heading>
         </Flex>

@@ -11,9 +11,9 @@ const StyledCakeStats = styled(Card)`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #134894;
-  border: 2px solid white;
-  border-radius: 24px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  border-radius: 16px;
 `
 
 const Row = styled.div`
@@ -24,6 +24,8 @@ const Row = styled.div`
   margin-bottom: 8px;
 `
 
+
+
 const CakeStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
@@ -33,19 +35,21 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBody>
-        <Heading scale="lg" mb="24px">
+        <Heading color="black" scale="lg" mb="24px">
           {t('Global Stats')}
         </Heading>
         <Row>
-          <Text fontSize="14px">{t('Total GLOGBAL Supply')}</Text>
+          <Text color="#66596F" fontSize="14px">{t('Total GLOGBAL Supply')}</Text>
+        </Row>
+        <Row>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{t('Total GLOGBAL Burned')}</Text>
+          <Text color="#66596F" fontSize="14px">{t('Total GLOGBAL Burned')}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
-          <Text fontSize="14px">{t('New GLOGBAL/block')}</Text>
+          <Text color="#66596F" fontSize="14px">{t('New GLOGBAL/block')}</Text>
           <CardValue fontSize="14px" decimals={0} value={20} />
         </Row>
       </CardBody>

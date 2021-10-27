@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
-import CakeStats from 'views/Home/components/CakeStats'
+import GlobalStats from 'views/Home/components/GlobalStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPRCard from 'views/Home/components/EarnAPRCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
@@ -193,7 +193,7 @@ const Home: React.FC = () => {
           <EarnAssetCard />
         </Test2>
         <Test2>
-          <CakeStats />
+          <GlobalStats />
           <FarmStakingCard />
 
         </Test2>

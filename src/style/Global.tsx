@@ -49,7 +49,9 @@ const GlobalStyle = createGlobalStyle`
     color: #28A8EA;
     fill: #28A8EA;
   }
-
+  .dtlQIr{
+    margin-right: 10px;
+  }
 }
 `
 
