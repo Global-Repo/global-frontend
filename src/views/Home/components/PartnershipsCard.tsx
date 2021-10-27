@@ -31,9 +31,9 @@ const BlockPartner1 = styled.div`
   justify-content: space-between;
   margin-bottom:15px;
   padding:10px;
-  background-image: url('/images/home/placeholder_cylinder.svg');
+  background-image: url('/images/home/placeholder_cylinder.png');
   background-repeat: no-repeat;
-  background-size:   100% 50%;
+  background-position: center;
 `
 
 const BlockPartnerCone = styled.div`
@@ -53,6 +53,9 @@ const BlockPartner2 = styled.div`
   background: #FFFFFF;
   box-shadow: 0px 4px 95px rgba(179, 165, 209, 0.31);
   border-radius: 8px;
+  background-image: url('/images/home/placeholder_cube.png');
+  background-repeat: no-repeat;
+  background-position: center;
 `
 const BlockPartner3 = styled.div`
   width: 192px;
@@ -61,6 +64,9 @@ const BlockPartner3 = styled.div`
   box-shadow: 0px 4px 95px rgba(179, 165, 209, 0.31);
   border-radius: 8px;
   margin-bottom:15px;
+  background-image: url('/images/home/placeholder_thorus.png');
+  background-repeat: no-repeat;
+  background-position: center;
 `
 
 const BlockPartner4 = styled.div`
@@ -69,6 +75,9 @@ const BlockPartner4 = styled.div`
   background: #FFFFFF;
   box-shadow: 0px 4px 95px rgba(179, 165, 209, 0.31);
   border-radius: 8px;
+  background-image: url('/images/home/placeholder_pyramid.png');
+  background-repeat: no-repeat;
+  background-position: center;
 `
 
 const RowGrid = styled.div`

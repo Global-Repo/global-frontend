@@ -60,7 +60,7 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading scale="lg" mb="24px">
+        <Heading color="black" scale="lg" mb="24px">
           {t('Farms & Staking')}
         </Heading>
         <Block>
