@@ -27,7 +27,6 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      globalPriceUsd={globalPriceUsd}
       links={config(t)}
       profile={{
         username: profile?.username,

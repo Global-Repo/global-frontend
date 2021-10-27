@@ -14,10 +14,10 @@ const StyledBackground = styled.div`
 const HomeStyledBackground = styled(StyledBackground)`
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
-      url('/images/home/logo3.png'), url('/images/home/logo4.png'), url('/images/home/logo5.png'),url('/images/home/header_bg.svg');
+       url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.svg'),url('/images/home/bg_partneships.svg');
     background-repeat: no-repeat;
-    background-size:   292px 225px, 164px 272px, 300px 300px, 350px 350px, 500px 500px, 100% 50%;
-    background-position:  14% 19%, 87% -1%, 5% 40%, 30% 60%, 95% 100%, 0% -25%;
+    background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 50%, 500px 500px;
+    background-position:  14% 19%, 87% -1%, 11% 65%, 88% 92%, 0% -25%, 100% 100%;
   }
 `
 
