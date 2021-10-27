@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
 import Page from 'components/layout/Page'
@@ -7,6 +7,7 @@ import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPRCard from 'views/Home/components/EarnAPRCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
+import ProgressBar from './components/ProgressBar'
 import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
@@ -18,10 +19,11 @@ const HomeHeader = styled.div`
     // height: 280px;
     padding: 35px 60px 60px 60px;
     margin-top:20px;
+    margin-top: 20px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
-    box-shadow: 0px 4px 60px rgba(179, 165, 209, 0.31);
+    box-shadow: 0px 4px 20px rgb(179 165 209 / 31%);
     backdrop-filter: blur(56px);
     /* Note: backdrop-filter has minimal browser support */
 
@@ -118,6 +120,40 @@ const CardsRowOf1 = styled.div`
 
 const styleBlack = { color: 'black' }
 
+const CustomCountdown = styled.div`
+    padding: 80px;
+    border-radius: 20px;
+    background-color: #141519;
+    -webkit-box-shadow: 0 80px 110px 0 rgb(0 0 0 / 30%);
+    box-shadow: 0 80px 110px 0 rgb(0 0 0 / 30%);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    height: 300px;
+    h1 {   
+      margin: 0.4 em 0;
+      font-size: 26px;
+      line-height: 1.3em;
+      font-weight: 700;
+      color: #fff;
+      font-family: comfortaa, Arial, helvetica neue, Helvetica, sans-serif;
+      letter-spacing: -.02em;
+  }
+  span {
+
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+    color: #c3c9d4;
+  }
+`
+
+
 
 const Home: React.FC = () => {
   const { t } = useTranslation()
@@ -139,7 +175,7 @@ const Home: React.FC = () => {
           </Text>
         </Flex>
         <Flex flexGrow={1} justifyContent="center">
-          <Image src="/images/home/tothemoon.png" width={450} height={450} />
+          <Image src="/images/home/tothemoon.png" width={480} height={450} />
         </Flex>
       </Flex>
     </HomeHeader>
@@ -148,6 +184,7 @@ const Home: React.FC = () => {
   return (
     <Page isHome>
       {header}
+
       <TotalValueLockedCard />
       <PartnershipsCard />
       <Test>

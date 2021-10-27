@@ -16,13 +16,19 @@ const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: #134894;
-  border: 2px solid white;
-  border-radius: 24px;
-
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  border-radius: 16px;
+  font-size:22px;
+  color:black;
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
     max-width: none;
+  }
+  & > span {
+      color:red;
+      padding:0px;
+      font-size:14px;
   }
 `
 const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
@@ -60,10 +66,13 @@ const EarnAPRCard = () => {
 
   const highestApr = useMemo(() => {
     if (globalPrice.gt(0)) {
+      // no pasa el if
+      console.log("globalPrice", globalPrice)
       const aprs = farmsLP.map((farm) => {
         // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
         if (farm.pid !== 0 && farm.multiplier !== '0X' && farm.lpTotalInQuoteToken && farm.quoteToken.busdPrice) {
           const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
+          console.log("totalLiquidity", totalLiquidity)
           return getFarmApr(
             new BigNumber(farm.poolWeight),
             globalPrice,
@@ -88,13 +97,15 @@ const EarnAPRCard = () => {
   const earnAprText = t('Earn up to %highestApr% APR in Farms', { highestApr: aprText })
   const [earnUpTo, InFarms] = earnAprText.split(aprText)
 
+  const styleInFarms = { color: '#66596F', fontSize: '14px' }
+
   return (
     <StyledFarmStakingCard>
-      <CardBody style={{ height: '100%' }}>
-        <Heading color="contrast" scale="lg">
+      <CardBody style={{ height: '100%', color: '#000000'}}>
+        <Heading color="black" scale="lg">
           {earnUpTo}
         </Heading>
-        <CardMidContent color="primary">
+        <CardMidContent color="black">
           {highestApr && !isFetchingFarmData ? (
             `${highestApr}%`
           ) : (
@@ -105,16 +116,16 @@ const EarnAPRCard = () => {
           )}
         </CardMidContent>
         <Flex justifyContent="space-between">
-          <Heading color="contrast" scale="lg">
+          <Heading style={styleInFarms} color="black" scale="lg">
             {InFarms}
           </Heading>
         </Flex>
         <BorderGradientButton
-          label="Details >"
+          label="Connect Wallet"
           onClick={() => history.push('/farms')}
-          style={{ padding: '8px', marginTop: '32px', width: '100%' }}
-          colorRight="#F49F23"
-          colorLeft="#D41615"
+          style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+          colorRight="#FFECEC"
+          colorLeft="#FFECEC"
         />
       </CardBody>
     </StyledFarmStakingCard>

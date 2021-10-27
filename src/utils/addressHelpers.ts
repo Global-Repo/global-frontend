@@ -1,7 +1,7 @@
 import { ChainId } from '@duhd4h/global-sdk'
-import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
 import { Address } from 'config/constants/types'
+import addresses from '../config/constants/contracts'
 
 export const getAddress = (address: Address): string => {
   const chainId = process.env.REACT_APP_CHAIN_ID
@@ -90,4 +90,8 @@ export const getGlobalVaultMixStrategyAddress = () => {
 }
 export const getGlobalVaultGlobalMaximizerAddress = () => {
   return getAddress(addresses.globalVaultGlobalMaximizer)
+}
+
+export const getGlobalPresaleAddress = () => {
+  return getAddress(addresses.globalPresaleAddress)
 }

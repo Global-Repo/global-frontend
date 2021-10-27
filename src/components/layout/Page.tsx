@@ -17,7 +17,7 @@ const HomeStyledBackground = styled(StyledBackground)`
       url('/images/home/logo3.png'), url('/images/home/logo4.png'), url('/images/home/logo5.png'),url('/images/home/header_bg.svg');
     background-repeat: no-repeat;
     background-size:   292px 225px, 164px 272px, 300px 300px, 350px 350px, 500px 500px, 100% 50%;
-    background-position:  14% 19%, 87% -1%, 5% 40%, 30% 60%, 95% 100%, 0% 0%;
+    background-position:  14% 19%, 87% -1%, 5% 40%, 30% 60%, 95% 100%, 0% -25%;
   }
 `
 
@@ -26,7 +26,6 @@ const StyledPage = styled(Container)`
   padding-bottom: 16px;
   width: 100%;
   color:black;
-
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-bottom: 24px;
   }

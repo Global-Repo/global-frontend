@@ -37,10 +37,17 @@ const GlobalStyle = createGlobalStyle`
     border-bottom:1px solid #000000;
   }
   .hJFjHj {
-    background: linear-gradient(45deg, #FFFFFF, #F8F6FB ,#F4F0F8);
+    background: #F8F6FB;
   }
   .hftXGS{
-    background: #F7F4FA;
+    background: #F8F6FB;
+  }
+  nav {
+    background-color: #F8F6FB;
+  }
+  .kipmKU{
+    color: #28A8EA;
+    fill: #28A8EA;
   }
 
 }
