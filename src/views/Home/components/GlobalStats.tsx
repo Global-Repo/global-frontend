@@ -30,7 +30,7 @@ const CakeStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getGlobalAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const globalSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   return (
     <StyledCakeStats>
@@ -41,21 +41,21 @@ const CakeStats = () => {
         </Heading>
 
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('Total GLOGBAL Supply')}</Text>
+          <Text color="#66596F" fontSize="14px">{t('Total GLOBAL Supply')}</Text>
         </Row>
         <Row>
-          {cakeSupply && <CardValue fontSize="18px" color="black" value={cakeSupply} />}
+          {globalSupply && <CardValue fontSize="18px" color="black" value={globalSupply} />}
         </Row>
 
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('Total GLOGBAL Burned')}</Text>
+          <Text color="#66596F" fontSize="14px">{t('Total GLOBAL Burned')}</Text>
         </Row>
         <Row>
           <CardValue fontSize="18px" color="black" decimals={0} value={burnedBalance} />
         </Row>
-        
+
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('New GLOGBAL/block')}</Text>
+          <Text color="#66596F" fontSize="14px">{t('New GLOBAL/block')}</Text>
         </Row>
         <Row>
           <CardValue fontSize="18px" color="black" decimals={0} value={20} />
