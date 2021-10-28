@@ -26,6 +26,16 @@ const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   font-size: 18px;
   color: #FF0000;
 `
+
+const ButtonCustomGlobal = styled.div`
+  & > div > span {
+      -webkit-text-fill-color: #FF0000;
+      -webkit-background-clip: text;
+      color: #FF0000;
+      padding:0px;
+      font-size:14px;
+  }
+`
 const styleInFarms = { color: '#66596F', fontSize: '14px' }
 
 const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
@@ -53,13 +63,15 @@ const EarnAssetCard = () => {
             {InPools}
           </Heading>
         </Flex>
-        <BorderGradientButton
-          label="Details >"
-          onClick={() => history.push('/poolsGlobal')}
-          style={{ padding: '8px', marginTop: '32px', width: '100%' }}
-          colorRight="#F49F23"
-          colorLeft="#D41615"
-        />
+        <ButtonCustomGlobal>
+          <BorderGradientButton
+            label="Details >"
+            onClick={() => history.push('/poolsGlobal')}
+            style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+            colorRight="#FFECEC"
+            colorLeft="#FFECEC"
+          />
+        </ButtonCustomGlobal>
       </CardBody>
     </StyledFarmStakingCard>
   )

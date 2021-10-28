@@ -7,6 +7,9 @@ const TimelineWrapper = styled.div`
   justify-content: center;
   height: 800px;
   border-radius: 16px;
+  & > div > div > iframe {
+    border-radius: 16px;
+  }
 `
 
 const AnnouncementsCard = () => {

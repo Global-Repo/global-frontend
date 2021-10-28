@@ -33,7 +33,7 @@ const GlobalHarvestBalance: React.FC<GlobalHarvestBalanceProps> = ({ farmsWithBa
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '56px' }}>
+      <Text color="textDisabled" style={{lineHeight: '56px', fontSize: '18px', color:'#000000', fontWeight: 'bold'}}>
         {t('Locked')}
       </Text>
     )

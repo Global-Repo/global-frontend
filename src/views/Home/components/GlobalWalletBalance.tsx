@@ -19,7 +19,7 @@ const GlobalWalletBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '54px' }}>
+      <Text color="textDisabled" style={{lineHeight: '56px', fontSize: '18px', color:'#000000', fontWeight: 'bold'}}>
         {t('Locked')}
       </Text>
     )

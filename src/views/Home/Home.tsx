@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
+import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
+import { NavLink, useHistory } from 'react-router-dom'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import GlobalStats from 'views/Home/components/GlobalStats'
@@ -26,7 +27,6 @@ const HomeHeader = styled.div`
     box-shadow: 0px 4px 20px rgb(179 165 209 / 31%);
     backdrop-filter: blur(56px);
     /* Note: backdrop-filter has minimal browser support */
-
     border-radius: 16px;
   }
 `
@@ -134,7 +134,7 @@ const CustomCountdown = styled.div`
     justify-content: space-around;
     align-items: space-around;
     height: 300px;
-    h1 {   
+    h1 {
       margin: 0.4 em 0;
       font-size: 26px;
       line-height: 1.3em;
@@ -153,12 +153,27 @@ const CustomCountdown = styled.div`
   }
 `
 
+const ButtonCustomGlobal = styled.div`
+  & > div > span {
+      -webkit-text-fill-color: #FF0000;
+      -webkit-background-clip: text;
+      color: #FF0000;
+      padding:0px;
+      font-size:14px;
+  }
+  & > div  {
+      // restyle button width force
+      width: 141px !important;
+  }
+`
+
 
 
 const Home: React.FC = () => {
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
   const isMobile = !isXl
+  const history = useHistory()
 
   const header = (
     <HomeHeader>
@@ -173,6 +188,17 @@ const Home: React.FC = () => {
             {t('and ')}
             <b>{t('APR boost rewards')}</b>
           </Text>
+
+          <ButtonCustomGlobal>
+            <BorderGradientButton
+              label="Trade now"
+              onClick={() => history.push('/farms')}
+              style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+              colorRight="#FFECEC"
+              colorLeft="#FFECEC"
+            />
+          </ButtonCustomGlobal>
+
         </Flex>
         <Flex flexGrow={1} justifyContent="center">
           <Image src="/images/home/tothemoon.png" width={480} height={450} />
@@ -202,19 +228,19 @@ const Home: React.FC = () => {
         </Test3>
       </Test>
       {/* <CardsRowOf1>
-        
+
       </CardsRowOf1>
       <CardsRowOf1>
-        
+
       </CardsRowOf1>
       <CardsRowOf3>
-        
+
       </CardsRowOf3>
       <CardsRowOf3>
-        
+
       </CardsRowOf3>
       <CardsRowOf1>
-        
+
       </CardsRowOf1> */}
     </Page>
   )

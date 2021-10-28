@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton, BorderGradientButton } from '@duhd4h/global-uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton, BorderGradientButton, Button } from '@duhd4h/global-uikit'
 import { ChainId } from '@duhd4h/global-sdk'
 import max from 'lodash/max'
 import { NavLink, useHistory } from 'react-router-dom'
@@ -39,6 +39,17 @@ const CardMidContent = styled(Heading).attrs({ scale: 'lg' })`
   font-weight: bold;
 `
 
+const ButtonCustomGlobal = styled.div`
+  & > div > span {
+      -webkit-text-fill-color: #FF0000;
+      -webkit-background-clip: text;
+      color: #FF0000;
+      padding:0px;
+      font-size:14px;
+  }
+`
+
+
 const EarnAPRCard = () => {
   const [isFetchingFarmData, setIsFetchingFarmData] = useState(true)
   const { t } = useTranslation()
@@ -46,7 +57,6 @@ const EarnAPRCard = () => {
   const globalPrice = usePriceGlobalBusd()
   const dispatch = useAppDispatch()
   const { observerRef, isIntersecting } = useIntersectionObserver()
-
   const history = useHistory()
 
   // Fetch farm data once to get the max APR
@@ -120,13 +130,15 @@ const EarnAPRCard = () => {
             {InFarms}
           </Heading>
         </Flex>
-        <BorderGradientButton
-          label="Connect Wallet"
-          onClick={() => history.push('/farms')}
-          style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
-          colorRight="#FFECEC"
-          colorLeft="#FFECEC"
-        />
+        <ButtonCustomGlobal>
+          <BorderGradientButton
+            label="Details >"
+            onClick={() => history.push('/farms')}
+            style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+            colorRight="#FFECEC"
+            colorLeft="#FFECEC"
+          />
+        </ButtonCustomGlobal>
       </CardBody>
     </StyledFarmStakingCard>
   )

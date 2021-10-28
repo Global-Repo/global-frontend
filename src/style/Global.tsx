@@ -13,19 +13,25 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background: linear-gradient(45deg, #FFFFFF, #FFFFFF);
-    color: #000000; 
+    color: #000000;
     background-color: #FFFFFF;
     img {
       height: auto;
       max-width: 100%;
     }
-  } 
+  }
   button.sc-hKFxyN.iOpbS {
     background: #FF0000;
     font-weight: 400;
     border-radius: 10px;
     box-shadow: none;
   }
+
+  // no display price at the moment
+  nav > div > div > a > div > div{
+    display:none !important;
+  }
+
   .qjpMz{
     max-width:1410px;
   }

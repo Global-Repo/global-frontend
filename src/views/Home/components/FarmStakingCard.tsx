@@ -34,6 +34,25 @@ const Actions = styled.div`
   margin-top: 24px;
 `
 
+const ButtonCustomGlobal = styled.div`
+  & > div > span {
+      -webkit-text-fill-color: #FF0000;
+      -webkit-background-clip: text;
+      color: #FF0000;
+      padding:0px;
+      font-size:14px;
+  }
+  & > div:before {
+      background: #FFECEC;
+      -webkit-mask: none;
+      border: 1px solid rgb(255, 219, 219);
+      border-radius:10px;
+  }
+  & > div {
+    padding:12px !important;
+  }
+`
+
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWeb3React()
@@ -87,10 +106,17 @@ const FarmedStakingCard = () => {
               width="100%"
               style={{ padding: '8px', width: '100%' }}
               colorRight="#F49F23"
-          colorLeft="#D41615"
+              colorLeft="#D41615"
             />
+
           ) : (
-            <UnlockButton width="100%" />
+            <ButtonCustomGlobal>
+              <UnlockButton
+              style={{ padding: '12px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+              width="100%"
+              colorRight="#FFECEC"
+              colorLeft="#FFECEC" />
+            </ButtonCustomGlobal>
           )}
         </Actions>
       </CardBody>
