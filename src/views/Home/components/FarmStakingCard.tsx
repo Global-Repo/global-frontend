@@ -27,7 +27,8 @@ const Block = styled.div`
 const Label = styled.div`
   color: ${({ theme }) => theme.colors.textSubtle};
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 300;
+  color: #A099A5;
 `
 
 const Actions = styled.div`
@@ -35,6 +36,7 @@ const Actions = styled.div`
 `
 
 const ButtonCustomGlobal = styled.div`
+
   & > div > span {
       -webkit-text-fill-color: #FF0000;
       -webkit-background-clip: text;
@@ -92,23 +94,24 @@ const FarmedStakingCard = () => {
         </Block>
         <Actions>
           {account ? (
-            <BorderGradientButton
-              label={
-                pendingTx
-                  ? t('Collecting GLOBAL')
-                  : t('Harvest all (%count%)', {
-                      count: balancesWithValue.length,
-                    })
-              }
-              id="harvest-all"
-              disabled={balancesWithValue.length <= 0 || pendingTx}
-              onClick={harvestAllFarms}
-              width="100%"
-              style={{ padding: '12px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
-              colorRight="#FFECEC"
-              colorLeft="#FFECEC"
-            />
-
+            <ButtonCustomGlobal>
+              <BorderGradientButton
+                label={
+                  pendingTx
+                    ? t('Collecting GLOBAL')
+                    : t('Harvest all (%count%)', {
+                        count: balancesWithValue.length,
+                      })
+                }
+                id="harvest-all"
+                disabled={balancesWithValue.length <= 0 || pendingTx}
+                onClick={harvestAllFarms}
+                width="100%"
+                style={{ padding: '12px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+                colorRight="#FFECEC"
+                colorLeft="#FFECEC"
+              />
+            </ButtonCustomGlobal>
           ) : (
             <ButtonCustomGlobal>
               <UnlockButton

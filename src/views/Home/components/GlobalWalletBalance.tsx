@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text } from '@duhd4h/global-uikit'
+import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
@@ -17,6 +18,16 @@ const GlobalWalletBalance = () => {
   const busdBalance = new BigNumber(getBalanceNumber(globalBalance)).multipliedBy(globalPriceBusd).toNumber()
   const { account } = useWeb3React()
 
+  const CustomfarmStaking = styled.div`
+    & > div {
+      color:black;
+      font-weight:600;
+      margin-top:10px;
+    }
+  `
+
+
+
   if (!account) {
     return (
       <Text color="textDisabled" style={{lineHeight: '56px', fontSize: '18px', color:'#000000', fontWeight: 'bold'}}>
@@ -27,8 +38,8 @@ const GlobalWalletBalance = () => {
 
   return (
     <>
-      <CardValue value={getBalanceNumber(globalBalance)} decimals={4} fontSize="24px" lineHeight="36px" />
-      {globalPriceBusd.gt(0) ? <CardBusdValue value={busdBalance} /> : <br />}
+      <CustomfarmStaking><CardValue value={getBalanceNumber(globalBalance)} decimals={4} color="black" fontSize="18px" lineHeight="22px" /></CustomfarmStaking>
+        {globalPriceBusd.gt(0) ? <CardBusdValue value={busdBalance} /> : <br />}
     </>
   )
 }

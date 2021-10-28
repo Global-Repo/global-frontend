@@ -26,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
     box-shadow: none;
   }
-
   // no display price at the moment
   nav > div > div > a > div > div{
     display:none !important;
@@ -34,9 +33,17 @@ const GlobalStyle = createGlobalStyle`
   nav > div{
     max-width:1410px;
   }
-  // no display effect around button 
+  // no display effect around button
   nav > div > div > div > div > button:after {
     content: none !important;
+  }
+  // when connect wallet
+  nav > div > div > div > div > span {
+    -webkit-text-fill-color: #FF0000 !important;
+  }
+  nav > div > div > div > div > span:before {
+    brackground: #FF0000 !important;
+    -webkit-background-clip: text;
   }
   .bZyZKQ{
     color:#000000;

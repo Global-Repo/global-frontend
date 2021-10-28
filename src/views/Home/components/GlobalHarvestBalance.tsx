@@ -13,6 +13,13 @@ import CardBusdValue from './CardBusdValue'
 const Block = styled.div`
   margin-bottom: 24px;
 `
+const CustomfarmStaking = styled.div`
+  & > div {
+    color:black;
+    font-weight:600;
+    margin-top:10px;
+  }
+`
 
 interface GlobalHarvestBalanceProps {
   farmsWithBalance: FarmWithBalance[]
@@ -41,8 +48,8 @@ const GlobalHarvestBalance: React.FC<GlobalHarvestBalanceProps> = ({ farmsWithBa
 
   return (
     <Block>
-      <CardValue value={earningsSum} lineHeight="1.5" fontSize="24px" />
-      {globalPriceBusd.gt(0) && <CardBusdValue value={earningsBusd} />}
+      <CustomfarmStaking><CardValue value={earningsSum} lineHeight="22px" fontSize="18px"/></CustomfarmStaking>
+        {globalPriceBusd.gt(0) && <CardBusdValue value={earningsBusd} />}
     </Block>
   )
 }

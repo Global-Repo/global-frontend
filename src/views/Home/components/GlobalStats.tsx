@@ -22,6 +22,16 @@ const Row = styled.div`
   font-size: 14px;
   justify-content: space-between;
   margin-bottom: 8px;
+  text-transform: uppercase;
+`
+
+const Row2 = styled.div`
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 `
 
 
@@ -43,23 +53,23 @@ const CakeStats = () => {
         <Row>
           <Text color="#66596F" fontSize="14px">{t('Total GLOBAL Supply')}</Text>
         </Row>
-        <Row>
+        <Row2>
           {globalSupply && <CardValue fontSize="18px" color="black" value={globalSupply} />}
-        </Row>
+        </Row2>
 
         <Row>
           <Text color="#66596F" fontSize="14px">{t('Total GLOBAL Burned')}</Text>
         </Row>
-        <Row>
+        <Row2>
           <CardValue fontSize="18px" color="black" decimals={0} value={burnedBalance} />
-        </Row>
+        </Row2>
 
         <Row>
           <Text color="#66596F" fontSize="14px">{t('New GLOBAL/block')}</Text>
         </Row>
-        <Row>
+        <Row2>
           <CardValue fontSize="18px" color="black" decimals={0} value={20} />
-        </Row>
+        </Row2>
 
       </CardBody>
     </StyledCakeStats>

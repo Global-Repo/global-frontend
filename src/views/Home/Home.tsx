@@ -221,7 +221,17 @@ const Home: React.FC = () => {
   return (
     <Page isHome>
       {header}
-
+      {/*
+      <CustomCountdown>
+        <h1>Whitelist Presale</h1>
+        <span/>
+        <ProgressBar/>
+        <div>
+          <p>No Softcap</p>
+          <p>Hardcap 7345 BNB</p>
+        </div>
+      </CustomCountdown>
+      */}
       <TotalValueLockedCard />
       <PartnershipsCard />
       <Test>
