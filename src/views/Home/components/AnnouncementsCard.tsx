@@ -9,6 +9,7 @@ const TimelineWrapper = styled.div`
   border-radius: 16px;
   & > div > div > iframe {
     border-radius: 16px;
+    min-height: 630px !important;
   }
 `
 

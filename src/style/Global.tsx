@@ -26,11 +26,15 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
     box-shadow: none;
   }
+  // button responsive
+  nav > div > div > button:after{
+    content: none !important;
+  }
   // no display price at the moment
   nav > div > div > a > div > div{
     display:none !important;
   }
-  nav > div{
+  nav > div {
     max-width:1410px;
   }
   // no display effect around button
@@ -40,8 +44,9 @@ const GlobalStyle = createGlobalStyle`
   // when connect wallet
   nav > div > div > div > div > span {
     -webkit-text-fill-color: #FF0000 !important;
+    background: linear-gradient( to right, #FF0000, #FF0000 );
   }
-  nav > div > div > div > div > span:before {
+  nav > div > div > div > div {
     brackground: #FF0000 !important;
     -webkit-background-clip: text;
   }
@@ -55,7 +60,6 @@ const GlobalStyle = createGlobalStyle`
   .hJFjHj {
     background: #F8F6FB;
   }
-
   nav {
     background-color: #F8F6FB !important;
   }

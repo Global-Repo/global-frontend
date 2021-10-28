@@ -99,7 +99,7 @@ const Test2 = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 70%;
-  height: 600px;
+  height: 630px;
   :nth-child(1){
     align-items: start;
     width: 380px;

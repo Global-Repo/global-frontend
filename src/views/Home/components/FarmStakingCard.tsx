@@ -29,10 +29,11 @@ const Label = styled.div`
   font-size: 14px;
   font-weight: 300;
   color: #A099A5;
+  text-transform: uppercase;
 `
 
 const Actions = styled.div`
-  margin-top: 24px;
+  margin-top: 10px;
 `
 
 const ButtonCustomGlobal = styled.div`
@@ -107,7 +108,7 @@ const FarmedStakingCard = () => {
                 disabled={balancesWithValue.length <= 0 || pendingTx}
                 onClick={harvestAllFarms}
                 width="100%"
-                style={{ padding: '12px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+                style={{ padding: '12px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10}}
                 colorRight="#FFECEC"
                 colorLeft="#FFECEC"
               />

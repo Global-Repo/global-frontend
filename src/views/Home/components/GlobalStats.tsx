@@ -51,21 +51,21 @@ const CakeStats = () => {
         </Heading>
 
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('Total GLOBAL Supply')}</Text>
+          <Text color="#A099A5" fontSize="14px">{t('Total GLOBAL Supply')}</Text>
         </Row>
         <Row2>
           {globalSupply && <CardValue fontSize="18px" color="black" value={globalSupply} />}
         </Row2>
 
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('Total GLOBAL Burned')}</Text>
+          <Text color="#A099A5" fontSize="14px">{t('Total GLOBAL Burned')}</Text>
         </Row>
         <Row2>
           <CardValue fontSize="18px" color="black" decimals={0} value={burnedBalance} />
         </Row2>
 
         <Row>
-          <Text color="#66596F" fontSize="14px">{t('New GLOBAL/block')}</Text>
+          <Text color="#A099A5" fontSize="14px">{t('New GLOBAL/block')}</Text>
         </Row>
         <Row2>
           <CardValue fontSize="18px" color="black" decimals={0} value={20} />
