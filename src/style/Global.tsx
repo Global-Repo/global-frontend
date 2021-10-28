@@ -31,8 +31,7 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > a > div > div{
     display:none !important;
   }
-
-  .qjpMz{
+  nav > div{
     max-width:1410px;
   }
   .bZyZKQ{
@@ -45,11 +44,9 @@ const GlobalStyle = createGlobalStyle`
   .hJFjHj {
     background: #F8F6FB;
   }
-  .hftXGS{
-    background: #F8F6FB;
-  }
+
   nav {
-    background-color: #F8F6FB;
+    background-color: #F8F6FB !important;
   }
   .kipmKU{
     color: #28A8EA;

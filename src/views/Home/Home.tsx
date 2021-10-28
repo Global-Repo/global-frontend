@@ -102,11 +102,11 @@ const Test2 = styled.div`
   height: 600px;
   :nth-child(1){
     align-items: start;
-    width: 360px;
+    width: 380px;
   }
   :nth-child(2){
     align-items: start;
-    width: 360px;
+    width: 380px;
   }
 `
 
@@ -167,6 +167,13 @@ const ButtonCustomGlobal = styled.div`
   }
 `
 
+const HomeHeaderImages = styled.div`
+  & > img  {
+      position: absolute;
+      display:none;
+  }
+`
+
 
 
 const Home: React.FC = () => {
@@ -176,35 +183,39 @@ const Home: React.FC = () => {
   const history = useHistory()
 
   const header = (
-    <HomeHeader>
-      <Flex height="100%" alignItems="center">
-        <Flex flexDirection="column" maxWidth="50%">
-          <Text style={styleBlack} bold fontSize={isMobile ? '18px' : '60px'}>
-            {t('One-stop-shop for all your DeFi needs')}
-          </Text>
-          <Text style={styleBlack} mt="32px" fontSize={isMobile ? '18px' : '28px'}>
-            {t('Take advantage of our cheap ')}
-            <b>{t('DEX, yield optimizer ')}</b>
-            {t('and ')}
-            <b>{t('APR boost rewards')}</b>
-          </Text>
+    <HomeHeaderImages>
 
-          <ButtonCustomGlobal>
-            <BorderGradientButton
-              label="Trade now"
-              onClick={() => history.push('/farms')}
-              style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
-              colorRight="#FFECEC"
-              colorLeft="#FFECEC"
-            />
-          </ButtonCustomGlobal>
+      <HomeHeader>
+        <Flex height="100%" alignItems="center">
+          <Flex flexDirection="column" maxWidth="50%">
+            <Text style={styleBlack} bold fontSize={isMobile ? '18px' : '60px'}>
+              {t('One-stop-shop for all your DeFi needs')}
+            </Text>
+            <Text style={styleBlack} mt="32px" fontSize={isMobile ? '18px' : '28px'}>
+              {t('Take advantage of our cheap ')}
+              <b>{t('DEX, yield optimizer ')}</b>
+              {t('and ')}
+              <b>{t('APR boost rewards')}</b>
+            </Text>
 
+            <ButtonCustomGlobal>
+              <BorderGradientButton
+                label="Trade now"
+                onClick={() => history.push('/farms')}
+                style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+                colorRight="#FFECEC"
+                colorLeft="#FFECEC"
+              />
+            </ButtonCustomGlobal>
+
+          </Flex>
+          <Flex flexGrow={1} justifyContent="center">
+            <Image src="/images/home/tothemoon.png" width={480} height={450} />
+          </Flex>
         </Flex>
-        <Flex flexGrow={1} justifyContent="center">
-          <Image src="/images/home/tothemoon.png" width={480} height={450} />
-        </Flex>
-      </Flex>
-    </HomeHeader>
+      </HomeHeader>
+      <img src="/images/home/logo1.png" alt="global Cube" id="cube_homeHeader" width="292" height="225"/>
+    </HomeHeaderImages>
   )
 
   return (
