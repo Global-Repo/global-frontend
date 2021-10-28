@@ -34,6 +34,10 @@ const GlobalStyle = createGlobalStyle`
   nav > div{
     max-width:1410px;
   }
+  // no display effect around button 
+  nav > div > div > div > div > button:after {
+    content: none !important;
+  }
   .bZyZKQ{
     color:#000000;
     font-weight: 600;

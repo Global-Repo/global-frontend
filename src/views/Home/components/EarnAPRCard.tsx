@@ -77,7 +77,6 @@ const EarnAPRCard = () => {
   const highestApr = useMemo(() => {
     if (globalPrice.gt(0)) {
       // no pasa el if
-      console.log("globalPrice", globalPrice)
       const aprs = farmsLP.map((farm) => {
         // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
         if (farm.pid !== 0 && farm.multiplier !== '0X' && farm.lpTotalInQuoteToken && farm.quoteToken.busdPrice) {

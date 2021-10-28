@@ -104,9 +104,9 @@ const FarmedStakingCard = () => {
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
               width="100%"
-              style={{ padding: '8px', width: '100%' }}
-              colorRight="#F49F23"
-              colorLeft="#D41615"
+              style={{ padding: '12px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+              colorRight="#FFECEC"
+              colorLeft="#FFECEC"
             />
 
           ) : (
