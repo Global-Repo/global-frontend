@@ -38,6 +38,23 @@ const GlobalStyle = createGlobalStyle`
     z-index: -1;
     top: 0%;
   }
+
+  // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.xs} {
+    // nav custom bakcground
+    #root > div > div > div:first-of-type {
+      
+    }
+  }
+  // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.sm} {
+    // nav custom bakcground
+    #root > div > div > div:first-of-type {
+
+    }
+  }
+
+
   // button responsive
   nav > div > div > button:after{
     content: none !important;

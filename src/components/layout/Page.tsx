@@ -16,8 +16,8 @@ const HomeStyledBackground = styled(StyledBackground)`
     background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
        url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
     background-repeat: no-repeat;
-    background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 44%, 100% 60%;
-    background-position:  14% 19%, 87% -1%, 11% 65%, 88% 92%, 0% -25%, 100% 100%;
+    background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
+    background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
     z-index: -999999;
   }
 `

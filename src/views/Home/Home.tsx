@@ -156,11 +156,6 @@ const CustomCountdownImages = styled.div`
     margin-top:70px;
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
-    padding: 50px;
-    margin-top:20px;
-  }
-
 `
 
 const CustomCountdown = styled.div`
