@@ -41,16 +41,21 @@ const GlobalStyle = createGlobalStyle`
 
   // Styles for mobile nav
   ${({ theme }) => theme.mediaQueries.xs} {
-    // nav custom bakcground
+    // nav custom background only in mobile format
     #root > div > div > div:first-of-type {
-      
+      background:white;
     }
   }
   // Styles for mobile nav
   ${({ theme }) => theme.mediaQueries.sm} {
     // nav custom bakcground
     #root > div > div > div:first-of-type {
-
+      background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
+         url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
+      background-repeat: no-repeat;
+      background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
+      background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
+      z-index: 0;
     }
   }
 
