@@ -18,6 +18,7 @@ const HomeStyledBackground = styled(StyledBackground)`
     background-repeat: no-repeat;
     background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 44%, 100% 60%;
     background-position:  14% 19%, 87% -1%, 11% 65%, 88% 92%, 0% -25%, 100% 100%;
+    z-index: -999999;
   }
 `
 

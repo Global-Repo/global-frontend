@@ -8,7 +8,7 @@ const TimelineWrapper = styled.div`
     margin-top:30px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-
+    margin-top:0px;
   }
   height: 800px;
   border-radius: 16px;

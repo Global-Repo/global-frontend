@@ -26,6 +26,18 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
     box-shadow: none;
   }
+  #points_in_progress {
+    position: absolute;
+    left: 0%;
+    z-index: -1;
+    bottom: 0%;
+  }
+  #points_in_progress_2 {
+    position: absolute;
+    right: 0%;
+    z-index: -1;
+    top: 0%;
+  }
   // button responsive
   nav > div > div > button:after{
     content: none !important;

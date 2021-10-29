@@ -41,6 +41,7 @@ const ProgressBarWrapperUp = styled.div`
   box-shadow: 0px 2px 15px rgba(179, 165, 209, 0.33);
   border-radius: 16px;
   padding:5px;
+  position:relative;
 `
 
 const ProgressBar = () => {
