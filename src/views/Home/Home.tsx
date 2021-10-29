@@ -120,12 +120,20 @@ const CardsRowOf1 = styled.div`
 
 const styleBlack = { color: 'black' }
 
+
+const CustomCountdownImages = styled.div`
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 50px;
+    margin-top:50px;
+  }
+`
+
 const CustomCountdown = styled.div`
-    padding: 80px;
-    border-radius: 20px;
-    background-color: #141519;
-    -webkit-box-shadow: 0 80px 110px 0 rgb(0 0 0 / 30%);
-    box-shadow: 0 80px 110px 0 rgb(0 0 0 / 30%);
+    padding: 40px;
+    background: #FFFFFF;
+    border: 2px solid white;
+    box-shadow: 0px 4px 95px rgba(179, 165, 209, 0.31);
+    border-radius: 16px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     text-align: center;
@@ -133,13 +141,13 @@ const CustomCountdown = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: space-around;
-    height: 300px;
+    height: 270px;
     h1 {
       margin: 0.4 em 0;
-      font-size: 26px;
+      font-size: 28px;
       line-height: 1.3em;
       font-weight: 700;
-      color: #fff;
+      color: #000000;
       font-family: comfortaa, Arial, helvetica neue, Helvetica, sans-serif;
       letter-spacing: -.02em;
   }
@@ -149,7 +157,10 @@ const CustomCountdown = styled.div`
   div {
     display: flex;
     justify-content: space-between;
-    color: #c3c9d4;
+    color: #FF0000;
+  }
+  & > div > p > b > span {
+    color:black;
   }
 `
 
@@ -221,18 +232,19 @@ const Home: React.FC = () => {
   return (
     <Page isHome>
       {header}
-      {/*
-      <CustomCountdown>
-        <h1>Whitelist Presale</h1>
-        <span/>
-        <ProgressBar/>
-        <div>
-          <p>No Softcap</p>
-          <p>Hardcap 7345 BNB</p>
-        </div>
-      </CustomCountdown>
-      */}
       <TotalValueLockedCard />
+
+      <CustomCountdownImages>
+        <CustomCountdown>
+          <h1>{t('Whitelist Presale')}</h1>
+          <ProgressBar/>
+          <div>
+            <p> <b> <span color="black">No</span> {t('Softcap')} </b> </p>
+            <p> <b> Hardcap 7345 <span color="black"> BNB </span> </b> </p>
+          </div>
+        </CustomCountdown>
+      </CustomCountdownImages>
+
       <PartnershipsCard />
       <Test>
         <Test2>
