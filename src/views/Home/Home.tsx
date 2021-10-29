@@ -15,6 +15,17 @@ import { useTranslation } from '../../contexts/Localization'
 
 const HomeHeader = styled.div`
   // height: 180px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    padding: 15px;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 20px rgb(179 165 209 / 31%);
+    backdrop-filter: blur(56px);
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 16px;
+  }
 
   ${({ theme }) => theme.mediaQueries.lg} {
     // height: 280px;
@@ -67,17 +78,14 @@ const CardsRowOf3 = styled(BaseLayout)`
   margin-bottom: 24px;
   grid-gap: 24px;
   width: 100%;
-
   & > div {
     grid-column: span 6;
   }
-
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
       grid-column: span 12;
     }
   }
-
   ${({ theme }) => theme.mediaQueries.lg} {
     margin-bottom: 80px;
     grid-gap: 32px;
@@ -88,30 +96,44 @@ const CardsRowOf3 = styled(BaseLayout)`
   }
 `
 const Test = styled.div`
-  display: flex;
-  align-items: start;
-  justify-content: space-around;
-  margin-top: 100px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+    margin-top: 100px;
+  }
 `
 
 const Test2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 70%;
-  height: 630px;
-  :nth-child(1){
-    align-items: start;
-    width: 380px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    & > div {
+      margin-top:20px;
+    }
   }
-  :nth-child(2){
-    align-items: start;
-    width: 380px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+    height: 630px;
+    :nth-child(1){
+      align-items: start;
+      width: 380px;
+    }
+    :nth-child(2){
+      align-items: start;
+      width: 380px;
+    }
+    & > div {
+      margin-top:0px;
+    }
   }
 `
 
 const Test3 = styled.div`
-  width: 30%;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 30%;
+  }
 `
 
 const CardsRowOf1 = styled.div`
@@ -122,10 +144,21 @@ const styleBlack = { color: 'black' }
 
 
 const CustomCountdownImages = styled.div`
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-top:40px;
+  }
+
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 50px;
-    margin-top:50px;
+    margin-top:70px;
   }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 50px;
+    margin-top:20px;
+  }
+
 `
 
 const CustomCountdown = styled.div`
@@ -246,6 +279,7 @@ const Home: React.FC = () => {
       </CustomCountdownImages>
 
       <PartnershipsCard />
+
       <Test>
         <Test2>
           <EarnAPRCard />
@@ -260,6 +294,7 @@ const Home: React.FC = () => {
           <AnnouncementsCard />
         </Test3>
       </Test>
+
       {/* <CardsRowOf1>
 
       </CardsRowOf1>

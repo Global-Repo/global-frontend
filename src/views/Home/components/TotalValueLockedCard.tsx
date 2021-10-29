@@ -5,6 +5,21 @@ import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
 
 const StyledTotalValueLockedCard = styled.div`
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    padding: 15px;
+    margin-top:0px;
+    & > h2 {
+      font-size:38px;
+    }
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top:40px;
+    & > h2 {
+      font-size:48px;
+    }
+  }
+
   align-items: center;
   justify-content: center;
   display: flex;
@@ -35,7 +50,7 @@ const TotalValueLockedCard = () => {
 
   return (
     <StyledTotalValueLockedCard>
-      <Heading style={styleHeading} scale="xl" mb="24px" mt="80px">
+      <Heading style={styleHeading} scale="xl" mb="24px" mt="65px">
         {t('Total Value Locked (TVL)')}
       </Heading>
       {data ? (

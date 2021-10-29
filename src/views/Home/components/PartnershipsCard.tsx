@@ -6,12 +6,29 @@ import { useTranslation } from 'contexts/Localization'
 
 
 const StyledPredictionCard = styled(Card)`
-  min-height: 200px;
   background: transparent;
-  margin-top: 100px;
-  text-aling: center;
   box-shadow:none;
-  padding: 40px;
+  text-aling: center;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 100%;
+    padding: 15px;
+    margin-top: 40px;
+    & > div > div {
+      grid-column: span 1;
+      display: block;
+    }
+    & > div {
+      padding:10px;
+    }
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    min-height: 200px;
+    margin-top: 70px;
+    padding: 40px;
+    & > div > div {
+      display: flex;
+    }
+  }
 `
 
 const textHeadingPartners = styled.div`
@@ -81,9 +98,30 @@ const BlockPartner4 = styled.div`
 `
 
 const RowGrid = styled.div`
-  gap: 1rem;
-  grid-auto-flow: column;
-  margin: 15px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    gap: 1rem;
+    grid-auto-flow: column;
+    margin: 15px;
+  }
+`
+
+const BlockMobileIntro = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width:100%;
+  }
+`
+
+const BlockMobileIntroHiddePartnerImages = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    display:none;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display:block;
+  }
 `
 
 
@@ -100,25 +138,29 @@ const PartnershipsCard = () => {
       <CardBody>
         <Flex height="100%" alignItems="center">
 
-          <Flex flexDirection="column" maxWidth="50%">
-            <Heading style={styleBlack} scale="lg" mb="24px">
-              {t('Partnerships')}
-            </Heading>
-            <Text style={styleBlack} fontSize={isMobile ? '22px' : '22px'}>
-              {t('Sit tight! We have amazing partnerships coming soon')}
-            </Text>
-          </Flex>
+          <BlockMobileIntro>
+            <Flex flexDirection="column">
+              <Heading style={styleBlack} scale="lg" mb="24px">
+                {t('Partnerships')}
+              </Heading>
+              <Text style={styleBlack} fontSize={isMobile ? '22px' : '22px'}>
+                {t('Sit tight! We have amazing partnerships coming soon')}
+              </Text>
+            </Flex>
+          </BlockMobileIntro>
 
-          <Flex flexGrow={1} justifyContent="right">
-            <RowGrid>
-              <BlockPartner1/>
-              <BlockPartner2 />               
-            </RowGrid>
-            <RowGrid>
-              <BlockPartner3 />
-              <BlockPartner4 />               
-            </RowGrid>
-          </Flex>
+          <BlockMobileIntroHiddePartnerImages>
+            <Flex flexGrow={1} justifyContent="right">
+              <RowGrid>
+                <BlockPartner1/>
+                <BlockPartner2 />
+              </RowGrid>
+              <RowGrid>
+                <BlockPartner3 />
+                <BlockPartner4 />
+              </RowGrid>
+            </Flex>
+          </BlockMobileIntroHiddePartnerImages>
 
         </Flex>
       </CardBody>

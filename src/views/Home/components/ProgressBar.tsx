@@ -48,6 +48,7 @@ const { t } = useTranslation()
 const totalSupply = useTotalSupply()
 const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
 //   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+console.log("Total Supply" , totalSupply);
 const presaleSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
 
