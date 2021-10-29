@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from '../../../hooks/useTokenBalance'
 import { useTranslation } from '../../../contexts/Localization'
-import { getCakeAddress } from '../../../utils/addressHelpers'
+import { getCakeAddress,getGlobalPresaleAddress } from '../../../utils/addressHelpers'
 
 
 const ProgressBarWrapper = styled(Card)`
@@ -48,6 +48,9 @@ const ProgressBar = () => {
 const { t } = useTranslation()
 const totalSupply = useTotalSupply()
 const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
+// global presale mainnet only for the moment
+const globalPresale = getGlobalPresaleAddress()
+console.log("Global presale", globalPresale)
 //   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 console.log("Total Supply" , totalSupply);
 const presaleSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
