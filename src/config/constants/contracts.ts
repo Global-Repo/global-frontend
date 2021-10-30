@@ -102,7 +102,7 @@ export default {
     97: '0x5dC1410c6465079F85dfaDaD0a953Da76496A2C4',
   },
   globalPresaleAddress: {
-    56: '0xf3EE02Aa4617ceC793AAEbD98ed295d65AF3BBfD',
-    97: '',
+    56: '0xC301B711fee5Fb06c92A90374c2a620a57488347',
+    97: '0x21B951970DF6EFD81A5F0cEBD530a6bC68c8a329',
   }
 }

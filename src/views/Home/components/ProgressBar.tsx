@@ -3,6 +3,7 @@ import { Card } from '@duhd4h/global-uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from '../../../hooks/useTokenBalance'
+import { useTotalSupplyPresale } from '../../../hooks/useGetPresaleAmount'
 import { useTranslation } from '../../../contexts/Localization'
 import { getCakeAddress,getGlobalPresaleAddress } from '../../../utils/addressHelpers'
 
@@ -44,25 +45,22 @@ const ProgressBarWrapperUp = styled.div`
   position:relative;
 `
 
+// anotcationes .--- ya van vendidos x bnb se partira de esa cantidad tendre que llamar para ver 
+
+
 const ProgressBar = () => {
 const { t } = useTranslation()
+
+const initPresaleQty = 1555; // bnb qty init in presale 
+
 const totalSupply = useTotalSupply()
-const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
-// global presale mainnet only for the moment
-const globalPresale = getGlobalPresaleAddress()
-console.log("Global presale", globalPresale)
-//   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
-console.log("Total Supply" , totalSupply);
-const presaleSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
-
-
-// eslint-disable-next-line no-console
-console.log( presaleSupply )
+const bnbaccQty = useTotalSupplyPresale()
+console.log("Qty seller in publis sale" , bnbaccQty);
 
   return (
     <ProgressBarWrapperUp>
       <ProgressBarWrapper>
-          <StyledProgressBar value={presaleSupply} max="734500"/>
+          <StyledProgressBar value={initPresaleQty} max="734500"/>
       </ProgressBarWrapper>
     </ProgressBarWrapperUp>
   )

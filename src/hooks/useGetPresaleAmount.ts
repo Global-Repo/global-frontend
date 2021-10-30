@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { getBep20Contract, getGlobalContract } from '../utils/contractHelpers'
+import { getBep20Contract, getGlobalContract, getGlobalPresaleContract } from '../utils/contractHelpers'
 import { BIG_ZERO } from '../utils/bigNumber'
 import useWeb3 from './useWeb3'
 import useRefresh from './useRefresh'
@@ -50,14 +50,14 @@ const useGetPresaleAmount = (tokenAddress: string) => {
   return balanceState
 }
 
-export const useTotalSupply = () => {
+export const useTotalSupplyPresale = () => {
   const { slowRefresh } = useRefresh()
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getGlobalContract()
-      const supply = await cakeContract.methods.totalSupply().call()
+      const globalContract = getGlobalPresaleContract()
+      const supply = await globalContract.methods.bnbacc().call()
       setTotalSupply(new BigNumber(supply))
     }
 
