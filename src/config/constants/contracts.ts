@@ -70,7 +70,7 @@ export default {
   // VAULTS
   globalVaultLocked: {
     56: '0xf590FFeffEDabec938C42D1Ab04F62ca715150f5',
-    97: '0xE317839e57B10fB3B70c7d9F1120FAaD82Ea077E',
+    97: '0x657d6e94B1F25A739c11B847bBA94186e962a697',
   },
   globalVaultVested: {
     56: '0x00',
@@ -82,7 +82,7 @@ export default {
   },
   globalVaultStakedToGlobal: {
     56: '0x00',
-    97: '0xCaf53E30a6A9050EA3Ee8Def3Dd99Dcfe5705dfC',
+    97: '0xe906a1Ca85A2db584a7A806E5eE868F5dbe8a7a0',
   },
   globalVaultCake: {
     56: '0x00',
@@ -91,7 +91,7 @@ export default {
   // TODO: vault bunny and VaultCakeWbnbLP
   globalVaultCakeMaximizer: {
     56: '0x00',
-    97: '0x64993bc72a773F5D90686b139Ac8BC719B650ecE',
+    97: '0x1288e2Ce2beaf4601A66dFf4f33b47A6f41C38E3',
   },
   globalVaultMixStrategy: {
     56: '0x00',

@@ -354,19 +354,18 @@ export const useAchievements = () => {
 // We have changed the usePriceBnbBusd for useCustomPrice
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10))
+  console.log(bnbBusdFarm, "bnb usd farm?")
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
 // We have changed the usePriceBnbBusd for useCustomPrice
 export const useGetCustomPrice = () => {
   const [customPrice, setCustomPrice] = useState();
-
   function round(num) {
       const m = Number((Math.abs(num) * 100).toPrecision(100));
       return Math.round(m) / 100 * Math.sign(num);
 
   }
-
   useEffect(() => {
     fetch("https://api.pancakeswap.info/api/v2/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82")
     .then( res => res.json())
@@ -377,8 +376,27 @@ export const useGetCustomPrice = () => {
   return customPrice ? round(customPrice) : undefined
 }
 
+// Custom get price BNB BUSD by cake swap to recalculate GLOBAL-BNB-BUSD
+export const useGetPriceBNBBUSD = () => {
+  const [customPrice, setCustomPrice] = useState();
+  function round(num) {
+      const m = Number((Math.abs(num) * 100).toPrecision(100));
+      return Math.round(m) / 100 * Math.sign(num);
+
+  }
+  useEffect(() => {
+    fetch("https://api.pancakeswap.info/api/v2/tokens/0xe9e7cea3dedca5984780bafc599bd69add087d56")
+    .then( res => res.json())
+    .then( res => {
+        setCustomPrice(res.data.price_BNB)
+      })
+  }, [])
+  return customPrice ? round(customPrice) : undefined
+}
+
 export const usePriceGlobalBusd = (): BigNumber => {
   const globalBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_GLOBAL_BNB_PID, 10))
+  console.log(globalBnbFarm, "global bnb farm?")
   return new BigNumber(globalBnbFarm.token.busdPrice)
 }
 

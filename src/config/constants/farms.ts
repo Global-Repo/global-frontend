@@ -17,6 +17,16 @@ const farms: FarmConfig[] = [
     // token: tokens.syrup,
     quoteToken: tokens.wbnb,
   },
+   {
+    pid: 1, // 251 pool 2 de masterchef
+    lpSymbol: 'BUSD-BNB LP',
+    lpAddresses: {
+      97: '0x478Fc90Fa07B017de8D18d7061d178dAf0e31469',
+      56: '0x8aC6Be1105bFCAFa43211461f410f2D13627f9EC',
+    },
+    token: tokens.global,
+    quoteToken: tokens.wbnb,
+  },
   {
     pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10), // 251 pool 2 de masterchef
     lpSymbol: 'GLB-BNB LP',

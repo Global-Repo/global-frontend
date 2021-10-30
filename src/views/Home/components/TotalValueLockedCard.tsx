@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
+import { useFarms, usePriceGlobalBusd } from 'state/hooks'
+
 
 const StyledTotalValueLockedCard = styled.div`
 
@@ -47,6 +49,8 @@ const TotalValueLockedCard = () => {
   const { t } = useTranslation()
   const data = useGetStats()
   const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+
+  const { data: farmsLP } = useFarms()
 
   return (
     <StyledTotalValueLockedCard>

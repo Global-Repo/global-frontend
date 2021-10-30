@@ -117,11 +117,15 @@ const CardsContainer = styled.div`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
+  console.log("llega");
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
+  console.log(farmsLP)
   const globalPrice = usePriceGlobalBusd()
+   console.log(globalPrice)
+
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
