@@ -2,10 +2,8 @@ import React from 'react'
 import { Card } from '@duhd4h/global-uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from '../../../utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from '../../../hooks/useTokenBalance'
 import { useTotalSupplyPresale } from '../../../hooks/useGetPresaleAmount'
 import { useTranslation } from '../../../contexts/Localization'
-import { getCakeAddress,getGlobalPresaleAddress } from '../../../utils/addressHelpers'
 
 
 const ProgressBarWrapper = styled(Card)`
