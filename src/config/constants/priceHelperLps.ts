@@ -26,8 +26,28 @@ const priceHelperLps: FarmConfig[] = [
       97: '0x478Fc90Fa07B017de8D18d7061d178dAf0e31469',
       56: '',
     },
-    token: tokens.qsd,
+    token: tokens.global,
     quoteToken: tokens.wbnb,
+  },
+  {
+    pid: 2,
+    lpSymbol: 'GLB-BNB LP',
+    lpAddresses: {
+      97: '0x2367320ac44b323e21f749d84fdaddd359947798',
+      56: '',
+    },
+    token: tokens.global,
+    quoteToken: tokens.wbnb,
+  },
+  {
+    pid: 3,
+    lpSymbol: 'GLB-BUSD LP',
+    lpAddresses: {
+      97: '0x2367320ac44b323e21f749d84fdaddd359947798',
+      56: '',
+    },
+    token: tokens.global,
+    quoteToken: tokens.busd,
   },
 ]
 

@@ -14,11 +14,10 @@ const farms: FarmConfig[] = [
       56: process.env.REACT_APP_GLOBAL_ADDRESS,
     },
     token: tokens.global,
-    // token: tokens.syrup,
     quoteToken: tokens.wbnb,
   },
    {
-    pid: 1, // 251 pool 2 de masterchef
+    pid: 1, 
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '0x478Fc90Fa07B017de8D18d7061d178dAf0e31469',
@@ -38,10 +37,10 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 3, // 251 pool 3 de masterchef
+    pid: 4, // 251 pool 3 de masterchef
     lpSymbol: 'GLB-BUSD LP',
     lpAddresses: {
-      97: '0x2367320ac44b323e21f749d84fdaddd359947798',
+      97: '0x2e4DcA72dE3620648aC5ECa5a8652D24281240e7',
       56: '0x7865D8632DC69ECd87d68A2e3E71E0aaFF6cF1be',
     },
     token: tokens.global,

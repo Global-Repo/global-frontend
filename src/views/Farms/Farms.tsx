@@ -124,8 +124,6 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   console.log(farmsLP)
   const globalPrice = usePriceGlobalBusd()
-   console.log(globalPrice)
-
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
@@ -169,6 +167,7 @@ const Farms: React.FC = () => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
+        console.log(totalLiquidity, "total liquisty")
         const apr = isActive
           ? getFarmApr(new BigNumber(farm.poolWeight), globalPrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : 0
