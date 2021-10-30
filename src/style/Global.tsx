@@ -39,6 +39,58 @@ const GlobalStyle = createGlobalStyle`
     top: 0%;
   }
 
+  #button_menu_ > svg{
+    fill:#000000 ;
+  }
+  #modal_wallet_open > div > div {
+      color: #000000;
+  }
+  #connect_wallet_modal, #modal_wallet_open{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
+    border-radius: 32px;
+  }
+  #connect_wallet_modal > div, #modal_wallet_open > div{
+      background-image:none !important;
+      border-bottom:0px;
+  }
+  #connect_wallet_modal > div > button{
+      background: #F0ECF4;
+  }
+  #connect_wallet_modal > div > a{
+      color: #000000;
+  }
+  #connect_wallet_modal > div > a > svg{
+      fill: #000000;
+  }
+  #connect_wallet_modal > div > button > div{
+      color: #000000;
+  }
+  #connect_wallet_modal h2, #modal_wallet_open h2{
+      color: #000000;
+  }
+  #close_dialog svg{
+      fill: #000000;
+  }
+  #BodyWrapperCustomMobile > div > div 
+  {
+    background: white;
+  }
+  #BodyWrapperCustomMobile > div > div > div > div:first-of-type 
+  {
+    
+  }
+  #walletButtomCustom > div > div:before
+  {
+   background: #FF0000;
+  }
+  #walletButtomCustom > div > div > span
+  {
+   -webkit-text-fill-color: #FF0000;
+   color: #FF0000;
+  }
+ 
+
   // Styles for mobile nav
   ${({ theme }) => theme.mediaQueries.xs} {
     // nav custom background only in mobile format
