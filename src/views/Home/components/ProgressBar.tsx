@@ -52,15 +52,15 @@ const ProgressBar = () => {
 const { t } = useTranslation()
 
 const initPresaleQty = 1555; // bnb qty init in presale 
-
-const totalSupply = useTotalSupply()
 const bnbaccQty = useTotalSupplyPresale()
-console.log("Qty seller in publis sale" , bnbaccQty);
+const totalPresaleQty = initPresaleQty+getBalanceNumber(bnbaccQty)
+console.log("Qty seller in publis sale" , totalPresaleQty);
+
 
   return (
     <ProgressBarWrapperUp>
       <ProgressBarWrapper>
-          <StyledProgressBar value={initPresaleQty} max="734500"/>
+          <StyledProgressBar value={totalPresaleQty} max="7345"/>
       </ProgressBarWrapper>
     </ProgressBarWrapperUp>
   )
