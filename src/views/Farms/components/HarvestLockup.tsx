@@ -8,6 +8,21 @@ const HelpIconWrapper = styled.div`
   margin-left: 4px;
 `
 
+const TextGlobal = styled(Text)`
+   font-weight: 600;
+   font-size:14px;
+   color: #000000;
+   line-height: 17px;
+`
+
+const TextGlobalApr = styled(Text)`
+   font-weight: 600;
+   font-size:14px;
+   color: #000000;
+   display:flex;
+   line-height: 17px;
+`
+
 interface Props {
   harvestInterval: string
 }
@@ -23,14 +38,14 @@ const HarvestLockup: FC<Props> = ({ harvestInterval }) => {
     <Flex justifyContent="space-between">
       {tooltipVisible && tooltip}
       <Flex>
-        <Text>{t('Harvest Lockup')}:</Text>
-        <HelpIconWrapper ref={targetRef}>
+        <TextGlobal>{t('Harvest Lockup')}:</TextGlobal>
+      </Flex>
+      <TextGlobalApr>
+        {harvestInterval ? <div>{parseInt(harvestInterval) / 3600} {t('Hour(s)')} </div> : ""}
+      </TextGlobalApr>
+       <HelpIconWrapper ref={targetRef}>
           <HelpIcon color="textSubtle" />
         </HelpIconWrapper>
-      </Flex>
-      <Text bold>
-        {harvestInterval ? <div>{parseInt(harvestInterval) / 3600} {t('Hour(s)')} </div> : ""}
-      </Text>
     </Flex>
   )
 }

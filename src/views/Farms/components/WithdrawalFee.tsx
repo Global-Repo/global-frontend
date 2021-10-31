@@ -13,6 +13,23 @@ const MultiLineWrapper = styled.div`
   font-size: 14px;
 `
 
+const TextGlobal = styled(Text)`
+   font-weight: 600;
+   font-size:14px;
+   color: #000000;
+   line-height: 17px;
+`
+
+const TextGlobalDesc = styled(Text)`
+   font-weight: 600;
+   font-size:14px;
+   color: #000000;
+   display:flex;
+   line-height: 17px;
+`
+
+
+
 const WithdrawalFee: FC = () => {
   const { t } = useTranslation()
 
@@ -33,9 +50,9 @@ const WithdrawalFee: FC = () => {
   return (
     <Flex justifyContent="space-between" style={{width:"100%"}}>
       {tooltipVisible && tooltip}
-      <Text>{t('Withdrawal Fee')}:</Text>
+      <TextGlobal bold color="black">{t('Withdrawal Fee')}:</TextGlobal>
       <HelpIconWrapper style={{display:"flex"}} ref={targetRef}>
-      <Text>{penaltyFee}</Text>
+      <TextGlobal bold color="black">{penaltyFee}</TextGlobal>
         <HelpIcon color="textSubtle" />
       </HelpIconWrapper>
     </Flex>

@@ -56,7 +56,7 @@ const CellInner = styled.div`
 const StyledTr = styled.tr`
   cursor: pointer;
   background: linear-gradient(to right, rgba(229, 36, 32, 0.1), rgba(206, 133, 14, 0.1));
-  border-top: 1px solid rgb(229, 36, 32);
+  border-top: 2px solid #F0ECF4;
 
   &:first-child {
     border-top: 0;
@@ -67,7 +67,7 @@ const StyledTr = styled.tr`
   }
 
   & td span {
-   
+
   }
 
 `

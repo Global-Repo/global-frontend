@@ -143,7 +143,9 @@ const DetailsWrapper = styled.div`
   margin-top: 8px;
 `
 
-const ActionItemWrapper = styled(GradientBorderBox)``
+const ActionItemWrapper = styled(GradientBorderBox)`
+  background: white;
+`
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   details,
@@ -205,17 +207,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <ActionContainer>
         <ActionItemWrapper
           borderWidth="1px"
-          colorLeft="#e52420"
-          colorRight="#ce850e"
-          style={{ flex: 1, margin: '4px 24px' }}
+          colorLeft="#ffffff"
+          colorRight="#ffffff"
+          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px'}}
         >
           <HarvestAction {...farm} userDataReady={userDataReady} harvestInterval={farm.harvestInterval} />
         </ActionItemWrapper>
         <ActionItemWrapper
           borderWidth="1px"
-          colorLeft="#e52420"
-          colorRight="#ce850e"
-          style={{ flex: 1, margin: '4px 24px' }}
+          colorLeft="#ffffff"
+          colorRight="#ffffff"
+          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px'}}
         >
           <StakedAction {...farm} userDataReady={userDataReady} />
         </ActionItemWrapper>

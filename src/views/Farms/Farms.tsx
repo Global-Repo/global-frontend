@@ -126,6 +126,19 @@ const CardsContainer = styled.div`
   }
 `
 
+const TitleSectionGlobal = styled(Heading)`
+  font-size: 38px;
+  text-align:center;
+`
+
+const SubTitleSectionGlobal = styled(Heading)`
+  font-size: 22px;
+  line-height: 34px;
+  text-align: center;
+  color: #000000;
+  font-weight:300;
+`
+
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
@@ -394,12 +407,12 @@ const Farms: React.FC = () => {
   return (
     <Page>
       <PageHeader background="transparent">
-        <Heading as="h1" scale="xxl" color="black" mb="24px">
+        <TitleSectionGlobal as="h1" scale="xxl" color="black" mb="24px">
           {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="black">
+        </TitleSectionGlobal>
+        <SubTitleSectionGlobal scale="lg" color="black">
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
-        </Heading>
+        </SubTitleSectionGlobal>
       </PageHeader>
       <Content />
       <ControlContainer>

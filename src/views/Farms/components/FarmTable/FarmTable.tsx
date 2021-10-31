@@ -22,8 +22,9 @@ const Container = styled.div`
 
 const TableWrapper = styled.div`
   overflow: visible;
-  border: 1px solid;
+  border: 0px solid;
   border-radius: 32px;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
   border-image: none;
   background:white;
   &::-webkit-scrollbar {
@@ -47,7 +48,7 @@ const TableBody = styled.tbody`
       font-size: 16px;
       vertical-align: middle;
       div  {
-         
+
       }
     }
   }
