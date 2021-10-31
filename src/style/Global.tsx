@@ -39,6 +39,9 @@ const GlobalStyle = createGlobalStyle`
     top: 0%;
   }
 
+  #StyledNavCustom svg{
+    fill:#28A8EA;
+  }
   #button_menu_ > svg{
     fill:#000000 ;
   }
@@ -72,6 +75,10 @@ const GlobalStyle = createGlobalStyle`
   #close_dialog svg{
       fill: #000000;
   }
+  #BodyWrapperCustomMobile > div 
+  {
+    background: white;
+  }
   #BodyWrapperCustomMobile > div > div 
   {
     background: white;
@@ -95,19 +102,14 @@ const GlobalStyle = createGlobalStyle`
   ${({ theme }) => theme.mediaQueries.xs} {
     // nav custom background only in mobile format
     #root > div > div > div:first-of-type {
-      background:white;
+      
     }
   }
   // Styles for mobile nav
   ${({ theme }) => theme.mediaQueries.sm} {
     // nav custom bakcground
     #root > div > div > div:first-of-type {
-      background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
-         url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
-      background-repeat: no-repeat;
-      background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
-      background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
-      z-index: 0;
+
     }
   }
 

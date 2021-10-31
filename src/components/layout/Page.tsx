@@ -9,16 +9,17 @@ import Container from './Container'
 
 const StyledBackground = styled.div`
   width: 100%;
+  background-image: none;
 `
 
 const HomeStyledBackground = styled(StyledBackground)`
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
-       url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
-    background-repeat: no-repeat;
-    background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
-    background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
-    z-index: 0;
+      background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
+         url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
+      background-repeat: no-repeat;
+      background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
+      background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
+      z-index: 0;
   }
 `
 
@@ -33,6 +34,7 @@ const StyledPage = styled(Container)`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-bottom: 32px;
   }
+
 `
 
 const PageMeta = () => {

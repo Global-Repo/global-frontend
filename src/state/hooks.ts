@@ -355,7 +355,7 @@ export const useAchievements = () => {
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10))
   console.log(bnbBusdFarm, "bnb usd farm?")
-  return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
+  return new BigNumber(bnbBusdFarm.token.busdPrice)
 }
 
 // We have changed the usePriceBnbBusd for useCustomPrice

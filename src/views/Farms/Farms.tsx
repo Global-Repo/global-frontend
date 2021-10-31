@@ -57,6 +57,7 @@ const ToggleWrapper = styled.div`
 const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
+    color:black;
   }
 `
 
@@ -65,7 +66,10 @@ const Content = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+  background: transparent;
+  #root > div > div > div:first-of-type {
+
+  }  
 `
 
 const FilterContainer = styled.div`
@@ -395,13 +399,13 @@ const Farms: React.FC = () => {
           <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
           <ToggleWrapper>
             <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-            <Text> {t('Staked only')}</Text>
+            <Text color="black"> {t('Staked only')}</Text>
           </ToggleWrapper>
           <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
         </ViewControls>
         <FilterContainer>
           <LabelWrapper>
-            <Text textTransform="uppercase">{t('Sort by')}</Text>
+            <Text textTransform="uppercase" color="black">{t('Sort by')}</Text>
             <Select
               options={[
                 {
@@ -433,7 +437,7 @@ const Farms: React.FC = () => {
             />
           </LabelWrapper>
           <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text textTransform="uppercase">{t('Search')}</Text>
+            <Text textTransform="uppercase" color="black">{t('Search')}</Text>
             <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
           </LabelWrapper>
         </FilterContainer>
