@@ -23,9 +23,9 @@ const TimerIconWrapper = styled.div`
 const GradientText = styled(Text)`
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
   padding-right: 4px;
-  background: linear-gradient(to right, #e52420, #ce850e);
+  background: red;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -82,7 +82,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
         <div>
           <Earned>{displayBalance}</Earned>
           {earningsBusd > 0 && (
-            <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
+            <Balance fontSize="12px" color="black" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
           )}
         </div>
         <Button

@@ -45,6 +45,26 @@ const GlobalTextInfo = styled(Text)`
 
 `
 
+const GlobalActionContentUnlockButton = styled.div`
+  > div:before{
+    background:red;
+    content:none;
+  }
+  > div {
+    background: #FF0000;
+    border-radius: 10px;
+    border:0px;
+    margin-top: 5px;
+  }
+  > div > span{
+    color: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+    font-size: 16px;
+    font-weight: 500;
+  }
+`
+
 
 const ButtonGlobalUnlockStyle = styled(UnlockButton)`
   /* Auto Layout */
@@ -130,9 +150,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             {t('Start Farming')}
           </GlobalTextInfo>
         </ActionTitles>
-        <ActionContent>
+        <GlobalActionContentUnlockButton>
             <UnlockButton width="100%" />
-        </ActionContent>
+        </GlobalActionContentUnlockButton>
       </ActionContainer>
     )
   }

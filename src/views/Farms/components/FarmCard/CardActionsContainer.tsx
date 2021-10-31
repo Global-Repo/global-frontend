@@ -29,6 +29,12 @@ const GradientText = styled(Text)`
   -webkit-text-fill-color: transparent;
 `
 
+
+const ButtonGlobalUnlockStyle = styled(UnlockButton)`
+  /* Auto Layout */
+  background:red !importan
+`
+
 const Action = styled.div`
   padding-top: 16px;
 `
