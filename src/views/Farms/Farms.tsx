@@ -48,7 +48,6 @@ const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10px;
-
   ${Text} {
     margin-left: 8px;
   }
@@ -56,6 +55,10 @@ const ToggleWrapper = styled.div`
   & > div:first-child {
     background-color: #FFDBDB;
     box-shadow: none;
+  }
+
+  & > div:first-child > div{
+    background-color: red;
   }
 
 `

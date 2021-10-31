@@ -39,7 +39,6 @@ const StyledPage = styled(Container)`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-bottom: 32px;
   }
-
 `
 
 const PageMeta = () => {

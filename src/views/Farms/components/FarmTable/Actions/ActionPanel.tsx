@@ -67,10 +67,17 @@ const Container = styled.div<{ expanded }>`
 
 const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 500;
-  background: #FF0000;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  text-decoration-line: underline;
   color: #FF0000;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  > svg {
+    color:red;
+    -webkit-mask:none;
+    fill:red;
+  }
 `
 
 const StakeContainer = styled.div`
@@ -89,16 +96,26 @@ const TagsContainer = styled.div`
   align-items: center;
   margin-top: 25px;
 
+
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-top: 16px;
   }
 
+  > div:before {
+    background:red;
+    -webkit-mask:none;
+  }
+  > div > span{
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: white; 
+    color: white;
+  }
   > div {
     height: 24px;
     padding: 0 6px;
     font-size: 14px;
     margin-right: 4px;
-
+    margin-bottom: 5px;
     svg {
       width: 14px;
     }

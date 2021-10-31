@@ -36,6 +36,22 @@ const GradientText = styled(Text)`
   -webkit-text-fill-color: transparent;
 `
 
+const GlobalTextInfo = styled(Text)`
+  font-size: 11px;
+  line-height: 13px;
+  display: flex;
+  align-items: center;
+  color: #A099A5;
+
+`
+
+
+const ButtonGlobalUnlockStyle = styled(UnlockButton)`
+  /* Auto Layout */
+  
+`
+
+
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
@@ -110,12 +126,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          <GlobalTextInfo bold textTransform="uppercase">
             {t('Start Farming')}
-          </Text>
+          </GlobalTextInfo>
         </ActionTitles>
         <ActionContent>
-          <UnlockButton width="100%" />
+            <UnlockButton width="100%" />
         </ActionContent>
       </ActionContainer>
     )
