@@ -16,14 +16,14 @@ const farms: FarmConfig[] = [
     token: tokens.global,
     quoteToken: tokens.wbnb,
   },
-   {
+  {
     pid: 1, 
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '0x478Fc90Fa07B017de8D18d7061d178dAf0e31469',
       56: '0x8aC6Be1105bFCAFa43211461f410f2D13627f9EC',
     },
-    token: tokens.global,
+    token: tokens.busd,
     quoteToken: tokens.wbnb,
   },
   {
