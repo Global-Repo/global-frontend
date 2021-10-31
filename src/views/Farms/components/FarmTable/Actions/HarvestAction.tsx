@@ -30,6 +30,15 @@ const GradientText = styled(Text)`
   -webkit-text-fill-color: transparent;
 `
 
+const ButtonGlobalHardvest = styled(Button)`
+  background:red;
+  margin-top:5px;
+  box-shadow:none;
+  font-size: 16px;
+  font-weight: 500;
+`
+
+
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }

@@ -65,12 +65,17 @@ const GlobalActionContentUnlockButton = styled.div`
   }
 `
 
-
 const ButtonGlobalUnlockStyle = styled(UnlockButton)`
   /* Auto Layout */
-  
 `
 
+const ButtonGlobalStyle = styled(Button)`
+  background:red;
+  margin-top:5px;
+  box-shadow:none;
+  font-size: 16px;
+  font-weight: 500;
+`
 
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
@@ -207,14 +212,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <GradientText>{lpSymbol}</GradientText>
         </ActionTitles>
         <ActionContent>
-          <Button
+          <ButtonGlobalStyle
             width="100%"
             onClick={onPresentDeposit}
             variant="full_gradient_pool"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
           >
             {t('Stake LP')}
-          </Button>
+          </ButtonGlobalStyle>
         </ActionContent>
       </ActionContainer>
     )
@@ -243,9 +248,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         </Text>
       </ActionTitles>
       <ActionContent>
-        <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="full_gradient_pool">
+        <ButtonGlobalStyle width="100%" disabled={requestedApproval} onClick={handleApprove} variant="full_gradient_pool">
           {t('Enable')}
-        </Button>
+        </ButtonGlobalStyle>
       </ActionContent>
     </ActionContainer>
   )
