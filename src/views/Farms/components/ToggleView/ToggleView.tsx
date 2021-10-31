@@ -11,6 +11,9 @@ interface ToggleViewProps {
 const Container = styled.div`
   margin-left: -8px;
 
+  & > button > svg {
+    fill:#FF0000;;
+  }
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 0;
   }

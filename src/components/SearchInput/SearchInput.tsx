@@ -10,6 +10,7 @@ const StyledInput = styled(Input)`
   background:#F0ECF4;
   border:0px;
   box-shadow:none;
+  color:black;
   ::placeholder { 
     color: black;
     opacity: 1; 
@@ -22,6 +23,9 @@ const StyledInput = styled(Input)`
   ::-ms-input-placeholder { 
     color: black;
   }
+  :focus:not(:disabled) { 
+    box-shadow: 0px 0px 0px 1px black;
+ }
 `
 
 const InputWrapper = styled.div`

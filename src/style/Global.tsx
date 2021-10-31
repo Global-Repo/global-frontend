@@ -83,7 +83,7 @@ const GlobalStyle = createGlobalStyle`
   {
     background: white;
   }
-  #BodyWrapperCustomMobile > div > div > div > div:first-of-type 
+  #BodyWrapperCustomMobile > div > div > div > divo:first-f-type 
   {
     
   }

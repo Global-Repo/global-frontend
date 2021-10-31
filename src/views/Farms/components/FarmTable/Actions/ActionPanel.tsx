@@ -53,7 +53,7 @@ const Container = styled.div<{ expanded }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: transparent;
+  background: #F8F6FB;
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
@@ -66,8 +66,9 @@ const Container = styled.div<{ expanded }>`
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
-  background: linear-gradient(to right, #d86186, #f39e21);
+  font-weight: 500;
+  background: #FF0000;
+  color: #FF0000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `

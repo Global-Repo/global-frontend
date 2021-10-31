@@ -52,6 +52,12 @@ const ToggleWrapper = styled.div`
   ${Text} {
     margin-left: 8px;
   }
+
+  & > div:first-child {
+    background-color: #FFDBDB;
+    box-shadow: none;
+  }
+
 `
 
 const LabelWrapper = styled.div`
@@ -69,7 +75,9 @@ const Content = styled.div`
   background: transparent;
   #root > div > div > div:first-of-type {
 
-  }  
+  }
+  & 
+
 `
 
 const FilterContainer = styled.div`

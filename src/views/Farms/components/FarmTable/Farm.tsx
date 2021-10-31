@@ -63,7 +63,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
       </TokenWrapper>
       <div>
         {handleRenderFarming()}
-        <Text bold>{label}</Text>
+        <Text color="black" bold>{label}</Text>
       </div>
     </Container>
   )

@@ -14,7 +14,7 @@ const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
     <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
-      <span>{t('Core')}</span>
+      <span color="white">{t('Core')}</span>
     </Tag>
   )
 }

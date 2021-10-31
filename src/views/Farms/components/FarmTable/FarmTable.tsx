@@ -23,9 +23,9 @@ const Container = styled.div`
 const TableWrapper = styled.div`
   overflow: visible;
   border: 1px solid;
-  border-radius: 8px;
-  border-image: linear-gradient(to right, #e52420, #ce850e) 30;
-
+  border-radius: 32px;
+  border-image: none;
+  background:white;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -42,9 +42,13 @@ const StyledTable = styled.table`
 
 const TableBody = styled.tbody`
   & tr {
+    background: transparent;
     td {
       font-size: 16px;
       vertical-align: middle;
+      div  {
+         
+      }
     }
   }
 `

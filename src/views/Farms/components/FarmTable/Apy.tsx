@@ -23,12 +23,11 @@ export interface ApyProps {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.text};
-
+  color: black;
+  font-weight:500;
   button {
     width: 20px;
     height: 20px;
-
     svg {
       path {
         fill: ${({ theme }) => theme.colors.textSubtle};

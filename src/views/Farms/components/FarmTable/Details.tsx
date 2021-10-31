@@ -25,7 +25,8 @@ const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
 `
 
 const GradientText = styled(Text)`
-  background: linear-gradient(to right, #d86186, #f39e21);
+  background: black;
+  font-weight:500;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -38,7 +39,7 @@ const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
   return (
     <Container>
       {!isMobile && <GradientText>{t('Details')}</GradientText>}
-      <ArrowIcon color="primary" toggled={actionPanelToggled} />
+      <ArrowIcon color="black" toggled={actionPanelToggled} />
     </Container>
   )
 }

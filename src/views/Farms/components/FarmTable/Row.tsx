@@ -65,10 +65,16 @@ const StyledTr = styled.tr`
   &:nth-child(even) {
     border-top: 1px solid rgb(206, 133, 14);
   }
+
+  & td span {
+   
+  }
+
 `
 
 const EarnedMobileCell = styled.td`
   padding: 16px 0 24px 16px;
+  color:black;
 `
 
 const AprMobileCell = styled.td`

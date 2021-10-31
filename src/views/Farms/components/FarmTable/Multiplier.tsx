@@ -12,7 +12,7 @@ export interface MultiplierProps {
 }
 
 const MultiplierWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.text};
+  color: black;
   width: 36px;
   text-align: right;
   margin-right: 14px;
