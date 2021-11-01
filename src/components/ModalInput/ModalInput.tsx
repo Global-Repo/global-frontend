@@ -27,20 +27,21 @@ const getBoxShadow = ({ isWarning = false, theme }) => {
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.input};
+  background-color: #F4F0F8;
   border-radius: 8px;
-  box-shadow: ${getBoxShadow};
-  color: ${({ theme }) => theme.colors.text};
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  color: black;
   padding: 8px 16px 8px 0;
   width: 100%;
 `
 
 const StyledInput = styled(Input)`
+  background-color:#f3e6ff;
+  color:black;
   box-shadow: none;
   width: 60px;
   margin: 0 8px;
   padding: 0 8px;
-
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 80px;
   }
@@ -86,8 +87,8 @@ const ModalInput: React.FC<ModalInputProps> = ({
     <div style={{ position: 'relative' }}>
       <StyledTokenInput isWarning={isBalanceZero}>
         <Flex justifyContent="space-between" pl="16px">
-          <Text fontSize="14px">{inputTitle}</Text>
-          <Text fontSize="14px">{t('Balance: %balance%', { balance: displayBalance(max) })}</Text>
+          <Text fontSize="14px" color="black">{inputTitle}</Text>
+          <Text fontSize="14px" color="black">{t('Balance: %balance%', { balance: displayBalance(max) })}</Text>
         </Flex>
         <Flex alignItems="flex-end" justifyContent="space-around">
           <StyledInput
@@ -100,15 +101,15 @@ const ModalInput: React.FC<ModalInputProps> = ({
             value={value}
           />
           <Button scale="sm" onClick={onSelectMax} mr="8px">
-            {t('Max')}
+            <Text color="white">{t('Max')}</Text>
           </Button>
           <Text fontSize="16px">{symbol}</Text>
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (
-        <StyledErrorMessage fontSize="14px" color="failure">
+        <StyledErrorMessage fontSize="14px" color="black">
           {t('No tokens to stake')}:{' '}
-          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
+          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="red">
             {t('Get %symbol%', { symbol })}
           </Link>
         </StyledErrorMessage>

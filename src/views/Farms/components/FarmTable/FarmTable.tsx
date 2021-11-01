@@ -69,6 +69,10 @@ const Wrapper = styled.div`
   cursor: pointer;
   margin-top: 24px;
 `
+const TagToTopCustom = styled(Tag)`
+  
+`
+
 
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -97,10 +101,10 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         </TableWrapper>
         <ScrollButtonContainer>
           <Wrapper onClick={scrollToTop}>
-            <Tag variant="gradient" outline>
+            <TagToTopCustom variant="gradient" outline>
               <span>{t('To Top')}</span>
               <ChevronUpIcon />
-            </Tag>
+            </TagToTopCustom>
           </Wrapper>
         </ScrollButtonContainer>
       </TableContainer>

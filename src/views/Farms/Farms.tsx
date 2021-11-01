@@ -142,6 +142,24 @@ const SubTitleSectionGlobal = styled(Heading)`
   font-weight:300;
 `
 
+const PageFarming = styled(Page)`
+
+`
+
+const PageHeaderFarming = styled(PageHeader)`
+  background-image: url('/images/home/farms_pyramid.png'), url('/images/home/farms_cube.png');
+  background-repeat: no-repeat;
+  background-size:   129px 158px, 119px 152px;
+  background-position:  top left, bottom right;
+  z-index: 0;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    min-height: 220px;
+    margin-top:15px;
+  }
+`
+
+
+
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
@@ -408,15 +426,15 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <Page>
-      <PageHeader background="transparent">
+    <PageFarming>
+      <PageHeaderFarming background="transparent">
         <TitleSectionGlobal as="h1" scale="xxl" color="black" mb="24px">
           {t('Farms')}
         </TitleSectionGlobal>
         <SubTitleSectionGlobal scale="lg" color="black">
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </SubTitleSectionGlobal>
-      </PageHeader>
+      </PageHeaderFarming>
       <Content />
       <ControlContainer>
         <ViewControls>
@@ -468,7 +486,7 @@ const Farms: React.FC = () => {
       </ControlContainer>
       {renderContent()}
       <div ref={loadMoreRef} />
-    </Page>
+    </PageFarming>
   )
 }
 

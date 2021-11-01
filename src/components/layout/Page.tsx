@@ -9,11 +9,10 @@ import Container from './Container'
 
 const StyledBackground = styled.div`
     width: 100%;
-    background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
-         url('/images/home/bg_partneships.png');
+    background-image: url('/images/home/bg_partneships.png');
     background-repeat: no-repeat;
-    background-size:   292px 225px, 164px 272px, 100% 69%;
-    background-position:  13% 15%, 87% -1%, 100% 100%;
+    background-size:    100% 69%;
+    background-position: 100% 100%;
     z-index: 0;
 `
 

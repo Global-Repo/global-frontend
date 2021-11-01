@@ -1,10 +1,44 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, LinkExternal } from '@duhd4h/global-uikit'
+import styled from 'styled-components'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+
+
+
+
+const ModalGlobalStake = styled(Modal)`
+  background:#F4F0F8;
+  color: #000000;
+  border:0px;
+  h2{
+    color:black;
+  }
+`
+
+const ButtonGlobal = styled(Button)`
+  background:red;
+  margin-top:5px;
+  box-shadow:none;
+  font-size: 16px;
+  font-weight: 500;
+`
+
+const ModalInputGlobal = styled(ModalInput)`
+  background-color: #F4F0F8;
+  border-radius: 8px;
+  box-shadow: 0px;
+`
+const LinkExternalStyle = styled(LinkExternal)`
+  svg{
+    color:red;
+    fill: red;
+  }
+`
+
 
 interface DepositModalProps {
   max: BigNumber
@@ -39,7 +73,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss}>
+    <ModalGlobalStake title={t('Stake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -66,10 +100,10 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
       </ModalActions>
-      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
+      <LinkExternalStyle href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
         {t('Get %symbol%', { symbol: tokenName })}
-      </LinkExternal>
-    </Modal>
+      </LinkExternalStyle>
+    </ModalGlobalStake>
   )
 }
 
