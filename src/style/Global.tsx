@@ -184,6 +184,46 @@ const GlobalStyle = createGlobalStyle`
   .sc-oeezt {
     display: none;
   }
+
+  // connect modal
+  .fIUknR {
+    background: white;
+  }
+
+  // connect modal header
+  .igAOHm {
+    border: 0;
+  }
+
+  // connect modal title
+  .bdSXPh {
+    color: black;
+  }
+
+  // connect modal item
+  .sc-hKFxyN {
+    background-color: #F0ECF4; 
+  }
+
+  // connect modal item text
+  .ehIlZS {
+    color: black;
+  }
+
+  // connect modal link
+  .bSjYsy {
+    color: black;
+  }
+
+  // connect modal link svg
+  .gcGXPM {
+    fill: #A099A5;
+  }
+
+  // connect modal close svg
+  .dgGBME {
+    fill: black;
+  }
 }
 `
 
