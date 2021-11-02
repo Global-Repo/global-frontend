@@ -292,7 +292,9 @@ const Home: React.FC = () => {
         <img src="/images/home/dots_right.png" alt="global Cube" id="points_in_progress_2" width="292" height="225"/>
         <CustomCountdown>
           <h1>{t('Whitelist Presale')}</h1>
-          <PresaleBuyAmount/>
+
+            
+
           <ProgressBar/>
           <div>
             <p> <b> <span color="black">No</span> {t('Softcap')} </b> </p>

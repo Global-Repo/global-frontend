@@ -2,7 +2,9 @@ import React, {useState, useEffect,useCallback} from 'react'
 import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints, Input, InputProps, Card } from '@duhd4h/global-uikit'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
+
 import UnlockButton from 'components/UnlockButton'
+
 import { useTotalSupplyPresale } from '../../../hooks/useGetPresaleAmount'
 import { useTranslation } from '../../../contexts/Localization'
 import { getBalanceNumber } from '../../../utils/formatBalance'
