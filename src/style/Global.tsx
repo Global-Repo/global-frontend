@@ -159,6 +159,71 @@ const GlobalStyle = createGlobalStyle`
     margin-right: 10px;
   }
 
+  // menu panel
+  .sc-eHEENL {
+    background: #F8F6FB;
+  }
+  
+  // menu footer
+  .sc-ikXwFM {
+    border-top: 0;
+    background: #F8F6FB;
+  }
+
+  // selected menu item
+  .sc-csTbgd.oRbct {
+    border-bottom: 0;
+  }
+  
+  // selected menu item text
+  .sc-csTbgd.oRbct .sc-eGJWMs {
+    color: #FF0000;
+  }
+
+  // global price
+  .sc-oeezt {
+    display: none;
+  }
+
+  // connect modal
+  .fIUknR {
+    background: white;
+  }
+
+  // connect modal header
+  .igAOHm {
+    border: 0;
+  }
+
+  // connect modal title
+  .bdSXPh {
+    color: black;
+  }
+
+  // connect modal item
+  .sc-hKFxyN {
+    background-color: #F0ECF4; 
+  }
+
+  // connect modal item text
+  .ehIlZS {
+    color: black;
+  }
+
+  // connect modal link
+  .bSjYsy {
+    color: black;
+  }
+
+  // connect modal link svg
+  .gcGXPM {
+    fill: #A099A5;
+  }
+
+  // connect modal close svg
+  .dgGBME {
+    fill: black;
+  }
 }
 `
 
