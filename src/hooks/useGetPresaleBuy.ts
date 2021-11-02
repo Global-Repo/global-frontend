@@ -56,7 +56,7 @@ export const useBuyPresale = () => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { account } = useWeb3React()
   const web3 = useWeb3()
-
+  console.log("llega")
   useEffect(() => {
 
     const fetchBalance = async () => {
