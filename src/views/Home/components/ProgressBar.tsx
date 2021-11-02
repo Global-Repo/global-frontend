@@ -51,6 +51,7 @@ const { t } = useTranslation()
 
 const initPresaleQty = 1555; // bnb qty init in presale 
 const bnbaccQty = useTotalSupplyPresale()
+console.log("Buy in this presale", bnbaccQty)
 const totalPresaleQty = initPresaleQty+getBalanceNumber(bnbaccQty)
 console.log("Qty seller in publis sale" , totalPresaleQty);
 

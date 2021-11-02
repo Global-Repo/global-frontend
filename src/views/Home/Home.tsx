@@ -1,8 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useCallback} from 'react'
 import styled from 'styled-components'
-import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
+import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints, Input, InputProps } from '@duhd4h/global-uikit'
 import { NavLink, useHistory } from 'react-router-dom'
+import { useWeb3React } from '@web3-react/core'
+import { ethers } from "ethers"
 import Page from 'components/layout/Page'
+import { getBalanceNumber } from 'utils/formatBalance'
+import { getBep20Contract, getGlobalContract, getGlobalPresaleContract } from 'utils/contractHelpers'
+import { getWbnbAddress } from 'utils/addressHelpers'
+import ModalInput from 'components/ModalInput'
+import UnlockButton from 'components/UnlockButton'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import GlobalStats from 'views/Home/components/GlobalStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
@@ -12,6 +19,10 @@ import ProgressBar from './components/ProgressBar'
 import PartnershipsCard from './components/PartnershipsCard'
 import AnnouncementsCard from './components/AnnouncementsCard'
 import { useTranslation } from '../../contexts/Localization'
+import { useGetBnbBalance, useBuyPresale } from '../../hooks/useGetPresaleBuy'
+
+
+
 
 const HomeHeader = styled.div`
   // height: 180px;
@@ -26,7 +37,6 @@ const HomeHeader = styled.div`
     /* Note: backdrop-filter has minimal browser support */
     border-radius: 16px;
   }
-
   ${({ theme }) => theme.mediaQueries.lg} {
     // height: 280px;
     padding: 35px 60px 60px 60px;
@@ -49,22 +59,18 @@ const CardsRowOf2 = styled(BaseLayout)`
   margin-bottom: 24px;
   grid-gap: 24px;
   width: 100%;
-
   & > div {
     grid-column: span 6;
   }
-
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
       grid-column: span 12;
     }
   }
-
   ${({ theme }) => theme.mediaQueries.lg} {
     width: 80%;
     margin-bottom: 80px;
     grid-gap: 32px;
-
     & > div {
       grid-column: span 6;
     }
@@ -89,7 +95,6 @@ const CardsRowOf3 = styled(BaseLayout)`
   ${({ theme }) => theme.mediaQueries.lg} {
     margin-bottom: 80px;
     grid-gap: 32px;
-
     & > div {
       grid-column: span 4;
     }
@@ -144,18 +149,14 @@ const styleBlack = { color: 'black' }
 
 
 const CustomCountdownImages = styled.div`
-
   position:relative;
-
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top:40px;
   }
-
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 50px;
     margin-top:70px;
   }
-
 `
 
 const CustomCountdown = styled.div`
@@ -182,7 +183,6 @@ const CustomCountdown = styled.div`
       letter-spacing: -.02em;
   }
   span {
-
   }
   div {
     display: flex;
@@ -208,6 +208,26 @@ const ButtonCustomGlobal = styled.div`
   }
 `
 
+const ButtonCustomGlobalBuy = styled.div`
+
+  & > div > span {
+      -webkit-text-fill-color: #FF0000;
+      -webkit-background-clip: text;
+      color: #FF0000;
+      padding:0px;
+      font-size:14px;
+  }
+  & > div:before {
+      background: #FFECEC;
+      -webkit-mask: none;
+      border: 1px solid rgb(255, 219, 219);
+      border-radius:10px;
+  }
+  & > div {
+    padding:12px !important;
+  }
+`
+
 const HomeHeaderImages = styled.div`
   & > img  {
       position: absolute;
@@ -215,13 +235,47 @@ const HomeHeaderImages = styled.div`
   }
 `
 
+const Actions = styled.div`
+  margin-top: 10px;
+`
+const StyledInput = styled(Input)`
+  background-color:#f3e6ff;
+  color:black;
+  box-shadow: none;
+  width: 60px;
+  margin: 0 8px;
+  padding: 0 8px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 80px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: auto;
+  }
+`
 
 
 const Home: React.FC = () => {
+
+  const [error, setError] = useState()
+  const [txs, setTxs] = useState([])
+  const [provider, setProvider] = useState({})
+  const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
+  const { account } = useWeb3React()
   const isMobile = !isXl
   const history = useHistory()
+  const decimals = 18
+  const value = 0
+  const [amount, setAmount] = useState('')
+  const tokenAddressbnb = getWbnbAddress()
+
+
+  const Buytokens = async () => {
+    console.log("Nizz")
+  };
+
 
   const header = (
     <HomeHeaderImages>
@@ -269,6 +323,55 @@ const Home: React.FC = () => {
         <img src="/images/home/dots_right.png" alt="global Cube" id="points_in_progress_2" width="292" height="225"/>
         <CustomCountdown>
           <h1>{t('Whitelist Presale')}</h1>
+
+
+            <Actions>
+              {account ? (
+                <ButtonCustomGlobalBuy>
+
+                  <StyledInput
+                    pattern={`^[0-9]*[.,]?[0-9]{0,${decimals}}$`}
+                    inputMode="decimal"
+                    min="0"
+                    max="25"
+                    placeholder="Amount in BNB"
+                    onChange={event => setAmount(event.target.value)}
+                  />         
+                  <BorderGradientButton
+                    label={
+                      pendingTx
+                        ? t('Buy GLOBAL')
+                        : t('Buy GLOBAL', {
+                        })
+                    }
+                    onClick={async () => {
+                      setPendingTx(true)
+                      await Buytokens()
+                      setPendingTx(false)
+                    }}
+                    id="harvest-all"
+                    disabled={pendingTx}
+                    width="100%"
+                    style={{ padding: '12px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10}}
+                    colorRight="#FFECEC"
+                    colorLeft="#FFECEC"
+                  />
+
+                </ButtonCustomGlobalBuy>
+
+              ) : (
+                <ButtonCustomGlobalBuy>
+                  <UnlockButton
+                  label={t('Unlock Wallet for buy')}
+                  style={{ padding: '12px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
+                  width="100%"
+                  colorRight="#FFECEC"
+                  colorLeft="#FFECEC" />
+                </ButtonCustomGlobalBuy>
+              )}
+          </Actions>
+
+
           <ProgressBar/>
           <div>
             <p> <b> <span color="black">No</span> {t('Softcap')} </b> </p>
@@ -295,19 +398,14 @@ const Home: React.FC = () => {
       </Test>
 
       {/* <CardsRowOf1>
-
       </CardsRowOf1>
       <CardsRowOf1>
-
       </CardsRowOf1>
       <CardsRowOf3>
-
       </CardsRowOf3>
       <CardsRowOf3>
-
       </CardsRowOf3>
       <CardsRowOf1>
-
       </CardsRowOf1> */}
     </Page>
   )

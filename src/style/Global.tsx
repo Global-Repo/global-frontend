@@ -158,6 +158,7 @@ const GlobalStyle = createGlobalStyle`
   .dtlQIr{
     margin-right: 10px;
   }
+
 }
 `
 

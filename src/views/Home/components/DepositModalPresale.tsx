@@ -37,7 +37,7 @@ const LinkExternalStyle = styled(LinkExternal)`
   }
 `
 
-interface DepositModalProps {
+interface DepositModalPresaleProps {
   max: BigNumber
   onConfirm: (amount: string) => void
   onDismiss?: () => void
@@ -45,7 +45,7 @@ interface DepositModalProps {
   addLiquidityUrl?: string
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
+const DepositModalPresale: React.FC<DepositModalPresaleProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -70,7 +70,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <ModalGlobalStake title={t('Stake LP tokens')} onDismiss={onDismiss}>
+    <ModalGlobalStake title={t('Buy Global Tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -104,4 +104,4 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   )
 }
 
-export default DepositModal
+export default DepositModalPresale

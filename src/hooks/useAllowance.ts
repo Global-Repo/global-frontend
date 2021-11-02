@@ -11,19 +11,19 @@ import useRefresh from './useRefresh'
 export const useLotteryAllowance = () => {
   const [allowance, setAllowance] = useState(BIG_ZERO)
   const { account } = useWeb3React()
-  const cakeContract = useCake()
+  const globalContract = useCake()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchAllowance = async () => {
-      const res = await cakeContract.methods.allowance(account, getLotteryAddress()).call()
+      const res = await globalContract.methods.allowance(account, getLotteryAddress()).call()
       setAllowance(new BigNumber(res))
     }
 
     if (account) {
       fetchAllowance()
     }
-  }, [account, cakeContract, fastRefresh])
+  }, [account, globalContract, fastRefresh])
 
   return allowance
 }
