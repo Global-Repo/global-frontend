@@ -16,6 +16,18 @@ export const approve = async (lpContract, masterChefContract, account) => {
     .send({ from: account })
 }
 
+
+export const sendTx = async (Contract, toSend, account, amount) => {
+  console.log(Contract, toSend, account, amount)
+  return Contract.methods
+    .transfer(toSend, amount)
+    .send({ from: account , gas: DEFAULT_GAS_LIMIT })
+    .on('transactionHash', (tx) => {
+        console.log(tx)
+        return tx.transactionHash
+    })
+}
+
 export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
     return masterChefContract.methods

@@ -209,8 +209,6 @@ const ButtonCustomGlobal = styled.div`
   }
 `
 
-
-
 const HomeHeaderImages = styled.div`
   & > img  {
       position: absolute;
@@ -293,8 +291,8 @@ const Home: React.FC = () => {
         <CustomCountdown>
           <h1>{t('Whitelist Presale')}</h1>
 
-            
-
+          <PresaleBuyAmount/>
+          
           <ProgressBar/>
           <div>
             <p> <b> <span color="black">No</span> {t('Softcap')} </b> </p>

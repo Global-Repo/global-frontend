@@ -113,7 +113,6 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-
   // button responsive
   nav > div > div > button:after{
     content: none !important;
@@ -138,6 +137,7 @@ const GlobalStyle = createGlobalStyle`
     brackground: #FF0000 !important;
     -webkit-background-clip: text;
   }
+
   .bZyZKQ{
     color:#000000;
     font-weight: 600;

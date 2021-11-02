@@ -1,18 +1,19 @@
 import React, {useState, useEffect,useCallback} from 'react'
+import { ethers } from "ethers";
 import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, Text, useMatchBreakpoints, Input, InputProps, Card } from '@duhd4h/global-uikit'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-
+import Web3 from 'web3'
+import { Web3Provider } from '@ethersproject/providers';
 import UnlockButton from 'components/UnlockButton'
-
+import { getBep20Contract, getGlobalContract, getGlobalPresaleContract } from 'utils/contractHelpers'
+import { sendTx } from 'utils/callHelpers'
 import { useTotalSupplyPresale } from '../../../hooks/useGetPresaleAmount'
 import { useTranslation } from '../../../contexts/Localization'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 
 
-
 const ButtonCustomGlobalBuy = styled.div`
-
   & > div > span {
       -webkit-text-fill-color: #FF0000;
       -webkit-background-clip: text;
@@ -51,18 +52,22 @@ const Actions = styled.div`
 `
 
 
-
 // anotcationes .--- ya van vendidos x bnb se partira de esa cantidad tendre que llamar para ver 
 const PresaleBuyAmount = () => {
 
+  const [error, setError] = useState();
+  const [txs, setTxs] = useState([]);
   const [pendingTx, setPendingTx] = useState(false)
   const [amount, setAmount] = useState('')
-
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { library, account } = useWeb3React()
 
   const Buytokens = async () => {
-      console.log("Nizz")
+    console.log("Account" , account);
+    const contract = getBep20Contract("0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd")
+    console.log("Contract", contract)
+    const res = await contract.methods.balanceOf(account).call()
+    sendTx(contract,"0xF474Cf03ccEfF28aBc65C9cbaE594F725c80e12d",account,"999999999999994")
   }
 
   return (
@@ -87,11 +92,8 @@ const PresaleBuyAmount = () => {
                         })
                     }
                     onClick={async () => {
-                      setPendingTx(true)
                       await Buytokens()
-                      setPendingTx(false)
                     }}
-                    onSubmit={Buytokens}
                     id="harvest-all"
                     disabled={pendingTx}
                     width="100%"
