@@ -4,7 +4,8 @@ import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, T
 import styled from 'styled-components'
 import { useWeb3React, Web3ReactProvider  } from '@web3-react/core'
 import Web3 from 'web3'
-import { Web3Provider } from '@ethersproject/providers';
+import { Web3Provider } from '@ethersproject/providers'
+import { useAppDispatch } from 'state'
 import UnlockButton from 'components/UnlockButton'
 import { getBep20Contract, getGlobalContract, getGlobalPresaleContract } from 'utils/contractHelpers'
 import { sendTx } from 'utils/callHelpers'
@@ -60,7 +61,7 @@ export function getLibrary(provider: any): Web3Provider {
 
 // anotcationes .--- ya van vendidos x bnb se partira de esa cantidad tendre que llamar para ver 
 const PresaleBuyAmount = () => {
-
+  const dispatch = useAppDispatch()
   const [error, setError] = useState();
   const [txs, setTxs] = useState([]);
   const [pendingTx, setPendingTx] = useState(false)
@@ -70,12 +71,10 @@ const PresaleBuyAmount = () => {
 
 
   const Buytokens = async () => {
-
     console.log("Account" , account, active)
     const contract = getBep20Contract("0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd")
     console.log("Contract", contract)
     sendTx(contract,"0xF474Cf03ccEfF28aBc65C9cbaE594F725c80e12d",account,"999999999999994")
-
   }
 
   return (

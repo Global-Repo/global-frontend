@@ -17,6 +17,7 @@ type PublicFarmData = {
   poolWeight: SerializedBigNumber
   multiplier: string
   harvestInterval: SerializedBigNumber
+  maxWithdrawalInterval: SerializedBigNumber
 }
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
@@ -91,9 +92,14 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
         ])
       : [null, null]
 
+
+  const harvestIntervalP = getMasterChefAddress()
+  console.log("Saca infoooo del poool ..........", info, totalAllocPoint )
+
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
   const harvestInterval = info ? new BigNumber(info.harvestInterval?._hex) : BIG_ZERO
+  const maxWithdrawalInterval = info ? new BigNumber(info.maxWithdrawalInterval?._hex) : BIG_ZERO
 
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),
@@ -106,6 +112,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     poolWeight: poolWeight.toJSON(),
     multiplier: `${allocPoint.div(100).toString()}X`,
     harvestInterval: harvestInterval.toJSON(),
+    maxWithdrawalInterval: maxWithdrawalInterval.toJSON(),
   }
 }
 
