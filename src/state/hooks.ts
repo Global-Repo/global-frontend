@@ -396,7 +396,6 @@ export const useGetPriceBNBBUSD = () => {
 
 export const usePriceGlobalBusd = (): BigNumber => {
   const globalBnbFarm = useFarmFromPid(4)
-  console.log(globalBnbFarm, "global bnb farm?")
   return new BigNumber(globalBnbFarm.token.busdPrice)
 }
 

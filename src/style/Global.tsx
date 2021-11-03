@@ -210,7 +210,8 @@ const GlobalStyle = createGlobalStyle`
 
   // connect modal item
   .sc-hKFxyN {
-    background-color: #F0ECF4; 
+    background-color: #F0ECF4;
+    margin-left:10px;
   }
 
   // connect modal item text
@@ -232,6 +233,12 @@ const GlobalStyle = createGlobalStyle`
   .dgGBME {
     fill: black;
   }
+
+  .sc-iJCRrE.dqcAwZ{
+    fill:red;
+    color:red;
+  }
+
 
 }
 `
