@@ -116,6 +116,7 @@ const EarnAPRCard = () => {
           ) : (
             <>
               <Skeleton animation="pulse" variant="rect" height="44px" />
+              Cooming soon
               <div ref={observerRef} />
             </>
           )}

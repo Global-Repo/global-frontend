@@ -52,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
     background: #FFFFFF;
     box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
     border-radius: 32px;
+    border: 0px;
   }
   #connect_wallet_modal > div, #modal_wallet_open > div{
       background-image:none !important;
