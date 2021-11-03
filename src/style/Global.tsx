@@ -20,12 +20,6 @@ const GlobalStyle = createGlobalStyle`
       max-width: 100%;
     }
   }
-  button.sc-hKFxyN.iOpbS {
-    background: #FF0000;
-    font-weight: 400;
-    border-radius: 10px;
-    box-shadow: none;
-  }
   #points_in_progress {
     position: absolute;
     left: 0%;
@@ -76,18 +70,6 @@ const GlobalStyle = createGlobalStyle`
   #close_dialog svg{
       fill: #000000;
   }
-  #BodyWrapperCustomMobile > div 
-  {
-    background: white;
-  }
-  #BodyWrapperCustomMobile > div > div 
-  {
-    background: white;
-  }
-  #BodyWrapperCustomMobile > div > div > div > divo:first-f-type 
-  {
-    
-  }
   #walletButtomCustom > div > div:before
   {
    background: #FF0000;
@@ -97,26 +79,11 @@ const GlobalStyle = createGlobalStyle`
    -webkit-text-fill-color: #FF0000;
    color: #FF0000;
   }
- 
 
-  // Styles for mobile nav
-  ${({ theme }) => theme.mediaQueries.xs} {
-    // nav custom background only in mobile format
-    #root > div > div > div:first-of-type {
-      
-    }
-  }
-  // Styles for mobile nav
-  ${({ theme }) => theme.mediaQueries.sm} {
-    // nav custom bakcground
-    #root > div > div > div:first-of-type {
-
-    }
-  }
-
-  #root > div > div:nth-of-type(2) h2{
+  #root > div > div:nth-of-type(2) h2 {
     color:black;
   }
+
   #root > div > div:nth-of-type(2) {
     background: #FFFFFF;
     box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
@@ -127,6 +94,7 @@ const GlobalStyle = createGlobalStyle`
       border-bottom: 0px;
     }
   }
+
   #root > div > div:nth-of-type(2) > div > button {
     background: #F0ECF4;
   }
@@ -135,13 +103,12 @@ const GlobalStyle = createGlobalStyle`
    color:black;
   }
 
-  nav > div > div > a{
+  nav > div > div > a {
     cursor: default;
     pointer-events: none;        
     text-decoration: none;
     color: grey;
   }
-
 
   #root > div > div > div > div > div{
     color:black;
@@ -211,6 +178,37 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     border-radius: 10px;
     box-shadow: none;
+  }
+
+
+    // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.xs} {
+    // nav custom background only in mobile format
+    #root > div > div > div:first-of-type {
+      background:white;
+    }
+    #root > div > div > div > div:nth-of-type(2) {
+      background:white;
+    }
+    nav > div > div > button{
+      background: #FF0000 !important;
+      font-weight: 400 !important;
+      border-radius: 10px !important;
+      box-shadow: none !important;
+    }
+
+  }
+  // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.sm} {
+    // nav custom bakcground
+    #root > div > div > div:first-of-type {
+      background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
+         url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
+      background-repeat: no-repeat;
+      background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
+      background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
+      z-index: 0;
+    }
   }
 
 
