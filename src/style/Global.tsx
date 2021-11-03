@@ -136,6 +136,19 @@ const GlobalStyle = createGlobalStyle`
   }
 
 
+
+  .disabled-link{
+    cursor: default;
+    pointer-events: none;        
+    text-decoration: none;
+    color: grey;
+  }
+  nav > div > div > a{
+    cursor: default;
+    pointer-events: none;        
+    text-decoration: none;
+    color: grey;
+  }
   nav svg {
     fill: #28A8EA !important;
   }
@@ -182,6 +195,11 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 10px !important;
     box-shadow: none !important;
   }
+
+  nav > button > svg{
+    fill:black!important;
+  }
+
 
 
 
