@@ -94,12 +94,14 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
 
 
   const harvestIntervalP = getMasterChefAddress()
-  console.log("Saca infoooo del poool ..........", info, totalAllocPoint )
+  console.log("Saca infoooo del poool ..........", info )
 
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
   const harvestInterval = info ? new BigNumber(info.harvestInterval?._hex) : BIG_ZERO
   const maxWithdrawalInterval = info ? new BigNumber(info.maxWithdrawalInterval?._hex) : BIG_ZERO
+
+  console.log("Max interval harvest", maxWithdrawalInterval)
 
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),

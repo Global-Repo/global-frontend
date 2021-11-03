@@ -65,6 +65,7 @@ const Apy: React.FC<ApyProps> = ({
     placement: 'bottom',
   })
 
+
   return originalValue !== 0 ? (
     <Container>
       {tooltipVisible && tooltip}

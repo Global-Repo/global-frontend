@@ -30,6 +30,7 @@ const APY: FC<Props> = ({ apy, apr, globalPrice, lpLabel, addLiquidityUrl }) => 
     placement: 'bottom',
   })
 
+
   const farmAPY = apy && apy.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
   return (

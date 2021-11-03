@@ -128,6 +128,14 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > div > div > button:after {
     content: none !important;
   }
+
+  nav > div > div > div > div > a > div {
+    color:black;
+  }
+  nav > div > div > div > div > a.active {
+    color:red;
+  }
+
   // when connect wallet
   nav > div > div > div > div > span {
     -webkit-text-fill-color: #FF0000 !important;
@@ -224,6 +232,7 @@ const GlobalStyle = createGlobalStyle`
   .dgGBME {
     fill: black;
   }
+
 }
 `
 

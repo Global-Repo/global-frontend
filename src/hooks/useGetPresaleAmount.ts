@@ -52,9 +52,10 @@ const useGetPresaleAmount = (tokenAddress: string) => {
 
 export const useTotalSupplyPresale = () => {
   const { slowRefresh } = useRefresh()
-  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+  const [totalSupply, setTotalSupply] = useState(BIG_ZERO)
 
   useEffect(() => {
+
     async function fetchTotalSupply() {
       const globalContract = getGlobalPresaleContract()
       const supply = await globalContract.methods.bnbacc().call()
@@ -62,6 +63,7 @@ export const useTotalSupplyPresale = () => {
     }
 
     fetchTotalSupply()
+
   }, [slowRefresh])
 
   return totalSupply
