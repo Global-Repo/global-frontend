@@ -114,9 +114,30 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  #root > div > div:nth-of-type(2) h2{
+    color:black;
+  }
+  #root > div > div:nth-of-type(2) {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
+    border-radius: 32px;
+    border: 0px;
+    > div {
+      background-image: none !important;
+      border-bottom: 0px;
+    }
+  }
+  #root > div > div:nth-of-type(2) > div > button {
+    background: #F0ECF4;
+  }
+
+  #root > div > div:nth-of-type(2) > div > button> div {
+   color:black;
+  }
+
 
   nav svg {
-    fill: #28A8EA;
+    fill: #28A8EA !important;
   }
   // button responsive
   nav > div > div > button:after{
@@ -133,7 +154,6 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > div > div > button:after {
     content: none !important;
   }
-
   nav > div > div > div > div > a > div {
     color:black;
     font-weight:bold;
@@ -144,7 +164,6 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > div > div > a.active > div  {
     color:red;
   }
-
   // when connect wallet
   nav > div > div > div > div > span {
     -webkit-text-fill-color: #FF0000 !important;
@@ -155,8 +174,16 @@ const GlobalStyle = createGlobalStyle`
     -webkit-background-clip: text;
   }
   nav > div > div > div > div {
-    border-bottom:0px;
+    border-bottom:0px !important;
   }
+  nav > div > div > div > div > button {
+    background: #FF0000 !important;
+    font-weight: 400 !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+  }
+
+
 
   .bZyZKQ{
     color:#000000;
@@ -215,11 +242,6 @@ const GlobalStyle = createGlobalStyle`
     border: 0;
   }
 
-  // connect modal title
-  .bdSXPh {
-    color: black;
-  }
-
   // connect modal item
   .sc-hKFxyN {
     background-color: #F0ECF4;
@@ -240,12 +262,10 @@ const GlobalStyle = createGlobalStyle`
   .gcGXPM {
     fill: #A099A5;
   }
-
   // connect modal close svg
   .dgGBME {
     fill: black;
   }
-
   .sc-iJCRrE.dqcAwZ{
     fill:red;
     color:red;
