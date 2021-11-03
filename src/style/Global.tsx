@@ -114,6 +114,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+
+
   // button responsive
   nav > div > div > button:after{
     content: none !important;
@@ -238,6 +240,13 @@ const GlobalStyle = createGlobalStyle`
   .sc-iJCRrE.dqcAwZ{
     fill:red;
     color:red;
+  }
+
+  button.sc-dWBRfb.iWqacH {
+    background: #FF0000;
+    font-weight: 400;
+    border-radius: 10px;
+    box-shadow: none;
   }
 
 
