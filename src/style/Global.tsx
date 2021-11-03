@@ -115,7 +115,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
 
-
+  nav svg {
+    fill: #28A8EA;
+  }
   // button responsive
   nav > div > div > button:after{
     content: none !important;
