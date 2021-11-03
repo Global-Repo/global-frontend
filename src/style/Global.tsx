@@ -135,20 +135,23 @@ const GlobalStyle = createGlobalStyle`
    color:black;
   }
 
-
-
-  .disabled-link{
-    cursor: default;
-    pointer-events: none;        
-    text-decoration: none;
-    color: grey;
-  }
   nav > div > div > a{
     cursor: default;
     pointer-events: none;        
     text-decoration: none;
     color: grey;
   }
+
+
+  #root > div > div > div > div > div{
+    color:black;
+    font-weight:bold;
+  }
+  #root > div > div > div > div > div > a.active
+  {
+    color:red;
+  }
+
   nav svg {
     fill: #28A8EA !important;
   }
@@ -200,95 +203,9 @@ const GlobalStyle = createGlobalStyle`
     fill:black!important;
   }
 
-
-
-
-  .bZyZKQ{
-    color:#000000;
-    font-weight: 600;
-  }
-  .oRbct{
-    border-bottom:1px solid #000000;
-  }
-  .hJFjHj {
-    background: #F8F6FB;
-  }
   nav {
     background-color: #F8F6FB !important;
   }
-  .kipmKU{
-    color: #28A8EA;
-    fill: #28A8EA;
-  }
-  .dtlQIr{
-    margin-right: 10px;
-  }
-
-  // menu panel
-  .sc-eHEENL {
-    background: #F8F6FB;
-  }
-  
-  // menu footer
-  .sc-ikXwFM {
-    border-top: 0;
-    background: #F8F6FB;
-  }
-
-  // selected menu item
-  .sc-csTbgd.oRbct {
-    border-bottom: 0;
-  }
-  
-  // selected menu item text
-  .sc-csTbgd.oRbct .sc-eGJWMs {
-    color: #FF0000;
-  }
-
-  // global price
-  .sc-oeezt {
-    display: none;
-  }
-
-  // connect modal
-  .fIUknR {
-    background: white;
-  }
-
-  // connect modal header
-  .igAOHm {
-    border: 0;
-  }
-
-  // connect modal item
-  .sc-hKFxyN {
-    background-color: #F0ECF4;
-    margin-left:10px;
-  }
-
-  // connect modal item text
-  .ehIlZS {
-    color: black;
-  }
-
-  // connect modal link
-  .bSjYsy {
-    color: black;
-  }
-
-  // connect modal link svg
-  .gcGXPM {
-    fill: #A099A5;
-  }
-  // connect modal close svg
-  .dgGBME {
-    fill: black;
-  }
-  .sc-iJCRrE.dqcAwZ{
-    fill:red;
-    color:red;
-  }
-
   button.sc-dWBRfb.iWqacH {
     background: #FF0000;
     font-weight: 400;
