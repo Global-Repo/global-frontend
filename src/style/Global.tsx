@@ -134,8 +134,12 @@ const GlobalStyle = createGlobalStyle`
 
   nav > div > div > div > div > a > div {
     color:black;
+    font-weight:bold;
   }
   nav > div > div > div > div > a.active {
+    color:red;
+  } 
+  nav > div > div > div > div > a.active > div  {
     color:red;
   }
 
@@ -147,6 +151,9 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > div > div {
     brackground: #FF0000 !important;
     -webkit-background-clip: text;
+  }
+  nav > div > div > div > div {
+    border-bottom:0px;
   }
 
   .bZyZKQ{
