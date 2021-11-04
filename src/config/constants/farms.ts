@@ -26,7 +26,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID), // pid 2
+    pid: 2, // pid 2
     lpSymbol: 'GLB-BNB LP',
     lpAddresses: {
       97: '0x6012706c2890bb09341B6CABd72e52DFf214771B',
@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: parseInt(process.env.REACT_APP_GLOBAL_BUSD_PID), // pid 3
+    pid: 3, // pid 3
     lpSymbol: 'GLB-BUSD LP',
     lpAddresses: {
       97: '0x888b196c4B860385f2fE72CeaC2DdB5bedd8772B',
