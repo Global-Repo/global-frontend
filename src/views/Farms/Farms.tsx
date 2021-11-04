@@ -194,8 +194,6 @@ const Farms: React.FC = () => {
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
 
-        console.log(farm)
-
         const apr = isActive
           ? getFarmApr(new BigNumber(farm.poolWeight), globalPrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : 0
