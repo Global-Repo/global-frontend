@@ -108,11 +108,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight:bold;
   }
 
-  // footer global price
-  #root > div > div > div > div:last-child > div > *:first-child {
-    display: none;
-  }
-
   nav svg {
     fill: #28A8EA !important;
   }
