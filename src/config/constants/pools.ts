@@ -18,10 +18,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 1,
-    stakingToken: tokens.wbnb,
-    earningToken: tokens.global,
+    stakingToken: tokens.global,
+    earningToken: tokens.wbnb,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0xc4bF640a86Ef9368015AFC8176fAFCf432d1325F',
     },
     poolCategory: PoolCategory.CORE,
@@ -32,10 +32,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 2,
-    stakingToken: tokens.busd,
-    earningToken: tokens.global,
+    stakingToken: tokens.global,
+    earningToken: tokens.busd,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0xEda297532A92fB74726E0Af608a5D2744E542c68',
     },
     poolCategory: PoolCategory.CORE,
@@ -46,10 +46,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 3,
-    stakingToken: tokens.cake,
-    earningToken: tokens.global,
+    stakingToken: tokens.global,
+    earningToken: tokens.cake,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0xE2cb785bB2AA1e033F19f59B90bE47Cef729ED18',
     },
     poolCategory: PoolCategory.CORE,
@@ -60,10 +60,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 4,
-    stakingToken: tokens.usdt,
-    earningToken: tokens.global,
+    stakingToken: tokens.global, 
+    earningToken: tokens.usdt,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0xb7FD227F62ddA09CDf473Acf3461Fbe844801915',
     },
     poolCategory: PoolCategory.CORE,
@@ -74,10 +74,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 5,
-    stakingToken: tokens.eth,
-    earningToken: tokens.global,
+    stakingToken: tokens.global,
+    earningToken: tokens.eth,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0xB0b487FF99A8A5d60c21d58e9ebaB0df8c0Ac9e2',
     },
     poolCategory: PoolCategory.CORE,
@@ -88,10 +88,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 6,
-    stakingToken: tokens.btcb,
-    earningToken: tokens.global,
+    stakingToken: tokens.global, 
+    earningToken: tokens.btcb,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
     },
     poolCategory: PoolCategory.CORE,
@@ -102,10 +102,10 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 7,
-    stakingToken: tokens.doge,
-    earningToken: tokens.global,
+    stakingToken: tokens.global,
+    earningToken: tokens.doge,
     contractAddress: {
-      97: '',
+      97: '0x3243A4f973FD952C4CFC99f9E9bEBb41BB9f52D3',
       56: '0x861990AC613eB8DBd18551B860eF251f81Deb3e3',
     },
     poolCategory: PoolCategory.CORE,

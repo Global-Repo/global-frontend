@@ -109,6 +109,12 @@ const StyledLinkExternal = styled(LinkExternal)`
   }
 `
 
+const StyledBalance = styled(Balance)`
+  span {
+    font-size: 14px;
+  }
+`
+
 type MediaBreakpoints = {
   isXs: boolean
   isSm: boolean
@@ -204,19 +210,19 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const maxStakeRow = stakingLimit.gt(0) ? (
     <Flex mb="8px" justifyContent="space-between">
-      <Text color="black">{t('Max. stake per user')}:</Text>
-      <Text color="black">{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
+      <Text color="black" fontSize="14px">{t('Max. stake per user')}:</Text>
+      <Text color="black" fontSize="14px">{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
     </Flex>
   ) : null
 
   const blocksRow =
     blocksRemaining || blocksUntilStart ? (
       <Flex mb="8px" justifyContent="space-between">
-        <Text color="black">{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
+        <Text color="black" fontSize="14px">{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
         <Flex>
           <StyledLinkExternal href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
-            <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
-            <Text ml="4px" color="primary" textTransform="lowercase">
+            <StyledBalance fontSize="14px" value={blocksToDisplay} decimals={0} color="primary" />
+            <Text ml="4px" color="primary" textTransform="lowercase" fontSize="14px">
               {t('Blocks')}
             </Text>
             <TimerIcon ml="4px" color="white" />

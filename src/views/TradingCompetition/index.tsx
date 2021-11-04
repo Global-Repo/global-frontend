@@ -41,7 +41,7 @@ import Rules from './components/Rules'
 import TeamRanks from './components/TeamRanks'
 
 const CompetitionPage = styled.div`
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 80px);
 `
 
 const BannerFlex = styled(Flex)`

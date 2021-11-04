@@ -76,6 +76,8 @@ export interface PoolConfig {
   harvest?: boolean
   isFinished?: boolean
   enableEmergencyWithdraw?: boolean
+  type?: 'LOCKED' | 'VESTED'
+  hidden?: boolean
 }
 
 export interface VaultConfig {
