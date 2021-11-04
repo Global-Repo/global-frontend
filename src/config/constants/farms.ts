@@ -17,31 +17,31 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 1, 
+    pid: parseInt(process.env.REACT_APP_GLOBAL_BNB_PID, 10), // pid 1
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '0x478Fc90Fa07B017de8D18d7061d178dAf0e31469',
-      56: '0x8aC6Be1105bFCAFa43211461f410f2D13627f9EC',
+      97: '0x85A855E8dfC7D315637c79fA0d9c18e29d50adB4',
+      56: '0x85A855E8dfC7D315637c79fA0d9c18e29d50adB4',
     },
     token: tokens.busd,
     quoteToken: tokens.wbnb,
   },
   {
-    pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10), // 251 pool 2 de masterchef
+    pid: parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10), // pid 2
     lpSymbol: 'GLB-BNB LP',
     lpAddresses: {
-      97: '0x2367320ac44b323e21f749d84fdaddd359947798',
-      56: '0x8aC6Be1105bFCAFa43211461f410f2D13627f9EC',
+      97: '0x6012706c2890bb09341B6CABd72e52DFf214771B',
+      56: '0x6012706c2890bb09341B6CABd72e52DFf214771B',
     },
     token: tokens.global,
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 4, // 251 pool 3 de masterchef
+    pid: parseInt(process.env.REACT_APP_GLOBAL_BUSD_PID, 10), // pid 3
     lpSymbol: 'GLB-BUSD LP',
     lpAddresses: {
-      97: '0x2e4DcA72dE3620648aC5ECa5a8652D24281240e7',
-      56: '0x7865D8632DC69ECd87d68A2e3E71E0aaFF6cF1be',
+      97: '0x888b196c4B860385f2fE72CeaC2DdB5bedd8772B',
+      56: '0x888b196c4B860385f2fE72CeaC2DdB5bedd8772B',
     },
     token: tokens.global,
     quoteToken: tokens.busd,

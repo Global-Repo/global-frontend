@@ -22,40 +22,40 @@ const NotFound = lazy(() => import('./views/NotFound'))
 
 // This config is required for number formatting
 BigNumber.config({
-  EXPONENTIAL_AT: 1000,
-  DECIMAL_PLACES: 80,
+    EXPONENTIAL_AT: 1000,
+    DECIMAL_PLACES: 80,
 })
 
 const App: React.FC = () => {
-  usePollBlockNumber()
-  useEagerConnect()
-  useFetchProfile()
-  usePollCoreFarmData()
+    usePollBlockNumber()
+    useEagerConnect()
+    useFetchProfile()
+    usePollCoreFarmData()
 
-  return (
-    <Router history={history}>
-      <ResetCSS />
-      <GlobalStyle />
-      <HelpButton />
-      <Menu>
-        <SuspenseWithChunkError fallback={<PageLoader />}>
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/farms">
-              <Farms />
-            </Route>
-            <Route path="/poolsGlobal">
-              <Pools isGlobal />
-            </Route>
-            <Route path="/poolsToken">
-              <Optimizer />
-            </Route>
-            <Route path="/optimizer">
-              <Optimizer isGlobal />
-            </Route>
-            {/* 
+    return (
+        <Router history={history}>
+            <ResetCSS />
+            <GlobalStyle />
+            <HelpButton />
+            <Menu>
+                <SuspenseWithChunkError fallback={<PageLoader />}>
+                    <Switch>
+                        <Route path="/" exact>
+                            <Home />
+                        </Route>
+                        <Route path="/farms">
+                            <Farms />
+                        </Route>
+                        <Route path="/poolsGlobal">
+                            <Pools isGlobal />
+                        </Route>
+                        <Route path="/poolsToken">
+                            <Optimizer />
+                        </Route>
+                        <Route path="/optimizer">
+                            <Optimizer isGlobal />
+                        </Route>
+                        {/*
             <Route path="/lottery">
               <Lottery />
             </Route>
@@ -91,13 +91,13 @@ const App: React.FC = () => {
               <Redirect to="/collectibles" />
             </Route> /}
             {/ 404 */}
-            <Route component={NotFound} />
-          </Switch>
-        </SuspenseWithChunkError>
-      </Menu>
-      <ToastListener />
-    </Router>
-  )
+                        <Route component={NotFound} />
+                    </Switch>
+                </SuspenseWithChunkError>
+            </Menu>
+            <ToastListener />
+        </Router>
+    )
 }
 
 export default React.memo(App)

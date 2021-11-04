@@ -34,3 +34,4 @@ export const DEFAULT_GAS_PRICE = 5
 export const BUSD_BNB_PID = parseInt(process.env.REACT_APP_BUSD_BNB_PID, 10)
 export const CAKE_BNB_PID = parseInt(process.env.REACT_APP_CAKE_BNB_PID, 10)
 export const GLOBAL_BNB_PID = parseInt(process.env.REACT_APP_GLOBAL_BNB_PID, 10)
+export const GLOBAL_BUSD_PID = parseInt(process.env.REACT_APP_GLOBAL_BUSD_PID, 10)
