@@ -1,9 +1,13 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
-import { BorderGradientButton, Button, useWalletModal } from '@duhd4h/global-uikit'
+import { BorderGradientButton, Button, Text, useWalletModal } from '@duhd4h/global-uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
+
+const WrappedButton = styled(Button)`
+  background-color: #FF0000;
+`
 
 const UnlockButton = ({ isPool = false, ...props }) => {
   const { t } = useTranslation()
@@ -12,14 +16,14 @@ const UnlockButton = ({ isPool = false, ...props }) => {
 
   if (isPool) {
     return (
-      <Button
+      <WrappedButton
         onClick={onPresentConnectModal}
         {...props}
         style={{ padding: '8px', width: '100%' }}
-        variant="full_gradient_pool"
+        variant="danger"
       >
         {t('Unlock Wallet')}
-      </Button>
+      </WrappedButton>
     )
   }
 

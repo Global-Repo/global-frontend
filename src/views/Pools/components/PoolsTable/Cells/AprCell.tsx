@@ -14,7 +14,7 @@ interface AprCellProps {
 const StyledCell = styled(BaseCell)`
   flex: 1 0 50px;
   ${({ theme }) => theme.mediaQueries.md} {
-    flex: 0 0 120px;
+    flex: 0 0 150px;
   }
 `
 

@@ -21,15 +21,15 @@ interface PoolRowProps {
 const StyledRow = styled.div`
   display: flex;
   cursor: pointer;
-  background: linear-gradient(to right, rgba(229, 36, 32, 0.1), rgba(206, 133, 14, 0.1));
-  border-top: 1px solid rgb(229, 36, 32);
+  /* background: linear-gradient(to right, rgba(229, 36, 32, 0.1), rgba(206, 133, 14, 0.1)); */
+  /* border-top: 1px solid rgb(229, 36, 32); */
 
   &:first-child {
     border-top: 0;
   }
 
   &:nth-child(even) {
-    border-top: 1px solid rgb(206, 133, 14);
+    border-top: 1px solid #F8F6FB;
   }
 `
 

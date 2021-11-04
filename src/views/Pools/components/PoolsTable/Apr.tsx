@@ -42,7 +42,7 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
   }
 
   return (
-    <Flex alignItems="center" justifyContent="space-between" {...props}>
+    <Flex alignItems="center" {...props}>
       {earningsPercentageToDisplay || isFinished ? (
         <>
           <Balance
@@ -51,6 +51,7 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
             isDisabled={isFinished}
             value={isFinished ? 0 : earningsPercentageToDisplay}
             decimals={2}
+            width="77px"
             unit="%"
           />
           {!isFinished && showIcon && (

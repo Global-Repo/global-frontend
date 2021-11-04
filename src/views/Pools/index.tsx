@@ -40,15 +40,38 @@ const CardLayout = styled.div`
 const PoolControls = styled(Flex)`
   flex-direction: column;
   margin-bottom: 24px;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
+  };
+
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
   }
+  
   padding-top: 24px;
 `
 
 const SearchSortContainer = styled(Flex)`
   gap: 10px;
-  justify-content: space-between;
+  justify-content: flex-end;
+  
+  @media screen and (max-width: 992px) {
+    justify-content: space-between;
+  };
+
+  @media screen and (max-width: 420px) {
+    flex-direction: column;
+    align-items: center;
+    div {
+      width: 100%;
+    }
+  };
+`
+
+const TextWrapper = styled(Text)`
+  @media screen and (max-width: 580px) {
+    display: none;
+  };
 `
 
 const ControlStretch = styled(Flex)`
@@ -62,8 +85,33 @@ const Content = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+  //background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
   z-index: -1;
+`
+
+const TitleSectionGlobal = styled(Heading)`
+  font-size: 38px;
+  text-align:center;
+`
+
+const SubTitleSectionGlobal = styled(Heading)`
+  font-size: 22px;
+  line-height: 34px;
+  text-align: center;
+  color: #000000;
+  font-weight:300;
+`
+
+const PageHeaderFarming = styled(PageHeader)`
+  background-image: url('/images/home/farms_pyramid.png'), url('/images/home/farms_cube.png');
+  background-repeat: no-repeat;
+  background-size:   129px 158px, 119px 152px;
+  background-position:  top left, bottom right;
+  z-index: 0;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    min-height: 220px;
+    margin-top:15px;
+  }
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -228,24 +276,32 @@ const Pools: React.FC<Props> = () => {
 
   return (
     <Page>
-      <PageHeader background="transparent">
-        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="white" mb="24px">
-              {t('Pools')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('High APR, low risk.')}
-            </Heading>
-          </Flex>
-          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            {/* <HelpButton /> */}
-          </Flex>
+      {/* <PageHeader background="transparent">
+      <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+        <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+          <Heading as="h1" scale="xxl" color="white" mb="24px">
+            {t('Pools')}
+          </Heading>
+          <Heading scale="md" color="text">
+            {t('Just stake some tokens to earn.')}
+          </Heading>
+          <Heading scale="md" color="text">
+            {t('High APR, low risk.')}
+          </Heading>
         </Flex>
-      </PageHeader>
+        <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+          <HelpButton />
+        </Flex>
+      </Flex>
+    </PageHeader> */}
+      <PageHeaderFarming background="transparent">
+        <TitleSectionGlobal as="h1" scale="xxl" color="black" mb="24px">
+          {t('Pools')}
+        </TitleSectionGlobal>
+        <SubTitleSectionGlobal scale="lg" color="black">
+          {t('Just stake some tokens to earn. High APR, low risk.')}
+        </SubTitleSectionGlobal>
+      </PageHeaderFarming>
       <Content />
       <PoolControls justifyContent="space-between" marginX="24px">
         <PoolTabButtons
@@ -256,10 +312,10 @@ const Pools: React.FC<Props> = () => {
           setViewMode={setViewMode}
         />
         <SearchSortContainer>
-          <Flex flexDirection="column" width="50%">
-            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+          <Flex flexDirection="row" alignItems="center" width="50%">
+            <TextWrapper fontSize="12px" marginRight="10px" bold color="textSubtle" textTransform="uppercase">
               {t('Sort by')}
-            </Text>
+            </TextWrapper>
             <ControlStretch>
               <Select
                 options={[
@@ -284,10 +340,10 @@ const Pools: React.FC<Props> = () => {
               />
             </ControlStretch>
           </Flex>
-          <Flex flexDirection="column" width="50%">
-            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-              {t('Search')}
-            </Text>
+          <Flex flexDirection="row" width="50%" >
+            {/* <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+            { {t('Search')}
+            </Text> */}
             <ControlStretch>
               <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
             </ControlStretch>

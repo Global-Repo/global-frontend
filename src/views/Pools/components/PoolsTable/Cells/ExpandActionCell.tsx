@@ -23,13 +23,17 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
+const StyledText = styled(Text)`
+  color: black;
+`
+
 const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
   transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
   height: 24px;
 `
 
 const GradientText = styled(Text)`
-  background: linear-gradient(to right, #d86186, #f39e21);
+  background: black;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -39,9 +43,9 @@ const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayo
   return (
     <StyledCell role="cell">
       {isFullLayout && (
-        <Text color="primary" bold>
+        <StyledText color="primary" bold>
           <GradientText>{expanded ? t('Hide') : t('Details')}</GradientText>
-        </Text>
+        </StyledText>
       )}
       <ArrowIcon color="primary" toggled={expanded} />
     </StyledCell>
