@@ -140,8 +140,8 @@ const Pools: React.FC<Props> = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
+    const globalPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const cakeAutoVault = { ...globalPool, isAutoVault: true }
     return [cakeAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
