@@ -55,6 +55,7 @@ const EarnAPRCard = () => {
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
   const globalPrice = usePriceGlobalBusd()
+  console.log(globalPrice)
   const dispatch = useAppDispatch()
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const history = useHistory()
@@ -78,6 +79,7 @@ const EarnAPRCard = () => {
     if (globalPrice.gt(0)) {
       // no pasa el if
       const aprs = farmsLP.map((farm) => {
+        console.log(farm)
         // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
         if (farm.pid !== 0 && farm.multiplier !== '0X' && farm.lpTotalInQuoteToken && farm.quoteToken.busdPrice) {
           const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
