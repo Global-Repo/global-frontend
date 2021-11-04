@@ -18,11 +18,16 @@ const StyledCell = styled(BaseCell)`
   flex: 5;
   flex-direction: row;
   padding-left: 12px;
-  
+  align-items: center;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     flex: 1 0 150px;
     padding-left: 32px;
   }
+`
+
+const Subtitle = styled(Text)`
+  margin-top: ${({ theme }) => theme.spacing[1]}px;
 `
 
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
@@ -68,13 +73,13 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
             {t('Staked')}
           </Text>
         )}
-        <Text bold={!isXs && !isSm} small={isXs || isSm}>
+        <Text bold={!isXs && !isSm} small={isXs || isSm} color="black">
           {title}
         </Text>
         {showSubtitle && (
-          <Text fontSize="12px" color="textSubtle">
+          <Subtitle fontSize="12px" color="#A099A5">
             {subtitle}
-          </Text>
+          </Subtitle>
         )}
       </CellContent>
     </StyledCell>

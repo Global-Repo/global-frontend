@@ -8,6 +8,7 @@ import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
+import { CellTitle } from './styles'
 
 interface FinishCellProps {
   pool: Pool
@@ -58,9 +59,9 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        <CellTitle>
           {hasPoolStarted || !shouldShowBlockCountdown ? t('Ends in') : t('Starts in')}
-        </Text>
+        </CellTitle>
         {showLoading ? <Skeleton width="80px" height="16px" /> : renderBlocks}
       </CellContent>
     </StyledCell>

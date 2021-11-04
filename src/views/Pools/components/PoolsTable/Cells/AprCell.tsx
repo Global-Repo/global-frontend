@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@duhd4h/global-uikit'
+import { useMatchBreakpoints } from '@duhd4h/global-uikit'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import BaseCell, { CellContent } from './BaseCell'
 import Apr from '../Apr'
+import { CellTitle } from './styles'
 
 interface AprCellProps {
   pool: Pool
@@ -25,9 +26,7 @@ const AprCell: React.FC<AprCellProps> = ({ pool, performanceFee }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {isAutoVault ? t('APY') : t('APR')}
-        </Text>
+        <CellTitle>{isAutoVault ? t('APY') : t('APR')}</CellTitle>
         <Apr pool={pool} performanceFee={isAutoVault ? performanceFee : 0} showIcon={!isXs && !isSm} />
       </CellContent>
     </StyledCell>
