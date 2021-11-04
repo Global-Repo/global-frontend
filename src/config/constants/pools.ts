@@ -199,7 +199,6 @@ const pools: PoolConfig[] = [
   sortOrder: 1,
   isFinished: false,
 },
-
   {
     sousId: 100,
     stakingToken: tokens.global,
