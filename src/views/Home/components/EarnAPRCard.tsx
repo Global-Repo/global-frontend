@@ -7,7 +7,7 @@ import { NavLink, useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
-import { useFarms, usePriceGlobalBusd } from 'state/hooks'
+import { useFarms, usePriceGlobalBusd,usePriceBnbBusd } from 'state/hooks'
 import { fetchFarmsPublicDataAsync, nonArchivedFarms } from 'state/farms'
 import { getFarmApr } from 'utils/apr'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
@@ -54,7 +54,7 @@ const EarnAPRCard = () => {
   const [isFetchingFarmData, setIsFetchingFarmData] = useState(true)
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
-  const globalPrice = usePriceGlobalBusd()
+  const globalPrice = usePriceBnbBusd()
   console.log(globalPrice)
   const dispatch = useAppDispatch()
   const { observerRef, isIntersecting } = useIntersectionObserver()
@@ -76,6 +76,7 @@ const EarnAPRCard = () => {
   }, [dispatch, setIsFetchingFarmData, isIntersecting])
 
   const highestApr = useMemo(() => {
+    console.log(farmsLP)
     if (globalPrice.gt(0)) {
       // no pasa el if
       const aprs = farmsLP.map((farm) => {
