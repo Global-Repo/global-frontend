@@ -79,7 +79,7 @@ const Content = styled.div`
   #root > div > div > div:first-of-type {
 
   }
-  & 
+  &
 
 `
 
@@ -211,7 +211,9 @@ const Farms: React.FC = () => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
-        console.log(totalLiquidity, "total liquisty")
+
+        console.log(farm)
+
         const apr = isActive
           ? getFarmApr(new BigNumber(farm.poolWeight), globalPrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : 0
