@@ -19,6 +19,19 @@ interface EarningsCellProps {
   userDataLoaded: boolean
 }
 
+const StyledText = styled(Text)`
+  /* font-family: Gotham;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  /* identical to box height */
+
+  /* display: flex;
+  align-items: center; */
+  color: #000000;
+`
+
 const StyledCell = styled(BaseCell)`
   flex: 4.5;
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -27,11 +40,11 @@ const StyledCell = styled(BaseCell)`
 `
 
 const GradientText = styled(Text)`
-  font-weight: bold;
+  /* font-weight: bold; */
   text-transform: uppercase;
   font-size: 12px;
   padding-right: 4px;
-  background: linear-gradient(to right, #e52420, #ce850e);
+  background: #A099A5;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -140,9 +153,9 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                     )}
                   </>
                 ) : (
-                  <Text mt="4px" fontSize="12px" color="textDisabled">
+                  <StyledText mt="4px" fontSize="12px" color="textDisabled">
                     0 USD
-                  </Text>
+                  </StyledText>
                 )}
               </Box>
               {isAutoVault && hasEarnings && !isXs && !isSm && (

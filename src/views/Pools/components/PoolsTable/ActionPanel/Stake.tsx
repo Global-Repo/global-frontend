@@ -44,6 +44,11 @@ const GradientText = styled(Text)`
   -webkit-text-fill-color: transparent;
 `
 
+const WrappedButton = styled(Button)`
+  background-color: #FF0000;
+  color: #fff;
+`
+
 interface StackedActionProps {
   pool: Pool
   userDataLoaded: boolean
@@ -190,9 +195,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           </Text>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="full_gradient_pool">
+          <WrappedButton width="100%" disabled={requestedApproval} onClick={handleApprove}>
             {t('Enable')}
-          </Button>
+          </WrappedButton>
         </ActionContent>
       </ActionContainer>
     )
@@ -262,14 +267,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
         <GradientText as="span">{stakingToken.symbol}</GradientText>
       </ActionTitles>
       <ActionContent>
-        <Button
+        <WrappedButton
           width="100%"
           onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-          variant="full_gradient_pool"
           disabled={isFinished}
         >
           {t('Stake')}
-        </Button>
+        </WrappedButton>
       </ActionContent>
     </ActionContainer>
   )

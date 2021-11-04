@@ -12,11 +12,13 @@ interface PoolsTableProps {
 }
 
 const StyledTable = styled.div`
-  overflow: visible;
+  /* overflow: visible;
   border: 1px solid;
   border-radius: 8px;
-  border-image: linear-gradient(to right, #e52420, #ce850e) 30;
-
+  border-image: linear-gradient(to right, #e52420, #ce850e) 30; */
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  border-radius: 32px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -41,6 +43,13 @@ const Wrapper = styled.div`
   margin-top: 24px;
 `
 
+const StyledTag = styled(Tag)`
+  background: #FF0000;
+  border-radius: 40px;
+  color: white;
+  border: none;
+`
+
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
   const { t } = useTranslation()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -63,10 +72,10 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
       </StyledTable>
       <ScrollButtonContainer>
         <Wrapper onClick={scrollToTop}>
-          <Tag variant="gradient" outline>
+          <StyledTag outline>
             <span>{t('To Top')}</span>
             <ChevronUpIcon />
-          </Tag>
+          </StyledTag>
         </Wrapper>
       </ScrollButtonContainer>
     </StyledTableBorder>

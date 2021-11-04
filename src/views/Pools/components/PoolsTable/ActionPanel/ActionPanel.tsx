@@ -54,6 +54,10 @@ const GradientText = styled(Text)`
   -webkit-text-fill-color: transparent;
 `
 
+const StyledGradientBorderBox = styled(GradientBorderBox)`
+  background: #FFFFFF !important;
+`
+
 const StyledActionPanel = styled.div<{ expanded: boolean }>`
   animation: ${({ expanded }) =>
     expanded
@@ -64,11 +68,14 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: transparent;
+  /* background: transparent; */
+  background: #F8F6FB;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
   padding: 12px;
+  border: 1px solid #F0ECF4;
+  margin: 0 5px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
@@ -90,9 +97,15 @@ const ActionContainer = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 400;
-  background: linear-gradient(to right, #d86186, #f39e21);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(to right, #d86186, #f39e21); */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
+  text-decoration-line: underline;
+  color: #FF0000;
+
+  svg {
+    fill: #FF0000
+  }
 `
 
 type MediaBreakpoints = {
@@ -291,22 +304,22 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
-        <GradientBorderBox
-          colorLeft="#e52420"
-          colorRight="#ce850e"
+        <StyledGradientBorderBox
+          colorLeft="#F0ECF4"
+          colorRight="#F0ECF4"
           borderWidth="1px"
           style={{ flex: 1, margin: '4px 24px' }}
         >
           <Harvest {...pool} userDataLoaded={userDataLoaded} />
-        </GradientBorderBox>
-        <GradientBorderBox
-          colorLeft="#e52420"
-          colorRight="#ce850e"
+        </StyledGradientBorderBox>
+        <StyledGradientBorderBox
+          colorLeft="#F0ECF4"
+          colorRight="#F0ECF4"
           borderWidth="1px"
           style={{ flex: 1, margin: '4px 24px' }}
         >
           <Stake pool={pool} userDataLoaded={userDataLoaded} />
-        </GradientBorderBox>
+        </StyledGradientBorderBox>
       </ActionContainer>
     </StyledActionPanel>
   )

@@ -8,6 +8,9 @@ export const ActionContainer = styled.div`
   flex-basis: 0;
   margin-bottom: 16px;
 
+  background: white;
+  border-radius: 16px;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 12px;
     margin-right: 12px;

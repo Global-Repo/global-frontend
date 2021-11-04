@@ -20,6 +20,12 @@ const GlobalStyle = createGlobalStyle`
       max-width: 100%;
     }
   }
+  button.sc-hKFxyN.iOpbS.sc-hKFxyN {
+    background: #FF0000;
+    font-weight: 400;
+    border-radius: 10px;
+    box-shadow: none;
+  }
   #points_in_progress {
     position: absolute;
     left: 0%;
@@ -46,7 +52,6 @@ const GlobalStyle = createGlobalStyle`
     background: #FFFFFF;
     box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
     border-radius: 32px;
-    border: 0px;
   }
   #connect_wallet_modal > div, #modal_wallet_open > div{
       background-image:none !important;
@@ -70,6 +75,18 @@ const GlobalStyle = createGlobalStyle`
   #close_dialog svg{
       fill: #000000;
   }
+  #BodyWrapperCustomMobile > div 
+  {
+    background: white;
+  }
+  #BodyWrapperCustomMobile > div > div 
+  {
+    background: white;
+  }
+  #BodyWrapperCustomMobile > div > div > div > divo:first-f-type 
+  {
+    
+  }
   #walletButtomCustom > div > div:before
   {
    background: #FF0000;
@@ -79,49 +96,23 @@ const GlobalStyle = createGlobalStyle`
    -webkit-text-fill-color: #FF0000;
    color: #FF0000;
   }
+ 
 
-  #root > div > div:nth-of-type(2) h2 {
-    color:black;
+  // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.xs} {
+    // nav custom background only in mobile format
+    #root > div > div > div:first-of-type {
+      
+    }
   }
+  // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.sm} {
+    // nav custom bakcground
+    #root > div > div > div:first-of-type {
 
-  #root > div > div:nth-of-type(2) {
-    background: #FFFFFF;
-    box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
-    border-radius: 32px;
-    border: 0px;
-    > div {
-      background-image: none !important;
-      border-bottom: 0px;
     }
   }
 
-  #root > div > div:nth-of-type(2) > div > button {
-    background: #F0ECF4;
-  }
-
-  #root > div > div:nth-of-type(2) > div > button> div {
-   color:black;
-  }
-
-  nav > div > div > a {
-    cursor: default;
-    pointer-events: none;        
-    text-decoration: none;
-    color: grey;
-  }
-
-  #root > div > div > div > div > div{
-    color:black;
-    font-weight:bold;
-  }
-  #root > div > div > div > div > div > a.active
-  {
-    color:red;
-  }
-
-  nav svg {
-    fill: #28A8EA !important;
-  }
   // button responsive
   nav > div > div > button:after{
     content: none !important;
@@ -137,16 +128,6 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > div > div > button:after {
     content: none !important;
   }
-  nav > div > div > div > div > a > div {
-    color:black;
-    font-weight:bold;
-  }
-  nav > div > div > div > div > a.active {
-    color:red;
-  } 
-  nav > div > div > div > div > a.active > div  {
-    color:red;
-  }
   // when connect wallet
   nav > div > div > div > div > span {
     -webkit-text-fill-color: #FF0000 !important;
@@ -156,49 +137,93 @@ const GlobalStyle = createGlobalStyle`
     brackground: #FF0000 !important;
     -webkit-background-clip: text;
   }
-  nav > div > div > div > div {
-    border-bottom:0px !important;
-  }
-  nav > div > div > div > div > button {
-    background: #FF0000 !important;
-    font-weight: 400 !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-  }
 
-  nav > button > svg{
-    fill:black!important;
+  .bZyZKQ{
+    color:#000000;
+    font-weight: 600;
   }
-
+  .oRbct{
+    border-bottom:1px solid #000000;
+  }
+  .hJFjHj {
+    background: #F8F6FB;
+  }
   nav {
     background-color: #F8F6FB !important;
   }
-  button.sc-dWBRfb.iWqacH {
-    background: #FF0000;
-    font-weight: 400;
-    border-radius: 10px;
-    box-shadow: none;
+  .kipmKU{
+    color: #28A8EA;
+    fill: #28A8EA;
   }
-  // Styles for mobile nav
-  ${({ theme }) => theme.mediaQueries.xs} {
-    // nav custom background only in mobile format
-    #root > div > div > div:first-of-type {
-      background:white;
-    }
-    #root > div > div > div > div:nth-of-type(2) {
-      background:white;
-    }
-    nav > div > div > button{
-      background: #FF0000 !important;
-      font-weight: 400 !important;
-      border-radius: 10px !important;
-      box-shadow: none !important;
-    }
-
+  .dtlQIr{
+    margin-right: 10px;
   }
-  // Styles for mobile nav
 
+  // menu panel
+  .sc-eHEENL {
+    background: #F8F6FB;
+  }
+  
+  // menu footer
+  .sc-ikXwFM {
+    border-top: 0;
+    background: #F8F6FB;
+  }
 
+  // selected menu item
+  .sc-csTbgd.oRbct {
+    border-bottom: 0;
+  }
+  
+  // selected menu item text
+  .sc-csTbgd.oRbct .sc-eGJWMs {
+    color: #FF0000;
+  }
+
+  // global price
+  .sc-oeezt {
+    display: none;
+  }
+
+  // connect modal
+  .fIUknR {
+    background: white;
+  }
+
+  // connect modal header
+  .igAOHm {
+    border: 0;
+  }
+
+  // connect modal title
+  .bdSXPh {
+    color: black;
+  }
+
+  // connect modal item
+  /* .sc-hKFxyN {
+    background-color: #F0ECF4; 
+  } */
+
+  // connect modal item text
+  .ehIlZS {
+    color: black;
+  }
+
+  // connect modal link
+  .bSjYsy {
+    color: black;
+  }
+
+  // connect modal link svg
+  .gcGXPM {
+    fill: #A099A5;
+  }
+
+  // connect modal close svg
+  .dgGBME {
+    fill: black;
+  }
 }
 `
 

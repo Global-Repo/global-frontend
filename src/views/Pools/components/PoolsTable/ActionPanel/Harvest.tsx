@@ -21,7 +21,7 @@ const GradientText = styled(Text)`
   text-transform: uppercase;
   font-size: 12px;
   padding-right: 4px;
-  background: linear-gradient(to right, #e52420, #ce850e);
+  background: #A099A5;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -144,8 +144,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
               </>
             ) : (
               <>
-                <Heading color="textDisabled">0</Heading>
-                <Text fontSize="12px" color="textDisabled">
+                <Heading color="black">0</Heading>
+                <Text fontSize="12px" color="black">
                   0 USD
                 </Text>
               </>
@@ -157,11 +157,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             <UnstakingFeeCountdownRow isTableVariant />
             <Flex mb="2px" justifyContent="space-between" alignItems="center">
               {tooltipVisible && tooltip}
-              <TooltipText ref={targetRef} small>
+              <TooltipText ref={targetRef} small color="black">
                 {t('Performance Fee')}
               </TooltipText>
               <Flex alignItems="center">
-                <Text ml="4px" small>
+                <Text ml="4px" small color="black">
                   {performanceFee / 100}%
                 </Text>
               </Flex>

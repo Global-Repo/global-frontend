@@ -9,58 +9,66 @@ import {
   TagProps,
 } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
+import styled from 'styled-components'
+
+const StyledTag = styled(Tag)`
+  background: #00C696;
+  border-radius: 40px;
+  color: white;
+  border: none;
+`
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <StyledTag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
       <span color="white">{t('Core')}</span>
-    </Tag>
+    </StyledTag>
   )
 }
 
 const CommunityTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="failure" outline startIcon={<CommunityIcon width="18px" color="failure" mr="4px" />} {...props}>
+    <StyledTag variant="failure" outline startIcon={<CommunityIcon width="18px" color="failure" mr="4px" />} {...props}>
       <span>{t('Community')}</span>
-    </Tag>
+    </StyledTag>
   )
 }
 
 const BinanceTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="binance" outline startIcon={<BinanceIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <StyledTag variant="binance" outline startIcon={<BinanceIcon width="18px" color="secondary" mr="4px" />} {...props}>
       <span>{t('Binance')}</span>
-    </Tag>
+    </StyledTag>
   )
 }
 
 const DualTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="textSubtle" outline {...props}>
+    <StyledTag variant="textSubtle" outline {...props}>
       <span>{t('Dual')}</span>
-    </Tag>
+    </StyledTag>
   )
 }
 
 const ManualPoolTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="secondary" outline startIcon={<RefreshIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <StyledTag variant="secondary" outline startIcon={<RefreshIcon width="18px" color="secondary" mr="4px" />} {...props}>
       <span>{t('Manual')}</span>
-    </Tag>
+    </StyledTag>
   )
 }
 
 const CompoundingPoolTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="success" outline startIcon={<AutoRenewIcon width="18px" color="success" mr="4px" />} {...props}>
+    <StyledTag variant="success" outline startIcon={<AutoRenewIcon width="18px" color="success" mr="4px" />} {...props}>
       <span>{t('Auto')}</span>
-    </Tag>
+    </StyledTag>
   )
 }
 
