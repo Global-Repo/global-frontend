@@ -192,6 +192,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
 
+  // your wallet modal address
+  div[style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 8px;"] {
+    color: #A099A5;
+  }
 }
 `
 

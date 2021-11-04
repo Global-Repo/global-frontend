@@ -69,6 +69,7 @@ const SearchSortContainer = styled(Flex)`
 `
 
 const TextWrapper = styled(Text)`
+  white-space: nowrap;
   @media screen and (max-width: 580px) {
     display: none;
   } ;
@@ -321,7 +322,7 @@ const Pools: React.FC<Props> = () => {
           setViewMode={setViewMode}
         />
         <SearchSortContainer>
-          <Flex flexDirection="row" alignItems="center" width="50%">
+          <Flex flexDirection="row" alignItems="center">
             <TextWrapper fontSize="12px" marginRight="10px" bold color="textSubtle" textTransform="uppercase">
               {t('Sort by')}
             </TextWrapper>
