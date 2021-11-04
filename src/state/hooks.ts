@@ -395,7 +395,7 @@ export const useGetPriceBNBBUSD = () => {
 }
 
 export const usePriceGlobalBusd = (): BigNumber => {
-  const globalBnbFarm = useFarmFromPid(parseInt(process.env.REACT_APP_GLOBAL_BUSD_PID, 10))
+  const globalBnbFarm = useFarmFromPid(2)
   return new BigNumber(globalBnbFarm.token.busdPrice)
 }
 
