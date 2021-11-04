@@ -53,34 +53,20 @@ const ToggleWrapper = styled.div`
   }
 
   & > div:first-child {
-    background-color: #FFDBDB;
+    background-color: #ffdbdb;
     box-shadow: none;
   }
 
-  & > div:first-child > div{
+  & > div:first-child > div {
     background-color: red;
   }
-
 `
 
 const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
-    color:black;
+    color: black;
   }
-`
-
-const Content = styled.div`
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  #root > div > div > div:first-of-type {
-
-  }
-  &
-
 `
 
 const FilterContainer = styled.div`
@@ -131,7 +117,7 @@ const CardsContainer = styled.div`
 
 const TitleSectionGlobal = styled(Heading)`
   font-size: 38px;
-  text-align:center;
+  text-align: center;
 `
 
 const SubTitleSectionGlobal = styled(Heading)`
@@ -139,26 +125,22 @@ const SubTitleSectionGlobal = styled(Heading)`
   line-height: 34px;
   text-align: center;
   color: #000000;
-  font-weight:300;
+  font-weight: 300;
 `
 
-const PageFarming = styled(Page)`
-
-`
+const PageFarming = styled(Page)``
 
 const PageHeaderFarming = styled(PageHeader)`
   background-image: url('/images/home/farms_pyramid.png'), url('/images/home/farms_cube.png');
   background-repeat: no-repeat;
-  background-size:   129px 158px, 119px 152px;
-  background-position:  top left, bottom right;
+  background-size: 129px 158px, 119px 152px;
+  background-position: top left, bottom right;
   z-index: 0;
   ${({ theme }) => theme.mediaQueries.lg} {
     min-height: 220px;
-    margin-top:15px;
+    margin-top: 15px;
   }
 `
-
-
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
@@ -435,7 +417,6 @@ const Farms: React.FC = () => {
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </SubTitleSectionGlobal>
       </PageHeaderFarming>
-      <Content />
       <ControlContainer>
         <ViewControls>
           <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
@@ -447,7 +428,9 @@ const Farms: React.FC = () => {
         </ViewControls>
         <FilterContainer>
           <LabelWrapper>
-            <Text textTransform="uppercase" color="black">{t('Sort by')}</Text>
+            <Text textTransform="uppercase" color="black">
+              {t('Sort by')}
+            </Text>
             <Select
               options={[
                 {
@@ -479,7 +462,9 @@ const Farms: React.FC = () => {
             />
           </LabelWrapper>
           <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text textTransform="uppercase" color="black">{t('Search')}</Text>
+            <Text textTransform="uppercase" color="black">
+              {t('Search')}
+            </Text>
             <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
           </LabelWrapper>
         </FilterContainer>
