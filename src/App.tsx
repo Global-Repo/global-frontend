@@ -43,7 +43,6 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            {/* 
             <Route path="/farms">
               <Farms />
             </Route>
@@ -56,6 +55,7 @@ const App: React.FC = () => {
             <Route path="/optimizer">
               <Optimizer isGlobal />
             </Route>
+            {/* 
             <Route path="/lottery">
               <Lottery />
             </Route>
