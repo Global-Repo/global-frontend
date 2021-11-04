@@ -128,7 +128,7 @@ const EarnAPRCard = () => {
         <ButtonCustomGlobal>
           <BorderGradientButton
             label="Details >"
-            onClick={() => history.push('/')}
+            onClick={() => history.push('/farms')}
             style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
             colorRight="#FFECEC"
             colorLeft="#FFECEC"

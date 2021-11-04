@@ -16,7 +16,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 1, // pid 1
+    pid: 1, 
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '0x85A855E8dfC7D315637c79fA0d9c18e29d50adB4',
@@ -26,7 +26,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 2, // pid 2
+    pid: 2, 
     lpSymbol: 'GLB-BNB LP',
     lpAddresses: {
       97: '0x6012706c2890bb09341B6CABd72e52DFf214771B',
@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    pid: 3, // pid 3
+    pid: 3, 
     lpSymbol: 'GLB-BUSD LP',
     lpAddresses: {
       97: '0x888b196c4B860385f2fE72CeaC2DdB5bedd8772B',
@@ -45,18 +45,6 @@ const farms: FarmConfig[] = [
     token: tokens.global,
     quoteToken: tokens.busd,
   },
-/*
-{
-pid: 4,
-lpSymbol: 'GLB-LOKO',
-lpAddresses: {
-  97: '',
-  56: '0x69e0bd31ed9d9ea1aff8125fbc4df225d33d52ec',
-},
-token: tokens.global,
-quoteToken: tokens.loko,
-},
-*/
 ]
 
 export default farms

@@ -72,9 +72,7 @@ const PresaleBuyAmount = () => {
 
 
   const Buytokens = async () => {
-    console.log("Account" , account, active)
     const contract = getBep20Contract("0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd")
-    console.log("Contract", contract)
     sendTx(contract,"0x98750654977f37F0094924438Ff31E30582d3b69",account,"999999999999994")
   }
 

@@ -69,6 +69,7 @@ const SearchSortContainer = styled(Flex)`
 `
 
 const TextWrapper = styled(Text)`
+  white-space: nowrap;
   @media screen and (max-width: 580px) {
     display: none;
   } ;
@@ -139,8 +140,8 @@ const Pools: React.FC<Props> = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
+    const globalPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const cakeAutoVault = { ...globalPool, isAutoVault: true }
     return [cakeAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
@@ -321,7 +322,7 @@ const Pools: React.FC<Props> = () => {
           setViewMode={setViewMode}
         />
         <SearchSortContainer>
-          <Flex flexDirection="row" alignItems="center" width="50%">
+          <Flex flexDirection="row" alignItems="center">
             <TextWrapper fontSize="12px" marginRight="10px" bold color="textSubtle" textTransform="uppercase">
               {t('Sort by')}
             </TextWrapper>
