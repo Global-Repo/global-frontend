@@ -107,10 +107,12 @@ const GlobalStyle = createGlobalStyle`
     color:black;
     font-weight:bold;
   }
-  #root > div > div > div > div > div > a.active
-  {
-    color:red;
+
+  // footer global price
+  #root > div > div > div > div:last-child > div > *:first-child {
+    display: none;
   }
+
   nav svg {
     fill: #28A8EA !important;
   }
@@ -129,14 +131,11 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > div > div > button:after {
     content: none !important;
   }
-  nav > div > div > div > div > a > div {
+  nav > div > div > div > div > a {
     color:black;
     font-weight:bold;
   }
   nav > div > div > div > div > a.active {
-    color:red;
-  }
-  nav > div > div > div > div > a.active > div  {
     color:red;
   }
   // when connect wallet
@@ -177,6 +176,7 @@ const GlobalStyle = createGlobalStyle`
     }
     #root > div > div > div > div:nth-of-type(2) {
       background:white;
+      border-top: 0;
     }
     nav > div > div > button{
       background: #FF0000 !important;
@@ -185,8 +185,16 @@ const GlobalStyle = createGlobalStyle`
       box-shadow: none !important;
     }
   }
-  // Styles for mobile nav
+  
+  // twitter icon
+  a[aria-label="Twitter"] svg{
+    fill: #28A8EA;
+  }
 
+  // telegram icon
+  a[aria-label="Telegram"] svg{
+    fill: #28A8EA;
+  }
 
 
 }
