@@ -11,6 +11,10 @@ export const ActionContainer = styled.div`
   background: white;
   border-radius: 16px;
 
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 12px;
     margin-right: 12px;
