@@ -22,9 +22,6 @@ import { useTranslation } from '../../contexts/Localization'
 import { useGetBnbBalance, useBuyPresale } from '../../hooks/useGetPresaleBuy'
 import useWeb3 from '../../hooks/useWeb3'
 
-
-
-
 const HomeHeader = styled.div`
   // height: 180px;
   ${({ theme }) => theme.mediaQueries.xs} {
