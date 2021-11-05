@@ -8,7 +8,7 @@ declare module 'styled-components' {
 }
 
 const GlobalStyle = createGlobalStyle`
-  * {
+* {
     font-family: Poppins, sans-serif;
   }
   body {
@@ -38,7 +38,6 @@ const GlobalStyle = createGlobalStyle`
     z-index: -1;
     top: 0%;
   }
-
   #StyledNavCustom svg{
     fill:#28A8EA;
   }
@@ -113,6 +112,42 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  #root > div > div:nth-of-type(2) h2 {
+    color:black;
+  }
+  #root > div > div:nth-of-type(2) {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 40px rgb(179 165 209 / 30%);
+    border-radius: 32px;
+    border: 0px;
+    > div {
+      background-image: none !important;
+      border-bottom: 0px;
+    }
+  }
+  #root > div > div:nth-of-type(2) > div > button {
+    background: #F0ECF4;
+  }
+  #root > div > div:nth-of-type(2) > div > button> div {
+   color:black;
+  }
+  nav > div > div > a {
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+    color: grey;
+  }
+  #root > div > div > div > div > div{
+    color:black;
+    font-weight:bold;
+  }
+  #root > div > div > div > div > div > a.active
+  {
+    color:red;
+  }
+  nav svg {
+    fill: #28A8EA !important;
+  }
   // button responsive
   nav > div > div > button:after{
     content: none !important;
@@ -127,6 +162,16 @@ const GlobalStyle = createGlobalStyle`
   // no display effect around button
   nav > div > div > div > div > button:after {
     content: none !important;
+  }
+  nav > div > div > div > div > a > div {
+    color:black;
+    font-weight:bold;
+  }
+  nav > div > div > div > div > a.active {
+    color:red;
+  }
+  nav > div > div > div > div > a.active > div  {
+    color:red;
   }
   // when connect wallet
   nav > div > div > div > div > span {
@@ -147,6 +192,8 @@ const GlobalStyle = createGlobalStyle`
   }
   .hJFjHj {
     background: #F8F6FB;
+  nav > button > svg{
+    fill:black!important;
   }
   nav {
     background-color: #F8F6FB !important;
@@ -168,6 +215,21 @@ const GlobalStyle = createGlobalStyle`
   .sc-ikXwFM {
     border-top: 0;
     background: #F8F6FB;
+  // Styles for mobile nav
+  ${({ theme }) => theme.mediaQueries.xs} {
+    // nav custom background only in mobile format
+    #root > div > div > div:first-of-type {
+      background:white;
+    }
+    #root > div > div > div > div:nth-of-type(2) {
+      background:white;
+    }
+    nav > div > div > button{
+      background: #FF0000 !important;
+      font-weight: 400 !important;
+      border-radius: 10px !important;
+      box-shadow: none !important;
+    }
   }
 
   // selected menu item
@@ -224,6 +286,7 @@ const GlobalStyle = createGlobalStyle`
   .dgGBME {
     fill: black;
   }
+
 }
 `
 

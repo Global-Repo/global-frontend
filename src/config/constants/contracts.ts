@@ -1,7 +1,7 @@
 export default {
   masterChef: {
-    97: '0xD412d85B75410bE2d01C3503bE580274c27c3B69',
-    56: '0xe0B197B14ff038a72cC7a41C436155A2a2F5c14C',
+    97: '0xAFe73d0De6EcD175Bba00A9B10b56113234E8818',
+    56: '0xAFe73d0De6EcD175Bba00A9B10b56113234E8818',
   },
   sousChef: {
     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -69,37 +69,37 @@ export default {
   },
   // VAULTS
   globalVaultLocked: {
-    56: '0xf590FFeffEDabec938C42D1Ab04F62ca715150f5',
-    97: '0x657d6e94B1F25A739c11B847bBA94186e962a697',
+    56: '0x2e2FD151F9d6abeca1d81b77C6E7a0A02631A424',
+    97: '0x2e2FD151F9d6abeca1d81b77C6E7a0A02631A424',
   },
   globalVaultVested: {
-    56: '0x00',
-    97: '0xe366120ce1a9D1b3B332dFDB4009cfbbb5e07c41',
+    56: '0x2A49e752081F263737E827114dD77171A759E837',
+    97: '0x2A49e752081F263737E827114dD77171A759E837',
   },
   globalVaultStakedToBnb: {
-    56: '0x00',
-    97: '0x8f883d8C432Da797b02efe823a3E0E197Bb886B8',
+    56: '0xF3F78D3CCf6CC4d25c4651BCffCd2Ea4A46620Ca',
+    97: '0xF3F78D3CCf6CC4d25c4651BCffCd2Ea4A46620Ca',
   },
   globalVaultStakedToGlobal: {
-    56: '0x00',
-    97: '0xe906a1Ca85A2db584a7A806E5eE868F5dbe8a7a0',
+    56: '0xB2e3D5dF6c3Bd69b0388ae05BE8806408A835C54',
+    97: '0xB2e3D5dF6c3Bd69b0388ae05BE8806408A835C54',
   },
   globalVaultCake: {
-    56: '0x00',
-    97: '0x578091C92e85cF3660842651c684Cf157b9Ef5e0',
+    56: '0x73860a38f7355ce0f0e1EA85Cd0840afEF04AFE3',
+    97: '0x73860a38f7355ce0f0e1EA85Cd0840afEF04AFE3',
   },
   // TODO: vault bunny and VaultCakeWbnbLP
   globalVaultCakeMaximizer: {
-    56: '0x00',
-    97: '0x1288e2Ce2beaf4601A66dFf4f33b47A6f41C38E3',
+    56: '0x73860a38f7355ce0f0e1EA85Cd0840afEF04AFE3',
+    97: '0x73860a38f7355ce0f0e1EA85Cd0840afEF04AFE3',
   },
   globalVaultMixStrategy: {
-    56: '0x00',
-    97: '0x96bDede48ea32b03167E5253ea3D34D8486710b7',
+    56: '0x71188bb3c1Aa3A676Fc22142ffC8bcAC681eb8f1',
+    97: '0x71188bb3c1Aa3A676Fc22142ffC8bcAC681eb8f1',
   },
   globalVaultGlobalMaximizer: {
-    56: '0x00',
-    97: '0x5dC1410c6465079F85dfaDaD0a953Da76496A2C4',
+    56: '0x23E9BAb0644b45481eA754245b3aA3Cf7537e0F4',
+    97: '0x23E9BAb0644b45481eA754245b3aA3Cf7537e0F4',
   },
   globalPresaleAddress: {
     56: '0x46fd3695faF3100ec3000f7E1903f9Db94cFBf19',
