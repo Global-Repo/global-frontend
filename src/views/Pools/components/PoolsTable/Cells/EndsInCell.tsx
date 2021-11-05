@@ -33,7 +33,7 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
     <Flex alignItems="center">
       <Flex flex="1.3">
         <Balance fontSize="16px" value={blocksToDisplay} decimals={0} />
-        <Text ml="4px" textTransform="lowercase">
+        <Text ml="4px" textTransform="lowercase" color="#A099A5">
           {t('Blocks')}
         </Text>
       </Flex>
@@ -43,7 +43,7 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
           href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}
           onClick={(e) => e.stopPropagation()}
         >
-          <TimerIcon ml="4px" />
+          <TimerIcon ml="4px" color="#A099A5"/>
         </Link>
       </Flex>
     </Flex>

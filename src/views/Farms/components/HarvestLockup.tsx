@@ -5,22 +5,15 @@ import { useTranslation } from '../../../contexts/Localization'
 
 const HelpIconWrapper = styled.div`
   align-self: center;
+  display: inline-flex;
   margin-left: 4px;
 `
 
 const TextGlobal = styled(Text)`
-   font-weight: 600;
-   font-size:14px;
-   color: #000000;
-   line-height: 17px;
-`
-
-const TextGlobalApr = styled(Text)`
-   font-weight: 600;
-   font-size:14px;
-   color: #000000;
-   display:flex;
-   line-height: 17px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #000000;
+  line-height: 17px;
 `
 
 interface Props {
@@ -29,23 +22,26 @@ interface Props {
 
 const HarvestLockup: FC<Props> = ({ harvestInterval }) => {
   const { t } = useTranslation()
+  const hours = parseInt(harvestInterval) / 3600
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('How often you can claim rewards.'), {
-    placement: 'bottom',
-  })
-  
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+    t(`You can claim rewards every ${hours} ${t('Hour(s)')}.`),
+    {
+      placement: 'bottom',
+    },
+  )
+
   return (
-    <Flex justifyContent="space-between">
+    <Flex alignItems="center">
       {tooltipVisible && tooltip}
       <Flex>
-        <TextGlobal>{t('Harvest Lockup')}:</TextGlobal>
+        <TextGlobal>
+          {t('Harvest Lockup')}: {hours ? `${hours}h` : ''}
+        </TextGlobal>
       </Flex>
-      <TextGlobalApr>
-        {harvestInterval ? <div>{parseInt(harvestInterval) / 3600} {t('Hour(s)')} </div> : ""}
-      </TextGlobalApr>
-       <HelpIconWrapper ref={targetRef}>
-          <HelpIcon color="textSubtle" />
-        </HelpIconWrapper>
+      <HelpIconWrapper ref={targetRef}>
+        <HelpIcon width={14} height={14} color="#A099A5" />
+      </HelpIconWrapper>
     </Flex>
   )
 }

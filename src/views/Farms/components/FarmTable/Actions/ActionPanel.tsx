@@ -53,7 +53,7 @@ const Container = styled.div<{ expanded }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: #F8F6FB;
+  background: #f8f6fb;
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
@@ -66,17 +66,25 @@ const Container = styled.div<{ expanded }>`
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 500;
+  font-weight: bold;
   font-size: 14px;
   line-height: 17px;
   display: flex;
   align-items: center;
   text-decoration-line: underline;
-  color: #FF0000;
+  color: #ff0000;
   > svg {
-    color:red;
-    -webkit-mask:none;
-    fill:red;
+    color: red;
+    -webkit-mask: none;
+    fill: red;
+    width: 14px;
+    height: 14px;
+  }
+`
+
+const LinksContainer = styled.div`
+  > * + * {
+    margin-top: ${({ theme }) => theme.spacing[2]}px;
   }
 `
 
@@ -96,18 +104,17 @@ const TagsContainer = styled.div`
   align-items: center;
   margin-top: 25px;
 
-
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-top: 16px;
   }
 
   > div:before {
-    background:red;
-    -webkit-mask:none;
+    background: red;
+    -webkit-mask: none;
   }
-  > div > span{
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: white; 
+  > div > span {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
     color: white;
   }
   > div {
@@ -115,7 +122,6 @@ const TagsContainer = styled.div`
     padding: 0 6px;
     font-size: 14px;
     margin-right: 4px;
-    margin-bottom: 5px;
     svg {
       width: 14px;
     }
@@ -157,7 +163,10 @@ const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 8px;
+  margin-top: ${({ theme }) => theme.spacing[3]}px;
+  > * + * {
+    margin-top: ${({ theme }) => theme.spacing[2]}px;
+  }
 `
 
 const ActionItemWrapper = styled(GradientBorderBox)`
@@ -190,13 +199,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   return (
     <Container expanded={expanded}>
       <InfoContainer>
-        {isActive && (
-          <StakeContainer>
-            <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
-          </StakeContainer>
-        )}
-        <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+        <LinksContainer>
+          {isActive && (
+            <StakeContainer>
+              <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
+            </StakeContainer>
+          )}
+          <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
+          <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+        </LinksContainer>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />}
           {dual ? <DualTag variant="gradient" /> : null}
@@ -226,7 +237,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           borderWidth="1px"
           colorLeft="#ffffff"
           colorRight="#ffffff"
-          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px'}}
+          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px' }}
         >
           <HarvestAction {...farm} userDataReady={userDataReady} harvestInterval={farm.harvestInterval} />
         </ActionItemWrapper>
@@ -234,7 +245,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           borderWidth="1px"
           colorLeft="#ffffff"
           colorRight="#ffffff"
-          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px'}}
+          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px' }}
         >
           <StakedAction {...farm} userDataReady={userDataReady} />
         </ActionItemWrapper>
