@@ -119,7 +119,7 @@ const GlobalStyle = createGlobalStyle`
   // nav price
   nav > div > div > a > div > div{
     color: black !important;
-    display: none;
+    display: none !important;
   }
   nav > div {
     max-width:1410px;
