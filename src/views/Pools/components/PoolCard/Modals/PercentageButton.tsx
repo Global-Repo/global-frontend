@@ -7,6 +7,8 @@ interface PercentageButtonProps {
 }
 
 const StyledButton = styled(Button)`
+  background: red;
+  color: white;
   flex-grow: 1;
 `
 

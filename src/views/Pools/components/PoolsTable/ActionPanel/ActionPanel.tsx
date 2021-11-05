@@ -96,16 +96,18 @@ const ActionContainer = styled.div`
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 500;
+  font-weight: bold;
   font-size: 14px;
   /* background: linear-gradient(to right, #d86186, #f39e21); */
   /* -webkit-background-clip: text; */
   /* -webkit-text-fill-color: transparent; */
   text-decoration-line: underline;
+  line-height: 17px;
   color: #FF0000;
 
   svg {
-    fill: #FF0000
+    fill: #FF0000;
+    width: 14px;
   }
 `
 
@@ -288,15 +290,15 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         )}
         {account && isMetaMaskInScope && tokenAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <Button
-              variant="text"
+            <RedButton
+              variant="secondary"
               p="0"
               height="auto"
               onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals, imageSrc)}
             >
-              <GradientText>{t('Add to Metamask')}</GradientText>
+              <>{t('Add to Metamask')}</>
               <MetamaskIcon ml="4px" />
-            </Button>
+            </RedButton>
           </Flex>
         )}
         {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
@@ -331,5 +333,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     </StyledActionPanel>
   )
 }
+
+const RedButton = styled(Button)`
+  padding: 4px 8px;
+  color: red;
+  background: white;
+`
 
 export default ActionPanel

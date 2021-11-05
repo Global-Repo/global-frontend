@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from '@duhd4h/global-uikit'
 
 export const ActionContainer = styled.div`
   padding: 16px;
@@ -41,4 +42,10 @@ export const ActionContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`
+
+
+export const RedButton = styled(Button)`
+  background-color: #ff0000;
+  color: #fff;
 `

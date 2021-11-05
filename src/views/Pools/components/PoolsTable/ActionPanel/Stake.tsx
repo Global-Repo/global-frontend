@@ -25,7 +25,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
 import { useERC20 } from 'hooks/useContract'
 import { convertSharesToCake } from 'views/Pools/helpers'
-import { ActionContainer, ActionTitles, ActionContent } from './styles'
+import { ActionContainer, ActionTitles, ActionContent, RedButton } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
 import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
@@ -45,7 +45,7 @@ const GradientText = styled(Text)`
 `
 
 const WrappedButton = styled(Button)`
-  background-color: #FF0000;
+  background-color: #ff0000;
   color: #fff;
 `
 
@@ -233,23 +233,22 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             />
           </Flex>
           <IconButtonWrapper>
-            <IconButton variant="full_gradient_pool" onClick={onUnstake} mr="6px">
+            <RedButton onClick={onUnstake} mr="6px">
               <MinusIcon color="white" width="14px" />
-            </IconButton>
+            </RedButton>
             {reachStakingLimit ? (
               <span ref={targetRef}>
-                <IconButton variant="full_gradient_pool" disabled>
+                <RedButton disabled>
                   <AddIcon color="textDisabled" width="24px" height="24px" />
-                </IconButton>
+                </RedButton>
               </span>
             ) : (
-              <IconButton
-                variant="full_gradient_pool"
+              <RedButton
                 onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
                 disabled={isFinished}
               >
                 <AddIcon color="white" width="14px" />
-              </IconButton>
+              </RedButton>
             )}
           </IconButtonWrapper>
           {tooltipVisible && tooltip}

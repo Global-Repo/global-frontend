@@ -1,30 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useLocation, Link, useRouteMatch } from 'react-router-dom'
+import { useLocation, NavLink, useRouteMatch } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 
-
-const ButtonMenuGlobal = styled(ButtonMenu)` 
-  background: #FFDBDB;
+const ButtonMenuGlobal = styled(ButtonMenu)`
+  background: #ffdbdb;
   border-radius: 12px;
-  border:0px;
-  padding:2px;
+  border: 0px;
+  padding: 2px;
   a {
-    color:white;
+    color: white;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
+    &.active {
+      background-color: #FF0000;
+      color: #FFFFFF;
+    }
   }
   > a {
     border-radius: 10px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 `
-
 
 interface FarmTabButtonsProps {
   hasStakeInFinishedFarms: boolean
@@ -54,11 +56,11 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
   return (
     <Wrapper>
       <ButtonMenuGlobal activeIndex={activeIndex} scale="sm">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+        <ButtonMenuItem as={NavLink} exact to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
         <NotificationDot show={hasStakeInFinishedFarms}>
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
+          <ButtonMenuItem as={NavLink} exact to={`${url}/history`}>
             {t('Finished')}
           </ButtonMenuItem>
         </NotificationDot>
