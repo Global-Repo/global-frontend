@@ -30,7 +30,7 @@ const Menu = (props) => {
         langs={languageList}
         setLang={setLanguage}
         links={config(t)}
-        globalPriceUsd={globalPriceUsd}
+        // globalPriceUsd={globalPriceUsd}
         profile={{
           username: profile?.username,
           image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,

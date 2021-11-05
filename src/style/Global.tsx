@@ -115,11 +115,18 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > button:after{
     content: none !important;
   }
+
+  // nav price
   nav > div > div > a > div > div{
     color: black !important;
+    display: none;
   }
   nav > div {
     max-width:1410px;
+  }
+  // mobile nav price
+  a[href="https://swap.beglobal.finance/#/swap?outputCurrency=0x00"] > svg + div{
+    display: none;
   }
   // no display effect around button
   nav > div > div > div > div > button:after {
