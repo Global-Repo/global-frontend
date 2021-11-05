@@ -42,22 +42,22 @@ const PoolControls = styled(Flex)`
   margin-bottom: 24px;
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
-  }
+  };
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
   }
-
+  
   padding-top: 24px;
 `
 
 const SearchSortContainer = styled(Flex)`
   gap: 10px;
   justify-content: flex-end;
-
+  
   @media screen and (max-width: 992px) {
     justify-content: space-between;
-  }
+  };
 
   @media screen and (max-width: 420px) {
     flex-direction: column;
@@ -65,14 +65,13 @@ const SearchSortContainer = styled(Flex)`
     div {
       width: 100%;
     }
-  } ;
+  };
 `
 
 const TextWrapper = styled(Text)`
-  white-space: nowrap;
   @media screen and (max-width: 580px) {
     display: none;
-  } ;
+  };
 `
 
 const ControlStretch = styled(Flex)`
@@ -81,9 +80,18 @@ const ControlStretch = styled(Flex)`
   }
 `
 
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  //background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+  z-index: -1;
+`
+
 const TitleSectionGlobal = styled(Heading)`
   font-size: 38px;
-  text-align: center;
+  text-align:center;
 `
 
 const SubTitleSectionGlobal = styled(Heading)`
@@ -91,24 +99,18 @@ const SubTitleSectionGlobal = styled(Heading)`
   line-height: 34px;
   text-align: center;
   color: #000000;
-  font-weight: 300;
+  font-weight:300;
 `
 
 const PageHeaderFarming = styled(PageHeader)`
   background-image: url('/images/home/farms_pyramid.png'), url('/images/home/farms_cube.png');
   background-repeat: no-repeat;
-  background-size: 129px 158px, 119px 152px;
-  background-position: top left, bottom right;
+  background-size:   129px 158px, 119px 152px;
+  background-position:  top left, bottom right;
   z-index: 0;
   ${({ theme }) => theme.mediaQueries.lg} {
     min-height: 220px;
-    margin-top: 15px;
-  }
-`
-
-const PoolTablesContainer = styled.div`
-  > * + * {
-    margin-top: ${({ theme }) => theme.spacing[5]}px;
+    margin-top:15px;
   }
 `
 
@@ -140,8 +142,8 @@ const Pools: React.FC<Props> = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const globalPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...globalPool, isAutoVault: true }
+    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const cakeAutoVault = { ...cakePool, isAutoVault: true }
     return [cakeAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
@@ -240,7 +242,7 @@ const Pools: React.FC<Props> = () => {
     }
   }
 
-  const getPoolsToShow = () => {
+  const poolsToShow = () => {
     let chosenPools = []
     if (showFinishedPools) {
       chosenPools = stakedOnly ? stakedOnlyFinishedPools : finishedPools
@@ -255,25 +257,12 @@ const Pools: React.FC<Props> = () => {
       )
     }
 
-    return sortPools(chosenPools)
-      .filter(({ hidden }) => !hidden)
-      .slice(0, numberOfPoolsVisible)
+    return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
-
-  const removeItinerary = (data, removeId) => {
-    const res = data.filter(obj => obj.id !== removeId);
-    return res;
-  }
-
-  const poolsToShow = getPoolsToShow()
-
-  const lockedPools = poolsToShow.filter((pool) => pool.type === 'LOCKED')
-  const vestedPools = poolsToShow.filter((pool) => pool.type === 'VESTED')
-  const vaultStackedPools = poolsToShow.filter((pool) => !pool.type)
 
   const cardLayout = (
     <CardLayout>
-      {poolsToShow.map((pool) =>
+      {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
@@ -283,13 +272,7 @@ const Pools: React.FC<Props> = () => {
     </CardLayout>
   )
 
-  const tableLayout = (
-    <PoolTablesContainer>
-      <PoolsTable pools={lockedPools} account={account} userDataLoaded={userDataLoaded} />
-      <PoolsTable pools={vestedPools} account={account} userDataLoaded={userDataLoaded} />
-      <PoolsTable pools={vaultStackedPools} account={account} userDataLoaded={userDataLoaded} />
-    </PoolTablesContainer>
-  )
+  const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 
   return (
     <Page>
@@ -319,6 +302,7 @@ const Pools: React.FC<Props> = () => {
           {t('Just stake some tokens to earn. High APR, low risk.')}
         </SubTitleSectionGlobal>
       </PageHeaderFarming>
+      <Content />
       <PoolControls justifyContent="space-between" marginX="24px">
         <PoolTabButtons
           stakedOnly={stakedOnly}
@@ -328,7 +312,7 @@ const Pools: React.FC<Props> = () => {
           setViewMode={setViewMode}
         />
         <SearchSortContainer>
-          <Flex flexDirection="row" alignItems="center">
+          <Flex flexDirection="row" alignItems="center" width="50%">
             <TextWrapper fontSize="12px" marginRight="10px" bold color="textSubtle" textTransform="uppercase">
               {t('Sort by')}
             </TextWrapper>
@@ -356,7 +340,7 @@ const Pools: React.FC<Props> = () => {
               />
             </ControlStretch>
           </Flex>
-          <Flex flexDirection="row" width="50%">
+          <Flex flexDirection="row" width="50%" >
             {/* <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
             { {t('Search')}
             </Text> */}
@@ -371,7 +355,7 @@ const Pools: React.FC<Props> = () => {
           {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
         </Text>
       )}
-      {tableLayout}
+      <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
       <div ref={loadMoreRef} />
     </Page>
   )

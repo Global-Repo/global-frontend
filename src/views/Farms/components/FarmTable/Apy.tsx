@@ -37,12 +37,11 @@ const Container = styled.div`
 `
 
 const AprWrapper = styled.div`
+  min-width: 60px;
   text-align: left;
-  font-weight: bold;
 `
 
 const HelpIconWrapper = styled.div`
-  display: inline-flex;
   align-self: center;
   margin-left: 4px;
 `
@@ -66,13 +65,12 @@ const Apy: React.FC<ApyProps> = ({
     placement: 'bottom',
   })
 
-
   return originalValue !== 0 ? (
     <Container>
       {tooltipVisible && tooltip}
       {originalValue ? (
         <>
-          <AprWrapper>{value}%</AprWrapper>
+          <AprWrapper>{value ? value.slice(0,10) : value}%</AprWrapper>
           {!hideButton && (
             <ApyButton
               lpLabel={lpLabel}
@@ -82,7 +80,7 @@ const Apy: React.FC<ApyProps> = ({
             />
           )}
           <HelpIconWrapper ref={targetRef}>
-            <HelpIcon color="#A099A5" width={16} />
+            <HelpIcon color="textSubtle" />
           </HelpIconWrapper>
         </>
       ) : (
@@ -96,7 +94,7 @@ const Apy: React.FC<ApyProps> = ({
       {tooltipVisible && tooltip}
       <AprWrapper>{originalValue}%</AprWrapper>
       <HelpIconWrapper ref={targetRef}>
-        <HelpIcon color="#A099A5" width={16} />
+        <HelpIcon color="textSubtle" />
       </HelpIconWrapper>
     </Container>
   )

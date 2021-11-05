@@ -11,7 +11,7 @@ const StyledBackground = styled.div`
     width: 100%;
     background-image: url('/images/home/bg_partneships.png');
     background-repeat: no-repeat;
-    background-size:    100% 69%;
+    background-size:    100% 60%;
     background-position: 100% 100%;
     z-index: 0;
 `
@@ -19,29 +19,16 @@ const StyledBackground = styled.div`
 const HomeStyledBackground = styled(StyledBackground)`
   ${({ theme }) => theme.mediaQueries.lg} {
       background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
-         url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png') !important;
-      background-repeat: no-repeat !important;
-      background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65% !important;
-      background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100% !important; 
-      z-index: 0 !important;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    // nav custom bakcground
-    #root > div > div > div:first-of-type {
-      background-image: url('/images/home/logo1.png'), url('/images/home/logo2.png'),
          url('/images/home/cube2.png'), url('/images/home/pyramid_2.png'),url('/images/home/header_bg.png'),url('/images/home/bg_partneships.png');
       background-repeat: no-repeat;
       background-size:   292px 225px, 164px 272px, 272px 208px, 330px 244px, 100% 40%, 100% 65%;
       background-position:  13% 15%, 87% -1%, 11% 71%, 88% 95%, 0% -23%, 100% 100%;
       z-index: 0;
-    }
   }
-
 `
 
 const StyledPage = styled(Container)`
-  min-height: calc(100vh - 80px);
-  overflow: hidden;
+  min-height: calc(100vh - 64px);
   padding-bottom: 16px;
   width: 100%;
   color:black;

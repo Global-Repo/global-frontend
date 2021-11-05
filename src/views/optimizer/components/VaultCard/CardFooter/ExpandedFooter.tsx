@@ -19,17 +19,18 @@ const ExpandedWrapper = styled(Flex)`
   }
 `
 
-const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
-  background: linear-gradient(to right, #d86186, #f39e21);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`
+// const StyledLinkExternal = styled(LinkExternal)`
+//   font-weight: 400;
+//   //background: linear-gradient(to right, #d86186, #f39e21);
+//   //-webkit-background-clip: text;
+//   //-webkit-text-fill-color: transparent;
+// `
 
 const GradientText = styled(Text)`
   background: linear-gradient(to right, #d86186, #f39e21);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  //color: black;
   font-size: 14px;
 `
 
@@ -46,25 +47,25 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ vault, account }) => {
     <ExpandedWrapper flexDirection="column">
       {earningToken[0].symbol !== 'BNB' && (
         <Flex mb="2px" justifyContent="flex-end">
-          <StyledLinkExternal
+          <LinkExternal
             href={`https://pancakeswap.info/token/${getAddress(earningToken[0].address)}`}
             bold={false}
             small
           >
             {t('Info site')}
-          </StyledLinkExternal>
+          </LinkExternal>
         </Flex>
       )}
       <Flex mb="2px" justifyContent="flex-end">
-        <StyledLinkExternal href={earningToken[0].projectLink} bold={false} small>
+        <LinkExternal href={earningToken[0].projectLink} bold={false} small>
           {t('View Project Site')}
-        </StyledLinkExternal>
+        </LinkExternal>
       </Flex>
       {poolContractAddress && (
         <Flex mb="2px" justifyContent="flex-end">
-          <StyledLinkExternal href={`${BASE_BSC_SCAN_URL}/address/${poolContractAddress}`} bold={false} small>
+          <LinkExternal href={`${BASE_BSC_SCAN_URL}/address/${poolContractAddress}`} bold={false} small>
             {t('View Contract')}
-          </StyledLinkExternal>
+          </LinkExternal>
         </Flex>
       )}
       {account && isMetaMaskInScope && tokenAddress && (
@@ -75,7 +76,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ vault, account }) => {
             height="auto"
             onClick={() => registerToken(tokenAddress, earningToken[0].symbol, earningToken[0].decimals, imageSrc)}
           >
-            <Text color="primary" fontSize="14px">
+            <Text color="black" fontSize="14px">
               <GradientText>{t('Add to Metamask')}</GradientText>
             </Text>
             <MetamaskIcon ml="4px" />

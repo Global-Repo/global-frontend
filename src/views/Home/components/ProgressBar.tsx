@@ -49,17 +49,19 @@ const ProgressBarWrapperUp = styled.div`
 const ProgressBar = () => {
 const { t } = useTranslation()
 
-    const initPresaleQty = 1555; // bnb qty init in presale 
-    const bnbaccQty = useTotalSupplyPresale()
-    const totalPresaleQty = initPresaleQty+getBalanceNumber(bnbaccQty)
+const initPresaleQty = 1555; // bnb qty init in presale 
+const bnbaccQty = useTotalSupplyPresale()
+const totalPresaleQty = initPresaleQty+getBalanceNumber(bnbaccQty)
+console.log("Qty seller in publis sale" , totalPresaleQty);
 
-    return (
-      <ProgressBarWrapperUp>
-        <ProgressBarWrapper>
-            <StyledProgressBar value={totalPresaleQty} max="7345"/>
-        </ProgressBarWrapper>
-      </ProgressBarWrapperUp>
-    )
+
+  return (
+    <ProgressBarWrapperUp>
+      <ProgressBarWrapper>
+          <StyledProgressBar value={totalPresaleQty} max="7345"/>
+      </ProgressBarWrapper>
+    </ProgressBarWrapperUp>
+  )
 }
 
 export default ProgressBar

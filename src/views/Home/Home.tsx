@@ -22,6 +22,9 @@ import { useTranslation } from '../../contexts/Localization'
 import { useGetBnbBalance, useBuyPresale } from '../../hooks/useGetPresaleBuy'
 import useWeb3 from '../../hooks/useWeb3'
 
+
+
+
 const HomeHeader = styled.div`
   // height: 180px;
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -260,7 +263,7 @@ const Home: React.FC = () => {
             <ButtonCustomGlobal>
               <BorderGradientButton
                 label="Trade now"
-                onClick={() => history.push('/')}
+                onClick={() => history.push('/farms')}
                 style={{ padding: '8px', marginTop: '32px', width: '100%' , height: '40px', background: '#FFECEC', color: '#FF0000', fontSize: '14px', borderRadius: 10, border: '1px solid #FFDBDB'}}
                 colorRight="#FFECEC"
                 colorLeft="#FFECEC"
@@ -287,7 +290,7 @@ const Home: React.FC = () => {
         <img src="/images/home/dots_right.png" alt="global Cube" id="points_in_progress_2" width="292" height="225"/>
         <CustomCountdown>
           <h1>{t('Whitelist Presale')}</h1>
-
+          <PresaleBuyAmount/>
           <ProgressBar/>
           <div>
             <p> <b> <span color="black">No</span> {t('Softcap')} </b> </p>

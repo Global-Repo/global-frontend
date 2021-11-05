@@ -18,9 +18,10 @@ const GradientText = styled(InlineText)`
   text-transform: uppercase;
   font-size: 12px;
   padding-right: 4px;
-  background: linear-gradient(to right, #e52420, #ce850e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FF0000;
+  //background: linear-gradient(to right, #e52420, #ce850e);
+  //-webkit-background-clip: text;
+  //-webkit-text-fill-color: transparent;
 `
 
 interface CardActionsProps {
@@ -28,7 +29,7 @@ interface CardActionsProps {
   stakedBalance: BigNumber
 }
 
-const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
+const   CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
   const { sousId, stakingToken, earningToken, userData, earningTokensPrice } = vault
   // Pools using native BNB behave differently than pools using a token
   const { t } = useTranslation()

@@ -79,7 +79,8 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
   const { isXs, isSm } = useMatchBreakpoints()
   const { t } = useTranslation()
 
-  const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+  const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => null} />
+  // const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 
   const liveOrFinishedSwitch = (
     <ButtonMenuGlobal activeIndex={isExact ? 0 : 1} scale="sm" color='red'>
@@ -105,7 +106,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
     return (
       <Flex flexDirection="column" alignItems="flex-start" mb="24px">
         <Flex width="100%" justifyContent="space-between">
-          {/* {viewModeToggle} */}
+          {viewModeToggle}
           {liveOrFinishedSwitch}
         </Flex>
         {stakedOnlySwitch}
@@ -119,7 +120,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
       justifyContent={['space-around', 'space-around', 'flex-start']}
       mb={['24px', '24px', '24px', '0px']}
     >
-      {/* {viewModeToggle} */}
+      {viewModeToggle}
       {stakedOnlySwitch}
       {liveOrFinishedSwitch}
     </FlexWrapper>

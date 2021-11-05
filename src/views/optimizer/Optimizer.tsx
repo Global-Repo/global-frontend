@@ -41,13 +41,38 @@ const Content = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
+  //background: linear-gradient(45deg, #1748a0, #0b2761, #1c102b);
   z-index: -1;
 `
 
 interface Props {
   isGlobal?: boolean
 }
+
+const TitleSectionGlobal = styled(Heading)`
+  font-size: 38px;
+  text-align:center;
+`
+
+const SubTitleSectionGlobal = styled(Heading)`
+  font-size: 22px;
+  line-height: 34px;
+  text-align: center;
+  color: #000000;
+  font-weight:300;
+`
+
+const PageHeaderFarming = styled(PageHeader)`
+  background-image: url('/images/home/farms_pyramid.png'), url('/images/home/farms_cube.png');
+  background-repeat: no-repeat;
+  background-size:   129px 158px, 119px 152px;
+  background-position:  top left, bottom right;
+  z-index: 0;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    min-height: 220px;
+    margin-top:15px;
+  }
+`
 
 const Optimizer: React.FC<Props> = ({ isGlobal }) => {
   const { t } = useTranslation()
@@ -88,7 +113,7 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
 
   return (
     <Page>
-      <PageHeader background="transparent">
+      {/* <PageHeader background="transparent">
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="white" mb="24px">
@@ -102,10 +127,18 @@ const Optimizer: React.FC<Props> = ({ isGlobal }) => {
             </Heading>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            {/* <HelpButton /> */}
+         <HelpButton />
           </Flex>
         </Flex>
-      </PageHeader>
+      </PageHeader> */}
+      <PageHeaderFarming background="transparent">
+        <TitleSectionGlobal as="h1" scale="xxl" color="black" mb="24px">
+          {t('Optimizer')}
+        </TitleSectionGlobal>
+        <SubTitleSectionGlobal scale="lg" color="black">
+          {t('Something, something, TODO. High APR, low risk.')}
+        </SubTitleSectionGlobal>
+      </PageHeaderFarming>
       <Content />
       <VaultsControls justifyContent="space-between" marginX="24px">
         <VaultTabButtons

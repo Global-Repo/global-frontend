@@ -12,7 +12,6 @@ import { useTranslation } from 'contexts/Localization'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
-import { CellTitle } from './styles'
 
 interface EarningsCellProps {
   pool: Pool
@@ -45,7 +44,7 @@ const GradientText = styled(Text)`
   text-transform: uppercase;
   font-size: 12px;
   padding-right: 4px;
-  background: #a099a5;
+  background: #A099A5;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -121,7 +120,9 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   return (
     <StyledCell role="cell">
       <CellContent>
-        <CellTitle>{labelText}</CellTitle>
+        <GradientText fontSize="12px" textAlign="left">
+          {labelText}
+        </GradientText>
         {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (
@@ -130,6 +131,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
             <Flex>
               <Box mr="8px" height="32px" onClick={!isAutoVault && hasEarnings ? handleEarningsClick : undefined}>
                 <Balance
+                  mt="4px"
                   bold={!isXs && !isSm}
                   fontSize={isXs || isSm ? '14px' : '16px'}
                   color={hasEarnings ? 'primary' : 'textDisabled'}

@@ -64,16 +64,19 @@ const ScrollButtonContainer = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
 `
+const StyledTag = styled(Tag)`
+  background: #FF0000;
+  border-radius: 40px;
+  color: white;
+  border: none;
+`
 
 const Wrapper = styled.div`
   cursor: pointer;
   margin-top: 24px;
 `
 const TagToTopCustom = styled(Tag)`
-  background: red;
-  color: white;
-  border-color: red;
-  font-weight: bold;
+  
 `
 
 
@@ -104,10 +107,10 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         </TableWrapper>
         <ScrollButtonContainer>
           <Wrapper onClick={scrollToTop}>
-            <TagToTopCustom variant="primary" outline>
+            <StyledTag outline>
               <span>{t('To Top')}</span>
               <ChevronUpIcon />
-            </TagToTopCustom>
+            </StyledTag>
           </Wrapper>
         </ScrollButtonContainer>
       </TableContainer>

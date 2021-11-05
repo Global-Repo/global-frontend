@@ -30,14 +30,13 @@ const APY: FC<Props> = ({ apy, apr, globalPrice, lpLabel, addLiquidityUrl }) => 
     placement: 'bottom',
   })
 
-
   const farmAPY = apy && apy.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
   return (
     <Flex justifyContent="space-between" alignItems="center">
       {tooltipVisible && tooltip}
       <Flex>
-        <Text>{t('APY')}:</Text>
+        <Text color="black">{t('APY')}:</Text>
         <HelpIconWrapper ref={targetRef}>
           <HelpIcon color="textSubtle" />
         </HelpIconWrapper>

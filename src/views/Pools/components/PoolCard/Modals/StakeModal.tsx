@@ -127,7 +127,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
       headerBackground={theme.colors.gradients.cardHeader}
     >
       {stakingLimit.gt(0) && !isRemovingStake && (
-        <Text color="black" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
+        <Text color="secondary" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
           {t('Max stake for this pool: %amount% %token%', {
             amount: getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0),
             token: stakingToken.symbol,
@@ -138,17 +138,17 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={`/images/tokens/${getAddress(stakingToken.address)}.svg`}
+            src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
             width={24}
             height={24}
             alt={stakingToken.symbol}
           />
-          <Text ml="4px" bold color="black">
+          <Text ml="4px" bold>
             {stakingToken.symbol}
           </Text>
         </Flex>
       </Flex>
-      <StyledBalanceInput
+      <BalanceInput
         value={stakeAmount}
         onUserInput={handleStakeInputChange}
         currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
@@ -163,12 +163,12 @@ const StakeModal: React.FC<StakeModalProps> = ({
           })}
         </Text>
       )}
-      <Text ml="auto" color="#A099A5" fontSize="12px" mb="8px">
+      <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
         {t('Balance: %balance%', {
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
         })}
       </Text>
-      <StyledSlider
+      <Slider
         min={0}
         max={100}
         value={percent}
@@ -194,34 +194,13 @@ const StakeModal: React.FC<StakeModalProps> = ({
       </Button>
       {!isRemovingStake && (
         <StyledLink external href={BASE_EXCHANGE_URL}>
-          <RedButton width="100%" mt="8px">
+          <Button width="100%" mt="8px" variant="secondary">
             {t('Get %symbol%', { symbol: stakingToken.symbol })}
-          </RedButton>
+          </Button>
         </StyledLink>
       )}
     </Modal>
   )
 }
-
-const RedButton = styled(Button)`
-  background: red;
-  color: white;
-`
-
-const StyledBalanceInput = styled(BalanceInput)`
-  background: #f0ecf4 !important;
-  box-shadow: none;
-  border: 0;
-
-  input {
-    color: black;
-  }
-`
-
-const StyledSlider = styled(Slider)`
-  div[style*='width'] {
-    background: red;
-  }
-`
 
 export default StakeModal

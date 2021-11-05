@@ -24,12 +24,7 @@ align-items: center;
 /* black */
 
 color: #000000;
-  span:first-child {
-    word-wrap: break-word;
-    white-space: nowrap;
-    width: ${({width}) => width};
-    overflow: hidden;
-  }
+  
   
 `
 
@@ -53,7 +48,7 @@ const Balance: React.FC<BalanceProps> = ({
   return (
     <StyledText width={width} color={isDisabled ? 'textDisabled' : color} onClick={onClick} {...props}>
       {prefix && <span>{prefix}</span>}
-      <CountUp start={previousValue.current} end={value} decimals={decimals} duration={1} separator="," />
+      <CountUp start={Number(previousValue.current.toString().slice(0,9))} end={Number(value.toString().slice(0,9))} decimals={decimals} duration={1} separator="," />
       {unit && <span>{unit}</span>}
     </StyledText>
   )

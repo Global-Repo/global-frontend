@@ -8,7 +8,6 @@ import { Pool } from 'state/types'
 import { useCakeVault } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BaseCell, { CellContent } from './BaseCell'
-import { CellTitle } from './styles'
 
 interface TotalStakedCellProps {
   pool: Pool
@@ -39,9 +38,9 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <CellTitle>
+        <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('Total staked')}
-        </CellTitle>
+        </Text>
         {totalStaked && totalStaked.gte(0) ? (
           <Flex height="20px" alignItems="center">
             <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />

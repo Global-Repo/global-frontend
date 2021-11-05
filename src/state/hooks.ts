@@ -95,6 +95,7 @@ export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {
 
 export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
+
   return {
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : BIG_ZERO,
     tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : BIG_ZERO,
@@ -394,7 +395,8 @@ export const useGetPriceBNBBUSD = () => {
 }
 
 export const usePriceGlobalBusd = (): BigNumber => {
-  const globalBnbFarm = useFarmFromPid(3)
+  const globalBnbFarm = useFarmFromPid(4)
+  console.log(globalBnbFarm, "global bnb farm?")
   return new BigNumber(globalBnbFarm.token.busdPrice)
 }
 

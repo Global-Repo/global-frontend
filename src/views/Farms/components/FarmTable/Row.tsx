@@ -63,7 +63,7 @@ const StyledTr = styled.tr`
   }
 
   &:nth-child(even) {
-    border-top: 2px solid #F0ECF4;
+    border-top: 1px solid rgb(206, 133, 14);
   }
 
   & td span {

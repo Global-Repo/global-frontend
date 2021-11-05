@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Flex, CardFooter, ExpandableLabel, HelpIcon, Text } from '@duhd4h/global-uikit'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
 import ExpandedFooter from './ExpandedFooter'
+import ExpandActionCell from '../../../../Pools/components/PoolsTable/Cells/ExpandActionCell'
 
 interface FooterProps {
   vault: GlobalVaultLocked | GlobalVaultStaked | GlobalVaultVested
@@ -31,10 +32,10 @@ const Divider = styled.div`
   width: 90%;
 `
 
-const GradientText = styled(Text)`
-  background: linear-gradient(to right, #d86186, #f39e21);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `
 
 const Footer: React.FC<FooterProps> = ({ vault, account }) => {
@@ -51,9 +52,12 @@ const Footer: React.FC<FooterProps> = ({ vault, account }) => {
               <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
             </Flex>
           </Flex>
-          <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-            <GradientText>{isExpanded ? t('Hide') : t('Details')}</GradientText>
-          </ExpandableLabel>
+          <Button onClick={() => setIsExpanded(!isExpanded)}>
+            <ExpandActionCell expanded={isExpanded} isFullLayout/>
+          </Button>
+          {/* <ExpandableLabelWrapper expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
+        <Text color="black">{isExpanded ? t('Hide') : t('Details')}</Text>
+          </ExpandableLabelWrapper> */}
         </ExpandableButtonWrapper>
         {isExpanded && <ExpandedFooter vault={vault} account={account} />}
       </CardFooterWrapper>

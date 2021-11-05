@@ -27,7 +27,7 @@ const Grid = styled.div`
 const GridItem = styled.div``
 
 const GridHeaderItem = styled.div`
-  /* max-width: 180px; */
+  max-width: 180px;
 `
 
 const BulletList = styled.ul`
@@ -89,24 +89,24 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     <Modal title={t('ROI')} onDismiss={onDismiss}>
       {isFarm && (
         <Flex mb="24px" justifyContent="space-between">
-          <Text small color="textSubtle">
+          <Text small color="black">
             {t('APR (incl. LP rewards)')}
           </Text>
-          <Text small>{apr.toFixed(roundingDecimals)}%</Text>
+          <Text color="textSubtle" small>{apr.toFixed(roundingDecimals)}%</Text>
         </Flex>
       )}
       <Grid>
         <GridHeaderItem>
-          <Text fontSize="16px" bold color="black" textTransform="uppercase" mb="12px">
+          <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="12px">
             {t('Timeframe')}
           </Text>
         </GridHeaderItem>
         <GridHeaderItem>
           <Text
             textAlign="right"
-            fontSize="16px"
+            fontSize="12px"
             bold
-            color="black" 
+            color="textSubtle"
             textTransform="uppercase"
             mr="12px"
             ml="12px"
@@ -116,95 +116,92 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           </Text>
         </GridHeaderItem>
         <GridHeaderItem>
-          <Text textAlign="right" fontSize="16px" bold color="black"  textTransform="uppercase" mb="12px">
+          <Text textAlign="right" fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="12px">
             {t('%symbol% per $1,000', { symbol: earningTokenSymbol })}
           </Text>
         </GridHeaderItem>
         {/* 1 day row */}
         <GridItem>
-          <Text color="black">{t('%num%d', { num: 1 })}</Text>
+          <Text color="textSubtle">{t('%num%d', { num: 1 })}</Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right" mr="12px" ml="12px">
-            {getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
-              roundingDecimals,
-            )}
+          <Text textAlign="right" mr="12px" ml="12px" color="black">
+            {getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken }).toString().slice(0,8)}
             %
           </Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right">{tokenEarnedPerThousand1D}</Text>
+          <Text textAlign="right" color="black">{tokenEarnedPerThousand1D.toString().slice(0,8)}</Text>
         </GridItem>
         {/* 7 day row */}
         <GridItem>
-          <Text color="black">{t('%num%d', { num: 7 })}</Text>
+          <Text color="textSubtle">{t('%num%d', { num: 7 })}</Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right" mr="12px" ml="12px">
-            {getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
-              roundingDecimals,
-            )}
+          <Text textAlign="right" mr="12px" ml="12px" color="black">
+            {getRoi({ amountEarned: tokenEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfToken }).toString().slice(0,8)}
             %
           </Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right">{tokenEarnedPerThousand7D}</Text>
+          <Text textAlign="right" color="black">{tokenEarnedPerThousand7D.toString().slice(0,8)}</Text>
         </GridItem>
         {/* 30 day row */}
         <GridItem>
-          <Text color="black">{t('%num%d', { num: 30 })}</Text>
+          <Text color="textSubtle">{t('%num%d', { num: 30 })}</Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right" mr="12px" ml="12px">
+          <Text textAlign="right" mr="12px" ml="12px" color="black">
             {getRoi({
               amountEarned: tokenEarnedPerThousand30D,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals)}
+            }).toString().slice(0,8)}
             %
           </Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right">{tokenEarnedPerThousand30D}</Text>
+          <Text textAlign="right" color="black">{tokenEarnedPerThousand30D.toString().slice(0,8)}</Text>
         </GridItem>
         {/* 365 day / APY row */}
         <GridItem style={{ maxWidth: '180px' }}>
-          <Text color="black">{t('365d (APY)')}</Text>
+          <Text color="textSubtle">{t('365d (APY)')}</Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right" mr="12px" ml="12px">
+          <Text textAlign="right" mr="12px" ml="12px" color="black">
+
             {getRoi({
               amountEarned: tokenEarnedPerThousand365D,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals)}
+            }).toString().slice(0,8)}
             %
           </Text>
         </GridItem>
         <GridItem>
-          <Text color="black" textAlign="right">{tokenEarnedPerThousand365D}</Text>
+          <Text textAlign="right" color="black">{tokenEarnedPerThousand365D.toString().slice(0,8)}</Text>
         </GridItem>
       </Grid>
       <Flex justifyContent="center">
         <Box mb="28px" maxWidth="280px" p="4px">
           <BulletList>
             <li>
-              <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
+              <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                 {t('Calculated based on current rates.')}
               </Text>
             </li>
             <li>
-              <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
+              <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                 {t('Compounding %freq%x daily.', { freq: compoundFrequency.toLocaleString() })}
               </Text>
             </li>
             {isFarm && (
               <li>
-                <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
+                <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                   {t('LP rewards: 0.17% trading fees, distributed proportionally among LP token holders.')}
                 </Text>
               </li>
             )}
             <li>
-              <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
+              <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                 {t(
                   'All figures are estimates provided for your convenience only, and by no means represent guaranteed returns.',
                 )}
@@ -212,7 +209,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             </li>
             {performanceFee > 0 && (
               <li>
-                <Text mt="14px" ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
+                <Text mt="14px" ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                   {t('All estimated rates take into account this pool’s %fee%% performance fee', {
                     fee: performanceFee,
                   })}

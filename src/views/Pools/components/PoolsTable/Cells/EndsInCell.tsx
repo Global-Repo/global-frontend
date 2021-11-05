@@ -8,7 +8,6 @@ import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
-import { CellTitle } from './styles'
 
 interface FinishCellProps {
   pool: Pool
@@ -33,7 +32,7 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
     <Flex alignItems="center">
       <Flex flex="1.3">
         <Balance fontSize="16px" value={blocksToDisplay} decimals={0} />
-        <Text ml="4px" textTransform="lowercase" color="#A099A5">
+        <Text ml="4px" textTransform="lowercase">
           {t('Blocks')}
         </Text>
       </Flex>
@@ -43,7 +42,7 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
           href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}
           onClick={(e) => e.stopPropagation()}
         >
-          <TimerIcon ml="4px" color="#A099A5"/>
+          <TimerIcon ml="4px" />
         </Link>
       </Flex>
     </Flex>
@@ -59,9 +58,9 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <CellTitle>
+        <Text fontSize="12px" color="textSubtle" textAlign="left">
           {hasPoolStarted || !shouldShowBlockCountdown ? t('Ends in') : t('Starts in')}
-        </CellTitle>
+        </Text>
         {showLoading ? <Skeleton width="80px" height="16px" /> : renderBlocks}
       </CellContent>
     </StyledCell>

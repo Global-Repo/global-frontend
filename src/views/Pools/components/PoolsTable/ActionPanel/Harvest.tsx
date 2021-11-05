@@ -12,7 +12,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 
 import styled from 'styled-components'
-import { ActionContainer, ActionTitles, ActionContent, RedButton } from './styles'
+import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
 import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
 
@@ -168,13 +168,13 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <RedButton
+          <Button
             disabled={!hasEarnings}
             onClick={onPresentCollect}
-            variant={!hasEarnings ? 'danger' : 'secondary'}
+            variant={!hasEarnings ? 'danger' : 'full_gradient_pool'}
           >
             {isCompoundPool ? t('Collect') : t('Harvest')}
-          </RedButton>
+          </Button>
         )}
       </ActionContent>
     </ActionContainer>

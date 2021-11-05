@@ -40,7 +40,7 @@ const AprCakeRow: React.FC<AprCakeRowProps> = ({ vault, performanceFee = 0 }) =>
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <TooltipText fontSize="12px">{`${t('APR Cake')}:`}</TooltipText>
+      <TooltipText fontSize="12px" color="#c0c0c0">{`${t('APR Cake')}:`}</TooltipText>
       {!aprArray[0].apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (

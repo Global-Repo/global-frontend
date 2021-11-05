@@ -41,7 +41,7 @@ const AprGlobalRow: React.FC<AprGlobalRowProps> = ({ vault, performanceFee = 0 }
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <TooltipText fontSize="12px">{`${t('APR Global')}:`}</TooltipText>
+      <TooltipText fontSize="12px" color="#c0c0c0">{`${t('APR Global')}:`}</TooltipText>
       {!aprArray[0].apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (

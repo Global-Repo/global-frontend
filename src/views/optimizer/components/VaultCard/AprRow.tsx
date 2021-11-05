@@ -40,7 +40,7 @@ const AprRow: React.FC<AprRowProps> = ({ vault, performanceFee = 0 }) => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <TooltipText>{`${t('APR')}:`}</TooltipText>
+      <TooltipText color="#c0c0c0">{`${t('APR')}:`}</TooltipText>
       {!aprArray[0].apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (

@@ -1,12 +1,12 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
-import { CardBody, Flex, Text, CardRibbon, GradientBorderBox } from '@duhd4h/global-uikit'
+import { CardBody, Flex, Text, CardRibbon, GradientBorderBox, Box } from '@duhd4h/global-uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useTranslation } from 'contexts/Localization'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
 import AprRow from './AprRow'
-import { StyledCard, StyledCardInner } from './StyledCard'
+import { StyledCard, StyledCardInner, GradientBorderBoxWrapper } from './StyledCard'
 import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
@@ -14,6 +14,9 @@ import EarnRow from './EarnRow'
 import PenaltyFeeRow from './PenaltyFeeRow'
 import AprCakeRow from './AprCakeRow'
 import AprGlobalRow from './AprGlobalRow'
+
+
+
 
 const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | GlobalVaultStaked; account: string }> = ({
   vault,
@@ -26,8 +29,9 @@ const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | Globa
 
   return (
     <div>
-      <GradientBorderBox colorLeft="#e52420" colorRight="#ce850e" borderWidth="1px" style={{ width: '100%' }}>
+      <GradientBorderBoxWrapper>
         <StyledCard
+          isPromoted
           isFinished={false}
           ribbon={false && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
         >
@@ -49,7 +53,7 @@ const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | Globa
                   <CardActions vault={vault} stakedBalance={stakedBalance} />
                 ) : (
                   <>
-                    <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
+                    <Text mb="10px" textTransform="uppercase" fontSize="12px" color="black" bold>
                       {t('Start earning')}
                     </Text>
                     <UnlockButton />
@@ -60,7 +64,7 @@ const VaultCard: React.FC<{ vault: GlobalVaultLocked | GlobalVaultVested | Globa
             <CardFooter vault={vault} account={account} />
           </StyledCardInner>
         </StyledCard>
-      </GradientBorderBox>
+      </GradientBorderBoxWrapper>
     </div>
   )
 }

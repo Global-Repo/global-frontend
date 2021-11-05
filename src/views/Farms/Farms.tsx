@@ -53,20 +53,34 @@ const ToggleWrapper = styled.div`
   }
 
   & > div:first-child {
-    background-color: #ffdbdb;
+    background-color: #FFDBDB;
     box-shadow: none;
   }
 
-  & > div:first-child > div {
+  & > div:first-child > div{
     background-color: red;
   }
+
 `
 
 const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
-    color: black;
+    color:black;
   }
+`
+
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  #root > div > div > div:first-of-type {
+
+  }
+  & 
+
 `
 
 const FilterContainer = styled.div`
@@ -117,7 +131,7 @@ const CardsContainer = styled.div`
 
 const TitleSectionGlobal = styled(Heading)`
   font-size: 38px;
-  text-align: center;
+  text-align:center;
 `
 
 const SubTitleSectionGlobal = styled(Heading)`
@@ -125,33 +139,39 @@ const SubTitleSectionGlobal = styled(Heading)`
   line-height: 34px;
   text-align: center;
   color: #000000;
-  font-weight: 300;
+  font-weight:300;
 `
 
-const PageFarming = styled(Page)``
+const PageFarming = styled(Page)`
+
+`
 
 const PageHeaderFarming = styled(PageHeader)`
   background-image: url('/images/home/farms_pyramid.png'), url('/images/home/farms_cube.png');
   background-repeat: no-repeat;
-  background-size: 129px 158px, 119px 152px;
-  background-position: top left, bottom right;
+  background-size:   129px 158px, 119px 152px;
+  background-position:  top left, bottom right;
   z-index: 0;
   ${({ theme }) => theme.mediaQueries.lg} {
     min-height: 220px;
-    margin-top: 15px;
+    margin-top:15px;
   }
 `
+
+
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
+  console.log("llega");
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
+  console.log(farmsLP)
   const globalPrice = usePriceGlobalBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
 
@@ -193,7 +213,7 @@ const Farms: React.FC = () => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
-
+        console.log(totalLiquidity, "total liquisty")
         const apr = isActive
           ? getFarmApr(new BigNumber(farm.poolWeight), globalPrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET])
           : 0
@@ -345,7 +365,7 @@ const Farms: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    if (viewMode === ViewMode.TABLE && rowData.length) {
+    if (viewMode === ViewMode.CARD && rowData.length) {
       const columnSchema = DesktopColumnSchema
 
       const columns = columnSchema.map((column) => ({
@@ -415,8 +435,10 @@ const Farms: React.FC = () => {
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </SubTitleSectionGlobal>
       </PageHeaderFarming>
+      <Content />
       <ControlContainer>
         <ViewControls>
+          <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => null} />
           {/* <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} /> */}
           <ToggleWrapper>
             <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
@@ -426,9 +448,7 @@ const Farms: React.FC = () => {
         </ViewControls>
         <FilterContainer>
           <LabelWrapper>
-            <Text textTransform="uppercase" color="black">
-              {t('Sort by')}
-            </Text>
+            <Text textTransform="uppercase" color="black">{t('Sort by')}</Text>
             <Select
               options={[
                 {
@@ -460,9 +480,7 @@ const Farms: React.FC = () => {
             />
           </LabelWrapper>
           <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text textTransform="uppercase" color="black">
-              {t('Search')}
-            </Text>
+            <Text textTransform="uppercase" color="black">{t('Search')}</Text>
             <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
           </LabelWrapper>
         </FilterContainer>
