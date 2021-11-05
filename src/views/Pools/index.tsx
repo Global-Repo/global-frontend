@@ -140,8 +140,8 @@ const Pools: React.FC<Props> = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
+    const globalPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const cakeAutoVault = { ...globalPool, isAutoVault: true }
     return [cakeAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
@@ -260,7 +260,13 @@ const Pools: React.FC<Props> = () => {
       .slice(0, numberOfPoolsVisible)
   }
 
+  const removeItinerary = (data, removeId) => {
+    const res = data.filter(obj => obj.id !== removeId);
+    return res;
+  }
+
   const poolsToShow = getPoolsToShow()
+
   const lockedPools = poolsToShow.filter((pool) => pool.type === 'LOCKED')
   const vestedPools = poolsToShow.filter((pool) => pool.type === 'VESTED')
   const vaultStackedPools = poolsToShow.filter((pool) => !pool.type)
