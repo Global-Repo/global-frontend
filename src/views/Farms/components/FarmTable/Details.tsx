@@ -26,7 +26,8 @@ const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
 
 const GradientText = styled(Text)`
   background: black;
-  font-weight:500;
+  font-weight: bold;
+  font-size: 14px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `

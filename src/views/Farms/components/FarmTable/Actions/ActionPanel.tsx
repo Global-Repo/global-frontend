@@ -146,6 +146,7 @@ const InfoContainer = styled.div`
 
 const ValueContainer = styled.div`
   display: block;
+  margin-bottom: ${({ theme }) => theme.spacing[2]}px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     display: none;
@@ -220,15 +221,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
-          <Text>{t('APY')}</Text>
+          <Text color="black" fontSize="14px">{t('APY')}</Text>
           <Apy {...apy} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{t('Multiplier')}</Text>
+          <Text color="black" fontSize="14px">{t('Multiplier')}</Text>
           <Multiplier {...multiplier} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{t('Liquidity')}</Text>
+          <Text color="black" fontSize="14px">{t('Liquidity')}</Text>
           <Liquidity {...liquidity} />
         </ValueWrapper>
       </ValueContainer>

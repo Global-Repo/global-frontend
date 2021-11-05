@@ -37,11 +37,12 @@ const Container = styled.div`
 `
 
 const AprWrapper = styled.div`
-  min-width: 60px;
   text-align: left;
+  font-weight: bold;
 `
 
 const HelpIconWrapper = styled.div`
+  display: inline-flex;
   align-self: center;
   margin-left: 4px;
 `
@@ -81,7 +82,7 @@ const Apy: React.FC<ApyProps> = ({
             />
           )}
           <HelpIconWrapper ref={targetRef}>
-            <HelpIcon color="textSubtle" />
+            <HelpIcon color="#A099A5" width={16} />
           </HelpIconWrapper>
         </>
       ) : (
@@ -95,7 +96,7 @@ const Apy: React.FC<ApyProps> = ({
       {tooltipVisible && tooltip}
       <AprWrapper>{originalValue}%</AprWrapper>
       <HelpIconWrapper ref={targetRef}>
-        <HelpIcon color="textSubtle" />
+        <HelpIcon color="#A099A5" width={16} />
       </HelpIconWrapper>
     </Container>
   )

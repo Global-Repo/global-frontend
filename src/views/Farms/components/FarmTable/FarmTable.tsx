@@ -70,7 +70,10 @@ const Wrapper = styled.div`
   margin-top: 24px;
 `
 const TagToTopCustom = styled(Tag)`
-  
+  background: red;
+  color: white;
+  border-color: red;
+  font-weight: bold;
 `
 
 
@@ -101,7 +104,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         </TableWrapper>
         <ScrollButtonContainer>
           <Wrapper onClick={scrollToTop}>
-            <TagToTopCustom variant="gradient" outline>
+            <TagToTopCustom variant="primary" outline>
               <span>{t('To Top')}</span>
               <ChevronUpIcon />
             </TagToTopCustom>

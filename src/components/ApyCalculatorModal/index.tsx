@@ -27,7 +27,7 @@ const Grid = styled.div`
 const GridItem = styled.div``
 
 const GridHeaderItem = styled.div`
-  max-width: 180px;
+  /* max-width: 180px; */
 `
 
 const BulletList = styled.ul`
@@ -97,14 +97,14 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
       )}
       <Grid>
         <GridHeaderItem>
-          <Text fontSize="12px" bold color="black" textTransform="uppercase" mb="12px">
+          <Text fontSize="16px" bold color="black" textTransform="uppercase" mb="12px">
             {t('Timeframe')}
           </Text>
         </GridHeaderItem>
         <GridHeaderItem>
           <Text
             textAlign="right"
-            fontSize="12px"
+            fontSize="16px"
             bold
             color="black" 
             textTransform="uppercase"
@@ -116,7 +116,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           </Text>
         </GridHeaderItem>
         <GridHeaderItem>
-          <Text textAlign="right" fontSize="12px" bold color="black"  textTransform="uppercase" mb="12px">
+          <Text textAlign="right" fontSize="16px" bold color="black"  textTransform="uppercase" mb="12px">
             {t('%symbol% per $1,000', { symbol: earningTokenSymbol })}
           </Text>
         </GridHeaderItem>
@@ -187,24 +187,24 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         <Box mb="28px" maxWidth="280px" p="4px">
           <BulletList>
             <li>
-              <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
+              <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
                 {t('Calculated based on current rates.')}
               </Text>
             </li>
             <li>
-              <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
+              <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
                 {t('Compounding %freq%x daily.', { freq: compoundFrequency.toLocaleString() })}
               </Text>
             </li>
             {isFarm && (
               <li>
-                <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
+                <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
                   {t('LP rewards: 0.17% trading fees, distributed proportionally among LP token holders.')}
                 </Text>
               </li>
             )}
             <li>
-              <Text ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
+              <Text ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
                 {t(
                   'All figures are estimates provided for your convenience only, and by no means represent guaranteed returns.',
                 )}
@@ -212,7 +212,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             </li>
             {performanceFee > 0 && (
               <li>
-                <Text mt="14px" ml="-8px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
+                <Text mt="14px" ml="-8px" fontSize="12px" textAlign="center" color="#A099A5" display="inline">
                   {t('All estimated rates take into account this pool’s %fee%% performance fee', {
                     fee: performanceFee,
                   })}
