@@ -1,19 +1,21 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@duhd4h/global-uikit'
+import { Button, HelpIcon, Modal, Text, useTooltip } from '@duhd4h/global-uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import styled from 'styled-components'
 
 interface WithdrawModalProps {
   max: BigNumber
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
+  farm: any
 }
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
+const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, farm, tokenName = '' }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -37,6 +39,22 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
     setVal(fullBalance)
   }, [fullBalance, setVal])
 
+  const { maxWithdrawalInterval, performanceFeesOfNativeTokens, withDrawalFeeOfLps } = farm
+  const days = parseInt(maxWithdrawalInterval, 10) / (60 * 60 * 24)
+
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+    <MultiLineWrapper>
+      {t(
+        `Fee before ${days} days: ${withDrawalFeeOfLps / 100}% on LPs plus ${
+          (performanceFeesOfNativeTokens * 2) / 100
+        }% on rewards.\nFee after ${days} days: ${performanceFeesOfNativeTokens / 100}% on rewards.`,
+      )}
+    </MultiLineWrapper>,
+    {
+      placement: 'bottom',
+    },
+  )
+
   return (
     <Modal title={t('Unstake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
@@ -47,6 +65,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         symbol={tokenName}
         inputTitle={t('Unstake')}
       />
+      {tooltipVisible && tooltip}
+      <FeeWarning>
+        {t(`Fees`)}{' '}
+        <HelpIconWrapper style={{ display: 'flex' }} ref={targetRef}>
+          <HelpIcon width={14} height={14} color="#A099A5" />
+        </HelpIconWrapper>
+      </FeeWarning>
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
           {t('Cancel')}
@@ -67,5 +92,22 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
     </Modal>
   )
 }
+
+const FeeWarning = styled(Text)`
+  margin-top: 24px;
+  font-size: 14px;
+  display: flex;
+  color: black;
+`
+
+const MultiLineWrapper = styled.div`
+  white-space: break-spaces;
+  font-size: 14px;
+`
+
+const HelpIconWrapper = styled.span`
+  align-self: center;
+  margin-left: 4px;
+`
 
 export default WithdrawModal

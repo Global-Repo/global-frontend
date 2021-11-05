@@ -18,6 +18,8 @@ type PublicFarmData = {
   multiplier: string
   harvestInterval: SerializedBigNumber
   maxWithdrawalInterval: SerializedBigNumber
+  performanceFeesOfNativeTokens: number
+  withDrawalFeeOfLps: number
 }
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
@@ -92,12 +94,17 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
         ])
       : [null, null]
 
-
   const harvestIntervalP = getMasterChefAddress()
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
   const harvestInterval = info ? new BigNumber(info.harvestInterval?._hex) : BIG_ZERO
   const maxWithdrawalInterval = info ? new BigNumber(info.maxWithdrawalInterval?._hex) : BIG_ZERO
+  const {
+    performanceFeesOfNativeTokensBurn,
+    performanceFeesOfNativeTokensToLockedVault,
+    withDrawalFeeOfLpsBurn,
+    withDrawalFeeOfLpsTeam,
+  } = info || {}
 
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),
@@ -111,6 +118,8 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     multiplier: `${allocPoint.div(100).toString()}X`,
     harvestInterval: harvestInterval.toJSON(),
     maxWithdrawalInterval: maxWithdrawalInterval.toJSON(),
+    performanceFeesOfNativeTokens: performanceFeesOfNativeTokensBurn + performanceFeesOfNativeTokensToLockedVault,
+    withDrawalFeeOfLps: withDrawalFeeOfLpsBurn + withDrawalFeeOfLpsTeam,
   }
 }
 

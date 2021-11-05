@@ -115,9 +115,8 @@ const GlobalStyle = createGlobalStyle`
   nav > div > div > button:after{
     content: none !important;
   }
-  // no display price at the moment
   nav > div > div > a > div > div{
-    display:none !important;
+    color: black !important;
   }
   nav > div {
     max-width:1410px;
@@ -163,22 +162,19 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
     box-shadow: none;
   }
-  // Styles for mobile nav
-  ${({ theme }) => theme.mediaQueries.xs} {
-    // nav custom background only in mobile format
-    #root > div > div > div:first-of-type {
-      background:white;
-    }
-    #root > div > div > div > div:nth-of-type(2) {
-      background:white;
-      border-top: 0;
-    }
-    nav > div > div > button{
-      background: #FF0000 !important;
-      font-weight: 400 !important;
-      border-radius: 10px !important;
-      box-shadow: none !important;
-    }
+  // nav custom background only in mobile format
+  #root > div > div > div:first-of-type {
+    background:white;
+  }
+  #root > div > div > div > div:nth-of-type(2) {
+    background:white;
+    border-top: 0;
+  }
+  nav > div > div > button{
+    background: #FF0000 !important;
+    font-weight: 400 !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
   }
   
   // twitter icon

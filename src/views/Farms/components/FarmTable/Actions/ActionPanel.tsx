@@ -207,7 +207,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             </StakeContainer>
           )}
           <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-          <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+          {/* <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal> */}
         </LinksContainer>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />}
@@ -216,7 +216,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <DetailsWrapper>
           <APR apr={farm.apr} />
           <HarvestLockup harvestInterval={farm.harvestInterval} />
-          <WithdrawalFee />
+          <WithdrawalFee farm={farm} />
         </DetailsWrapper>
       </InfoContainer>
       <ValueContainer>
@@ -248,7 +248,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           colorRight="#ffffff"
           style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px' }}
         >
-          <StakedAction {...farm} userDataReady={userDataReady} />
+          <StakedAction farm={farm} {...farm} userDataReady={userDataReady} />
         </ActionItemWrapper>
       </ActionContainer>
     </Container>

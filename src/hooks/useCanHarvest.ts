@@ -14,9 +14,7 @@ const useCanHarvest = (pid: number) => {
 
   useEffect(() => {
     const fetchCanHarvest = async () => {
-      // const res: boolean = await masterchefContract.methods.canHarvest(pid, account).call()
-      const res = true
-      // TODO JOAN - read canHarvest value when ABI updated
+      const res: boolean = await masterchefContract.methods.canHarvest(pid, account).call()
       setCanHarvest(res)
     }
 

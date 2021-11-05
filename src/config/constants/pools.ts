@@ -15,6 +15,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '90',
     sortOrder: 1,
     isFinished: false,
+    hidden: true
   },
   {
     sousId: 1,

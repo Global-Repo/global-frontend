@@ -12,7 +12,7 @@ import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 
 const StyledTag = styled(Tag)`
-  background: #00C696;
+  background: red;
   border-radius: 40px;
   color: white;
   border: none;
@@ -21,7 +21,12 @@ const StyledTag = styled(Tag)`
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <StyledTag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <StyledTag
+      variant="secondary"
+      outline
+      startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />}
+      {...props}
+    >
       <span color="white">{t('Core')}</span>
     </StyledTag>
   )
@@ -57,7 +62,12 @@ const DualTag: React.FC<TagProps> = (props) => {
 const ManualPoolTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <StyledTag variant="secondary" outline startIcon={<RefreshIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    <StyledTag
+      variant="secondary"
+      outline
+      startIcon={<RefreshIcon width="18px" color="secondary" mr="4px" />}
+      {...props}
+    >
       <span>{t('Manual')}</span>
     </StyledTag>
   )

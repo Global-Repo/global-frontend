@@ -79,6 +79,7 @@ const ButtonGlobalStyle = styled(Button)`
 
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
+  farm: any
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({
@@ -88,6 +89,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   quoteToken,
   token,
   userDataReady,
+  farm
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -129,7 +131,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />,
+    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} farm={farm} />,
   )
   const lpContract = useERC20(lpAddress)
   const dispatch = useAppDispatch()
@@ -187,16 +189,15 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               )}
             </div>
             <IconButtonWrapper>
-              <IconButton variant="full_gradient_pool" onClick={onPresentWithdraw} mr="6px">
+              <RedButton onClick={onPresentWithdraw} mr="6px">
                 <MinusIcon color="white" width="14px" />
-              </IconButton>
-              <IconButton
-                variant="full_gradient_pool"
+              </RedButton>
+              <RedButton
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
               >
                 <AddIcon color="white" width="14px" />
-              </IconButton>
+              </RedButton>
             </IconButtonWrapper>
           </ActionContent>
         </ActionContainer>
@@ -255,5 +256,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     </ActionContainer>
   )
 }
+
+const RedButton = styled(IconButton)`
+  background: red;
+  color: white;
+`
 
 export default Staked

@@ -20,14 +20,17 @@ const TextGlobal = styled(Text)`
   line-height: 17px;
 `
 
-const WithdrawalFee: FC = () => {
+const WithdrawalFee: FC<{ farm: any }> = ({ farm }) => {
   const { t } = useTranslation()
-  const days = 99 // TODO: fetch from contract
+  const { maxWithdrawalInterval, performanceFeesOfNativeTokens, withDrawalFeeOfLps } = farm
+  const days = parseInt(maxWithdrawalInterval, 10) / (60 * 60 * 24)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <MultiLineWrapper>
       {t(
-        `Before ${days} days, a percentage of the user's LP deposit is charged.\nAfter 99 days, only rewards are charged. \nEach deposit resets the counter.`,
+        `Fee before ${days} days: ${withDrawalFeeOfLps / 100}% on LPs plus ${
+          (performanceFeesOfNativeTokens * 2) / 100
+        }% on rewards.\nFee after ${days} days: ${performanceFeesOfNativeTokens / 100}% on rewards.`,
       )}
     </MultiLineWrapper>,
     {
@@ -39,7 +42,7 @@ const WithdrawalFee: FC = () => {
     <Flex>
       {tooltipVisible && tooltip}
       <TextGlobal bold color="black">
-        {t('Withdrawal Fee')}
+        {t('Fees')}
       </TextGlobal>
       <HelpIconWrapper style={{ display: 'flex' }} ref={targetRef}>
         <HelpIcon width={14} height={14} color="#A099A5" />
