@@ -16,6 +16,7 @@ import {
   useLottery,
   useCakeVaultContract,
   useSousChefGlobalVaults,
+  useLockedVaultContract, useGlobal,
 } from './useContract'
 import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
@@ -68,6 +69,37 @@ export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol)
       toastError(t('Error'), e?.message)
     }
   }, [account, dispatch, lpContract, sousChefContract, sousId, earningTokenSymbol, t, toastError, toastSuccess])
+
+  return { handleApprove, requestedApproval }
+}
+
+// export const useVaultLocked = (setLastUpdated: () => void) => {
+export const useVaultLocked = () => {
+  const { account } = useWeb3React()
+  const [requestedApproval, setRequestedApproval] = useState(false)
+  const { t } = useTranslation()
+  const { toastSuccess, toastError } = useToast()
+  const lockedVaultContract = useLockedVaultContract()
+  const globalContract = useGlobal()
+
+  const handleApprove = () => {
+    globalContract.methods
+        .approve(lockedVaultContract.options.address, ethers.constants.MaxUint256)
+        .send({ from: account })
+        .on('sending', () => {
+          setRequestedApproval(true)
+        })
+        .on('receipt', () => {
+          toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'GLOBAL' }))
+          // setLastUpdated()
+          setRequestedApproval(false)
+        })
+        .on('error', (error) => {
+          console.error(error)
+          toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+          setRequestedApproval(false)
+        })
+  }
 
   return { handleApprove, requestedApproval }
 }

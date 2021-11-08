@@ -9,13 +9,12 @@ import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
 import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
-import { useApproveVault, useIfoApprove } from 'hooks/useApprove'
 import { latinise } from 'utils/latinise'
 import { useVaultContract } from 'hooks/useContract'
 import { getGlobalAddress, getVaultAddress } from 'utils/addressHelpers'
 import { getGlobalContract, getVaultContract } from 'utils/contractHelpers'
 import { ethers } from 'ethers'
-import { approve } from 'utils/callHelpers'
+import {useVaultApprove, useVaultLocked} from 'hooks/useApprove'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
@@ -129,7 +128,8 @@ interface Props {
 const Pools: React.FC<Props> = () => {
   const vault = useVaultContract();
   const { account } = useWeb3React()
-  const prueba = useIfoApprove(getGlobalContract(), getVaultAddress());
+
+  // const prueba = useIfoApprove(getGlobalContract(), getVaultAddress());
   
   const VAULT_ADDRESS = getVaultAddress()
   const DEFAULT_GAS_LIMIT = 200000
@@ -318,7 +318,8 @@ const Pools: React.FC<Props> = () => {
       <PoolsTable pools={vaultStackedPools} account={account} userDataLoaded={userDataLoaded} />
     </PoolTablesContainer>
   )
-  
+
+  const { handleApprove, requestedApproval } = useVaultLocked();
  
   return (
     <Page>
@@ -354,13 +355,14 @@ const Pools: React.FC<Props> = () => {
       <br />
       
       <button type="button" onClick={ _ => { vault.methods.deposit(new BigNumber(1)).send({from:account, gas: DEFAULT_GAS_LIMIT})}}>Click</button>
-      <button type="button" onClick={ async _ => { 
+      <button type="button" onClick={ _ => {
         /* await getGlobalContract().methods.allowance(account, getVaultAddress()).call(); */
-        
-        console.log(getGlobalContract(), getVaultContract(),  account)
-        const tx = await approve(getGlobalContract(), getVaultContract(), account)
-        console.log(tx)
-        }}>Click</button>
+        handleApprove();
+
+        // console.log(getGlobalContract(), getVaultContract(),  account)
+        // const tx = await approve(getGlobalContract(), getVaultContract(), account)
+        // console.log(tx)
+        }}>Click2</button>
 
       {vaultTableLayout}
 
