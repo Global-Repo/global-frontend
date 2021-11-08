@@ -18,12 +18,16 @@ import { useCakeVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
-import { useCheckOwnVaultApprovalStatus, useCheckVaultApprovalStatus, useSousApprove, useVaultApprove } from 'hooks/useApprove'
+import { useCheckOwnVaultApprovalStatus, useCheckVaultApprovalStatus, useSousApprove, useVaultApprove, useVaultLocked } from 'hooks/useApprove'
+
+
 import { getBalanceNumber } from 'utils/formatBalance'
 import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress, getGlobalAddress, getVaultAddress } from 'utils/addressHelpers'
 import { useERC20 } from 'hooks/useContract'
+import { useGlobalAllowance } from 'hooks/useAllowance'
+
 import { convertSharesToCake } from 'views/Pools/helpers'
 import { ActionContainer, ActionTitles, ActionContent, RedButton } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
@@ -66,25 +70,28 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     stakingTokenPrice,
     isAutoVault,
   } = pool
+  const { handleApprove, requestedApproval } = useVaultLocked();
+ 
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const ADDRESS_CONTRACT = getVaultAddress()
   const stakingTokenContract = useERC20(getGlobalAddress())
-  const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useSousApprove(
+  /* const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useSousApprove(
     stakingTokenContract,
     sousId,
     "GLOBAL"
-  )
+  ) */
 
   const { isVaultApproved, setLastUpdated } = useCheckOwnVaultApprovalStatus()
+  const allowance = useGlobalAllowance()
+
   const { handleApprove: handleVaultApprove, requestedApproval: requestedVaultApproval } =
     useVaultApprove(setLastUpdated)
 
-  const handleApprove = isAutoVault ? handleVaultApprove : handlePoolApprove
+  /* const handleApprove = isAutoVault ? handleVaultApprove : handlePoolApprove
   const requestedApproval = isAutoVault ? requestedVaultApproval : requestedPoolApproval
-
+    */
   const isBnbPool = poolCategory === PoolCategory.BINANCE
-  const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isNotVaultAndHasStake = !isAutoVault && stakedBalance.gt(0)
 

@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
-import { getLotteryAddress } from 'utils/addressHelpers'
+import { getLotteryAddress, getVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { useCake } from './useContract'
+import { getGlobalContract } from 'utils/contractHelpers'
+
+import { useCake, useGlobal, useLockedVaultContract } from './useContract'
 import useRefresh from './useRefresh'
 
 // Retrieve lottery allowance
@@ -49,4 +51,29 @@ export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string,
   }, [account, spenderAddress, tokenContract, dependency])
 
   return allowance
+}
+
+export const useGlobalAllowance = () => {
+  const { account } = useWeb3React()
+  const contract = useGlobal()
+  const lockedVaultContract = useLockedVaultContract()
+  const [allowance, setAllowance] = useState(BIG_ZERO)
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const res = await getGlobalContract().methods.allowance(account, getVaultAddress()).call();
+        /* const res = await contract.methods.allowance(account, lockedVaultContract.options.address).call()  */
+        setAllowance(new BigNumber(res))
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    if (account) {
+      fetch()
+    }
+  }, [account])
+
+  return allowance
+
 }
