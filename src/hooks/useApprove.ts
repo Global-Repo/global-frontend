@@ -6,6 +6,8 @@ import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
+import { getVaultContract } from 'utils/contractHelpers'
+
 import { useTranslation } from 'contexts/Localization'
 import {
   useMasterchef,
@@ -123,6 +125,45 @@ export const useCheckVaultApprovalStatus = () => {
 
   return { isVaultApproved, setLastUpdated }
 }
+export const useCheckOwnVaultApprovalStatus = () => {
+  const [isVaultApproved, setIsVaultApproved] = useState(false)
+  const { account } = useWeb3React()
+  const cakeContract = getVaultContract()
+  const cakeVaultContract = useCakeVaultContract();
+  const { lastUpdated, setLastUpdated } = useLastUpdated()
+  useEffect(() => {
+    const checkApprovalStatus = async () => {
+      try {
+        const response = await cakeContract.methods.allowance(account, cakeVaultContract.options.address).call()
+        const currentAllowance = new BigNumber(response)
+        setIsVaultApproved(currentAllowance.gt(0))
+      } catch (error) {
+        setIsVaultApproved(false)
+      }
+    }
+
+    checkApprovalStatus()
+  }, [account, cakeContract, cakeVaultContract, lastUpdated])
+
+  return { isVaultApproved, setLastUpdated }
+}
+
+export const useApproveVault = () => {
+  const { account } = useWeb3React()
+  const cakeContract = useCake()
+  const lotteryContract = useVaultContract();
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(cakeContract, lotteryContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, cakeContract, lotteryContract])
+
+  return { onApprove: handleApprove }
+}
 
 // Approve the lottery
 export const useLotteryApprove = () => {
@@ -186,3 +227,7 @@ export const useGlobalVaultApprove = (lpContract: Contract, sousId, earningToken
 
   return { handleApprove, requestedApproval }
 }
+function useVaultContract() {
+  throw new Error('Function not implemented.')
+}
+

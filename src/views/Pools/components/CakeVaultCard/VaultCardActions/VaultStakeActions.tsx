@@ -38,7 +38,7 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
     )
   }
 
-  return <Flex flexDirection="column">{isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}</Flex>
+  return <Flex flexDirection="column">{isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}ddddd</Flex>
 }
 
 export default VaultStakeActions

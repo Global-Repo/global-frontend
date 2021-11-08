@@ -103,5 +103,9 @@ export default {
   globalPresaleAddress: {
     56: '0x46fd3695faF3100ec3000f7E1903f9Db94cFBf19',
     97: '0x98750654977f37F0094924438Ff31E30582d3b69',
+  },
+  vault: {
+    56: '0x2e2FD151F9d6abeca1d81b77C6E7a0A02631A424',
+    97: '0x2e2FD151F9d6abeca1d81b77C6E7a0A02631A424'
   }
 }

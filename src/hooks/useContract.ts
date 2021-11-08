@@ -28,6 +28,7 @@ import {
   getGlobalVaultStakedToBnbContract,
   getGlobalVaultStakedToGlobalContract,
   getGlobalVaultsSouschefContract,
+  getVaultContract
 } from 'utils/contractHelpers'
 
 /**
@@ -140,6 +141,10 @@ export const useEasterNftContract = () => {
 export const useCakeVaultContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getCakeVaultContract(web3), [web3])
+}
+export const useVaultContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getVaultContract(web3), [web3])
 }
 
 export const usePredictionsContract = () => {

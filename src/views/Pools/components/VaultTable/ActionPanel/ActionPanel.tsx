@@ -22,7 +22,7 @@ import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
-import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
+import { getAddress, getCakeVaultAddress, getGlobalAddress, getVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
@@ -134,15 +134,16 @@ interface ActionPanelProps {
 }
 
 const InfoSection = styled(Box)`
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: auto;
-  padding: 8px 8px;
+  clear:both;
+ 
+  height:0;
+  padding: 8px 18px;
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 0;
-    flex-basis: 230px;
+    
   }
 `
+
 
 const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded, expanded, breakpoints }) => {
   const {
@@ -153,12 +154,12 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     startBlock,
     endBlock,
     stakingLimit,
-    contractAddress,
     isAutoVault,
   } = pool
+
   const { t } = useTranslation()
-  const poolContractAddress = getAddress(contractAddress)
-  const cakeVaultContractAddress = getCakeVaultAddress()
+  const poolContractAddress = getVaultAddress()
+  const cakeVaultContractAddress = getGlobalAddress()
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 0
@@ -167,7 +168,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     getPoolBlockInfo(pool, currentBlock)
 
   const isMetaMaskInScope = !!(window as WindowChain).ethereum?.isMetaMask
-  const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
+  const tokenAddress = getGlobalAddress()
   const imageSrc = `${BASE_URL}/images/tokens/${tokenAddress}.png`
 
   const {
@@ -211,29 +212,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   })
 
   const maxStakeRow = stakingLimit.gt(0) ? (
-    <Flex mb="8px" justifyContent="space-between">
-      <Text color="black" fontSize="14px">{t('Max. stake per user')}:</Text>
-      <Text color="black" fontSize="14px">{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
-    </Flex>
+    null
   ) : null
 
   const blocksRow =
-    blocksRemaining || blocksUntilStart ? (
-      <Flex mb="8px" justifyContent="space-between">
-        <Text color="black" fontSize="14px">{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
-        <Flex>
-          <StyledLinkExternal href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
-            <StyledBalance fontSize="14px" value={blocksToDisplay} decimals={0} color="primary" />
-            <Text ml="4px" color="primary" textTransform="lowercase" fontSize="14px">
-              {t('Blocks')}
-            </Text>
-            <TimerIcon ml="4px" color="white" />
-          </StyledLinkExternal>
-        </Flex>
-      </Flex>
-    ) : (
-      <Skeleton width="56px" height="16px" />
-    )
+    <div style={{display:'none'}}>REMAINING TIME</div>
 
   const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
@@ -243,61 +226,26 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   )
 
   const totalStakedRow = (
-    
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      <Text maxWidth={['50px', '100%']}>Total staked:</Text>
+      <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text>
       <Flex alignItems="center">
+        {totalStaked && totalStaked.gte(0) ? (
           <>
             <Balance fontSize="16px" value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
             <span ref={totalStakedTargetRef}>
               <HelpIcon color="textSubtle" width="20px" ml="4px" />
             </span>
           </>
+        ) : (
+          <Skeleton width="56px" height="16px" />
+        )}
         {totalStakedTooltipVisible && totalStakedTooltip}
       </Flex>
     </Flex>
   )
 
   return (
-    <StyledActionPanel expanded={expanded}>
-      <InfoSection>
-        {maxStakeRow}
-        {(isXs || isSm) && aprRow}
-        {(isXs || isSm || isMd) && totalStakedRow}
-        {shouldShowBlockCountdown && blocksRow}
-        {/* <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <StyledLinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
-            {t('Info site')}
-          </StyledLinkExternal>
-        </Flex> */}
-        {/* <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <StyledLinkExternal href={earningToken.projectLink} bold={false}>
-            {t('View Project Site')}
-          </StyledLinkExternal>
-        </Flex> */}
-        
-        {account && isMetaMaskInScope && tokenAddress && (
-          <div style={{display:'none'}}>
-            <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-              <RedButton
-                variant="secondary"
-                p="0"
-                height="auto"
-                onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals, imageSrc)}
-              >
-                <>{t('Add to Metamask')}</>
-                <MetamaskIcon ml="4px" />
-              </RedButton>
-            </Flex>
-          </div>
-        )}
-        
-        {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
-        {tagTooltipVisible && tagTooltip}
-        <span ref={tagTargetRef}>
-          <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-        </span>
-      </InfoSection>
+    <StyledActionPanel expanded={expanded}>   
       <ActionContainer>
         {showSubtitle && (
           <Text mt="4px" mb="16px" color="textSubtle">
@@ -321,6 +269,22 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           <Stake pool={pool} userDataLoaded={userDataLoaded} />
         </StyledGradientBorderBox>
       </ActionContainer>
+      <InfoSection>
+        {maxStakeRow}
+        {(isXs || isSm) && aprRow}
+        {(isXs || isSm || isMd) && totalStakedRow}
+        {shouldShowBlockCountdown && blocksRow}
+        {/* <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
+          <StyledLinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
+            {t('Info site')}
+          </StyledLinkExternal>
+        </Flex> */}
+        {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+        {tagTooltipVisible && tagTooltip}
+        <span ref={tagTargetRef}>
+          <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+        </span>
+      </InfoSection>
     </StyledActionPanel>
   )
 }

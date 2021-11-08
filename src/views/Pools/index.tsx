@@ -9,7 +9,13 @@ import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
 import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
+import { useApproveVault, useIfoApprove } from 'hooks/useApprove'
 import { latinise } from 'utils/latinise'
+import { useVaultContract } from 'hooks/useContract'
+import { getGlobalAddress, getVaultAddress } from 'utils/addressHelpers'
+import { getGlobalContract, getVaultContract } from 'utils/contractHelpers'
+import { ethers } from 'ethers'
+import { approve } from 'utils/callHelpers'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
@@ -23,6 +29,8 @@ import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
+import VaultTable from './components/VaultTable/VaultTable'
+
 
 const CardLayout = styled.div`
   display: flex;
@@ -119,9 +127,15 @@ interface Props {
 }
 
 const Pools: React.FC<Props> = () => {
+  const vault = useVaultContract();
+  const { account } = useWeb3React()
+  const prueba = useIfoApprove(getGlobalContract(), getVaultAddress());
+  
+  const VAULT_ADDRESS = getVaultAddress()
+  const DEFAULT_GAS_LIMIT = 200000
+  const VAULT_LOCKED_ADDRESS = "0x2e2FD151F9d6abeca1d81b77C6E7a0A02631A424";
   const location = useLocation()
   const { t } = useTranslation()
-  const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -270,6 +284,7 @@ const Pools: React.FC<Props> = () => {
   const lockedPools = poolsToShow.filter((pool) => pool.type === 'LOCKED')
   const vestedPools = poolsToShow.filter((pool) => pool.type === 'VESTED')
   const vaultStackedPools = poolsToShow.filter((pool) => !pool.type)
+  
 
   const cardLayout = (
     <CardLayout>
@@ -282,6 +297,19 @@ const Pools: React.FC<Props> = () => {
       )}
     </CardLayout>
   )
+  const dataVault = [vaultStackedPools[0]]
+  
+  
+  
+  const vaultTableLayout = (
+    <PoolTablesContainer>
+      <VaultTable 
+        pools={dataVault} 
+        account={account} 
+        userDataLoaded={userDataLoaded} />
+    </PoolTablesContainer>
+      
+  )
 
   const tableLayout = (
     <PoolTablesContainer>
@@ -290,7 +318,8 @@ const Pools: React.FC<Props> = () => {
       <PoolsTable pools={vaultStackedPools} account={account} userDataLoaded={userDataLoaded} />
     </PoolTablesContainer>
   )
-
+  
+ 
   return (
     <Page>
       {/* <PageHeader background="transparent">
@@ -311,6 +340,9 @@ const Pools: React.FC<Props> = () => {
         </Flex>
       </Flex>
     </PageHeader> */}
+      
+      
+      
       <PageHeaderFarming background="transparent">
         <TitleSectionGlobal as="h1" scale="xxl" color="black" mb="24px">
           {t('Pools')}
@@ -319,7 +351,22 @@ const Pools: React.FC<Props> = () => {
           {t('Just stake some tokens to earn. High APR, low risk.')}
         </SubTitleSectionGlobal>
       </PageHeaderFarming>
+      <br />
+      
+      <button type="button" onClick={ _ => { vault.methods.deposit(new BigNumber(1)).send({from:account, gas: DEFAULT_GAS_LIMIT})}}>Click</button>
+      <button type="button" onClick={ async _ => { 
+        /* await getGlobalContract().methods.allowance(account, getVaultAddress()).call(); */
+        
+        console.log(getGlobalContract(), getVaultContract(),  account)
+        const tx = await approve(getGlobalContract(), getVaultContract(), account)
+        console.log(tx)
+        }}>Click</button>
+
+      {vaultTableLayout}
+
       <PoolControls justifyContent="space-between" marginX="24px">
+        
+        
         <PoolTabButtons
           stakedOnly={stakedOnly}
           setStakedOnly={setStakedOnly}
@@ -371,6 +418,7 @@ const Pools: React.FC<Props> = () => {
           {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
         </Text>
       )}
+
       {tableLayout}
       <div ref={loadMoreRef} />
     </Page>
