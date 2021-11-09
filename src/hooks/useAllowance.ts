@@ -34,7 +34,7 @@ export const useLotteryAllowance = () => {
 export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string, dependency?: any): BigNumber => {
   const { account } = useWeb3React()
   const [allowance, setAllowance] = useState(BIG_ZERO)
-
+  
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -58,6 +58,7 @@ export const useGlobalAllowance = () => {
   const contract = useGlobal()
   const lockedVaultContract = useLockedVaultContract()
   const [allowance, setAllowance] = useState(BIG_ZERO)
+  const { fastRefresh } = useRefresh()
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -72,7 +73,7 @@ export const useGlobalAllowance = () => {
     if (account) {
       fetch()
     }
-  }, [account])
+  }, [account, lockedVaultContract, contract, fastRefresh])
 
   return allowance
 

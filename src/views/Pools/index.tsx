@@ -310,7 +310,18 @@ const Pools: React.FC<Props> = () => {
     </PoolTablesContainer>
       
   )
-
+  const balanceVault = async () => {
+    console.log( vault.methods)
+    if (account){
+      const globalToEarn = await vault.methods.globalToEarn(account).call();
+      const bnbToEarn = await vault.methods.bnbToEarn(account).call();
+      const globalEarned = await vault.methods.globalEarned(account).call();
+      const bnbEarned = await vault.methods.bnbEarned(account).call();
+      console.log(globalToEarn, bnbToEarn, globalEarned, bnbEarned)
+    }
+      return 0;
+    
+  } 
   const tableLayout = (
     <PoolTablesContainer>
       <PoolsTable pools={lockedPools} account={account} userDataLoaded={userDataLoaded} />
@@ -320,7 +331,7 @@ const Pools: React.FC<Props> = () => {
   )
 
   const { handleApprove, requestedApproval } = useVaultLocked();
- 
+  balanceVault()
   return (
     <Page>
       {/* <PageHeader background="transparent">
