@@ -73,6 +73,27 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmC
   return parsedEarnings
 }
 
+export const fetchFarmUserAmountDebt = async (account: string, farmsToFetch: FarmConfig[]) => {
+  const masterChefAddress = getMasterChefAddress()
+
+  const calls = farmsToFetch.map((farm) => {
+    return {
+      address: masterChefAddress,
+      name: 'userInfo',
+      params: [farm.pid, account],
+    }
+  })
+
+  const userInfos = await multicall(masterchefABI, calls)
+  const userRewardDebt = userInfos.map((userInfo) => {
+    return {
+      debt: new BigNumber(userInfo.rewardDebt._hex).toJSON(),
+      lockup: new BigNumber(userInfo.rewardLockedUp._hex).toJSON()
+    }
+  })
+  return userRewardDebt
+}
+
 export const fetchFarmUserNextHarvests = async (account: string, farmsToFetch: FarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
 
