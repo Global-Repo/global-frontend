@@ -42,7 +42,7 @@ const UserPrizeGrid: React.FC<{ userTradingInformation?: UserTradingInformationP
             <Flex flexDirection="column">
               <Text bold>{cakeReward.toFixed(2)}</Text>
               {dollarValueOfCakeReward ? (
-                <Text fontSize="12px" color="textSubtle">
+                <Text fontSize="12px" color="#69626E">
                   ~{dollarValueOfCakeReward} USD
                 </Text>
               ) : (
@@ -55,7 +55,7 @@ const UserPrizeGrid: React.FC<{ userTradingInformation?: UserTradingInformationP
               {champion && <CrownIcon mr={[0, '4px']} />}
               {teamPlayer && <TeamPlayerIcon mr={[0, '4px']} />}
               <TrophyGoldIcon mr={[0, '4px']} />
-              <Text fontSize="12px" color="textSubtle" textTransform="lowercase">
+              <Text fontSize="12px" color="#69626E" textTransform="lowercase">
                 + {userPointReward} {t('Points')}
               </Text>
             </Flex>

@@ -38,7 +38,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
                   <CardActions pool={pool} stakedBalance={stakedBalance} />
                 ) : (
                   <>
-                    <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
+                    <Text mb="10px" textTransform="uppercase" fontSize="12px" color="#69626E" bold>
                       {t('Start earning')}
                     </Text>
                     <UnlockButton isPool />

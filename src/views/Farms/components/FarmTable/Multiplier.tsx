@@ -33,10 +33,10 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
   const { t } = useTranslation()
   const tooltipContent = (
     <div>
-      {t('The multiplier represents the amount of GLOBAL rewards each farm gets.')}
+      {t('The multiplier represents the amount of CAKE rewards each farm gets.')}
       <br />
       <br />
-      {t('For example, if a 1x farm was getting 1 GLOBAL per block, a 40x farm would be getting 40 GLOBAL per block.')}
+      {t('For example, if a 1x farm was getting 1 CAKE per block, a 40x farm would be getting 40 CAKE per block.')}
     </div>
   )
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {
@@ -46,11 +46,11 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
 
   return (
     <Container>
-      <MultiplierWrapper>{displayMultiplier}</MultiplierWrapper>
+      {/* <MultiplierWrapper>{displayMultiplier}</MultiplierWrapper>
       <ReferenceElement ref={targetRef}>
-        <HelpIcon color="#A099A5" width={16} />
+        <HelpIcon color="#69626E" />
       </ReferenceElement>
-      {tooltipVisible && tooltip}
+      {tooltipVisible && tooltip} */}
     </Container>
   )
 }

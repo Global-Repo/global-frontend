@@ -156,7 +156,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
           <>
             <Balance fontSize="16px" value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
             <span ref={totalStakedTargetRef}>
-              <HelpIcon color="textSubtle" width="20px" ml="4px" />
+              <HelpIcon color="#69626E" width="20px" ml="4px" />
             </span>
           </>
         ) : (
@@ -209,12 +209,12 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, vault, userDataLoade
           </Flex>
         )}
         <span>
-          <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+          <HelpIcon ml="4px" width="20px" height="20px" color="#69626E" />
         </span>
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
-          <Text mt="4px" mb="16px" color="textSubtle">
+          <Text mt="4px" mb="16px" color="#69626E">
             {`${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}

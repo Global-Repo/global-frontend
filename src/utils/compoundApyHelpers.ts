@@ -25,7 +25,6 @@ export const tokenEarnedPerThousandDollarsCompounding = ({
   const finalAmount = principal * (1 + aprAsDecimal / timesCompounded) ** (timesCompounded * daysAsDecimalOfYear)
   // To get the TOKEN amount earned, deduct the amount after compounding (finalAmount) from the starting TOKEN balance (principal)
   const interestEarned = finalAmount - principal
-
   return parseFloat(interestEarned.toFixed(roundingDecimals))
 }
 

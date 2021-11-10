@@ -44,7 +44,7 @@ const Step: React.FC<CountdownProps> = ({ stepText, index, activeStepIndex }) =>
     return (
       <ExpiredWrapper>
         <CheckmarkCircleIcon />
-        <StyledText color="textSubtle">{stepText}</StyledText>
+        <StyledText color="#69626E">{stepText}</StyledText>
       </ExpiredWrapper>
     )
   }

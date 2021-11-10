@@ -16,7 +16,7 @@ const Amount = styled.span<{ earned: number }>`
   display: flex;
   align-items: center;
   color:black;
-  font-weight: bold;
+  font-weight: 500;
 `
 
 const Earned: React.FunctionComponent<EarnedPropsWithLoading> = ({ earnings, userDataReady }) => {

@@ -40,14 +40,14 @@ const AprRow: React.FC<AprRowProps> = ({ vault, performanceFee = 0 }) => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <TooltipText>{`${t('APR')}:`}</TooltipText>
+      <TooltipText color="black">{`${t('APR')}:`}</TooltipText>
       {!aprArray[0].apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">
           <Balance fontSize="16px" isDisabled={false} value={vaultAPR} decimals={2} unit="%" bold />
           <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
+            <CalculateIcon color="#69626E" width="18px" />
           </IconButton>
         </Flex>
       )}

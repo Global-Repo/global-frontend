@@ -127,7 +127,7 @@ const PrizesGrid = () => {
                       {champion && <CrownIcon mr={[0, '4px']} />}
                       {teamPlayer && <TeamPlayerIcon mr={[0, '4px']} />}
                       <TrophyGoldIcon mr={[0, '4px']} />
-                      <Text fontSize="12px" color="textSubtle">
+                      <Text fontSize="12px" color="#69626E">
                         {`+${getTotalAchievementPoints(row.achievements).toLocaleString(undefined, {
                           minimumFractionDigits: 0,
                           maximumFractionDigits: 0,

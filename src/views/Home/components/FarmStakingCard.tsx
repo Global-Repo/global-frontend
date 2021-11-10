@@ -28,7 +28,7 @@ const Label = styled.div`
   color: ${({ theme }) => theme.colors.textSubtle};
   font-size: 14px;
   font-weight: 300;
-  color: #A099A5;
+  color: #69626E;
   text-transform: uppercase;
 `
 

@@ -18,9 +18,10 @@ const GradientText = styled(InlineText)`
   text-transform: uppercase;
   font-size: 12px;
   padding-right: 4px;
-  background: linear-gradient(to right, #e52420, #ce850e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FF0000;
+  //background: linear-gradient(to right, #e52420, #ce850e);
+  //-webkit-background-clip: text;
+  //-webkit-text-fill-color: transparent;
 `
 
 interface CardActionsProps {
@@ -28,7 +29,7 @@ interface CardActionsProps {
   stakedBalance: BigNumber
 }
 
-const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
+const   CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
   const { sousId, stakingToken, earningToken, userData, earningTokensPrice } = vault
   // Pools using native BNB behave differently than pools using a token
   const { t } = useTranslation()
@@ -46,7 +47,7 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
         <>
           <Box display="inline">
             <GradientText>{earningToken[0].symbol}</GradientText>
-            <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+            <InlineText color="black" textTransform="uppercase" bold fontSize="12px">
               {t('Earned')}
             </InlineText>
           </Box>
@@ -59,10 +60,10 @@ const CardActions: React.FC<CardActionsProps> = ({ vault, stakedBalance }) => {
           />
         </>
         <Box display="inline">
-          <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
+          <InlineText color={isStaked ? 'secondary' : 'black'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? <GradientText>{stakingToken.symbol}</GradientText> : t('Stake')}{' '}
           </InlineText>
-          <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
+          <InlineText color={isStaked ? '#69626E' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? t('Staked') : <GradientText>{stakingToken.symbol}</GradientText>}
           </InlineText>
         </Box>

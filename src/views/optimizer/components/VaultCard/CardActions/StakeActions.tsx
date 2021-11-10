@@ -14,9 +14,11 @@ import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { GlobalVaultLocked, GlobalVaultStaked, GlobalVaultVested } from 'state/types'
+import styled from 'styled-components'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
+
 
 interface StakeActionsProps {
   vault: GlobalVaultLocked | GlobalVaultStaked | GlobalVaultVested
@@ -25,6 +27,10 @@ interface StakeActionsProps {
   isStaked: ConstrainBoolean
   isLoading?: boolean
 }
+
+const ButtonWrapper = styled(Button)`
+  background-color: #FF0000;
+`
 
 const StakeAction: React.FC<StakeActionsProps> = ({
   vault,
@@ -72,10 +78,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           <>
             <Balance bold fontSize="20px" decimals={3} value={stakedTokenBalance} />
             {stakingTokenPrice !== 0 && (
-              <Text fontSize="12px" color="textSubtle">
+              <Text fontSize="12px" color="#69626E">
                 <Balance
                   fontSize="12px"
-                  color="textSubtle"
+                  color="#69626E"
                   decimals={2}
                   value={stakedTokenDollarBalance}
                   prefix="~"
@@ -86,35 +92,35 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           </>
         </Flex>
         <Flex>
-          <IconButton variant="full_gradient_pool" onClick={onPresentUnstake} mr="6px">
-            <MinusIcon color="white" width="24px" />
+          <IconButton variant='danger' onClick={onPresentUnstake} mr="6px">
+            <MinusIcon color="#69626E" width="24px" />
           </IconButton>
           {reachStakingLimit ? (
             <span ref={targetRef}>
               <IconButton variant="secondary" disabled>
-                <AddIcon color="textDisabled" width="24px" height="24px" />
+                <AddIcon color="#69626E" width="24px" height="24px" />
               </IconButton>
             </span>
           ) : (
             <IconButton
-              variant="full_gradient_pool"
+              variant='danger'
               onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
               disabled={isFinished}
             >
-              <AddIcon color="white" width="24px" height="24px" />
+              <AddIcon color="#69626E" width="24px" height="24px" />
             </IconButton>
           )}
         </Flex>
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button
-        variant={isFinished ? 'danger' : 'full_gradient_pool'}
+      <ButtonWrapper
+        variant='danger'
         disabled={isFinished}
         onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
       >
         {t('Stake')}
-      </Button>
+      </ButtonWrapper>
     )
   }
 

@@ -125,7 +125,7 @@ const ShareImageModal: React.FC<YourScoreProps> = ({ onDismiss, profile, userLea
         ) : (
           <Skeleton width="100%" height="258px" />
         )}
-        <Text p="24px 16px" color="textSubtle" textAlign="center">
+        <Text p="24px 16px" color="#69626E" textAlign="center">
           {t('Brag to your friends and annoy your rivals with your custom scorecard!')}
         </Text>
         {imageFromCanvas && (

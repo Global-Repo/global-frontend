@@ -41,7 +41,7 @@ const GlobalTextInfo = styled(Text)`
   line-height: 13px;
   display: flex;
   align-items: center;
-  color: #A099A5;
+  color: #69626E;
 
 `
 
@@ -79,7 +79,6 @@ const ButtonGlobalStyle = styled(Button)`
 
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
-  farm: any
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({
@@ -89,7 +88,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   quoteToken,
   token,
   userDataReady,
-  farm
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -131,7 +129,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} farm={farm} />,
+    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />,
   )
   const lpContract = useERC20(lpAddress)
   const dispatch = useAppDispatch()
@@ -170,7 +168,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <ActionContainer>
           <ActionTitles>
             <GradientText>{lpSymbol}</GradientText>
-            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+            <Text bold textTransform="uppercase" color="#69626E" fontSize="12px">
               {t('Staked')}
             </Text>
           </ActionTitles>
@@ -180,7 +178,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               {stakedBalance.gt(0) && lpPrice.gt(0) && (
                 <Balance
                   fontSize="12px"
-                  color="textSubtle"
+                  color="#69626E"
                   decimals={2}
                   value={getBalanceNumber(lpPrice.times(stakedBalance))}
                   unit=" USD"
@@ -189,15 +187,16 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               )}
             </div>
             <IconButtonWrapper>
-              <RedButton onClick={onPresentWithdraw} mr="6px">
+              <IconButton variant="full_gradient_pool" onClick={onPresentWithdraw} mr="6px">
                 <MinusIcon color="white" width="14px" />
-              </RedButton>
-              <RedButton
+              </IconButton>
+              <IconButton
+                variant="full_gradient_pool"
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
               >
                 <AddIcon color="white" width="14px" />
-              </RedButton>
+              </IconButton>
             </IconButtonWrapper>
           </ActionContent>
         </ActionContainer>
@@ -207,7 +206,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px" pr="4px">
+          <Text bold textTransform="uppercase" color="black" fontSize="12px" pr="4px">
             {t('Stake').toUpperCase()}
           </Text>
           <GradientText>{lpSymbol}</GradientText>
@@ -230,7 +229,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          <Text bold textTransform="uppercase" color="black" fontSize="12px">
             {t('Start Farming')}
           </Text>
         </ActionTitles>
@@ -244,7 +243,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+        <Text bold textTransform="uppercase" color="black" fontSize="12px">
           {t('Enable Farm')}
         </Text>
       </ActionTitles>
@@ -256,10 +255,5 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     </ActionContainer>
   )
 }
-
-const RedButton = styled(IconButton)`
-  background: red;
-  color: white;
-`
 
 export default Staked

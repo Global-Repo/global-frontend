@@ -54,12 +54,12 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
               {t('IFO Shopper: %title%', { title: campaignTitle })}
             </Text>
             <Flex alignItems="center" mr="8px">
-              <PrizeIcon color="textSubtle" width="16px" mr="4px" />
-              <Text color="textSubtle">{publicIfoData.numberPoints}</Text>
+              <PrizeIcon color="#69626E" width="16px" mr="4px" />
+              <Text color="#69626E">{publicIfoData.numberPoints}</Text>
             </Flex>
           </Flex>
           {publicIfoData.currencyPriceInUSD.gt(0) ? (
-            <Text color="textSubtle" fontSize="12px">
+            <Text color="#69626E" fontSize="12px">
               {t('Commit ~%amount% LP in total to earn!', { amount: minLpForAchievement.toFixed(3) })}
             </Text>
           ) : (

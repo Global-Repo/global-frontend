@@ -35,10 +35,10 @@ const StyledCardHeader: React.FC<{
       <Title>Cake maximizer</Title>
       <Flex alignItems="center" justifyContent="space-between">
         <FlexCustom>
-          <Heading color={isFinished ? 'textDisabled' : 'white'} scale="lg">
+          <Heading color={isFinished ? 'textDisabled' : 'black'} scale="lg">
             {`${getHeadingPrefix()} ${earningToken[0].symbol} + GLOBAL`}
           </Heading>
-          <Text bold color={isFinished ? 'textDisabled' : 'textSubtle'}>
+          <Text bold color={isFinished ? 'textDisabled' : 'black'}>
             {getSubHeading()}
           </Text>
         </FlexCustom>

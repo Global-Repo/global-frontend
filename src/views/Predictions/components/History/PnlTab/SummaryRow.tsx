@@ -36,7 +36,7 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbBusdPrice }) 
 
   return (
     <>
-      <Text mt="16px" bold color="textSubtle">
+      <Text mt="16px" bold color="#69626E">
         {t(typeTranslationKey)}
       </Text>
       <Flex>
@@ -44,7 +44,7 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbBusdPrice }) 
           <Text bold fontSize="20px" color={color}>
             {rounds} {t('Rounds').toLocaleLowerCase()}
           </Text>
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color="#69626E">
             {type === 'entered' ? t('Total').toLocaleLowerCase() : `${roundsInPercents}%`}
           </Text>
         </Flex>
@@ -52,7 +52,7 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbBusdPrice }) 
           <Text bold fontSize="20px" color={color}>
             {`${summaryTypeSigns[type]}${formatBnb(displayAmount)} BNB`}
           </Text>
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color="#69626E">
             {`~$${formatBnb(bnbBusdPrice.times(displayAmount).toNumber())}`}
           </Text>
         </Flex>

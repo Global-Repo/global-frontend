@@ -76,13 +76,13 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
         <Flex style={{ width: '100%' }} justifyContent="space-between">
           <Flex>
             <GradientText>GLOBAL</GradientText>
-            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+            <Text bold textTransform="uppercase" color="black" fontSize="12px">
               {t('Earned')}
             </Text>
           </Flex>
           {isApproved && stakedBalance.gt(0) && (
             <TimerIconWrapper ref={targetRef}>
-              <TimerIcon color="textSubtle" />
+              <TimerIcon color="#69626E" />
             </TimerIconWrapper>
           )}
         </Flex>

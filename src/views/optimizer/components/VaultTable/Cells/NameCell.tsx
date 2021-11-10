@@ -49,7 +49,7 @@ const NameCell: React.FC<NameCellProps> = ({ vault }) => {
           {title}
         </Text>
         {showSubtitle && (
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color="#69626E">
             {subtitle}
           </Text>
         )}

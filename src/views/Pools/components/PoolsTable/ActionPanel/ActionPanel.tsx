@@ -96,24 +96,15 @@ const ActionContainer = styled.div`
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: 400;
   /* background: linear-gradient(to right, #d86186, #f39e21); */
   /* -webkit-background-clip: text; */
   /* -webkit-text-fill-color: transparent; */
   text-decoration-line: underline;
-  line-height: 17px;
   color: #FF0000;
 
   svg {
-    fill: #FF0000;
-    width: 14px;
-  }
-`
-
-const StyledBalance = styled(Balance)`
-  span {
-    font-size: 14px;
+    fill: #FF0000
   }
 `
 
@@ -212,19 +203,19 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const maxStakeRow = stakingLimit.gt(0) ? (
     <Flex mb="8px" justifyContent="space-between">
-      <Text color="black" fontSize="14px">{t('Max. stake per user')}:</Text>
-      <Text color="black" fontSize="14px">{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
+      <Text>{t('Max. stake per user')}:</Text>
+      <Text>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
     </Flex>
   ) : null
 
   const blocksRow =
     blocksRemaining || blocksUntilStart ? (
       <Flex mb="8px" justifyContent="space-between">
-        <Text color="black" fontSize="14px">{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
+        <Text color="black">{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
         <Flex>
           <StyledLinkExternal href={getBscScanBlockCountdownUrl(hasPoolStarted ? endBlock : startBlock)}>
-            <StyledBalance fontSize="14px" value={blocksToDisplay} decimals={0} color="primary" />
-            <Text ml="4px" color="primary" textTransform="lowercase" fontSize="14px">
+            <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
+            <Text ml="4px" color="black" textTransform="lowercase">
               {t('Blocks')}
             </Text>
             <TimerIcon ml="4px" color="white" />
@@ -237,20 +228,20 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      <Text>{isAutoVault ? t('APY') : t('APR')}:</Text>
+      <Text color="black">{isAutoVault ? t('APY') : t('APR')}:</Text>
       <Apr pool={pool} showIcon performanceFee={isAutoVault ? performanceFeeAsDecimal : 0} />
     </Flex>
   )
 
   const totalStakedRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text>
+      <Text color="black" maxWidth={['50px', '100%']}>{t('Total staked')}:</Text>
       <Flex alignItems="center">
         {totalStaked && totalStaked.gte(0) ? (
           <>
             <Balance fontSize="16px" value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
             <span ref={totalStakedTargetRef}>
-              <HelpIcon color="textSubtle" width="20px" ml="4px" />
+              <HelpIcon color="#69626E" width="20px" ml="4px" />
             </span>
           </>
         ) : (
@@ -268,11 +259,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
-        {/* <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
+        <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <StyledLinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
             {t('Info site')}
           </StyledLinkExternal>
-        </Flex> */}
+        </Flex>
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <StyledLinkExternal href={earningToken.projectLink} bold={false}>
             {t('View Project Site')}
@@ -290,26 +281,26 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         )}
         {account && isMetaMaskInScope && tokenAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <RedButton
-              variant="secondary"
+            <Button
+              variant="text"
               p="0"
               height="auto"
               onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals, imageSrc)}
             >
-              <>{t('Add to Metamask')}</>
+              <GradientText>{t('Add to Metamask')}</GradientText>
               <MetamaskIcon ml="4px" />
-            </RedButton>
+            </Button>
           </Flex>
         )}
         {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
         {tagTooltipVisible && tagTooltip}
         <span ref={tagTargetRef}>
-          <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
+          <HelpIcon ml="4px" width="20px" height="20px" color="#69626E" />
         </span>
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
-          <Text mt="4px" mb="16px" color="textSubtle">
+          <Text mt="4px" mb="16px" color="#69626E">
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
@@ -333,11 +324,5 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     </StyledActionPanel>
   )
 }
-
-const RedButton = styled(Button)`
-  padding: 4px 8px;
-  color: red;
-  background: white;
-`
 
 export default ActionPanel

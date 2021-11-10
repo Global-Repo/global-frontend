@@ -55,7 +55,6 @@ const EarnAPRCard = () => {
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
   const globalPrice = usePriceGlobalBusd()
-  console.log(globalPrice)
   const dispatch = useAppDispatch()
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const history = useHistory()
@@ -76,14 +75,13 @@ const EarnAPRCard = () => {
   }, [dispatch, setIsFetchingFarmData, isIntersecting])
 
   const highestApr = useMemo(() => {
-    console.log(farmsLP)
     if (globalPrice.gt(0)) {
       // no pasa el if
       const aprs = farmsLP.map((farm) => {
-        console.log(farm)
         // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
         if (farm.pid !== 0 && farm.multiplier !== '0X' && farm.lpTotalInQuoteToken && farm.quoteToken.busdPrice) {
           const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
+          console.log("totalLiquidity", totalLiquidity)
           return getFarmApr(
             new BigNumber(farm.poolWeight),
             globalPrice,
@@ -99,6 +97,10 @@ const EarnAPRCard = () => {
     }
     return null
   }, [globalPrice, farmsLP])
+
+
+  // test
+  console.log("Hightest APR --> ", highestApr)
 
   const aprText = highestApr || '-'
   const earnAprText = t('Earn up to %highestApr% APR in Farms', { highestApr: aprText })
@@ -118,7 +120,6 @@ const EarnAPRCard = () => {
           ) : (
             <>
               <Skeleton animation="pulse" variant="rect" height="44px" />
-              Cooming soon
               <div ref={observerRef} />
             </>
           )}

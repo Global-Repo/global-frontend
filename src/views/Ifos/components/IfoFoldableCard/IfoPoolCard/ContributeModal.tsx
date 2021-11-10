@@ -115,7 +115,7 @@ const ContributeModal: React.FC<Props> = ({
           decimals={currency.decimals}
           mb="8px"
         />
-        <Text color="textSubtle" textAlign="right" fontSize="12px" mb="16px">
+        <Text color="#69626E" textAlign="right" fontSize="12px" mb="16px">
           {t('Balance: %balance%', {
             balance: getBalanceAmount(userCurrencyBalance, currency.decimals).toString(),
           })}
@@ -133,7 +133,7 @@ const ContributeModal: React.FC<Props> = ({
             </Button>
           ))}
         </Flex>
-        <Text color="textSubtle" fontSize="12px" mb="24px">
+        <Text color="#69626E" fontSize="12px" mb="24px">
           {t(
             'If you don’t commit enough LP tokens, you may not receive any IFO tokens at all and will only receive a full refund of your LP tokens.',
           )}

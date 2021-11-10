@@ -56,7 +56,7 @@ const RiskDisclaimer: React.FC<RiskDisclaimerProps> = ({ onSuccess, onDismiss })
             {t('This Product is in beta.')}
           </Heading>
 
-          <Text as="p" color="textSubtle" mb="24px">
+          <Text as="p" color="#69626E" mb="24px">
             {t('Once you enter a position, you cannot cancel or adjust it.')}
           </Text>
 

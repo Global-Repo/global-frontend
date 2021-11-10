@@ -16,7 +16,7 @@ const Team: React.FC = () => {
 
   return (
     <>
-      <Text fontSize="20px" color="textSubtle" bold>
+      <Text fontSize="20px" color="#69626E" bold>
         {t('Step %num%', { num: 3 })}
       </Text>
       <Heading as="h3" scale="xl" mb="24px">
@@ -30,7 +30,7 @@ const Team: React.FC = () => {
           <Heading as="h4" scale="lg" mb="8px">
             {t('Join a Team')}
           </Heading>
-          <Text as="p" color="textSubtle" mb="24px">
+          <Text as="p" color="#69626E" mb="24px">
             {t(
               'There’s currently no big difference between teams, and no benefit of joining one team over another for now. So pick whichever one you like!',
             )}

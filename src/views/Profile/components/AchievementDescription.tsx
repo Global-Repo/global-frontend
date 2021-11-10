@@ -25,7 +25,7 @@ const AchievementDescription: React.FC<AchievementDescriptionProps> = ({ descrip
 
   if (typeof description === 'string') {
     return (
-      <Text as="p" color="textSubtle" fontSize="14px" {...props}>
+      <Text as="p" color="#69626E" fontSize="14px" {...props}>
         {description}
       </Text>
     )
@@ -34,7 +34,7 @@ const AchievementDescription: React.FC<AchievementDescriptionProps> = ({ descrip
   const { key, data = {} } = description
 
   return (
-    <Description color="textSubtle" {...props}>
+    <Description color="#69626E" {...props}>
       {t(key, data)}
     </Description>
   )

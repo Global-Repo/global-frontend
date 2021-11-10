@@ -1,17 +1,20 @@
+// @ts-nocheck
 import React from 'react'
 import styled from 'styled-components'
-import { useLocation, NavLink, useRouteMatch } from 'react-router-dom'
+import { useLocation, Link, useRouteMatch } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@duhd4h/global-uikit'
 import { useTranslation } from 'contexts/Localization'
 
-const ButtonMenuGlobal = styled(ButtonMenu)`
-  background: #ffdbdb;
+
+const ButtonMenuGlobal = styled(ButtonMenu)` 
+  background: #FFDBDB;
   border-radius: 12px;
-  border: 0px;
-  padding: 2px;
+  border:0px;
+  padding:2px;
   a {
-    color: white;
-    font-weight: 500;
+    color: #FF0000;
+    background: #FFDBDB;
+    font-weight: 700;
     font-size: 14px;
     line-height: 17px;
     &.active {
@@ -24,16 +27,23 @@ const ButtonMenuGlobal = styled(ButtonMenu)`
     display: flex;
     align-items: center;
     text-align: center;
-    color: #ffffff;
+    color: #FF0000;
+    background: #FFDBDB;
+    &.active {
+      background-color: #FF0000;
+      color: #FFFFFF;
+    }
+    
   }
 `
+
 
 interface FarmTabButtonsProps {
   hasStakeInFinishedFarms: boolean
 }
 
 const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms }) => {
-  const { url } = useRouteMatch()
+  const { url, isExact } = useRouteMatch()
   const location = useLocation()
   const { t } = useTranslation()
 
@@ -55,12 +65,12 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
 
   return (
     <Wrapper>
-      <ButtonMenuGlobal activeIndex={activeIndex} scale="sm">
-        <ButtonMenuItem as={NavLink} exact to={`${url}`}>
+      <ButtonMenuGlobal activeIndex={isExact ? 0 : 1} scale="sm" color='red'>
+        <ButtonMenuItem as={Link} to={`${url}`} className={isExact ? 'active' : null}>
           {t('Live')}
         </ButtonMenuItem>
         <NotificationDot show={hasStakeInFinishedFarms}>
-          <ButtonMenuItem as={NavLink} exact to={`${url}/history`}>
+          <ButtonMenuItem as={Link} to={`${url}/history`} className={!isExact ? 'active' : null}>
             {t('Finished')}
           </ButtonMenuItem>
         </NotificationDot>

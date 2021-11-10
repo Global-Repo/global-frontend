@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import { IconButton, useModal, CalculateIcon } from '@duhd4h/global-uikit'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { useTranslation } from 'contexts/Localization'
+import styled from 'styled-components'
 
 export interface ApyButtonProps {
   lpLabel?: string
@@ -10,6 +11,14 @@ export interface ApyButtonProps {
   apr?: number
   addLiquidityUrl?: string
 }
+
+
+const CalculatorWrapper = styled(CalculateIcon)`
+  path {
+    fill: #69626E !important;
+  }
+
+`
 
 const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, globalPrice, apr, addLiquidityUrl }) => {
   const { t } = useTranslation()
@@ -29,8 +38,8 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, globalPrice, apr, addLiq
   }
 
   return (
-    <IconButton onClick={handleClickButton} variant="text" scale="sm" ml="4px" color="#A099A5">
-      <CalculateIcon width="16px" color="#A099A5" />
+    <IconButton onClick={handleClickButton} variant='text' scale='sm' ml='4px'>
+      <CalculatorWrapper width='18px' />
     </IconButton>
   )
 }

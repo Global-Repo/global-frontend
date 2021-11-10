@@ -19,7 +19,7 @@ const RoundResult: React.FC<RoundResultProps> = ({ round, children, ...props }) 
 
   return (
     <RoundResultBox betPosition={betPosition} {...props}>
-      <Text color="textSubtle" fontSize="12px" bold textTransform="uppercase" mb="8px">
+      <Text color="#69626E" fontSize="12px" bold textTransform="uppercase" mb="8px">
         {t('Closed Price')}
       </Text>
       {round.failed ? (

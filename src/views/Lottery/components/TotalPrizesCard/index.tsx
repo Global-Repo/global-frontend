@@ -80,7 +80,7 @@ const TotalPrizesCard = () => {
               <PancakeRoundIcon />
             </IconWrapper>
             <PrizeCountWrapper>
-              <Text fontSize="14px" color="textSubtle">
+              <Text fontSize="14px" color="#69626E">
                 {t('Total Pot:')}
               </Text>
               <Heading scale="lg">{lotteryPrizeWithCommaSeparators} CAKE</Heading>

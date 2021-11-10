@@ -68,7 +68,7 @@ const ProfilePicture: React.FC = () => {
 
   return (
     <>
-      <Text fontSize="20px" color="textSubtle" bold>
+      <Text fontSize="20px" color="#69626E" bold>
         {t('Step %num%', { num: 2 })}
       </Text>
       <Heading as="h3" scale="xl" mb="24px">
@@ -79,10 +79,10 @@ const ProfilePicture: React.FC = () => {
           <Heading as="h4" scale="lg" mb="8px">
             {t('Choose collectible')}
           </Heading>
-          <Text as="p" color="textSubtle">
+          <Text as="p" color="#69626E">
             {t('Choose a profile picture from the eligible collectibles (NFT) in your wallet, shown below.')}
           </Text>
-          <Text as="p" color="textSubtle" mb="24px">
+          <Text as="p" color="#69626E" mb="24px">
             {t('Only approved Pancake Collectibles can be used.')}
             <Link to="/collectibles" style={{ marginLeft: '4px' }}>
               {t('See the list >')}
@@ -114,7 +114,7 @@ const ProfilePicture: React.FC = () => {
           <Heading as="h4" scale="lg" mb="8px">
             {t('Allow collectible to be locked')}
           </Heading>
-          <Text as="p" color="textSubtle" mb="16px">
+          <Text as="p" color="#69626E" mb="16px">
             {t(
               "The collectible you've chosen will be locked in a smart contract while it’s being used as your profile picture. Don't worry - you'll be able to get it back at any time.",
             )}

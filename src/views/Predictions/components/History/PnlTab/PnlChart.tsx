@@ -34,7 +34,7 @@ const PnlChart: React.FC<PnlChartProps> = ({ lost, won }) => {
         <Text bold fontSize="20px" lineHeight="1">
           {won}/{won + lost}
         </Text>
-        <Text small lineHeight="1" color="textSubtle">
+        <Text small lineHeight="1" color="#69626E">
           {percentageWon}%
         </Text>
       </Info>

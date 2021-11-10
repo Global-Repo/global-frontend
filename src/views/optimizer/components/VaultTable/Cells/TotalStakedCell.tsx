@@ -27,7 +27,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ vault }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        <Text fontSize="12px" color="#69626E" textAlign="left">
           {t('Total staked')}
         </Text>
         {totalStaked && new BigNumber(totalStaked).gte(0) ? (

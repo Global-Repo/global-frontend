@@ -53,7 +53,7 @@ const Container = styled.div<{ expanded }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: #f8f6fb;
+  background: #F8F6FB;
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
@@ -66,25 +66,17 @@ const Container = styled.div<{ expanded }>`
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   display: flex;
   align-items: center;
   text-decoration-line: underline;
-  color: #ff0000;
+  color: #FF0000;
   > svg {
-    color: red;
-    -webkit-mask: none;
-    fill: red;
-    width: 14px;
-    height: 14px;
-  }
-`
-
-const LinksContainer = styled.div`
-  > * + * {
-    margin-top: ${({ theme }) => theme.spacing[2]}px;
+    color:red;
+    -webkit-mask:none;
+    fill:red;
   }
 `
 
@@ -104,17 +96,18 @@ const TagsContainer = styled.div`
   align-items: center;
   margin-top: 25px;
 
+
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-top: 16px;
   }
 
   > div:before {
-    background: red;
-    -webkit-mask: none;
+    background:red;
+    -webkit-mask:none;
   }
-  > div > span {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: white;
+  > div > span{
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: white; 
     color: white;
   }
   > div {
@@ -122,6 +115,7 @@ const TagsContainer = styled.div`
     padding: 0 6px;
     font-size: 14px;
     margin-right: 4px;
+    margin-bottom: 5px;
     svg {
       width: 14px;
     }
@@ -146,7 +140,6 @@ const InfoContainer = styled.div`
 
 const ValueContainer = styled.div`
   display: block;
-  margin-bottom: ${({ theme }) => theme.spacing[2]}px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     display: none;
@@ -164,10 +157,7 @@ const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: ${({ theme }) => theme.spacing[3]}px;
-  > * + * {
-    margin-top: ${({ theme }) => theme.spacing[2]}px;
-  }
+  margin-top: 8px;
 `
 
 const ActionItemWrapper = styled(GradientBorderBox)`
@@ -200,15 +190,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   return (
     <Container expanded={expanded}>
       <InfoContainer>
-        <LinksContainer>
-          {isActive && (
-            <StakeContainer>
-              <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
-            </StakeContainer>
-          )}
-          <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-          {/* <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal> */}
-        </LinksContainer>
+        {isActive && (
+          <StakeContainer>
+            <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
+          </StakeContainer>
+        )}
+        <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
+        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag variant="gradient" /> : <CoreTag variant="gradient" />}
           {dual ? <DualTag variant="gradient" /> : null}
@@ -216,20 +204,20 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <DetailsWrapper>
           <APR apr={farm.apr} />
           <HarvestLockup harvestInterval={farm.harvestInterval} />
-          <WithdrawalFee farm={farm} />
+          <WithdrawalFee />
         </DetailsWrapper>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
-          <Text color="black" fontSize="14px">{t('APY')}</Text>
+          <Text color="black">{t('APY')}</Text>
           <Apy {...apy} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text color="black" fontSize="14px">{t('Multiplier')}</Text>
+          <Text color="black">{t('Multiplier')}</Text>
           <Multiplier {...multiplier} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text color="black" fontSize="14px">{t('Liquidity')}</Text>
+          <Text color="black">{t('Liquidity')}</Text>
           <Liquidity {...liquidity} />
         </ValueWrapper>
       </ValueContainer>
@@ -238,7 +226,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           borderWidth="1px"
           colorLeft="#ffffff"
           colorRight="#ffffff"
-          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px' }}
+          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px'}}
         >
           <HarvestAction {...farm} userDataReady={userDataReady} harvestInterval={farm.harvestInterval} />
         </ActionItemWrapper>
@@ -246,9 +234,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           borderWidth="1px"
           colorLeft="#ffffff"
           colorRight="#ffffff"
-          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px' }}
+          style={{ flex: 1, margin: '4px 24px', background: 'white', borderRadius: '16px'}}
         >
-          <StakedAction farm={farm} {...farm} userDataReady={userDataReady} />
+          <StakedAction {...farm} userDataReady={userDataReady} />
         </ActionItemWrapper>
       </ActionContainer>
     </Container>

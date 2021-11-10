@@ -48,7 +48,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
           <>
             <Box display="inline">
               <GradientText>{`${earningToken.symbol} `}</GradientText>
-              <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+              <InlineText color="#69626E" textTransform="uppercase" bold fontSize="12px">
                 {t('Earned')}
               </InlineText>
             </Box>
@@ -63,10 +63,10 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
           </>
         )}
         <Box display="inline">
-          <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
+          <InlineText color={isStaked ? 'secondary' : '#69626E'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? <GradientText>{stakingToken.symbol}</GradientText> : t('Stake')}{' '}
           </InlineText>
-          <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
+          <InlineText color={isStaked ? '#69626E' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? t('Staked') : <GradientText>{stakingToken.symbol}</GradientText>}
           </InlineText>
         </Box>

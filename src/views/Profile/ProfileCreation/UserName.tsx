@@ -173,7 +173,7 @@ const UserName: React.FC = () => {
 
   return (
     <>
-      <Text fontSize="20px" color="textSubtle" bold>
+      <Text fontSize="20px" color="#69626E" bold>
         {t('Step %num%', { num: 4 })}
       </Text>
       <Heading as="h3" scale="xl" mb="24px">
@@ -187,7 +187,7 @@ const UserName: React.FC = () => {
           <Heading as="h4" scale="lg" mb="8px">
             {t('Set Your Name')}
           </Heading>
-          <Text as="p" color="textSubtle" mb="24px">
+          <Text as="p" color="#69626E" mb="24px">
             {t(
               'Your name must be at least 3 and at most 15 standard letters and numbers long. You can’t change this once you click Confirm.',
             )}
@@ -213,7 +213,7 @@ const UserName: React.FC = () => {
               </Indicator>
             </InputWrap>
           )}
-          <Text color="textSubtle" fontSize="14px" py="4px" mb="16px" style={{ minHeight: '30px' }}>
+          <Text color="#69626E" fontSize="14px" py="4px" mb="16px" style={{ minHeight: '30px' }}>
             {message}
           </Text>
           <Text as="p" color="failure" mb="8px">

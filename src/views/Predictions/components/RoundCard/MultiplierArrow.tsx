@@ -39,7 +39,7 @@ const EnteredTagWrapper = styled.div`
 `
 
 const getTextColor =
-  (fallback = 'textSubtle') =>
+  (fallback = '#69626E') =>
   (isActive: boolean, isDisabled: boolean) => {
     if (isDisabled) {
       return 'textDisabled'

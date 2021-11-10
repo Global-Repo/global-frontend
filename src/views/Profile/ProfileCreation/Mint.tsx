@@ -52,7 +52,7 @@ const Mint: React.FC = () => {
 
   return (
     <>
-      <Text fontSize="20px" color="textSubtle" bold>
+      <Text fontSize="20px" color="#69626E" bold>
         {t('Step %num%', { num: 1 })}
       </Text>
       <Heading as="h3" scale="xl" mb="24px">
@@ -68,10 +68,10 @@ const Mint: React.FC = () => {
           <Heading as="h4" scale="lg" mb="8px">
             {t('Choose your Starter!')}
           </Heading>
-          <Text as="p" color="textSubtle">
+          <Text as="p" color="#69626E">
             {t('Choose wisely: you can only ever make one starter collectible!')}
           </Text>
-          <Text as="p" mb="24px" color="textSubtle">
+          <Text as="p" mb="24px" color="#69626E">
             {t('Cost: %num% CAKE', { num: MINT_COST })}
           </Text>
           {nfts.map((nft) => {

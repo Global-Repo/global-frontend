@@ -39,7 +39,7 @@ const CakeVaultCardActions: React.FC<{
       <Flex flexDirection="column">
         <Box display="inline">
           <InlineText
-            color={accountHasSharesStaked ? 'secondary' : 'textSubtle'}
+            color={accountHasSharesStaked ? 'secondary' : '#69626E'}
             textTransform="uppercase"
             bold
             fontSize="12px"
@@ -47,7 +47,7 @@ const CakeVaultCardActions: React.FC<{
             {accountHasSharesStaked ? <GradientText>{stakingToken.symbol}</GradientText> : t('Stake')}{' '}
           </InlineText>
           <InlineText
-            color={accountHasSharesStaked ? 'textSubtle' : 'secondary'}
+            color={accountHasSharesStaked ? '#69626E' : 'secondary'}
             textTransform="uppercase"
             bold
             fontSize="12px"

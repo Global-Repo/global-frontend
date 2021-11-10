@@ -24,7 +24,7 @@ const Header: React.FC = () => {
       <Heading as="h2" scale="lg" mb="8px">
         {t('Show off your stats and collectibles with your unique profile')}
       </Heading>
-      <Text color="textSubtle" mb="24px">
+      <Text color="#69626E" mb="24px">
         {t('Total cost: 1.5 CAKE')}
       </Text>
       <Breadcrumbs>

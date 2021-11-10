@@ -13,7 +13,6 @@ export interface ExpandableSectionProps {
   lpLabel?: string
   addLiquidityUrl?: string
   apr: number
-  farm: any
 }
 
 const Wrapper = styled.div`
@@ -35,7 +34,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   addLiquidityUrl,
   apr,
-  farm
 }) => {
   const { t } = useTranslation()
 
@@ -46,7 +44,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         {totalValueFormatted ? <Text>{totalValueFormatted}</Text> : <Skeleton width={75} height={25} />}
       </Flex>
       {/* <APR apr={apr} /> */}
-      <WithdrawalFee farm={farm} />
+      <WithdrawalFee />
       {!removed && (
         <StyledLinkExternal href={addLiquidityUrl}>{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
       )}

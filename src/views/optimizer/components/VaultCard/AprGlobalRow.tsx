@@ -41,14 +41,14 @@ const AprGlobalRow: React.FC<AprGlobalRowProps> = ({ vault, performanceFee = 0 }
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <TooltipText fontSize="12px">{`${t('APR Global')}:`}</TooltipText>
+      <TooltipText fontSize="12px" color="black">{`${t('APR Global')}:`}</TooltipText>
       {!aprArray[0].apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">
           <Balance  fontSize="12px" isDisabled={false} value={globalAPR} decimals={2} unit="%" bold />
           <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
+            <CalculateIcon color="#69626E" width="18px" />
           </IconButton>
         </Flex>
       )}

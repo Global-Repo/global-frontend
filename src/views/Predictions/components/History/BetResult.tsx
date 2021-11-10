@@ -43,7 +43,7 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
       case Result.WIN:
         return 'warning'
       case Result.LOSE:
-        return 'textSubtle'
+        return '#69626E'
       case Result.CANCELED:
         return 'textDisabled'
       default:
@@ -141,7 +141,7 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
           <Text bold>{t('Your Result')}</Text>
           <Box style={{ textAlign: 'right' }}>
             <Text bold color={getResultColor()}>{`${result === Result.LOSE ? '-' : '+'}${formatBnb(payout)} BNB`}</Text>
-            <Text fontSize="12px" color="textSubtle">
+            <Text fontSize="12px" color="#69626E">
               {`~$${formatBnb(bnbBusdPrice.times(payout).toNumber())}`}
             </Text>
           </Box>

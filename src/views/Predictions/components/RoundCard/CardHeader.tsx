@@ -29,8 +29,8 @@ const getBackgroundColor = (theme: DefaultTheme, status: Status) => {
   }
 }
 
-type TextColor = 'textDisabled' | 'white' | 'secondary' | 'text' | 'textSubtle'
-type FallbackColor = 'text' | 'textSubtle'
+type TextColor = 'textDisabled' | 'white' | 'secondary' | 'text' | '#69626E'
+type FallbackColor = 'text' | '#69626E'
 
 const getTextColorByStatus = (status: Status, fallback: FallbackColor): TextColor => {
   switch (status) {
@@ -74,7 +74,7 @@ const CardHeader: React.FC<CardHeaderProps> = ({ status, title, epoch, icon }) =
         </Text>
       </Flex>
       <Round>
-        <Text fontSize={isLive ? '14px' : '12px'} color={getTextColorByStatus(status, 'textSubtle')} textAlign="center">
+        <Text fontSize={isLive ? '14px' : '12px'} color={getTextColorByStatus(status, '#69626E')} textAlign="center">
           {`#${epoch}`}
         </Text>
       </Round>

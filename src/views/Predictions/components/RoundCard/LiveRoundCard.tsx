@@ -92,7 +92,7 @@ const LiveRoundCard: React.FC<LiveRoundCardProps> = ({
             isActive={isBull}
           />
           <RoundResultBox betPosition={isBull ? BetPosition.BULL : BetPosition.BEAR}>
-            <Text color="textSubtle" fontSize="12px" bold textTransform="uppercase" mb="8px">
+            <Text color="#69626E" fontSize="12px" bold textTransform="uppercase" mb="8px">
               {t('Last Price')}
             </Text>
             <Flex alignItems="center" justifyContent="space-between" mb="16px" height="36px">

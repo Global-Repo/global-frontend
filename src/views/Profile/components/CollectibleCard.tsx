@@ -19,7 +19,7 @@ const CollectibleCard: React.FC<CollectibleCardProps> = ({ nft }) => {
       <Text bold mb="8px">
         {nft.name}
       </Text>
-      <Text as="p" fontSize="12px" color="textSubtle">
+      <Text as="p" fontSize="12px" color="#69626E">
         {nft.description}
       </Text>
     </div>

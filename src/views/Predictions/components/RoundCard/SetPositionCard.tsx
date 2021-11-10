@@ -191,7 +191,7 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
       </CardHeader>
       <CardBody py="16px">
         <Flex alignItems="center" justifyContent="space-between" mb="8px">
-          <Text textAlign="right" color="textSubtle">
+          <Text textAlign="right" color="#69626E">
             {t('Commit')}:
           </Text>
           <Flex alignItems="center">
@@ -212,7 +212,7 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
             {t(errorMessage.key, errorMessage.data)}
           </Text>
         )}
-        <Text textAlign="right" mb="16px" color="textSubtle" fontSize="12px" style={{ height: '18px' }}>
+        <Text textAlign="right" mb="16px" color="#69626E" fontSize="12px" style={{ height: '18px' }}>
           {account && t('Balance: %balance%', { balance: balanceDisplay })}
         </Text>
         <Slider
@@ -270,7 +270,7 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
             <UnlockButton width="100%" />
           )}
         </Box>
-        <Text as="p" fontSize="12px" lineHeight={1} color="textSubtle">
+        <Text as="p" fontSize="12px" lineHeight={1} color="#69626E">
           {t('You won’t be able to remove or change your position once you enter it.')}
         </Text>
       </CardBody>

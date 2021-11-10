@@ -21,7 +21,6 @@ interface FarmCardActionsProps {
   tokenName?: string
   pid?: number
   addLiquidityUrl?: string
-  farm: any
 }
 
 const IconButtonWrapper = styled.div`
@@ -37,7 +36,6 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenName,
   pid,
   addLiquidityUrl,
-  farm
 }) => {
   const { t } = useTranslation()
   const { onStake } = useStake(pid)
@@ -69,7 +67,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} farm={farm} />,
+    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} />,
   )
 
   const renderStakingButtons = () => {
@@ -104,7 +102,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         {stakedBalance.gt(0) && lpPrice.gt(0) && (
           <Balance
             fontSize="12px"
-            color="textSubtle"
+            color="#69626E"
             decimals={2}
             value={getBalanceNumber(lpPrice.times(stakedBalance))}
             unit=" USD"

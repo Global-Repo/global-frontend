@@ -35,7 +35,7 @@ const HowToJoin: React.FC<HowToCardProps> = ({ number, title, children }) => {
       <CardBody>
         <Inner>
           <NumberWrapper>
-            <Heading color="textSubtle">{number}</Heading>
+            <Heading color="#69626E">{number}</Heading>
           </NumberWrapper>
           <TitleWrapper>
             <Heading color="secondary">{title}</Heading>

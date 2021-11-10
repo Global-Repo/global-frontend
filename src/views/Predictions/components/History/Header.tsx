@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       </ButtonMenuContainer>
       {activeTab === HistoryTabs.ROUNDS && (
         <>
-          <Text color="textSubtle" fontSize="12px" mb="8px">
+          <Text color="#69626E" fontSize="12px" mb="8px">
             {t('Filter')}
           </Text>
           <Flex alignItems="center">

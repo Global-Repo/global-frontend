@@ -20,7 +20,7 @@ export interface FooterEntryProps {
 const FooterEntry: React.FC<FooterEntryProps> = ({ label, value }) => {
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <Text small color="textSubtle">
+      <Text small color="#69626E">
         {label}
       </Text>
       {value ? (

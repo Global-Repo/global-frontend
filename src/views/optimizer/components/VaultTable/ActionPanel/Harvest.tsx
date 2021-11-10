@@ -59,7 +59,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ vault, use
       <GradientText fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
         {earningToken[0].symbol}{' '}
       </GradientText>
-      <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color="#69626E" as="span" textTransform="uppercase">
         {t('Earned')}
       </Text>
     </>
@@ -101,7 +101,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ vault, use
                   <Balance
                     display="inline"
                     fontSize="12px"
-                    color="textSubtle"
+                    color="#69626E"
                     decimals={2}
                     prefix="~"
                     value={earningTokenDollarBalance}

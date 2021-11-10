@@ -104,7 +104,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
             <ButtonMenuItem as="button">{t('Harvest')}</ButtonMenuItem>
           </ButtonMenu>
           <Flex ml="10px" ref={targetRef}>
-            <HelpIcon color="textSubtle" />
+            <HelpIcon color="#69626E" />
           </Flex>
           {tooltipVisible && tooltip}
         </Flex>
@@ -117,7 +117,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
             {formattedBalance} {earningToken.symbol}
           </Heading>
           {earningsDollarValue > 0 && (
-            <Text fontSize="12px" color="textSubtle">{`~${formatNumber(earningsDollarValue)} USD`}</Text>
+            <Text fontSize="12px" color="#69626E">{`~${formatNumber(earningsDollarValue)} USD`}</Text>
           )}
         </Flex>
       </Flex>

@@ -48,7 +48,7 @@ const Apr: React.FC<AprProps> = ({ vault, showIcon, performanceFee = 0, ...props
           <Balance onClick={openRoiModal} fontSize="16px" value={aprArray[0].apr} decimals={2} unit="%" />
           {showIcon && (
             <Button onClick={openRoiModal} variant="text" width="20px" height="20px" padding="0px" marginLeft="4px">
-              <CalculateIcon color="textSubtle" width="20px" />
+              <CalculateIcon color="#69626E" width="20px" />
             </Button>
           )}
         </>

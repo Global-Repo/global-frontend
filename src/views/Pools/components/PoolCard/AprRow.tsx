@@ -58,7 +58,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
             bold
           />
           <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
+            <CalculateIcon color="#69626E" width="18px" />
           </IconButton>
         </Flex>
       )}

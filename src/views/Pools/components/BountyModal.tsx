@@ -85,10 +85,10 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         <Text>{t('You’ll claim')}</Text>
         <Flex flexDirection="column">
           <Balance bold value={cakeBountyToDisplay} decimals={7} unit=" CAKE" />
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color="#69626E">
             <Balance
               fontSize="12px"
-              color="textSubtle"
+              color="#69626E"
               value={dollarBountyToDisplay}
               decimals={2}
               unit=" USD"
@@ -99,16 +99,16 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       </Flex>
       <Divider />
       <Flex alignItems="center" justifyContent="space-between">
-        <Text fontSize="14px" color="textSubtle">
+        <Text fontSize="14px" color="#69626E">
           {t('Pool total pending yield')}
         </Text>
-        <Balance color="textSubtle" value={totalYieldToDisplay} unit=" CAKE" />
+        <Balance color="#69626E" value={totalYieldToDisplay} unit=" CAKE" />
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
-        <Text fontSize="14px" color="textSubtle">
+        <Text fontSize="14px" color="#69626E">
           {t('Bounty')}
         </Text>
-        <Text fontSize="14px" color="textSubtle">
+        <Text fontSize="14px" color="#69626E">
           {callFeeAsDecimal}%
         </Text>
       </Flex>
@@ -126,11 +126,11 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         <UnlockButton mb="28px" />
       )}
       <Flex justifyContent="center" alignItems="center">
-        <Text fontSize="16px" bold color="textSubtle" mr="4px">
+        <Text fontSize="16px" bold color="#69626E" mr="4px">
           {t('What’s this?')}
         </Text>
         <span ref={targetRef}>
-          <HelpIcon color="textSubtle" />
+          <HelpIcon color="#69626E" />
         </span>
       </Flex>
     </Modal>

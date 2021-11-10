@@ -28,14 +28,22 @@ const UnlockButton = ({ isPool = false, ...props }) => {
   }
 
   return (
-    <BorderGradientButton
+    // <BorderGradientButton
+    //   onClick={onPresentConnectModal}
+    //   {...props}
+    //   label={t('Unlock Wallet')}
+    //   style={{ padding: '8px', width: '100%' }}
+    //   colorRight="#F49F23"
+    //   colorLeft="#D41615"
+    // />
+    <WrappedButton
       onClick={onPresentConnectModal}
       {...props}
-      label={t('Unlock Wallet')}
       style={{ padding: '8px', width: '100%' }}
-      colorRight="#F49F23"
-      colorLeft="#D41615"
-    />
+      variant="danger"
+    >
+      {t('Unlock Wallet')}
+    </WrappedButton>
   )
 }
 

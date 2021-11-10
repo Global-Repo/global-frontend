@@ -61,7 +61,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
                     <Balance
                       display="inline"
                       fontSize="12px"
-                      color="textSubtle"
+                      color="#69626E"
                       decimals={2}
                       prefix="~"
                       value={earningTokenDollarBalance}

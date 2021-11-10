@@ -17,7 +17,7 @@ interface PromotedStyleCardProps {
   isDesktop: boolean
 }
 
-export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; isFinished?: boolean }>`
+export const StyledCard = styled(Card)<{ isPromoted?: boolean; isFinished?: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
   position: relative;
   color: ${({ isFinished, theme }) => theme.colors[isFinished ? 'textDisabled' : 'secondary']};
   // box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
-
+  
   ${({ isPromoted, theme }) =>
     isPromoted
       ? css`
@@ -36,9 +36,7 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
       : `background: transparent;`}
 
   ${({ isPromoted }) =>
-    isPromoted &&
-    isPromoted.isDesktop &&
-    css`
+    isPromoted && css`
       animation: ${PromotedGradient} 3s ease infinite;
     `}
 
@@ -48,8 +46,15 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
 `
 
 export const StyledCardInner = styled(Box)`
-  background: transparent;
-  // border-radius: ${({ theme }) => theme.radii.card};
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(179, 165, 209, 0.15), 0px 4px 40px rgba(179, 165, 209, 0.3);
+  border-radius: 32px;
+  border: solid 1px #d8d8d870;
+    // border-radius: ${({ theme }) => theme.radii.card};
+`
+
+export const GradientBorderBoxWrapper = styled.div`
+  width: 100%;
 `
 
 export default StyledCard

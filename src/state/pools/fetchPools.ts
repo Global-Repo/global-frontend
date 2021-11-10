@@ -4,11 +4,9 @@ import sousChefABI from 'config/abi/sousChef.json'
 import cakeABI from 'config/abi/cake.json'
 import wbnbABI from 'config/abi/weth.json'
 import multicall from 'utils/multicall'
-import { getAddress, getGlobalVaultLockedAddress, getWbnbAddress } from 'utils/addressHelpers'
+import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getSouschefV2Contract } from 'utils/contractHelpers'
-import vaultLockedABI from 'config/abi/vaultLocked.json'
-import { addMonths } from 'date-fns'
 
 export const fetchPoolsBlockLimits = async () => {
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
@@ -102,36 +100,4 @@ export const fetchPoolsStakingLimits = async (
       [validPools[index].sousId]: stakingLimit,
     }
   }, {})
-}
-
-export const fetchVaultPoolLockupPeriod = async () => {
-  const [[lockup]] = await multicall(vaultLockedABI, [
-    {
-      address: getGlobalVaultLockedAddress(),
-      name: 'LOCKUP',
-    },
-  ])
-  return new BigNumber(lockup._hex) // TODO return in seconds
-}
-
-
-export const fetchVaultPoolAvailableForWithdraw3Months = async (account: string) => {
-  const dates = [addMonths(new Date(), 1), addMonths(new Date(), 2), addMonths(new Date(), 5)]
-  const responses = await Promise.all(
-    dates.map((date) => {
-      return multicall(vaultLockedABI, [
-        {
-          address: getGlobalVaultLockedAddress(),
-          name: 'availableForWithdraw',
-          params: [Math.round(date.getTime() / 1000), account],
-        },
-      ])
-    }),
-  )
-
-  const availableAmounts = responses.map(([[available]]) => {
-    return new BigNumber(available._hex).toJSON()
-  })
-
-  return availableAmounts
 }

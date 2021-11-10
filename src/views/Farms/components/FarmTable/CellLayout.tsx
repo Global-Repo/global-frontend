@@ -2,12 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Label = styled.div`
-  font-size: 11px;
-  font-weight: 400;
-  color: #A099A5;
-  text-transform: uppercase;
+  font-size: 12px;
+  color: black;
   text-align: left;
-  margin-bottom: ${({theme}) => theme.spacing[2]}px;
 `
 
 const ContentContainer = styled.div`

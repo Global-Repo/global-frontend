@@ -105,7 +105,7 @@ const HistoricalBet: React.FC<BetProps> = ({ bet }) => {
 
     return (
       <>
-        <Text fontSize="12px" color="textSubtle">
+        <Text fontSize="12px" color="#69626E">
           {t('Your Result')}
         </Text>
         <Text bold color={resultTextColor} lineHeight={1}>
@@ -120,7 +120,7 @@ const HistoricalBet: React.FC<BetProps> = ({ bet }) => {
       <StyledBet onClick={toggleOpen} role="button">
         <Box width="48px">
           <Text textAlign="center">
-            <Text fontSize="12px" color="textSubtle">
+            <Text fontSize="12px" color="#69626E">
               {t('Round')}
             </Text>
             <Text bold lineHeight={1}>

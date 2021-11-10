@@ -114,7 +114,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
             <>
               <Balance small value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
               <span ref={totalStakedTargetRef}>
-                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+                <HelpIcon color="#69626E" width="20px" ml="6px" mt="4px" />
               </span>
             </>
           ) : (

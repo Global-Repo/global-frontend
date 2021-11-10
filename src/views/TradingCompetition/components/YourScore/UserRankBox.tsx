@@ -33,7 +33,7 @@ const UserRank: React.FC<UserRankProps> = ({ title = '', footer, children, ...pr
         {title}
       </Text>
       {children}
-      <Text mt="8px" fontSize="12px" color="textSubtle" textAlign="center">
+      <Text mt="8px" fontSize="12px" color="#69626E" textAlign="center">
         {footer}
       </Text>
     </Wrapper>

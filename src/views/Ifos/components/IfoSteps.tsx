@@ -69,7 +69,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             <Heading as="h4" color="secondary" mb="16px">
               {t('Activate your Profile')}
             </Heading>
-            <Text color="textSubtle" small mb="16px">
+            <Text color="#69626E" small mb="16px">
               {t('You’ll need an active PancakeSwap Profile to take part in an IFO!')}
             </Text>
             {isStepValid ? (
@@ -89,7 +89,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             <Heading as="h4" color="secondary" mb="16px">
               {t('Get CAKE-BNB LP Tokens')}
             </Heading>
-            <Text color="textSubtle" small>
+            <Text color="#69626E" small>
               {t('Stake CAKE and BNB in the liquidity pool to get LP tokens.')} <br />
               {t('You’ll spend them to buy IFO sale tokens.')}
             </Text>
@@ -110,7 +110,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             <Heading as="h4" color="secondary" mb="16px">
               {t('Commit LP Tokens')}
             </Heading>
-            <Text color="textSubtle" small>
+            <Text color="#69626E" small>
               {t('When the IFO sales are live, you can “commit” your LP tokens to buy the tokens being sold.')} <br />
               {t('We recommend committing to the Basic Sale first, but you can do both if you like.')}
             </Text>
@@ -122,7 +122,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             <Heading as="h4" color="secondary" mb="16px">
               {t('Claim your tokens and achievement')}
             </Heading>
-            <Text color="textSubtle" small>
+            <Text color="#69626E" small>
               {t(
                 'After the IFO sales finish, you can claim any IFO tokens that you bought, and any unspent CAKE-BNB LP tokens will be returned to your wallet.',
               )}

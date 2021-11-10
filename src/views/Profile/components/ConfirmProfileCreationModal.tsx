@@ -63,7 +63,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
 
   return (
     <Modal title={t('Complete Profile')} onDismiss={onDismiss}>
-      <Text color="textSubtle" mb="8px">
+      <Text color="#69626E" mb="8px">
         {t('Submitting NFT to contract and confirming User Name and Team.')}
       </Text>
       <Flex justifyContent="space-between" mb="16px">

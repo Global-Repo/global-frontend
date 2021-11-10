@@ -4,15 +4,14 @@ import { BorderGradientButton, BaseLayout, Flex, Image, LogoIcon, SocialLinks, T
 import styled from 'styled-components'
 import { useWeb3React, Web3ReactProvider  } from '@web3-react/core'
 import Web3 from 'web3'
-import { Web3Provider } from '@ethersproject/providers'
-import { useAppDispatch } from 'state'
+import { Web3Provider } from '@ethersproject/providers';
 import UnlockButton from 'components/UnlockButton'
 import { getBep20Contract, getGlobalContract, getGlobalPresaleContract } from 'utils/contractHelpers'
 import { sendTx } from 'utils/callHelpers'
-import { getBalanceNumber } from '../../../utils/formatBalance'
+import bep20Abi from '../../../config/abi/erc20.json'
 import { useTotalSupplyPresale } from '../../../hooks/useGetPresaleAmount'
 import { useTranslation } from '../../../contexts/Localization'
-
+import { getBalanceNumber } from '../../../utils/formatBalance'
 
 
 const ButtonCustomGlobalBuy = styled.div`
@@ -62,7 +61,7 @@ export function getLibrary(provider: any): Web3Provider {
 
 // anotcationes .--- ya van vendidos x bnb se partira de esa cantidad tendre que llamar para ver 
 const PresaleBuyAmount = () => {
-  const dispatch = useAppDispatch()
+
   const [error, setError] = useState();
   const [txs, setTxs] = useState([]);
   const [pendingTx, setPendingTx] = useState(false)
@@ -72,8 +71,10 @@ const PresaleBuyAmount = () => {
 
 
   const Buytokens = async () => {
+    console.log("Account" , account, active)
     const contract = getBep20Contract("0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd")
-    sendTx(contract,"0x98750654977f37F0094924438Ff31E30582d3b69",account,"999999999999994")
+    console.log("Contract", contract)
+    sendTx(contract,"0xF474Cf03ccEfF28aBc65C9cbaE594F725c80e12d",account,"999999999999994")
   }
 
   return (

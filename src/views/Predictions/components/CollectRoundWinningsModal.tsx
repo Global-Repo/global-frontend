@@ -113,7 +113,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           <Text>{t('Collecting')}</Text>
           <Box style={{ textAlign: 'right' }}>
             <Text>{`${formatBnb(payout)} BNB`}</Text>
-            <Text fontSize="12px" color="textSubtle">
+            <Text fontSize="12px" color="#69626E">
               {`~$${formatBnb(bnbBusdPrice.times(payout).toNumber())}`}
             </Text>
           </Box>

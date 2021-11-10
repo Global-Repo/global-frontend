@@ -12,7 +12,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 
 import styled from 'styled-components'
-import { ActionContainer, ActionTitles, ActionContent, RedButton } from './styles'
+import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
 import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
 
@@ -21,7 +21,7 @@ const GradientText = styled(Text)`
   text-transform: uppercase;
   font-size: 12px;
   padding-right: 4px;
-  background: #A099A5;
+  background: black;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -92,7 +92,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   ) : (
     <>
       <GradientText as="span">{earningToken.symbol} </GradientText>
-      <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color="#69626E" as="span" textTransform="uppercase">
         {t('Earned')}
       </Text>
     </>
@@ -134,7 +134,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
                   <Balance
                     display="inline"
                     fontSize="12px"
-                    color="textSubtle"
+                    color="#69626E"
                     decimals={2}
                     prefix="~"
                     value={earningTokenDollarBalance}
@@ -168,13 +168,13 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <RedButton
+          <Button
             disabled={!hasEarnings}
             onClick={onPresentCollect}
-            variant={!hasEarnings ? 'danger' : 'secondary'}
+            variant={!hasEarnings ? 'danger' : 'full_gradient_pool'}
           >
             {isCompoundPool ? t('Collect') : t('Harvest')}
-          </RedButton>
+          </Button>
         )}
       </ActionContent>
     </ActionContainer>

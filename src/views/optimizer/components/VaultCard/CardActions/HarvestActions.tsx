@@ -53,12 +53,12 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             <>
               {hasEarnings ? (
                 <>
-                  <Balance bold fontSize="20px" decimals={5} value={earningTokenBalance} />
+                  <Balance bold fontSize="20px" color="black" decimals={5} value={earningTokenBalance} />
                   {earningTokenPrice > 0 && (
                     <Balance
                       display="inline"
                       fontSize="12px"
-                      color="textSubtle"
+                      color="black"
                       decimals={2}
                       prefix="~"
                       value={earningTokenDollarBalance}
@@ -68,8 +68,8 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
                 </>
               ) : (
                 <>
-                  <Heading color="textDisabled">0</Heading>
-                  <Text fontSize="12px" color="textDisabled">
+                  <Heading color="black">0</Heading>
+                  <Text fontSize="12px" color="#69626E">
                     0 USD
                   </Text>
                 </>
@@ -81,7 +81,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           <Button
             disabled={!hasEarnings}
             onClick={onPresentCollect}
-            variant={hasEarnings ? 'full_gradient_pool' : 'danger'}
+            variant='danger'
           >
             {isCompoundPool ? t('Collect') : t('Harvest')}
           </Button>

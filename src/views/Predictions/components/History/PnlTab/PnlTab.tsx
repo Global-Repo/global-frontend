@@ -130,50 +130,50 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
       <Flex>
         <PnlChart lost={summary.lost.rounds} won={summary.won.rounds} />
         <Flex flexDirection="column" justifyContent="center" pl="24px">
-          <Text bold color="textSubtle">
+          <Text bold color="#69626E">
             {t('Net results')}
           </Text>
           <Text bold fontSize="24px" lineHeight="1" color={netResultIsPositive ? 'success' : 'failure'}>
             {`${netResultIsPositive ? '+' : ''}${formatBnb(netResultAmount)} BNB`}
           </Text>
-          <Text small color="textSubtle">
+          <Text small color="#69626E">
             {`~$${formatBnb(bnbBusdPrice.times(netResultAmount).toNumber())}`}
           </Text>
         </Flex>
       </Flex>
       <Box pl="8px">
-        <Text mt="24px" bold color="textSubtle">
+        <Text mt="24px" bold color="#69626E">
           {t('Average return / round')}
         </Text>
         <Text bold color={avgBnbWonIsPositive ? 'success' : 'failure'}>
           {`${avgBnbWonIsPositive ? '+' : ''}${formatBnb(avgBnbWonPerRound)} BNB`}
         </Text>
-        <Text small color="textSubtle">
+        <Text small color="#69626E">
           {`~$${formatBnb(bnbBusdPrice.times(avgBnbWonPerRound).toNumber())}`}
         </Text>
 
         {hasBestRound && (
           <>
-            <Text mt="16px" bold color="textSubtle">
+            <Text mt="16px" bold color="#69626E">
               {t('Best round: #%roundId%', { roundId: summary.won.bestRound.id })}
             </Text>
             <Flex alignItems="flex-end">
               <Text bold color="success">{`+${formatBnb(summary.won.bestRound.payout)} BNB`}</Text>
-              <Text ml="4px" small color="textSubtle">
+              <Text ml="4px" small color="#69626E">
                 ({summary.won.bestRound.multiplier.toFixed(2)}x)
               </Text>
             </Flex>
-            <Text small color="textSubtle">
+            <Text small color="#69626E">
               {`~$${formatBnb(bnbBusdPrice.times(summary.won.bestRound.payout).toNumber())}`}
             </Text>
           </>
         )}
 
-        <Text mt="16px" bold color="textSubtle">
+        <Text mt="16px" bold color="#69626E">
           {t('Average position entered / round')}
         </Text>
         <Text bold>{`${formatBnb(avgPositionEntered)} BNB`}</Text>
-        <Text small color="textSubtle">
+        <Text small color="#69626E">
           {`~$${formatBnb(bnbBusdPrice.times(avgPositionEntered).toNumber())}`}
         </Text>
 

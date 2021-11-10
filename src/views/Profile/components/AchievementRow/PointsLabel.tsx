@@ -12,8 +12,8 @@ const PointsLabel: React.FC<PointsLabelProps> = ({ points, ...props }) => {
 
   return (
     <Flex alignItems="center" {...props}>
-      <PrizeIcon mr="4px" color="textSubtle" />
-      <Text color="textSubtle">{t('%num% points', { num: localePoints })}</Text>
+      <PrizeIcon mr="4px" color="#69626E" />
+      <Text color="#69626E">{t('%num% points', { num: localePoints })}</Text>
     </Flex>
   )
 }

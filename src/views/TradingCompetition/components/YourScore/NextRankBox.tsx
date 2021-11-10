@@ -56,11 +56,11 @@ const NextRank: React.FC<NextRankProps> = ({
   return (
     <Wrapper {...props}>
       <Flex flexDirection="column" mr={['8px', '24px']}>
-        <Text mb="8px" fontSize="12px" bold color="textSubtle">
+        <Text mb="8px" fontSize="12px" bold color="#69626E">
           {title}
         </Text>
         {children}
-        <Text mt="8px" fontSize="12px" color="textSubtle">
+        <Text mt="8px" fontSize="12px" color="#69626E">
           {footer}
         </Text>
       </Flex>

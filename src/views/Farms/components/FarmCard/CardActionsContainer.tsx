@@ -90,7 +90,6 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         tokenName={farm.lpSymbol}
         pid={pid}
         addLiquidityUrl={addLiquidityUrl}
-        farm={farm}
       />
     ) : (
       <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove} variant="full_gradient_pool">
@@ -115,7 +114,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         </Flex>
         {isApproved && stakedBalance.gt(0) && (
           <TimerIconWrapper ref={targetRef}>
-            <TimerIcon color="textSubtle" />
+            <TimerIcon color="#69626E" />
           </TimerIconWrapper>
         )}
       </Flex>

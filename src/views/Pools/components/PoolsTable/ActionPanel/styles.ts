@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Button } from '@duhd4h/global-uikit'
 
 export const ActionContainer = styled.div`
   padding: 16px;
@@ -11,10 +10,6 @@ export const ActionContainer = styled.div`
 
   background: white;
   border-radius: 16px;
-
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 12px;
@@ -42,10 +37,4 @@ export const ActionContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
-
-
-export const RedButton = styled(Button)`
-  background-color: #ff0000;
-  color: #fff;
 `

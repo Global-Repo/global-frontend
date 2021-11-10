@@ -98,7 +98,7 @@ const ClaimModal: React.FC<CompetitionProps> = ({ onDismiss, onClaimSuccess, use
         >
           {t('Confirm')}
         </Button>
-        <Text mt="24px" fontSize="12px" color="textSubtle" textAlign="center">
+        <Text mt="24px" fontSize="12px" color="#69626E" textAlign="center">
           {t('All prizes will be sent directly to your wallet and user account.')}
         </Text>
       </Flex>

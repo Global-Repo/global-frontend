@@ -115,7 +115,7 @@ const Podium: React.FC<PodiumProps> = ({ teamsSortedByVolume }) => {
             ) : (
               <Skeleton width="77px" height="24px" />
             )}
-            <Text fontSize="12px" color="textSubtle">
+            <Text fontSize="12px" color="#69626E">
               {t('Volume')}
             </Text>
           </StyledVolumeFlex>
@@ -125,7 +125,7 @@ const Podium: React.FC<PodiumProps> = ({ teamsSortedByVolume }) => {
             ) : (
               <Skeleton width="77px" height="24px" />
             )}
-            <Text fontSize="12px" color="textSubtle">
+            <Text fontSize="12px" color="#69626E">
               {t('Volume')}
             </Text>
           </StyledVolumeFlex>
@@ -135,7 +135,7 @@ const Podium: React.FC<PodiumProps> = ({ teamsSortedByVolume }) => {
             ) : (
               <Skeleton width="77px" height="24px" />
             )}
-            <Text fontSize="12px" color="textSubtle">
+            <Text fontSize="12px" color="#69626E">
               {t('Volume')}
             </Text>
           </StyledVolumeFlex>

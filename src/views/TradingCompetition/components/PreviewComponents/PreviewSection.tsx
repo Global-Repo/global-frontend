@@ -4,7 +4,7 @@ import { Flex } from '@duhd4h/global-uikit'
 import { SectionProps } from '../../types'
 
 const BackgroundColorWrapper = styled(Flex)<SectionProps>`
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 64px);
   position: relative;
   align-items: center;
   justify-content: center;

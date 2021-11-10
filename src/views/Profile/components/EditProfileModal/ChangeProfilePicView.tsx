@@ -55,7 +55,7 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
 
   return (
     <>
-      <Text as="p" color="textSubtle" mb="24px">
+      <Text as="p" color="#69626E" mb="24px">
         {t('Choose a new Collectible to use as your profile pic.')}
       </Text>
       {isLoading ? (
@@ -87,10 +87,10 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
       )}
       {!isLoading && nftsInWallet.length === 0 && (
         <>
-          <Text as="p" color="textSubtle" mb="16px">
+          <Text as="p" color="#69626E" mb="16px">
             {t('Sorry! You don’t have any eligible Collectibles in your wallet to use!')}
           </Text>
-          <Text as="p" color="textSubtle" mb="24px">
+          <Text as="p" color="#69626E" mb="24px">
             {t('Make sure you have a Pancake Collectible in your wallet and try again!')}
           </Text>
         </>

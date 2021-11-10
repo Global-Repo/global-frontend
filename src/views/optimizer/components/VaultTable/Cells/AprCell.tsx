@@ -23,7 +23,7 @@ const AprCell: React.FC<AprCellProps> = ({ vault }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        <Text fontSize="12px" color="#69626E" textAlign="left">
           {t('APY')}
         </Text>
         <Apr vault={vault} performanceFee={0} showIcon={!isXs && !isSm} />

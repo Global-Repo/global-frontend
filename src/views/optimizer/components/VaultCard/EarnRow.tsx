@@ -7,8 +7,8 @@ const EarnRow: FC = () => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <Text>{t('Earn:')}</Text>
-      <Text>BNB</Text>
+      <Text color="black">{t('Earn:')}</Text>
+      <Text color="black">BNB</Text>
     </Flex>
   )
 }

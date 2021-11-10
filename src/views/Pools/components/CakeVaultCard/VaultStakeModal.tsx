@@ -186,7 +186,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         currencyValue={globalPriceBusd.gt(0) && `~${usdValueStaked || 0} USD`}
         decimals={stakingToken.decimals}
       />
-      <Text mt="8px" ml="auto" color="textSubtle" fontSize="12px" mb="8px">
+      <Text mt="8px" ml="auto" color="#69626E" fontSize="12px" mb="8px">
         {t('Balance: %balance%', { balance: getFullDisplayBalance(stakingMax, stakingToken.decimals) })}
       </Text>
       <Slider

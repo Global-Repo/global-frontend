@@ -27,8 +27,8 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ achievement }) => {
         <AchievementDescription description={achievement.description} />
       </Details>
       <Flex alignItems="center">
-        <PrizeIcon width="18px" color="textSubtle" mr="4px" />
-        <Text color="textSubtle">{achievement.points.toLocaleString()}</Text>
+        <PrizeIcon width="18px" color="#69626E" mr="4px" />
+        <Text color="#69626E">{achievement.points.toLocaleString()}</Text>
       </Flex>
     </Flex>
   )
